@@ -1,0 +1,7 @@
+roms/*
+.DS_Store
+.idea/*
+out/*
+notes/*
+lib/*
+*.iml
