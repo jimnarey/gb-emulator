@@ -11,16 +11,18 @@ public class Memory {
     private Bank[] memoryBanks;
     private int[][] memoryMap;
 
+
     public static void main(String args[]) {
         Memory testMemory = new Memory();
         System.out.println(testMemory.memoryBanks[0].getSize());
-
-        testMemory.printMemoryMap();
+        //testMemory.printMemoryMap();
 
     }
 
+
     public Memory() {
 
+        //Consider importing a JSON/CSV memory specification
         this.memoryBanks = new Bank[16];
 
         this.memoryBanks[0] = new Bank("restartInterruptVectors", "Restart and Interrupt Vectors", 0, 255);
@@ -48,6 +50,18 @@ public class Memory {
 
     }
 
+    public void byteToDecAddress(byte byteToWrite, int address) {
+
+        memoryBanks[memoryMap[address][0]].contents[memoryMap[address][1]] = byteToWrite;
+
+    }
+
+    public byte byteFromDecAddress(int address) {
+
+        return memoryBanks[memoryMap[address][0]].contents[memoryMap[address][1]];
+
+    }
+
     private int getMemorySize() {
 
         int byteCount = 0;
@@ -58,37 +72,30 @@ public class Memory {
         }
 
         //Print total number of bytes
-        System.out.println(byteCount);
+        System.out.println("Total memory in declared banks = " + byteCount + " bytes");
 
         return byteCount;
 
     }
 
+
     private int[][] buildMemoryMap(int[][] memoryMap) {
 
         int addressIncrement;
 
-        //Initialse memory map array with one element for every byte in all banks
-        //memoryMap = new int[byteCount][2];
-        System.out.println(memoryMap.length);
-
-
         //Consider putting an an array sort for safety
         addressIncrement = 0;
         for (int i = 0; i < this.memoryBanks.length; i++) {
-
             for (int j = 0; j < this.memoryBanks[i].contents.length; j++) {
-
                 memoryMap[addressIncrement][0] = i;
                 memoryMap[addressIncrement][1] = j;
                 addressIncrement++;
-
             }
-
         }
 
         return memoryMap;
     }
+
 
     public void printMemoryMap() {
 
@@ -100,7 +107,36 @@ public class Memory {
         }
     }
 
-    
+
+    public void printAllBytes() {
+
+        for (int i = 0 ; i < 65536; i++) {
+
+            System.out.println(byteFromDecAddress(i));
+
+        }
+
+    }
+
+
+    public void simpleLoadCartridge(Cartridge cartridge) {
+        int cartridgeSize = cartridge.romData.length;
+
+        if (cartridgeSize <= 0) {
+            System.out.println("No data in cartridge");
+            return;
+        } else if (cartridgeSize > 32768){
+            System.out.println("Cartridge data too large");
+            return;
+        } else {
+            for (int i = 0; i < 32768; i++) {
+                byteToDecAddress(cartridge.romData[i], i);
+            }
+            System.out.println("Cartridge loaded");
+        }
+    }
+
+
     class Bank {
 
         private String name;
@@ -109,6 +145,7 @@ public class Memory {
         private int lastByte = 0;
         private byte[] contents;
 
+        //Consider allowing intialisation using bank size as well as first/last byte
         public Bank (String name, String description, int firstByte, int lastByte) {
             this.name = name;
             this.description = description;
