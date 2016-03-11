@@ -9,11 +9,13 @@ import java.util.HashMap;
 public class Memory {
     
     private Bank[] memoryBanks;
-    private HashMap memoryMap;
+    private int[][] memoryMap;
 
     public static void main(String args[]) {
         Memory testMemory = new Memory();
-        System.out.println(testMemory.memoryBanks[0].name);
+        System.out.println(testMemory.memoryBanks[0].getSize());
+
+        testMemory.printMemoryMap();
 
     }
 
@@ -39,24 +41,80 @@ public class Memory {
         this.memoryBanks[15] = new Bank("interruptEnable", "Interrupt Enable Flag", 65535, 65535);
 
         //Consider specifying initial size and load factor
-        this.memoryMap = new HashMap();
+        //this.memoryMap = new HashMap();
+
+        this.memoryMap = new int[getMemorySize()][2];
+        memoryMap = this.buildMemoryMap(memoryMap);
+
     }
 
+    private int getMemorySize() {
 
-    class Bank extends ArrayList {
+        int byteCount = 0;
+
+        //Loop through declared memory banks to calculate total number of bytes
+        for (Bank b : this.memoryBanks) {
+            byteCount = byteCount + b.getSize();
+        }
+
+        //Print total number of bytes
+        System.out.println(byteCount);
+
+        return byteCount;
+
+    }
+
+    private int[][] buildMemoryMap(int[][] memoryMap) {
+
+        int addressIncrement;
+
+        //Initialse memory map array with one element for every byte in all banks
+        //memoryMap = new int[byteCount][2];
+        System.out.println(memoryMap.length);
+
+
+        //Consider putting an an array sort for safety
+        addressIncrement = 0;
+        for (int i = 0; i < this.memoryBanks.length; i++) {
+
+            for (int j = 0; j < this.memoryBanks[i].contents.length; j++) {
+
+                memoryMap[addressIncrement][0] = i;
+                memoryMap[addressIncrement][1] = j;
+                addressIncrement++;
+
+            }
+
+        }
+
+        return memoryMap;
+    }
+
+    public void printMemoryMap() {
+
+        for (int i[]: this.memoryMap) {
+
+            System.out.print(i[0]);
+            System.out.print(" ");
+            System.out.println(i[1]);
+        }
+    }
+
+    
+    class Bank {
 
         private String name;
         private String description;
         private int firstByte = 0;
         private int lastByte = 0;
-        //private byte[] contents;
+        private byte[] contents;
 
         public Bank (String name, String description, int firstByte, int lastByte) {
             this.name = name;
             this.description = description;
             this.firstByte = firstByte;
             this.lastByte = lastByte;
-            //this.contents = new byte[this.getSize()];
+            this.contents = new byte[this.getSize()];
         }
 
         public int getFirstByte() {
