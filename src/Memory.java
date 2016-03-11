@@ -50,6 +50,15 @@ public class Memory {
 
     }
 
+    private int[] getBankAddress(int address) {
+
+        int[] banksAddress = new int[2];
+        banksAddress[0] = memoryMap[address][0];
+        banksAddress[1] = memoryMap[address][1];
+        return banksAddress;
+
+    }
+
     public void byteToDecAddress(byte byteToWrite, int address) {
 
         memoryBanks[memoryMap[address][0]].contents[memoryMap[address][1]] = byteToWrite;
