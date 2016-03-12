@@ -10,6 +10,8 @@ class OpcodeHandler:
         self.csv_reader = csv.reader(self.csv_file, delimiter=',')
         self.op_table = self.create_code_table()
         self.clean_table = self.remove_line_feeds()
+        self.num_table = self.clean_num_cells()
+        self.code_list = self.create_code_list()
 
     def create_code_table(self):
         op_table = []
@@ -23,17 +25,6 @@ class OpcodeHandler:
             clean_row = []
             for j in i:
                 clean_row.append(j.replace('\xa0', ' '))
-            clean_table.append(clean_row)
-        return clean_table
-
-    def remove_extra_chars(self):
-
-        clean_table = []
-        for i in range(len(self.op_table)):
-            clean_row = []
-            for j in range(len(self.op_table[i])):
-                clean_row.append(self.op_table[i][j].replace('\xa0', ' '))
-
             clean_table.append(clean_row)
         return clean_table
 
@@ -81,7 +72,32 @@ class OpcodeHandler:
 
         return num_table
 
+    def create_code_list(self):
+
+        code_list = []
+        # Iterate through rows in table, ignoring first
+        for i in range(1, len(self.num_table)):
+
+            # Iterate through cells in each row, ignoring first
+            for j in range(1, len(self.num_table[i])):
+
+                list_item = self.num_table[i][j]
+
+                nibble_1 = self.num_table[i][0]
+                nibble_2 = self.num_table[0][j]
+
+                list_item = nibble_1 + nibble_2 + '\n' + list_item
+
+                list_item = list_item.split('\n')
+
+                code_list.append(list_item)
+
+        return code_list
+
+    def add_new_cells(self):
+        pass
 
 if __name__ == "__main__":
     ch = OpcodeHandler()
-    table = ch.clean_num_cells()
+    l = ch.code_list
+
