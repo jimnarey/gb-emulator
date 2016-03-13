@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import csv
 
-
 class OpcodeHandler:
 
     # Command descriptions
@@ -71,6 +70,35 @@ class OpcodeHandler:
         self.num_table = self.clean_num_cells()
         self.code_list = self.create_code_list()
         self.added_list = self.add_columns()
+
+    @staticmethod
+    def remove_duplicates(instruction_list):
+
+        short_list = []
+        for i in instruction_list:
+            if i[6] != '':
+                if i[6] not in short_list:
+                    short_list.append(i[6])
+
+        return short_list
+
+    @staticmethod
+    def fill_binary(bin_string):
+        filled_binary = bin_string[2:]
+        num_zeros = 8 - len(filled_binary)
+        i = 0
+        while i < num_zeros:
+            filled_binary = '0' + filled_binary
+            i += 1
+        return filled_binary
+
+    @staticmethod
+    def create_methods(instruction_list, file_name):
+
+        method_file = open(file_name, 'w', newline='')
+
+        for i in instruction_list:
+            method_file.write('public ' + 'int ' + i + '() {\n\t\n\treturn result;\n}\n\n')
 
 
 
@@ -203,23 +231,13 @@ class OpcodeHandler:
                         added_row.append(k)
 
             try:
-                added_row.append(OpcodeHandler.code_descriptions[mnemonic])
+                added_row.append(   OpcodeHandler.code_descriptions[mnemonic])
             except KeyError:
                 print('Command ' + mnemonic + ' not found.')
 
             added_list.append(added_row)
 
         return added_list
-
-    def fill_binary(self, bin_string):
-        filled_binary = bin_string[2:]
-        num_zeros = 8 - len(filled_binary)
-        i = 0
-        while i < num_zeros:
-            filled_binary = '0' + filled_binary
-            i += 1
-        return filled_binary
-
 
     def write_added_list(self, file_name):
         output_file = open(file_name, 'w', newline='')
@@ -241,3 +259,9 @@ if __name__ == "__main__":
     m = main_handler.added_list
 
     c = cb_handler.added_list
+
+    ml = OpcodeHandler.remove_duplicates(m)
+    cl = OpcodeHandler.remove_duplicates(c)
+
+    OpcodeHandler.create_methods(ml, '../other/main_methods.txt')
+    OpcodeHandler.create_methods(cl, '../other/cb_methods.txt')

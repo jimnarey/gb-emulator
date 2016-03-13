@@ -1,0 +1,55 @@
+public int RLC() {
+	
+	return result;
+}
+
+public int RRC() {
+	
+	return result;
+}
+
+public int RL() {
+	
+	return result;
+}
+
+public int RR() {
+	
+	return result;
+}
+
+public int SLA() {
+	
+	return result;
+}
+
+public int SRA() {
+	
+	return result;
+}
+
+public int SWAP() {
+	
+	return result;
+}
+
+public int SRL() {
+	
+	return result;
+}
+
+public int BIT() {
+	
+	return result;
+}
+
+public int RES() {
+	
+	return result;
+}
+
+public int SET() {
+	
+	return result;
+}
+

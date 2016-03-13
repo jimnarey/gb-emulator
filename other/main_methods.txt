@@ -1,0 +1,175 @@
+public int NOP() {
+	
+	return result;
+}
+
+public int LD() {
+	
+	return result;
+}
+
+public int INC() {
+	
+	return result;
+}
+
+public int DEC() {
+	
+	return result;
+}
+
+public int RLCA() {
+	
+	return result;
+}
+
+public int ADD() {
+	
+	return result;
+}
+
+public int RRCA() {
+	
+	return result;
+}
+
+public int STOP() {
+	
+	return result;
+}
+
+public int RLA() {
+	
+	return result;
+}
+
+public int JR() {
+	
+	return result;
+}
+
+public int RRA() {
+	
+	return result;
+}
+
+public int DAA() {
+	
+	return result;
+}
+
+public int CPL() {
+	
+	return result;
+}
+
+public int SCF() {
+	
+	return result;
+}
+
+public int CCF() {
+	
+	return result;
+}
+
+public int HALT() {
+	
+	return result;
+}
+
+public int ADC() {
+	
+	return result;
+}
+
+public int SUB() {
+	
+	return result;
+}
+
+public int SBC() {
+	
+	return result;
+}
+
+public int AND() {
+	
+	return result;
+}
+
+public int XOR() {
+	
+	return result;
+}
+
+public int OR() {
+	
+	return result;
+}
+
+public int CP() {
+	
+	return result;
+}
+
+public int RET() {
+	
+	return result;
+}
+
+public int POP() {
+	
+	return result;
+}
+
+public int JP() {
+	
+	return result;
+}
+
+public int CALL() {
+	
+	return result;
+}
+
+public int PUSH() {
+	
+	return result;
+}
+
+public int RST() {
+	
+	return result;
+}
+
+public int PREFIX() {
+	
+	return result;
+}
+
+public int () {
+	
+	return result;
+}
+
+public int RETI() {
+	
+	return result;
+}
+
+public int LDH() {
+	
+	return result;
+}
+
+public int DI() {
+	
+	return result;
+}
+
+public int EI() {
+	
+	return result;
+}
+
