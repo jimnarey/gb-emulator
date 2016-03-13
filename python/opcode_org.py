@@ -6,13 +6,17 @@ class OpcodeHandler:
 
     def __init__(self, file_name):
         # Open CSV file containing opcode table
-        self.csv_file = open(file_name, newline='')
-        self.csv_reader = csv.reader(self.csv_file, delimiter=',')
+        self.input_file = open(file_name, newline='')
+        self.csv_reader = csv.reader(self.input_file, delimiter=',')
+
+        # Run functions to incrementally build command list
         self.op_table = self.create_code_table()
         self.clean_table = self.remove_line_feeds()
         self.num_table = self.clean_num_cells()
         self.code_list = self.create_code_list()
         self.added_list = self.add_columns()
+
+        # Command descriptions
         self.code_descriptions = {
 
             'LD': 'Put',
@@ -83,23 +87,6 @@ class OpcodeHandler:
             clean_table.append(clean_row)
         return clean_table
 
-    def split_code_cells(self):
-        long_table = []
-
-        for i in self.clean_table:
-
-            long_row = []
-            for j in i:
-                if '\n' in j:
-                    string_list = j.split('\n')
-                    for k in string_list:
-                        long_row.append(k)
-                else:
-                    long_row.append(j)
-
-            long_table.append(long_row)
-
-        return long_table
 
     def clean_num_cells(self):
 
@@ -164,17 +151,52 @@ class OpcodeHandler:
 
             added_row.append(dec_number)
             added_row.append(hex_number)
-            added_row.append(bin_number)
 
+            # Add binary columns
+            added_row.append(self.fill_binary(bin_number))
+
+            # Add columns for each nibble
+            for p in hex_number:
+                nibble = int(p, 16)
+                nibble = bin(nibble)
+                nibble = self.fill_binary(nibble)[4:]
+                added_row.append(nibble)
+
+            # Add command/operand rows
+
+            full_command = self.code_list[i][1]
+            added_row.append(full_command)
+
+            mnemonic = ""
+            for x in range(len(full_command)):
+                if full_command[x] != ' ':
+                    mnemonic = mnemonic + full_command[x]
+                else:
+                    break
+
+            operand_1 = ""
+            for y in range(len(mnemonic) + 1, len(full_command)):
+                if full_command[y] != ',':
+                    operand_1 = operand_1 + full_command[y]
+                else:
+                    break
+
+            operand_2 = ""
+            for z in range(len(mnemonic) + len(operand_1) + 2, len(full_command)):
+                    operand_2 = operand_2 + full_command[z]
+
+            added_row.append(mnemonic)
+            added_row.append(operand_1)
+            added_row.append(operand_2)
+
+            # Split up length and duration columns
             if len(self.code_list[i]) > 2:
-                # Split 'length in bytes' and duration columns
                 length_and_duration = self.code_list[i][2].replace('  ', ' ')
                 length_and_duration = length_and_duration.split(' ')
                 for j in length_and_duration:
                     added_row.append(j)
 
                 if len(self.code_list[i]) > 3:
-                    # Split flag columns
                     flag_columns = self.code_list[i][3].split(' ')
                     for k in flag_columns:
                         added_row.append(k)
@@ -183,12 +205,33 @@ class OpcodeHandler:
 
         return added_list
 
+    def fill_binary(self, bin_string):
+        filled_binary = bin_string[2:]
+        num_zeros = 8 - len(filled_binary)
+        i = 0
+        while i < num_zeros:
+            filled_binary = '0' + filled_binary
+            i += 1
+        return filled_binary
+
+
+    def write_added_list(self, file_name):
+        output_file = open(file_name, 'w', newline='')
+        csv_writer = csv.writer(output_file, delimiter=',')
+
+        for i in self.added_list:
+            csv_writer.writerow(i)
+        output_file.close()
+
 
 if __name__ == "__main__":
 
     main_handler = OpcodeHandler('../other/main_opcodes.csv')
     cb_handler = OpcodeHandler('../other/cb_opcodes.csv')
 
-    main_table = main_handler.added_list
+    main_handler.write_added_list('../other/main_list.csv')
+    cb_handler.write_added_list('../other/cb_list.csv')
 
-    cb_table = cb_handler.added_list
+    m = main_handler.added_list
+
+    c = cb_handler.added_list
