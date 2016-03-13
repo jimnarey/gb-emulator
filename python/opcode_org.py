@@ -4,9 +4,9 @@ import csv
 
 class OpcodeHandler:
 
-    def __init__(self):
+    def __init__(self, file_name):
         # Open CSV file containing opcode table
-        self.csv_file = open('../other/main_opcodes.csv', newline='')
+        self.csv_file = open(file_name, newline='')
         self.csv_reader = csv.reader(self.csv_file, delimiter=',')
         self.op_table = self.create_code_table()
         self.clean_table = self.remove_line_feeds()
@@ -185,6 +185,10 @@ class OpcodeHandler:
 
 
 if __name__ == "__main__":
-    ch = OpcodeHandler()
-    l = ch.added_list
 
+    main_handler = OpcodeHandler('../other/main_opcodes.csv')
+    cb_handler = OpcodeHandler('../other/cb_opcodes.csv')
+
+    main_table = main_handler.added_list
+    
+    cb_table = cb_handler.added_list
