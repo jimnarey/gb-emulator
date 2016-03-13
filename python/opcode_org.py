@@ -12,7 +12,7 @@ class OpcodeHandler:
         self.clean_table = self.remove_line_feeds()
         self.num_table = self.clean_num_cells()
         self.code_list = self.create_code_list()
-        self.added_list = self.add_new_cells()
+        self.added_list = self.add_columns()
         self.code_descriptions = {
 
             'LD': 'Put',
@@ -149,23 +149,23 @@ class OpcodeHandler:
 
         return code_list
 
-    def add_new_cells(self):
+    def add_columns(self):
         added_list = []
-        added_list.append(['code_no', 'bin_no', 'length', 'duration', 'Z', 'N', 'H', 'C'])
+        #added_list.append(['code_no', 'bin_no', 'length', 'duration', 'Z', 'N', 'H', 'C'])
 
         for i in range(len(self.code_list)):
 
             added_row = []
 
-            # Turn hex value in string into int, then binary encoded as string
-            code_number = int(self.code_list[i][0], 16)
-            bin_number = bin(code_number)
+            # Add further numerical columns
+            dec_number = int(self.code_list[i][0], 16)
+            hex_number = self.code_list[i][0]
+            bin_number = bin(dec_number)
 
-            added_row.append(code_number)
+            added_row.append(dec_number)
+            added_row.append(hex_number)
             added_row.append(bin_number)
 
-            print (i)
-            print(self.code_list[i])
             if len(self.code_list[i]) > 2:
                 # Split 'length in bytes' and duration columns
                 length_and_duration = self.code_list[i][2].replace('  ', ' ')
@@ -190,5 +190,5 @@ if __name__ == "__main__":
     cb_handler = OpcodeHandler('../other/cb_opcodes.csv')
 
     main_table = main_handler.added_list
-    
+
     cb_table = cb_handler.added_list
