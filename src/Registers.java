@@ -18,116 +18,108 @@ public class Registers {
     public Registers() {
 
 
-
     }
     
-    
-    public byte readA() {
-        return this.A;
+    public byte read8(String source) {
+
+        switch (source) {
+
+            case "A":
+                return this.A;
+
+            case "F":
+                return this.F;
+
+            case "B":
+                return this.B;
+
+            case "C":
+                return this.C;
+
+            case "D":
+                return this.D;
+
+            case "E":
+                return this.E;
+
+            case "H":
+                return this.H;
+
+            case "L":
+                return this.L;
+                
+        }
+        return 0;
     }
 
-    public byte readF() {
-        return this.F;
-    }
+    public void write8(byte input, String target) {
 
-    public byte readB() {
-        return  this.B;
-    }
+        switch (target) {
 
-    public byte readC() {
-        return this.C;
-    }
-
-    public byte readD() {
-        return this.D;
-    }
-
-    public byte readE() {
-        return this.E;
-    }
-
-    public byte readH() {
-        return this.H;
-    }
-
-    public byte readL() {
-        return this.L;
-    }
-
-    public writeA(byte byte_1) {
-        this.A = byte_1;
-    }
-
-    public writeF(byte byte_1) {
-        this.F = byte_1;
-    }
-
-    public writeB(byte byte_1) {
-         this.B = byte_1;
-    }
-
-    public writeC(byte byte_1) {
-        this.C = byte_1;
-    }
-
-    public writeD(byte byte_1) {
-        this.D = byte_1;
-    }
-
-    public writeE(byte byte_1) {
-        this.E = byte_1;
-    }
-
-    public writeH(byte byte_1) {
-        this.H = byte_1;
-    }
-
-    public writeL(byte byte_1) {
-        this.L = byte_1;
-    }
-    
-    public short readAF() {
-        return bytes_to_short(this.A, this.F);
-        
-    }
-
-    public short readBC() {
-        return bytes_to_short(this.B, this.C);
+            case "A":
+                this.A = input;
+                break;
+            case "F":
+                this.F = input;
+                break;
+            case "B":
+                this.B = input;
+                break;
+            case "C":
+                this.C = input;
+                break;
+            case "D":
+                this.D = input;
+                break;
+            case "E":
+                this.E = input;
+                break;
+            case "H":
+                this.F = input;
+                break;
+            case "L":
+                this.L = input;
+                break;
+        }
 
     }
 
-    public short readDE() {
-        return bytes_to_short(this.D, this.E);
-
-    }
-
-    public short readHL() {
-        return bytes_to_short(this.H, this.L);
-
-    }
-
-    public writeShortAF(short byte_pair) {
+    //Check about returning multiple values from one method (i.e. two bytes)
+    public byte[] read16(String source) {
         byte[] bytes;
-        bytes = this.short_to_bytes(byte_pair);
 
+        switch (source) {
+
+            case "AF":
+                return this.A;
+            
+            case "BC":
+                return this.F;
+            
+            case "DE":
+                return this.B;
+            
+            case "HL":
+                return this.C;
+            
+            case "SP":
+                bytes = short_to_bytes(this.SP);
+                return bytes;
+
+            case "PC":
+                bytes = short_to_bytes(this.PC);
+                return bytes;
+            
+        }
+        bytes = new byte[2];
+        bytes[0] = 0;
+        bytes[1] = 1;
+        return bytes;
     }
 
-    public writeShortBC() {
-        return bytes_to_short(this.B, this.C);
+    // Methods for getting LSB/MSB from a 16bit register
+    // Method for 16bit to short/vice-versa
 
-    }
-
-    public writeShortDE() {
-        return bytes_to_short(this.D, this.E);
-
-    }
-
-    public writeShortHL() {
-        return bytes_to_short(this.H, this.L);
-
-    }
-    
-    
     private short bytes_to_short(byte byte_1, byte byte_2) {
         return (short) ((byte_1 << 8) | (byte_2 & 0xFF));
     }
