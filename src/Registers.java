@@ -6,21 +6,18 @@ public class Registers {
     //8bit registers
     //A is accumulator, F for flags, others general purpose
     //How to neatly join when needed?
-    private byte A, F, B, C, D, E, H, L;
+    private int A, F, B, C, D, E, H, L;
 
     //16bit registers, stack pointer and program counter
     //How to split up if needed?
-    private short SP, PC;
-
-    private byte[] temp8;
-    private byte[] temp16 = new byte[2];
+    private int SP, PC;
 
     public Registers() {
 
 
     }
 
-    public byte read8(String source) {
+    public int read8(String source) {
 
         switch (source) {
 
@@ -52,7 +49,7 @@ public class Registers {
         return 0;
     }
 
-    public void write8(byte input, String target) {
+    public void write8(int input, String target) {
 
         switch (target) {
 
@@ -85,12 +82,13 @@ public class Registers {
     }
 
     //Check about returning multiple values from one method (i.e. two bytes)
-    public byte[] read16(String source) {
-        byte[] bytes;
+    public int[] read16(String source) {
+        int[] bytes;
 
         switch (source) {
 
             case "AF":
+
                 return this.A;
             
             case "BC":

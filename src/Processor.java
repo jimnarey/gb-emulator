@@ -6,6 +6,14 @@ import java.util.Map;
  */
 public class Processor {
 
+    //8bit registers
+    //A is accumulator, F for flags, others general purpose
+    //How to neatly join when needed?
+    private int A, F, B, C, D, E, H, L;
+
+    //16bit registers, stack pointer and program counter
+    //How to split up if needed?
+    private int SP, PC;
 
     public Processor() {
 
