@@ -19,7 +19,7 @@ public class Registers {
 
 
     }
-    
+
     public byte read8(String source) {
 
         switch (source) {
@@ -132,4 +132,5 @@ public class Registers {
         bytes[1] = (byte) ((byte_pair >> 8) & 0xff);
         return bytes;
     }
+
 }

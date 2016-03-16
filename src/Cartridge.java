@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Created by jamesnarey on 09/03/2016.
+ * Change bytes to ints
  */
 public class Cartridge {
 
