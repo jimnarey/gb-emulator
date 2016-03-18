@@ -9,6 +9,7 @@ public class MemoryBank {
     private int firstByte = 0;
     private int lastByte = 0;
     public int[] bytes;
+    public DataUnit[] units;
 
     //Consider allowing intialisation using bank size as well as first/last byte
     public MemoryBank (String name, String description, int firstByte, int lastByte) {
@@ -17,6 +18,14 @@ public class MemoryBank {
         this.firstByte = firstByte;
         this.lastByte = lastByte;
         this.bytes = new int[this.getSize()];
+        this.units = new DataUnit[this.getSize()];
+
+        for (DataUnit i: this.units) {
+            i = new DataUnit(8);
+        }
+
+        System.out.println(this.name + " " + this.units.length);
+
     }
 
     public int getFirstByte() {

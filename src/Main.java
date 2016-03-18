@@ -12,8 +12,10 @@ public class Main {
         Memory memory = new Memory();
 
         //Load <=32Kb cartridge
-        memory.simpleLoadCartridge(cartridge);
-        memory.printAllBytes();
+        //memory.simpleLoadCartridge(cartridge);
+        //memory.printAllBytes();
+
+        memory.writeByte(20,100);
 
     }
 }

@@ -16,7 +16,7 @@ public class Registers {
 
 
     }
-
+    /*
     public int read8(String source) {
 
         switch (source) {
@@ -114,7 +114,7 @@ public class Registers {
         bytes[1] = 1;
         return bytes;
     }
-
+    */
     // Methods for getting LSB/MSB from a 16bit register
     // Method for 16bit to short/vice-versa
 

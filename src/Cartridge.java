@@ -11,7 +11,7 @@ public class Cartridge {
 
     //ByteArrayOutputStream Data = new ByteArrayOutputStream;
 
-    byte[] romData;
+    int[] romData;
 
     public static void main(String args[]) throws IOException {
 
@@ -42,11 +42,25 @@ public class Cartridge {
 
     public Cartridge(String fileName) throws IOException {
         romData = readFile(fileName);
+
+        //for (int i = 0; i < romData.length; i++ ) {
+        //    System.out.println(romData[i]);
+        //}
     }
 
-    byte[] readFile(String aFileName) throws IOException {
+    public int[] readFile(String aFileName) throws IOException {
+        byte[] bytes;
+        int[] iBytes;
+
         Path path = Paths.get(aFileName);
-        return Files.readAllBytes(path);
+        bytes = Files.readAllBytes(path);
+
+        iBytes = new int[bytes.length];
+        for (int i = 0; i < bytes.length; i++ ) {
+            iBytes[i] = bytes[i] & 0xFF;
+        }
+
+        return iBytes;
     }
 
 }
