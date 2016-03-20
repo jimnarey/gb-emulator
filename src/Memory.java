@@ -3,7 +3,7 @@
  */
 public class Memory {
     
-    private MemoryBank[] memoryBanks;
+    public MemoryBank[] memoryBanks;
     private int[][] memoryMap;
 
 

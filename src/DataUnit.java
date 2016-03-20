@@ -4,29 +4,29 @@
 public class DataUnit {
 
     private int data = 0;
-    private int minValue = 0;
-    private int maxValue = 0;
+    private int minValue;
+    private int maxValue ;
     private int writeMask = 0xFF;
 
-    public DataUnit(int size) {
-
-        // this.data = 0;
+    public DataUnit(int numBytes) {
 
         // Simplify this. What is the calculation to get the correct writeMask from
         // maxValue?
 
-        // Do no. of bytes as the constructor parameter, multiply by 255 to get the byte mask?
-        if (size == 8) {
-            this.minValue = 0;
-            this.maxValue = 255;
-            this.writeMask = 0xFF;
+        //this.minValue = 0;
+        //this.maxValue = 255;
+        //this.writeMask = 0xFF;
 
-        } else if (size == 16){
-            this.minValue = 0;
-            this.maxValue = 65535;
-            this.writeMask = 0xFFFF;
-        }
+        int numBits = 2 ^ (8 * numBytes);
+        minValue = 0;
+        maxValue = numBits - 1;
+        writeMask = maxValue;
 
+
+    }
+
+    public void setMaxValue(int value) {
+        maxValue = value;
     }
 
     public void write(int value) {

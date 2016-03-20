@@ -15,7 +15,20 @@ public class Main {
         //memory.simpleLoadCartridge(cartridge);
         //memory.printAllBytes();
 
-        memory.writeByte(20,100);
+        MemoryBank bank = new MemoryBank("test", "test bank", 0, 255);
+
+        DataUnit unit = new DataUnit(1);
+
+        unit.write(2);
+
+        //bank.units[1].write(3);
+
+        System.out.println("Get size: " + bank.getSize());
+
+        //System.out.println("Bank read: " + bank.units[1].read());
+
+        System.out.println("Unit read: " + unit.read());
+
 
     }
 }
