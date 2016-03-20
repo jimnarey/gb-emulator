@@ -21,7 +21,7 @@ public class MemoryBank {
         this.units = new DataUnit[this.getSize()];
 
         for (int i = 0; i < this.getSize(); i++) {
-            System.out.println(i);
+            //System.out.println(i);
             this.units[i] = new DataUnit(1);
         }
 

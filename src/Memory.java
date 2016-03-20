@@ -46,7 +46,7 @@ public class Memory {
     }
 
     // Consider using shorts from -32768, incrementing up to max 32767 as indexes
-    private int[][] buildMemoryMap() {
+    public int[][] buildMemoryMap() {
 
         int[][] memoryMap = new int[this.getMemorySize()][2];
 
@@ -141,7 +141,7 @@ public class Memory {
 
 
     //Information methods
-    private int getMemorySize() {
+    public int getMemorySize() {
 
         int byteCount = 0;
 

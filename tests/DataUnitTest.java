@@ -14,10 +14,10 @@ public class DataUnitTest {
         d.sub(20);
         assertEquals(245, d.read());
 
-        /*DataUnit p = new DataUnit(2);
+        DataUnit p = new DataUnit(2);
         p.write(10);
         p.sub(20);
-        assertEquals(65525, p.read());*/
+        assertEquals(65525, p.read());
     }
 
     @Test
@@ -27,10 +27,10 @@ public class DataUnitTest {
         d.add(20);
         assertEquals(10, d.read());
 
-        /*DataUnit p = new DataUnit(2);
+        DataUnit p = new DataUnit(2);
         p.write(65530);
         p.add(20);
-        assertEquals(10, d.read());*/
+        assertEquals(10, d.read());
     }
 
     @Test
@@ -39,8 +39,8 @@ public class DataUnitTest {
         d.write(256);
         assertEquals(0, d.read());
 
-        /*DataUnit p = new DataUnit(2);
+        DataUnit p = new DataUnit(2);
         p.write(65536);
-        assertEquals(0, p.read());*/
+        assertEquals(0, p.read());
     }
 }

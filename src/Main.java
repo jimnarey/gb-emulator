@@ -23,10 +23,15 @@ public class Main {
 
         bank.units[1].write(4);
 
+        memory.writeByte(3, 50);
+
+
 
         System.out.println("bank.units[1]: " + bank.units[1]);
 
         System.out.println("Get size: " + bank.getSize());
+
+        System.out.println("Memory read: " + memory.readByte(50));
 
         System.out.println("Bank read: " + bank.units[1].read());
 
