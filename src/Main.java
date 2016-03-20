@@ -21,11 +21,14 @@ public class Main {
 
         unit.write(2);
 
-        //bank.units[1].write(3);
+        bank.units[1].write(4);
+
+
+        System.out.println("bank.units[1]: " + bank.units[1]);
 
         System.out.println("Get size: " + bank.getSize());
 
-        //System.out.println("Bank read: " + bank.units[1].read());
+        System.out.println("Bank read: " + bank.units[1].read());
 
         System.out.println("Unit read: " + unit.read());
 

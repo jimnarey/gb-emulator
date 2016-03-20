@@ -20,9 +20,10 @@ public class MemoryBank {
         //this.bytes = new int[this.getSize()];
         this.units = new DataUnit[this.getSize()];
 
-        //for (DataUnit i: this.units) {
-            //i = new DataUnit();
-        //}
+        for (int i = 0; i < this.getSize(); i++) {
+            System.out.println(i);
+            this.units[i] = new DataUnit(1);
+        }
 
         System.out.println(this.name + " " + this.units.length);
 

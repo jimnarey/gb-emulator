@@ -17,10 +17,13 @@ public class DataUnit {
         //this.maxValue = 255;
         //this.writeMask = 0xFF;
 
-        int numBits = 2 ^ (8 * numBytes);
+
+        //double power = numBytes * 8;
+        //double two = 2;
+        int numBits = (int) Math.pow(2, numBytes * 8);
         minValue = 0;
         maxValue = numBits - 1;
-        writeMask = maxValue;
+        writeMask = numBits - 1;
 
 
     }
