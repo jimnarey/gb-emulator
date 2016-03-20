@@ -9,25 +9,25 @@ public class DataUnitTest {
 
     @Test
     public void testSub() throws Exception {
-        System.out.println("Test sub() 8bit, rollover");
+        // System.out.println("Test sub() 8bit, rollover");
         DataUnit d = new DataUnit(1);
         d.write(10);
         d.sub(20);
         assertEquals(246, d.read());
 
-        System.out.println("Test sub() 16bit, no rollover");
+        // System.out.println("Test sub() 16bit, no rollover");
         DataUnit q = new DataUnit(2);
         q.write(100);
         q.sub(20);
         assertEquals(80, q.read());
 
-        System.out.println("Test sub() 8bit, rollover");
+        // System.out.println("Test sub() 8bit, rollover");
         DataUnit p = new DataUnit(2);
         p.write(10);
         p.sub(20);
         assertEquals(65526, p.read());
 
-        System.out.println("Test sub(1) 16bit, rollover");
+        // System.out.println("Test sub(1) 16bit, rollover");
         DataUnit r = new DataUnit(2);
         r.write(0);
         r.sub(1);
@@ -37,25 +37,25 @@ public class DataUnitTest {
     @Test
     public void testAdd() throws Exception {
 
-        System.out.println("Test add() 8bit, rollover");
+        // System.out.println("Test add() 8bit, rollover");
         DataUnit d = new DataUnit(1);
         d.write(245);
         d.add(20);
         assertEquals(9, d.read());
 
-        System.out.println("Test add() 8bit, rollover");
+        // System.out.println("Test add() 8bit, rollover");
         DataUnit r = new DataUnit(1);
         r.write(50);
         r.add(20);
         assertEquals(70, r.read());
 
-        System.out.println("Test add() 16bit, rollover");
+        // System.out.println("Test add() 16bit, rollover");
         DataUnit p = new DataUnit(2);
         p.write(65530);
         p.add(20);
         assertEquals(14, p.read());
 
-        System.out.println("Test add(1) 16bit, rollover");
+        // System.out.println("Test add(1) 16bit, rollover");
         p.write(65535);
         p.add(1);
         assertEquals(0, p.read());
@@ -182,20 +182,20 @@ public class DataUnitTest {
         DataUnit d = new DataUnit(1);
         d.write(1);
         d.inc();
-        System.out.println(d.read());
+        // System.out.println(d.read());
         assertEquals(2, d.read());
 
         DataUnit p = new DataUnit(2);
         p.write(65535);
         p.inc();
-        System.out.println(p.read());
-        System.out.println(p.readString());
+        // System.out.println(p.read());
+        // System.out.println(p.readString());
         assertEquals(0, p.read());
 
         p.write(400);
         p.inc();
-        System.out.println(p.read());
-        System.out.println(p.readString());
+        // System.out.println(p.read());
+        // System.out.println(p.readString());
         assertEquals(401, p.read());
 
     }
@@ -206,21 +206,84 @@ public class DataUnitTest {
         DataUnit d = new DataUnit(1);
         d.write(1);
         d.dec();
-        System.out.println(d.read());
+        // System.out.println(d.read());
         assertEquals(0, d.read());
 
         DataUnit p = new DataUnit(2);
         p.write(3000);
         p.dec();
-        System.out.println(p.read());
-        System.out.println(p.readString());
+        // System.out.println(p.read());
+        // System.out.println(p.readString());
         assertEquals(2999, p.read());
 
         p.write(0);
         p.dec();
-        System.out.println(p.read());
-        System.out.println(p.readString());
+        // System.out.println(p.read());
+        // System.out.println(p.readString());
         assertEquals(65535, p.read());
 
+    }
+
+    @Test
+    public void testRead() throws Exception {
+        DataUnit d = new DataUnit(1);
+        d.write(200);
+        assertEquals(200, d.data);
+    }
+
+    @Test
+    public void testRotateRight() throws Exception {
+        DataUnit d = new DataUnit(1);
+        d.write(8);
+        d.rotateRight();
+        assertEquals(4, d.read());
+
+        System.out.println("Test Rotate Right:");
+        DataUnit p = new DataUnit(2);
+        p.write(24582);
+        System.out.println(p.readString());
+        System.out.println(p.read());
+        p.rotateRight();
+        System.out.println(p.readString());
+        System.out.println(p.read());
+        p.rotateRight();
+        System.out.println(p.readString());
+        System.out.println(p.read());
+        p.rotateRight();
+        System.out.println(p.readString());
+        System.out.println(p.read());
+        p.rotateRight();
+        System.out.println(p.readString());
+        System.out.println(p.read());
+        assertEquals(26112, p.read());
+
+    }
+
+    @Test
+    public void testRotateLeft() throws Exception {
+        
+        DataUnit d = new DataUnit(1);
+        d.write(32);
+        d.rotateLeft();
+        assertEquals(64, d.read());
+
+        System.out.println("Test Rotate Left:");
+        DataUnit p = new DataUnit(2);
+        p.write(24582);
+        System.out.println(p.readString());
+        System.out.println(p.read());
+        p.rotateLeft();
+        System.out.println(p.readString());
+        System.out.println(p.read());
+        p.rotateLeft();
+        System.out.println(p.readString());
+        System.out.println(p.read());
+        p.rotateLeft();
+        System.out.println(p.readString());
+        System.out.println(p.read());
+        p.rotateLeft();
+        System.out.println(p.readString());
+        System.out.println(p.read());
+        assertEquals(102, p.read());
     }
 }

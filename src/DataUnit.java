@@ -13,17 +13,6 @@ public class DataUnit {
 
     public DataUnit(int numBytes) {
 
-        // Simplify this. What is the calculation to get the correct writeMask from
-        // maxValue?
-
-        //this.minValue = 0;
-        //this.maxValue = 255;
-        //this.writeMask = 0xFF;
-
-
-        //double power = numBytes * 8;
-        //double two = 2;
-
         this.numBytes = numBytes;
         this.numBits = numBytes * 8;
         this.numPermutations = (int) Math.pow(2, numBits);
@@ -31,11 +20,6 @@ public class DataUnit {
         this.maxValue = numPermutations - 1;
         this.writeMask = numPermutations - 1;
 
-
-    }
-
-    public void setMaxValue(int value) {
-        maxValue = value;
     }
 
     public void write(int value) {
@@ -50,8 +34,6 @@ public class DataUnit {
 
     }
 
-
-    // Need to check overflow behaviour
     public void add(int value) {
 
         if (data + value > minValue + maxValue) {
@@ -62,7 +44,6 @@ public class DataUnit {
 
     }
 
-    // Need to check overflow behaviour
     public void sub(int value) {
 
         if (data - value < minValue) {
@@ -73,16 +54,12 @@ public class DataUnit {
 
     }
 
-    // Need to check overflow behaviour
-    // Need to add tests
     public void inc() {
 
         add(1);
 
     }
 
-    // Need to check overflow behaviour
-    // Need to add tests
     public void dec() {
 
         sub(1);
@@ -127,29 +104,32 @@ public class DataUnit {
 
     public boolean rotateRight () {
 
-        int flag;
+        boolean flag = checkBit(0);
 
-        if ((data & 1) == 1) {
+        data = (data >>> 1);
 
-            flag = 1;
+        setBit(numBits - 1, flag);
 
-        } else  {
+        return flag;
+    }
 
-            flag = 0;
+    public boolean rotateLeft () {
 
-        }
+        boolean flag = checkBit(numBits - 1);
 
+        data = (data << 1) & maxValue;
 
-        return true;
+        setBit(0, flag);
+
+        return flag;
+
     }
 
     public boolean rotateRightThroughFlag (boolean flag) {
         return true;
     }
 
-    public boolean rotateLeft () {
-        return true;
-    }
+
 
     public boolean rotateLeftThroughFlag (boolean flag) {
         return true;
