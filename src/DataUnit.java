@@ -3,7 +3,7 @@
  */
 public class DataUnit {
 
-    private int data = 0;
+    public int data = 0;
     private int minValue;
     private int maxValue ;
     private int writeMask = 0xFF;

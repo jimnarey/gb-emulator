@@ -15,16 +15,19 @@ public class MemoryTest {
     }
 
     @Test
-    public void testWriteByte() throws Exception {
+    public void testRWByte() throws Exception {
         Memory m = new Memory();
-        m.writeByte(3, 50);
-
+        m.writeByte(100, 50);
+        assertEquals(100, m.readByte(50));
 
     }
 
     @Test
-    public void testReadByte() throws Exception {
+    public void testRWWord() throws Exception {
         Memory m = new Memory();
-        m.readByte(50);
+        m.writeWord(10000, 50);
+        System.out.println("Read word: " + m.readWord(50));
+        assertEquals(10000, m.readWord(50));
+
     }
 }

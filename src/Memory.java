@@ -62,9 +62,9 @@ public class Memory {
                 memoryMap[addressIncrement][1] = j;
 
 
-                if (addressIncrement < 500) {
-                    System.out.println(addressIncrement + " " + i + " " + j);
-                }
+                // if (addressIncrement < 500) {
+                //     System.out.println(addressIncrement + " " + i + " " + j);
+                // }
 
                 addressIncrement++;
             }
@@ -87,7 +87,7 @@ public class Memory {
     public void writeByte(int byteToWrite, int address) {
 
         // address[0] contains bank no, address[1] contains the byte no. within that bank
-        System.out.println(byteToWrite + " " + memoryMap[address][0] + " " + memoryMap[address][1]);
+        // System.out.println(byteToWrite + " " + memoryMap[address][0] + " " + memoryMap[address][1]);
         // memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].write(byteToWrite);
 
         // memoryMap[address[0] identifies the correct bank
@@ -108,7 +108,11 @@ public class Memory {
     public void writeWord(int wordToWrite, int address) {
 
         // Test bitwise ops to create two units
-        memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].write(wordToWrite);
+        // memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].write(wordToWrite);
+
+        // Check this writes the bytes in the correct order.
+        memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].write((wordToWrite & 0xFF));
+        memoryBanks[memoryMap[address + 1][0]].units[memoryMap[address + 1][1]].write((wordToWrite >> 8) & 0xFF);
 
     }
 
@@ -117,10 +121,24 @@ public class Memory {
     public int readWord(int address) {
 
         // Test bitwise ops as above
-        return memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].read();
+        //return memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].read();
+        int msb = memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].read();
+        int lsb = memoryBanks[memoryMap[address + 1][0]].units[memoryMap[address + 1][1]].read();
+
+        // Check these are the right way round!!!
+        // Should this be (msb >> 8) & 0xFF)?
+        return ((lsb << 8) | (msb & 0xFF));
 
     }
 
+    public static int[] wordToBytes(int word) {
+        int[] bytes = new int[2];
+        // Get MSB
+        bytes[0] = ((word >> 8) & 0xFF);
+        // Get LSB
+        bytes[1] = (word & 0xFF);
+        return bytes;
+    }
 
     public void simpleLoadCartridge(Cartridge cartridge) {
         int cartridgeSize = cartridge.romData.length;

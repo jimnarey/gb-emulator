@@ -25,7 +25,9 @@ public class Main {
 
         memory.writeByte(3, 50);
 
+        memory.writeByte(258, 0);
 
+        System.out.println("write mask test " + memory.readByte(0));
 
         System.out.println("bank.units[1]: " + bank.units[1]);
 
@@ -36,6 +38,8 @@ public class Main {
         System.out.println("Bank read: " + bank.units[1].read());
 
         System.out.println("Unit read: " + unit.read());
+
+        memory.simpleLoadCartridge(cartridge);
 
 
     }
