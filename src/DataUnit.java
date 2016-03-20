@@ -9,7 +9,7 @@ public class DataUnit {
     private int numBits;
     private int minValue;
     private int maxValue ;
-    private int writeMask = 0xFF;
+    private int writeMask;
 
     public DataUnit(int numBytes) {
 
@@ -54,8 +54,8 @@ public class DataUnit {
     // Need to check overflow behaviour
     public void add(int value) {
 
-        if (data + value > maxValue) {
-            data = (data + value) - maxValue;
+        if (data + value > minValue + maxValue) {
+            data = (data + value) - numPermutations;
         } else {
             data = data + value;
         }
@@ -66,9 +66,9 @@ public class DataUnit {
     public void sub(int value) {
 
         if (data - value < minValue) {
-            data = maxValue - (value - data);
+            data = minValue + numPermutations - (value - data);
         } else {
-            data = value;
+            data = data - value;
         }
 
     }
@@ -105,7 +105,6 @@ public class DataUnit {
         return false;
 
     }
-
 
     // Refactor to lose an if statement
     public void  setBit (int position, boolean value) {
