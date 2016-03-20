@@ -131,4 +131,20 @@ public class DataUnitTest {
     public void testRotateLeftThroughFlag() throws Exception {
 
     }
+
+    @Test
+    public void testReadString() throws Exception {
+
+        DataUnit d = new DataUnit(1);
+        d.write(170);
+        System.out.println(d.readString());
+        assertEquals("10101010", d.readString());
+
+        DataUnit p = new DataUnit(2);
+        p.write(43690);
+        System.out.println(p.readString());
+        assertEquals("1010101010101010", p.readString());
+
+
+    }
 }

@@ -4,8 +4,9 @@
 public class DataUnit {
 
     public int data = 0;
-    private int numBits;
+    private int numPermutations;
     private int numBytes;
+    private int numBits;
     private int minValue;
     private int maxValue ;
     private int writeMask = 0xFF;
@@ -24,10 +25,11 @@ public class DataUnit {
         //double two = 2;
 
         this.numBytes = numBytes;
-        this.numBits = (int) Math.pow(2, numBytes * 8);
+        this.numBits = numBytes * 8;
+        this.numPermutations = (int) Math.pow(2, numBits);
         this.minValue = 0;
-        this.maxValue = numBits - 1;
-        this.writeMask = numBits - 1;
+        this.maxValue = numPermutations - 1;
+        this.writeMask = numPermutations - 1;
 
 
     }
@@ -90,7 +92,7 @@ public class DataUnit {
     // Refactor to lose an if statement
     public boolean checkBit (int position) {
 
-        if (position <= numBits) {
+        if (position <= numPermutations) {
 
             if (((data >>> position) & 1) != 0) {
 
@@ -108,7 +110,7 @@ public class DataUnit {
     // Refactor to lose an if statement
     public void  setBit (int position, boolean value) {
 
-        if (position < numBits) {
+        if (position < numPermutations) {
 
 
             if (value == true) {
@@ -154,8 +156,11 @@ public class DataUnit {
         return true;
     }
 
-    public String byteToString() {
-        return String.format("%8s", Integer.toBinaryString(data & 0xFF)).replace(' ', '0');
+    public String readString() {
+
+        String formatParameter = "%" + numBits + "s";
+
+        return String.format(formatParameter, Integer.toBinaryString(data & writeMask)).replace(' ', '0');
     }
 
 }
