@@ -67,4 +67,50 @@ public class DataUnit {
 
     }
 
+    // Need to check overflow behaviour
+    // Need to add tests
+    public void inc() {
+
+        add(1);
+
+    }
+
+    // Need to check overflow behaviour
+    // Need to add tests
+    public void dec() {
+
+        sub(1);
+
+    }
+
+    public boolean rotateRight () {
+
+        int flag;
+
+        if ((data & 1) == 1) {
+
+            flag = 1;
+
+        } else  {
+
+            flag = 0;
+
+        }
+
+
+        return true;
+    }
+
+    public boolean rotateRightThroughFlag (boolean flag) {
+        return true;
+    }
+
+    public boolean rotateLeft () {
+        return true;
+    }
+
+    public boolean rotateLeftThroughFlag (boolean flag) {
+        return true;
+    }
+
 }
