@@ -203,5 +203,24 @@ public class DataUnitTest {
     @Test
     public void testDec() throws Exception {
 
+        DataUnit d = new DataUnit(1);
+        d.write(1);
+        d.dec();
+        System.out.println(d.read());
+        assertEquals(0, d.read());
+
+        DataUnit p = new DataUnit(2);
+        p.write(3000);
+        p.dec();
+        System.out.println(p.read());
+        System.out.println(p.readString());
+        assertEquals(2999, p.read());
+
+        p.write(0);
+        p.dec();
+        System.out.println(p.read());
+        System.out.println(p.readString());
+        assertEquals(65535, p.read());
+
     }
 }
