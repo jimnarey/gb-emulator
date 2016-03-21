@@ -137,8 +137,6 @@ public class DataUnit {
 
     }
 
-
-
     public boolean rotateLeftThroughFlag (boolean flag) {
 
         boolean msb = checkBit(numBits - 1);
@@ -156,5 +154,31 @@ public class DataUnit {
 
         return String.format(formatParameter, Integer.toBinaryString(data & writeMask)).replace(' ', '0');
     }
+
+    public void AND (int value) {
+
+        data = data & value;
+
+    }
+
+    public void OR (int value) {
+
+        data =  data | value;
+
+    }
+
+    public void XOR (int value) {
+
+        data =  data ^ value;
+
+    }
+
+    public void complement () {
+
+        data = ~ data & writeMask;
+
+    }
+
+
 
 }
