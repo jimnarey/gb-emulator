@@ -238,23 +238,23 @@ public class DataUnitTest {
         d.rotateRight();
         assertEquals(4, d.read());
 
-        System.out.println("Test Rotate Right:");
+        // System.out.println("Test Rotate Right:");
         DataUnit p = new DataUnit(2);
         p.write(24582);
-        System.out.println(p.readString());
-        System.out.println(p.read());
+        // System.out.println(p.readString());
+        // System.out.println(p.read());
         p.rotateRight();
-        System.out.println(p.readString());
-        System.out.println(p.read());
+        // System.out.println(p.readString());
+        // System.out.println(p.read());
         p.rotateRight();
-        System.out.println(p.readString());
-        System.out.println(p.read());
+        // System.out.println(p.readString());
+        // System.out.println(p.read());
         p.rotateRight();
-        System.out.println(p.readString());
-        System.out.println(p.read());
+        // System.out.println(p.readString());
+        // System.out.println(p.read());
         p.rotateRight();
-        System.out.println(p.readString());
-        System.out.println(p.read());
+        // System.out.println(p.readString());
+        // System.out.println(p.read());
         assertEquals(26112, p.read());
 
     }
@@ -267,23 +267,56 @@ public class DataUnitTest {
         d.rotateLeft();
         assertEquals(64, d.read());
 
-        System.out.println("Test Rotate Left:");
+        // System.out.println("Test Rotate Left:");
         DataUnit p = new DataUnit(2);
         p.write(24582);
-        System.out.println(p.readString());
-        System.out.println(p.read());
+        // System.out.println(p.readString());
+        // System.out.println(p.read());
         p.rotateLeft();
-        System.out.println(p.readString());
-        System.out.println(p.read());
+        // System.out.println(p.readString());
+        // System.out.println(p.read());
         p.rotateLeft();
-        System.out.println(p.readString());
-        System.out.println(p.read());
+        // System.out.println(p.readString());
+        // System.out.println(p.read());
         p.rotateLeft();
-        System.out.println(p.readString());
-        System.out.println(p.read());
+        // System.out.println(p.readString());
+        // System.out.println(p.read());
         p.rotateLeft();
-        System.out.println(p.readString());
-        System.out.println(p.read());
+        // System.out.println(p.readString());
+        // System.out.println(p.read());
         assertEquals(102, p.read());
+    }
+
+    @Test
+    public void testRotateRightThroughFlag() throws Exception {
+
+        DataUnit d = new DataUnit(1);
+        d.write(12);
+        d.rotateRightThroughFlag(true);
+        assertEquals(134, d.read());
+
+        // System.out.println("Test Rotate Right:");
+        DataUnit p = new DataUnit(2);
+        p.write(384);
+        // System.out.println(p.readString());
+        // System.out.println(p.read());
+        p.rotateRightThroughFlag(true);
+        // System.out.println(p.readString());
+        // System.out.println(p.read());
+        p.rotateRightThroughFlag(false);
+        // System.out.println(p.readString());
+        // System.out.println(p.read());
+        p.rotateRightThroughFlag(true);
+        // System.out.println(p.readString());
+        // System.out.println(p.read());
+        p.rotateRightThroughFlag(false);
+        // System.out.println(p.readString());
+        // System.out.println(p.read());
+        assertEquals(20504, p.read());
+    }
+
+    @Test
+    public void testRotateLeftThroughFlag1() throws Exception {
+
     }
 }

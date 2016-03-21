@@ -104,35 +104,50 @@ public class DataUnit {
 
     public boolean rotateRight () {
 
-        boolean flag = checkBit(0);
+        boolean lsb = checkBit(0);
+
+        data = (data >>> 1);
+
+        setBit(numBits - 1, lsb);
+
+        return lsb;
+    }
+
+    public boolean rotateLeft () {
+
+        boolean msb = checkBit(numBits - 1);
+
+        data = (data << 1) & maxValue;
+
+        setBit(0, msb);
+
+        return msb;
+
+    }
+
+    public boolean rotateRightThroughFlag (boolean flag) {
+
+        boolean lsb = checkBit(0);
 
         data = (data >>> 1);
 
         setBit(numBits - 1, flag);
 
-        return flag;
-    }
+        return lsb;
 
-    public boolean rotateLeft () {
-
-        boolean flag = checkBit(numBits - 1);
-
-        data = (data << 1) & maxValue;
-
-        setBit(0, flag);
-
-        return flag;
-
-    }
-
-    public boolean rotateRightThroughFlag (boolean flag) {
-        return true;
     }
 
 
 
     public boolean rotateLeftThroughFlag (boolean flag) {
-        return true;
+
+        boolean msb = checkBit(numBits - 1);
+
+        data = (data << 1) & maxValue;
+
+        setBit(0, flag);
+
+        return msb;
     }
 
     public String readString() {
