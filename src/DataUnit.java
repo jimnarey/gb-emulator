@@ -179,6 +179,20 @@ public class DataUnit {
 
     }
 
+    public void swap () {
 
+        int halfWriteMask = (int) Math.pow (2, (numBits / 2) ) -1;
+
+        int lowerHalf = data & halfWriteMask;
+        int upperHalf = (data >>> (numBits / 2) ) & halfWriteMask;
+
+        // System.out.println("halfMask: " + halfWriteMask);
+        // System.out.println("lowerHalf: " + lowerHalf);
+        // System.out.println("upperHalf: " + upperHalf);
+        // System.out.println("result: " + ( (lowerHalf << 4) | (upperHalf) ) );
+
+        data = ((lowerHalf << 4) | (upperHalf));
+
+    }
 
 }

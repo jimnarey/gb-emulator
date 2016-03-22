@@ -311,7 +311,7 @@ public class DataUnitTest {
     }
 
     @Test
-    public void testRotateLeftThroughFlag1() throws Exception {
+    public void testRotateLeftThroughFlag() throws Exception {
 
         DataUnit d = new DataUnit(1);
         d.write(12);
@@ -401,6 +401,27 @@ public class DataUnitTest {
         p.write(52428);
         p.complement();
         assertEquals(13107, p.read());
+
+    }
+
+    @Test
+    public void testSwap() throws Exception {
+
+        DataUnit d = new DataUnit(1);
+        d.write(240);
+        d.swap();
+        System.out.println(d.read());
+        assertEquals(15, d.read());
+
+        DataUnit q = new DataUnit(1);
+        q.write(192);
+        q.swap();
+        assertEquals(12, q.read());
+
+        DataUnit p = new DataUnit(2);
+        p.write(52224);
+        p.swap();
+        assertEquals(204, p.read());
 
     }
 }
