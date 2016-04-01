@@ -49,8 +49,15 @@ public class Processor {
     }
 
 
-    public void interpreter (byte instruction) {
+    public void execute (int instruction) {
 
+
+        switch (instruction) {
+
+            
+
+
+        }
 
 
     }

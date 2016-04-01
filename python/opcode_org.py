@@ -124,6 +124,29 @@ class OpcodeHandler:
 
         method_file.close()
 
+    @staticmethod
+    def create_switch(cmd_list, file_name):
+
+        file_object = open(file_name, 'w')
+        section = ""
+
+        for i in cmd_list:
+
+            tmp = str( i[6])
+
+            if len(tmp) == 0:
+                print('skipping')
+
+            else:
+                print(type(i[5]))
+                print('************' + i[5] + ' ' + str( i[0] ) )
+                section = section + 'case ' + '0x' + i[1] + ': \n' + '\t//' + i[5] + '\n\t//length ' + i[9] + '\n\t//time ' + i[10] + '\n\t//flags ' + i[11] + i[12] + i[13] + i[14] +'\n\n\n\tbreak;' + '\n\n' 
+
+        
+        file_object.write(section)
+        file_object.close()
+
+
 
     def create_code_table(self):
         op_table = []
@@ -289,5 +312,7 @@ if __name__ == "__main__":
     #OpcodeHandler.create_methods(ml, '../other/main_methods.txt')
     #OpcodeHandler.create_methods(cl, '../other/cb_methods.txt')
 
-    OpcodeHandler.create_annotated_methods(ml, m, '../other/main_ann_methods.txt')
-    OpcodeHandler.create_annotated_methods(cl, c, '../other/cb_ann_methods.txt')
+    #OpcodeHandler.create_annotated_methods(ml, m, '../other/main_ann_methods.txt')
+    #OpcodeHandler.create_annotated_methods(cl, c, '../other/cb_ann_methods.txt')
+
+    OpcodeHandler.create_switch(m, '../other/switch_text.txt')
