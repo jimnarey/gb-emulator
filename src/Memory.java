@@ -82,6 +82,12 @@ public class Memory {
 
     }
 
+    public DataUnit address (int address) {
+
+        return memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]];
+
+    }
+
 
     // Need to convert addresses into unsigned ints !!!!!!!!!!!!!!!!
     public void writeByte(int byteToWrite, int address) {
@@ -157,7 +163,6 @@ public class Memory {
         }
     }
 
-
     //Information methods
     public int getMemorySize() {
 
@@ -175,7 +180,6 @@ public class Memory {
 
     }
 
-
     public void printMemoryMap() {
 
         for (int i[]: this.memoryMap) {
@@ -185,7 +189,6 @@ public class Memory {
             System.out.println(i[1]);
         }
     }
-
 
     public void printAllBytes() {
 

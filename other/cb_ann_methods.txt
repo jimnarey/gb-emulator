@@ -1,0 +1,333 @@
+public void RLC() {
+
+	// RLC B : L2:T8: Z:0:0:C :0x00
+	// RLC C : L2:T8: Z:0:0:C :0x01
+	// RLC D : L2:T8: Z:0:0:C :0x02
+	// RLC E : L2:T8: Z:0:0:C :0x03
+	// RLC H : L2:T8: Z:0:0:C :0x04
+	// RLC L : L2:T8: Z:0:0:C :0x05
+	// RLC (HL) : L2:T16: Z:0:0:C :0x06
+	// RLC A : L2:T8: Z:0:0:C :0x07 
+
+
+
+}
+
+public void RRC() {
+
+	// RRC B : L2:T8: Z:0:0:C :0x08
+	// RRC C : L2:T8: Z:0:0:C :0x09
+	// RRC D : L2:T8: Z:0:0:C :0x0A
+	// RRC E : L2:T8: Z:0:0:C :0x0B
+	// RRC H : L2:T8: Z:0:0:C :0x0C
+	// RRC L : L2:T8: Z:0:0:C :0x0D
+	// RRC (HL) : L2:T16: Z:0:0:C :0x0E
+	// RRC A : L2:T8: Z:0:0:C :0x0F 
+
+
+
+}
+
+public void RL() {
+
+	// RL B : L2:T8: Z:0:0:C :0x10
+	// RL C : L2:T8: Z:0:0:C :0x11
+	// RL D : L2:T8: Z:0:0:C :0x12
+	// RL E : L2:T8: Z:0:0:C :0x13
+	// RL H : L2:T8: Z:0:0:C :0x14
+	// RL L : L2:T8: Z:0:0:C :0x15
+	// RL (HL) : L2:T16: Z:0:0:C :0x16
+	// RL A : L2:T8: Z:0:0:C :0x17 
+
+
+
+}
+
+public void RR() {
+
+	// RR B : L2:T8: Z:0:0:C :0x18
+	// RR C : L2:T8: Z:0:0:C :0x19
+	// RR D : L2:T8: Z:0:0:C :0x1A
+	// RR E : L2:T8: Z:0:0:C :0x1B
+	// RR H : L2:T8: Z:0:0:C :0x1C
+	// RR L : L2:T8: Z:0:0:C :0x1D
+	// RR (HL) : L2:T16: Z:0:0:C :0x1E
+	// RR A : L2:T8: Z:0:0:C :0x1F 
+
+
+
+}
+
+public void SLA() {
+
+	// SLA B : L2:T8: Z:0:0:C :0x20
+	// SLA C : L2:T8: Z:0:0:C :0x21
+	// SLA D : L2:T8: Z:0:0:C :0x22
+	// SLA E : L2:T8: Z:0:0:C :0x23
+	// SLA H : L2:T8: Z:0:0:C :0x24
+	// SLA L : L2:T8: Z:0:0:C :0x25
+	// SLA (HL) : L2:T16: Z:0:0:C :0x26
+	// SLA A : L2:T8: Z:0:0:C :0x27 
+
+
+
+}
+
+public void SRA() {
+
+	// SRA B : L2:T8: Z:0:0:0 :0x28
+	// SRA C : L2:T8: Z:0:0:0 :0x29
+	// SRA D : L2:T8: Z:0:0:0 :0x2A
+	// SRA E : L2:T8: Z:0:0:0 :0x2B
+	// SRA H : L2:T8: Z:0:0:0 :0x2C
+	// SRA L : L2:T8: Z:0:0:0 :0x2D
+	// SRA (HL) : L2:T16: Z:0:0:0 :0x2E
+	// SRA A : L2:T8: Z:0:0:0 :0x2F 
+
+
+
+}
+
+public void SWAP() {
+
+	// SWAP B : L2:T8: Z:0:0:0 :0x30
+	// SWAP C : L2:T8: Z:0:0:0 :0x31
+	// SWAP D : L2:T8: Z:0:0:0 :0x32
+	// SWAP E : L2:T8: Z:0:0:0 :0x33
+	// SWAP H : L2:T8: Z:0:0:0 :0x34
+	// SWAP L : L2:T8: Z:0:0:0 :0x35
+	// SWAP (HL) : L2:T16: Z:0:0:0 :0x36
+	// SWAP A : L2:T8: Z:0:0:0 :0x37 
+
+
+
+}
+
+public void SRL() {
+
+	// SRL B : L2:T8: Z:0:0:C :0x38
+	// SRL C : L2:T8: Z:0:0:C :0x39
+	// SRL D : L2:T8: Z:0:0:C :0x3A
+	// SRL E : L2:T8: Z:0:0:C :0x3B
+	// SRL H : L2:T8: Z:0:0:C :0x3C
+	// SRL L : L2:T8: Z:0:0:C :0x3D
+	// SRL (HL) : L2:T16: Z:0:0:C :0x3E
+	// SRL A : L2:T8: Z:0:0:C :0x3F 
+
+
+
+}
+
+public void BIT() {
+
+	// BIT 0,B : L2:T8: Z:0:1:- :0x40
+	// BIT 0,C : L2:T8: Z:0:1:- :0x41
+	// BIT 0,D : L2:T8: Z:0:1:- :0x42
+	// BIT 0,E : L2:T8: Z:0:1:- :0x43
+	// BIT 0,H : L2:T8: Z:0:1:- :0x44
+	// BIT 0,L : L2:T8: Z:0:1:- :0x45
+	// BIT 0,(HL) : L2:T16: Z:0:1:- :0x46
+	// BIT 0,A : L2:T8: Z:0:1:- :0x47
+	// BIT 1,B : L2:T8: Z:0:1:- :0x48
+	// BIT 1,C : L2:T8: Z:0:1:- :0x49
+	// BIT 1,D : L2:T8: Z:0:1:- :0x4A
+	// BIT 1,E : L2:T8: Z:0:1:- :0x4B
+	// BIT 1,H : L2:T8: Z:0:1:- :0x4C
+	// BIT 1,L : L2:T8: Z:0:1:- :0x4D
+	// BIT 1,(HL) : L2:T16: Z:0:1:- :0x4E
+	// BIT 1,A : L2:T8: Z:0:1:- :0x4F
+	// BIT 2,B : L2:T8: Z:0:1:- :0x50
+	// BIT 2,C : L2:T8: Z:0:1:- :0x51
+	// BIT 2,D : L2:T8: Z:0:1:- :0x52
+	// BIT 2,E : L2:T8: Z:0:1:- :0x53
+	// BIT 2,H : L2:T8: Z:0:1:- :0x54
+	// BIT 2,L : L2:T8: Z:0:1:- :0x55
+	// BIT 2,(HL) : L2:T16: Z:0:1:- :0x56
+	// BIT 2,A : L2:T8: Z:0:1:- :0x57
+	// BIT 3,B : L2:T8: Z:0:1:- :0x58
+	// BIT 3,C : L2:T8: Z:0:1:- :0x59
+	// BIT 3,D : L2:T8: Z:0:1:- :0x5A
+	// BIT 3,E : L2:T8: Z:0:1:- :0x5B
+	// BIT 3,H : L2:T8: Z:0:1:- :0x5C
+	// BIT 3,L : L2:T8: Z:0:1:- :0x5D
+	// BIT 3,(HL) : L2:T16: Z:0:1:- :0x5E
+	// BIT 3,A : L2:T8: Z:0:1:- :0x5F
+	// BIT 4,B : L2:T8: Z:0:1:- :0x60
+	// BIT 4,C : L2:T8: Z:0:1:- :0x61
+	// BIT 4,D : L2:T8: Z:0:1:- :0x62
+	// BIT 4,E : L2:T8: Z:0:1:- :0x63
+	// BIT 4,H : L2:T8: Z:0:1:- :0x64
+	// BIT 4,L : L2:T8: Z:0:1:- :0x65
+	// BIT 4,(HL) : L2:T16: Z:0:1:- :0x66
+	// BIT 4,A : L2:T8: Z:0:1:- :0x67
+	// BIT 5,B : L2:T8: Z:0:1:- :0x68
+	// BIT 5,C : L2:T8: Z:0:1:- :0x69
+	// BIT 5,D : L2:T8: Z:0:1:- :0x6A
+	// BIT 5,E : L2:T8: Z:0:1:- :0x6B
+	// BIT 5,H : L2:T8: Z:0:1:- :0x6C
+	// BIT 5,L : L2:T8: Z:0:1:- :0x6D
+	// BIT 5,(HL) : L2:T16: Z:0:1:- :0x6E
+	// BIT 5,A : L2:T8: Z:0:1:- :0x6F
+	// BIT 6,B : L2:T8: Z:0:1:- :0x70
+	// BIT 6,C : L2:T8: Z:0:1:- :0x71
+	// BIT 6,D : L2:T8: Z:0:1:- :0x72
+	// BIT 6,E : L2:T8: Z:0:1:- :0x73
+	// BIT 6,H : L2:T8: Z:0:1:- :0x74
+	// BIT 6,L : L2:T8: Z:0:1:- :0x75
+	// BIT 6,(HL) : L2:T16: Z:0:1:- :0x76
+	// BIT 6,A : L2:T8: Z:0:1:- :0x77
+	// BIT 7,B : L2:T8: Z:0:1:- :0x78
+	// BIT 7,C : L2:T8: Z:0:1:- :0x79
+	// BIT 7,D : L2:T8: Z:0:1:- :0x7A
+	// BIT 7,E : L2:T8: Z:0:1:- :0x7B
+	// BIT 7,H : L2:T8: Z:0:1:- :0x7C
+	// BIT 7,L : L2:T8: Z:0:1:- :0x7D
+	// BIT 7,(HL) : L2:T16: Z:0:1:- :0x7E
+	// BIT 7,A : L2:T8: Z:0:1:- :0x7F 
+
+
+
+}
+
+public void RES() {
+
+	// RES 0,B : L2:T8: -:-:-:- :0x80
+	// RES 0,C : L2:T8: -:-:-:- :0x81
+	// RES 0,D : L2:T8: -:-:-:- :0x82
+	// RES 0,E : L2:T8: -:-:-:- :0x83
+	// RES 0,H : L2:T8: -:-:-:- :0x84
+	// RES 0,L : L2:T8: -:-:-:- :0x85
+	// RES 0,(HL) : L2:T16: -:-:-:- :0x86
+	// RES 0,A : L2:T8: -:-:-:- :0x87
+	// RES 1,B : L2:T8: -:-:-:- :0x88
+	// RES 1,C : L2:T8: -:-:-:- :0x89
+	// RES 1,D : L2:T8: -:-:-:- :0x8A
+	// RES 1,E : L2:T8: -:-:-:- :0x8B
+	// RES 1,H : L2:T8: -:-:-:- :0x8C
+	// RES 1,L : L2:T8: -:-:-:- :0x8D
+	// RES 1,(HL) : L2:T16: -:-:-:- :0x8E
+	// RES 1,A : L2:T8: -:-:-:- :0x8F
+	// RES 2,B : L2:T8: -:-:-:- :0x90
+	// RES 2,C : L2:T8: -:-:-:- :0x91
+	// RES 2,D : L2:T8: -:-:-:- :0x92
+	// RES 2,E : L2:T8: -:-:-:- :0x93
+	// RES 2,H : L2:T8: -:-:-:- :0x94
+	// RES 2,L : L2:T8: -:-:-:- :0x95
+	// RES 2,(HL) : L2:T16: -:-:-:- :0x96
+	// RES 2,A : L2:T8: -:-:-:- :0x97
+	// RES 3,B : L2:T8: -:-:-:- :0x98
+	// RES 3,C : L2:T8: -:-:-:- :0x99
+	// RES 3,D : L2:T8: -:-:-:- :0x9A
+	// RES 3,E : L2:T8: -:-:-:- :0x9B
+	// RES 3,H : L2:T8: -:-:-:- :0x9C
+	// RES 3,L : L2:T8: -:-:-:- :0x9D
+	// RES 3,(HL) : L2:T16: -:-:-:- :0x9E
+	// RES 3,A : L2:T8: -:-:-:- :0x9F
+	// RES 4,B : L2:T8: -:-:-:- :0xA0
+	// RES 4,C : L2:T8: -:-:-:- :0xA1
+	// RES 4,D : L2:T8: -:-:-:- :0xA2
+	// RES 4,E : L2:T8: -:-:-:- :0xA3
+	// RES 4,H : L2:T8: -:-:-:- :0xA4
+	// RES 4,L : L2:T8: -:-:-:- :0xA5
+	// RES 4,(HL) : L2:T16: -:-:-:- :0xA6
+	// RES 4,A : L2:T8: -:-:-:- :0xA7
+	// RES 5,B : L2:T8: -:-:-:- :0xA8
+	// RES 5,C : L2:T8: -:-:-:- :0xA9
+	// RES 5,D : L2:T8: -:-:-:- :0xAA
+	// RES 5,E : L2:T8: -:-:-:- :0xAB
+	// RES 5,H : L2:T8: -:-:-:- :0xAC
+	// RES 5,L : L2:T8: -:-:-:- :0xAD
+	// RES 5,(HL) : L2:T16: -:-:-:- :0xAE
+	// RES 5,A : L2:T8: -:-:-:- :0xAF
+	// RES 6,B : L2:T8: -:-:-:- :0xB0
+	// RES 6,C : L2:T8: -:-:-:- :0xB1
+	// RES 6,D : L2:T8: -:-:-:- :0xB2
+	// RES 6,E : L2:T8: -:-:-:- :0xB3
+	// RES 6,H : L2:T8: -:-:-:- :0xB4
+	// RES 6,L : L2:T8: -:-:-:- :0xB5
+	// RES 6,(HL) : L2:T16: -:-:-:- :0xB6
+	// RES 6,A : L2:T8: -:-:-:- :0xB7
+	// RES 7,B : L2:T8: -:-:-:- :0xB8
+	// RES 7,C : L2:T8: -:-:-:- :0xB9
+	// RES 7,D : L2:T8: -:-:-:- :0xBA
+	// RES 7,E : L2:T8: -:-:-:- :0xBB
+	// RES 7,H : L2:T8: -:-:-:- :0xBC
+	// RES 7,L : L2:T8: -:-:-:- :0xBD
+	// RES 7,(HL) : L2:T16: -:-:-:- :0xBE
+	// RES 7,A : L2:T8: -:-:-:- :0xBF 
+
+
+
+}
+
+public void SET() {
+
+	// SET 0,B : L2:T8: -:-:-:- :0xC0
+	// SET 0,C : L2:T8: -:-:-:- :0xC1
+	// SET 0,D : L2:T8: -:-:-:- :0xC2
+	// SET 0,E : L2:T8: -:-:-:- :0xC3
+	// SET 0,H : L2:T8: -:-:-:- :0xC4
+	// SET 0,L : L2:T8: -:-:-:- :0xC5
+	// SET 0,(HL) : L2:T16: -:-:-:- :0xC6
+	// SET 0,A : L2:T8: -:-:-:- :0xC7
+	// SET 1,B : L2:T8: -:-:-:- :0xC8
+	// SET 1,C : L2:T8: -:-:-:- :0xC9
+	// SET 1,D : L2:T8: -:-:-:- :0xCA
+	// SET 1,E : L2:T8: -:-:-:- :0xCB
+	// SET 1,H : L2:T8: -:-:-:- :0xCC
+	// SET 1,L : L2:T8: -:-:-:- :0xCD
+	// SET 1,(HL) : L2:T16: -:-:-:- :0xCE
+	// SET 1,A : L2:T8: -:-:-:- :0xCF
+	// SET 2,B : L2:T8: -:-:-:- :0xD0
+	// SET 2,C : L2:T8: -:-:-:- :0xD1
+	// SET 2,D : L2:T8: -:-:-:- :0xD2
+	// SET 2,E : L2:T8: -:-:-:- :0xD3
+	// SET 2,H : L2:T8: -:-:-:- :0xD4
+	// SET 2,L : L2:T8: -:-:-:- :0xD5
+	// SET 2,(HL) : L2:T16: -:-:-:- :0xD6
+	// SET 2,A : L2:T8: -:-:-:- :0xD7
+	// SET 3,B : L2:T8: -:-:-:- :0xD8
+	// SET 3,C : L2:T8: -:-:-:- :0xD9
+	// SET 3,D : L2:T8: -:-:-:- :0xDA
+	// SET 3,E : L2:T8: -:-:-:- :0xDB
+	// SET 3,H : L2:T8: -:-:-:- :0xDC
+	// SET 3,L : L2:T8: -:-:-:- :0xDD
+	// SET 3,(HL) : L2:T16: -:-:-:- :0xDE
+	// SET 3,A : L2:T8: -:-:-:- :0xDF
+	// SET 4,B : L2:T8: -:-:-:- :0xE0
+	// SET 4,C : L2:T8: -:-:-:- :0xE1
+	// SET 4,D : L2:T8: -:-:-:- :0xE2
+	// SET 4,E : L2:T8: -:-:-:- :0xE3
+	// SET 4,H : L2:T8: -:-:-:- :0xE4
+	// SET 4,L : L2:T8: -:-:-:- :0xE5
+	// SET 4,(HL) : L2:T16: -:-:-:- :0xE6
+	// SET 4,A : L2:T8: -:-:-:- :0xE7
+	// SET 5,B : L2:T8: -:-:-:- :0xE8
+	// SET 5,C : L2:T8: -:-:-:- :0xE9
+	// SET 5,D : L2:T8: -:-:-:- :0xEA
+	// SET 5,E : L2:T8: -:-:-:- :0xEB
+	// SET 5,H : L2:T8: -:-:-:- :0xEC
+	// SET 5,L : L2:T8: -:-:-:- :0xED
+	// SET 5,(HL) : L2:T16: -:-:-:- :0xEE
+	// SET 5,A : L2:T8: -:-:-:- :0xEF
+	// SET 6,B : L2:T8: -:-:-:- :0xF0
+	// SET 6,C : L2:T8: -:-:-:- :0xF1
+	// SET 6,D : L2:T8: -:-:-:- :0xF2
+	// SET 6,E : L2:T8: -:-:-:- :0xF3
+	// SET 6,H : L2:T8: -:-:-:- :0xF4
+	// SET 6,L : L2:T8: -:-:-:- :0xF5
+	// SET 6,(HL) : L2:T16: -:-:-:- :0xF6
+	// SET 6,A : L2:T8: -:-:-:- :0xF7
+	// SET 7,B : L2:T8: -:-:-:- :0xF8
+	// SET 7,C : L2:T8: -:-:-:- :0xF9
+	// SET 7,D : L2:T8: -:-:-:- :0xFA
+	// SET 7,E : L2:T8: -:-:-:- :0xFB
+	// SET 7,H : L2:T8: -:-:-:- :0xFC
+	// SET 7,L : L2:T8: -:-:-:- :0xFD
+	// SET 7,(HL) : L2:T16: -:-:-:- :0xFE
+	// SET 7,A : L2:T8: -:-:-:- :0xFF 
+
+
+
+}
+

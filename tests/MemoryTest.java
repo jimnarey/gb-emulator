@@ -30,4 +30,14 @@ public class MemoryTest {
         assertEquals(10000, m.readWord(50));
 
     }
+
+    @Test
+    public void testAddress() throws Exception {
+
+        Memory m = new Memory();
+        m.writeByte(100, 50);
+
+        assertEquals(100, m.address(50).read());
+
+    }
 }

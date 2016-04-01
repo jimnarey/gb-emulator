@@ -98,8 +98,31 @@ class OpcodeHandler:
         method_file = open(file_name, 'w', newline='')
 
         for i in instruction_list:
-            method_file.write('public ' + 'int ' + i + '() {\n\t\n\treturn result;\n}\n\n')
+            method_file.write('public ' + 'void ' + i + '() {\n\t\n\n\n}\n\n')
 
+    @staticmethod
+    def create_annotated_methods(instruction_list, instruction_table, file_name):
+
+        method_file = open(file_name, 'w', newline='')
+
+        for inst in instruction_list:
+
+            annotations = []
+
+            for row in instruction_table:
+
+                if inst == row[6]:
+
+                    annotation = '// ' + row[5] + ' : L' + row[9] + ':T' + row[10] + ': ' + row[11] + ':' + \
+                                 row[12] + ':' + row[13] + ':' + row[14] + ' :0x' + row[1]
+
+                    annotations.append(annotation)
+
+            comments = '\n\t'.join(annotations)
+
+            method_file.write('public ' + 'void ' + inst + '() {\n\n\t' + comments + ' \n\n\n\n}\n\n')
+
+        method_file.close()
 
 
     def create_code_table(self):
@@ -263,5 +286,8 @@ if __name__ == "__main__":
     ml = OpcodeHandler.remove_duplicates(m)
     cl = OpcodeHandler.remove_duplicates(c)
 
-    OpcodeHandler.create_methods(ml, '../other/main_methods.txt')
-    OpcodeHandler.create_methods(cl, '../other/cb_methods.txt')
+    #OpcodeHandler.create_methods(ml, '../other/main_methods.txt')
+    #OpcodeHandler.create_methods(cl, '../other/cb_methods.txt')
+
+    OpcodeHandler.create_annotated_methods(ml, m, '../other/main_ann_methods.txt')
+    OpcodeHandler.create_annotated_methods(cl, c, '../other/cb_ann_methods.txt')
