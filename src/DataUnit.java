@@ -34,6 +34,33 @@ public class DataUnit {
 
     }
 
+    public int readLower() {
+        int i = 0;
+        return i;
+    }
+
+    public void writeLower(int value) {
+
+    }
+
+    public int readByte(int byteNum) {
+        int i = 0;
+
+        if (byteNum < numBytes) {
+            int offset = byteNum * 8;
+            i = data >>> offset;
+            i = i & 0xFF;
+
+        }
+
+        return i;
+
+    }
+
+    public void writeByte(int byteNum, int value) {
+
+    }
+
     public void add(int value) {
 
         if (data + value > minValue + maxValue) {
@@ -194,5 +221,14 @@ public class DataUnit {
         data = ((lowerHalf << 4) | (upperHalf));
 
     }
+
+//    public int offSetRead(int offset, int bits) {
+//        int i = 0;
+//        return i;
+//    }
+//
+//    public void offSetWrite(int offset, int value) {
+//        int temp = value << offset;
+//    }
 
 }

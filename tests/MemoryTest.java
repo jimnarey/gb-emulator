@@ -17,27 +17,31 @@ public class MemoryTest {
     @Test
     public void testRWByte() throws Exception {
         Memory m = new Memory();
-        m.writeByte(100, 50);
-        assertEquals(100, m.readByte(50));
+//        m.writeByte(100, 50);
+        m.address(50).write(100);
+        assertEquals(100, m.address(50).read());
 
     }
 
     @Test
     public void testRWWord() throws Exception {
         Memory m = new Memory();
-        m.writeWord(10000, 50);
-        System.out.println("Read word: " + m.readWord(50));
-        assertEquals(10000, m.readWord(50));
+//        m.writeWord(10000, 50);
+        m.address(50).write(256);
+        System.out.println("Read word: " + m.address(50).read());
+        assertEquals(256, m.address(50).read());
 
     }
-
-    @Test
-    public void testAddress() throws Exception {
-
-        Memory m = new Memory();
-        m.writeByte(100, 50);
-
-        assertEquals(100, m.address(50).read());
-
-    }
+//
+//    @Test
+//    public void testAddress() throws Exception {
+//
+//        Memory m = new Memory();
+////        m.writeByte(100, 50);
+//        m.address(50).write(100);
+//
+//        assertEquals(100, m.address(50).read());
+//
+//    }
+//
 }

@@ -6,14 +6,12 @@ public class Memory {
     public MemoryBank[] memoryBanks;
     private int[][] memoryMap;
 
-
     public static void main(String args[]) {
         Memory testMemory = new Memory();
         System.out.println(testMemory.memoryBanks[0].getSize());
         //testMemory.printMemoryMap();
 
     }
-
 
     public Memory() {
 
@@ -60,27 +58,13 @@ public class Memory {
             for (int j = 0; j < this.memoryBanks[i].units.length; j++) {
                 memoryMap[addressIncrement][0] = i;
                 memoryMap[addressIncrement][1] = j;
-
-
-                // if (addressIncrement < 500) {
-                //     System.out.println(addressIncrement + " " + i + " " + j);
-                // }
-
                 addressIncrement++;
             }
         }
 
         return memoryMap;
     }
-    
-    private int[] getMemoryBankAddress(int address) {
 
-        int[] MemoryBanksAddress = new int[2];
-        MemoryBanksAddress[0] = memoryMap[address][0];
-        MemoryBanksAddress[1] = memoryMap[address][1];
-        return MemoryBanksAddress;
-
-    }
 
     public DataUnit address (int address) {
 
@@ -88,56 +72,73 @@ public class Memory {
 
     }
 
-
-    // Need to convert addresses into unsigned ints !!!!!!!!!!!!!!!!
-    public void writeByte(int byteToWrite, int address) {
-
-        // address[0] contains bank no, address[1] contains the byte no. within that bank
-        // System.out.println(byteToWrite + " " + memoryMap[address][0] + " " + memoryMap[address][1]);
-        // memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].write(byteToWrite);
-
-        // memoryMap[address[0] identifies the correct bank
-        // memoryMap[address[1] identifies the address within the bank
-
-        memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].write(byteToWrite);
-
-    }
-
-    public int readByte(int address) {
-
-        return memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].read();
-
-    }
+//    private int[] getMemoryBankAddress(int address) {
+//
+//        int[] MemoryBanksAddress = new int[2];
+//        MemoryBanksAddress[0] = memoryMap[address][0]; //Bank
+//        MemoryBanksAddress[1] = memoryMap[address][1]; //Location in bank
+//        return MemoryBanksAddress;
+//
+//    }
+//    // Need to convert addresses into unsigned ints !!!!!!!!!!!!!!!!
+//    public void writeByte(int byteToWrite, int address) {
+//
+//        // address[0] contains bank no, address[1] contains the byte no. within that bank
+//        // System.out.println(byteToWrite + " " + memoryMap[address][0] + " " + memoryMap[address][1]);
+//        // memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].write(byteToWrite);
+//
+//        // memoryMap[address[0] identifies the correct bank
+//        // memoryMap[address[1] identifies the address within the bank
+//
+//        memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].write(byteToWrite);
+//
+//    }
+//
+//    public int readByte(int address) {
+//
+//        return memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].read();
+//
+//    }
 
     // Split number into two bytes
     // Write MSB and LSB
-    public void writeWord(int wordToWrite, int address) {
+//    public void writeWord(int wordToWrite, int address) {
+//
+//        // Test bitwise ops to create two units
+//        // memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].write(wordToWrite);
+//
+//        // Check this writes the bytes in the correct order.
+//        memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].write((wordToWrite & 0xFF));
+//        memoryBanks[memoryMap[address + 1][0]].units[memoryMap[address + 1][1]].write((wordToWrite >> 8) & 0xFF);
+//
+//    }
+//
+//    // Read MSB and LSB
+//    // Merge into int and return
+//    public int readWord(int address) {
+//
+//        // Test bitwise ops as above
+//        //return memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].read();
+//        int msb = memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].read();
+//        int lsb = memoryBanks[memoryMap[address + 1][0]].units[memoryMap[address + 1][1]].read();
+//
+//        // Check these are the right way round!!!
+////        // Should this be (msb >> 8) & 0xFF)?
+////        return ((lsb << 8) | (msb & 0xFF));
+////
+////    }
+//
+//    public void printAllBytes() {
+//
+//        for (int i = 0 ; i < 65535; i++) {
+//
+//            System.out.println(readByte(i));
+//
+//        }
+//
+//    }
 
-        // Test bitwise ops to create two units
-        // memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].write(wordToWrite);
-
-        // Check this writes the bytes in the correct order.
-        memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].write((wordToWrite & 0xFF));
-        memoryBanks[memoryMap[address + 1][0]].units[memoryMap[address + 1][1]].write((wordToWrite >> 8) & 0xFF);
-
-    }
-
-    // Read MSB and LSB
-    // Merge into int and return
-    public int readWord(int address) {
-
-        // Test bitwise ops as above
-        //return memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].read();
-        int msb = memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]].read();
-        int lsb = memoryBanks[memoryMap[address + 1][0]].units[memoryMap[address + 1][1]].read();
-
-        // Check these are the right way round!!!
-        // Should this be (msb >> 8) & 0xFF)?
-        return ((lsb << 8) | (msb & 0xFF));
-
-    }
-
-    public static int[] wordToBytes(int word) {
+    public static int[] oldWordToBytes(int word) {
         int[] bytes = new int[2];
         // Get MSB
         bytes[0] = ((word >> 8) & 0xFF);
@@ -151,13 +152,13 @@ public class Memory {
 
         if (cartridgeSize <= 0) {
             System.out.println("No data in cartridge");
-            return;
+
         } else if (cartridgeSize > 32768){
             System.out.println("Cartridge data too large");
-            return;
+
         } else {
             for (int i = 0; i < 32767; i++) {
-                writeByte(cartridge.romData[i], i);
+                address(i).write(cartridge.romData[i]);
             }
             System.out.println("Cartridge loaded");
         }
@@ -190,13 +191,5 @@ public class Memory {
         }
     }
 
-    public void printAllBytes() {
 
-        for (int i = 0 ; i < 65535; i++) {
-
-            System.out.println(readByte(i));
-
-        }
-
-    }
 }
