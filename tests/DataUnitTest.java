@@ -256,7 +256,7 @@ public class DataUnitTest {
 
     @Test
     public void testRotateLeft() throws Exception {
-        
+
         DataUnit d = new DataUnit(1);
         d.write(32);
         d.rotateLeft();
@@ -424,4 +424,5 @@ public class DataUnitTest {
         assertEquals(204, p.read());
 
     }
+
 }

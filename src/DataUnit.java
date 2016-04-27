@@ -22,6 +22,10 @@ public class DataUnit {
 
     }
 
+    public int getNumBits() {
+        return numBits;
+    }
+
     public void write(int value) {
 
         data = value & writeMask;
@@ -34,32 +38,43 @@ public class DataUnit {
 
     }
 
-    public int readLower() {
-        int i = 0;
-        return i;
-    }
-
-    public void writeLower(int value) {
-
-    }
-
-    public int readByte(int byteNum) {
-        int i = 0;
-
-        if (byteNum < numBytes) {
-            int offset = byteNum * 8;
-            i = data >>> offset;
-            i = i & 0xFF;
-
-        }
-
-        return i;
-
-    }
-
-    public void writeByte(int byteNum, int value) {
-
-    }
+//    public int readLower() {
+//        int i = 0;
+//        return i;
+//    }
+//
+//    public void writeLower(int value) {
+//
+//    }
+//
+//    public int readByte(int byteNum) {
+//        int i = 0;
+//
+//        if (byteNum < numBytes) {
+//            int offset = byteNum * 8;
+//            i = data >>> offset;
+//            i = i & 0xFF;
+//
+//        }
+//
+//        return i;
+//
+//    }
+//
+//    public void writeByte(int byteNum, int value) {
+//
+//        //Consider different approach based on flipping bits
+//
+//        // Calculate a bitmask covering all bytes 'below' the target bytes
+//        // Use a left bit shift in lieu of a Java exponential operator
+//        int targetAndLowerBytesMask = (2 << (byteNum * 8)) - 1;
+//        int lowerBytesMask = (2 << ((byteNum - 1) * 8)) - 1;
+//        int lowerBytes = data & lowerBytesMask;
+//        int anyHigherBytes = data - (data & targetAndLowerBytesMask);
+//        value = value << ((byteNum - 1) * 8);
+//        data = value + lowerBytes + anyHigherBytes;
+//
+//    }
 
     public void add(int value) {
 
@@ -219,6 +234,20 @@ public class DataUnit {
         // System.out.println("result: " + ( (lowerHalf << 4) | (upperHalf) ) );
 
         data = ((lowerHalf << 4) | (upperHalf));
+
+    }
+
+    public int readSigned () {
+
+        int valueMask = ~ (1 << (numBits - 1)) & writeMask;
+        int value = data & valueMask;
+        boolean sign = checkBit(numBits);
+
+        if (!sign) {
+            value = 0 - value;
+        }
+
+        return value;
 
     }
 

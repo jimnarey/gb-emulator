@@ -72,6 +72,12 @@ public class Memory {
 
     }
 
+    public DataUnit altAddress (int address) {
+
+        return memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]];
+
+    }
+
 //    private int[] getMemoryBankAddress(int address) {
 //
 //        int[] MemoryBanksAddress = new int[2];
