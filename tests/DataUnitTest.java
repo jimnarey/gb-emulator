@@ -425,4 +425,13 @@ public class DataUnitTest {
 
     }
 
+    @Test
+    public void testGetNumBits() throws Exception {
+
+    }
+
+    @Test
+    public void testReadSigned() throws Exception {
+
+    }
 }

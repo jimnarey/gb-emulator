@@ -8,7 +8,7 @@ public class Memory {
 
     public static void main(String args[]) {
         Memory testMemory = new Memory();
-        System.out.println(testMemory.memoryBanks[0].getSize());
+        System.out.println(testMemory.memoryBanks[0].getNumUnits());
         //testMemory.printMemoryMap();
 
     }
@@ -68,13 +68,13 @@ public class Memory {
 
     public DataUnit address (int address) {
 
-        return memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]];
+        return memoryBanks[memoryMap[address][0]].unit(memoryMap[address][1]);
 
     }
 
     public DataUnit altAddress (int address) {
 
-        return memoryBanks[memoryMap[address][0]].units[memoryMap[address][1]];
+        return memoryBanks[memoryMap[address][0]].unit(memoryMap[address][1]);
 
     }
 
@@ -177,7 +177,7 @@ public class Memory {
 
         //Loop through declared memory MemoryBanks to calculate total number of bytes
         for (MemoryBank b : this.memoryBanks) {
-            byteCount = byteCount + b.getSize();
+            byteCount = byteCount + b.getNumUnits();
         }
 
         //Print total number of bytes

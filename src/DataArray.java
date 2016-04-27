@@ -3,8 +3,8 @@
  */
 public class DataArray {
 
-    int numUnits;
-    DataUnit[] units;
+    protected int numUnits;
+    protected DataUnit[] units;
 
     public DataArray(int numUnits) {
 
@@ -15,6 +15,19 @@ public class DataArray {
 
     }
 
+    public int getNumUnits() {
+        //Refelecting that the first and last bytes are part of the bank
+        //return (lastByte - firstByte) + 1;
+        return numUnits;
+    }
+
+    public void populate (int dataUnitSize) {
+        for (int i = 0; i < this.getNumUnits(); i++) {
+            //System.out.println(i);
+            this.units[i] = new DataUnit(dataUnitSize);
+        }
+    }
+
     public void setUnit (int position, DataUnit unit) {
         units[position] = unit;
     }
@@ -23,7 +36,7 @@ public class DataArray {
         return units[position].read();
     }
 
-    public DataUnit accessUnit(int position) {
+    public DataUnit unit(int position) {
 
         return units[position];
     }
