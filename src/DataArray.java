@@ -51,12 +51,12 @@ public class DataArray {
 
     }
 
-    public void write (int value) {
+    public void write (long value) {
 
         for (int i = 0; i < numUnits; i++) {
 
-            int byteValue = value >>> (i * units[i].getNumBits());
-            units[i].write(byteValue & 0xFF);
+            long byteValue = value >>> (i * units[i].getNumBits());
+            units[i].write((int) byteValue & 0xFF);
         }
 
     }

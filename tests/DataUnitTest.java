@@ -77,6 +77,10 @@ public class DataUnitTest {
         DataUnit p = new DataUnit(2);
         p.write(65536);
         assertEquals(0, p.read());
+
+        DataUnit q = new DataUnit(1);
+        q.write(15);
+        assertEquals(15, q.read());
     }
 
     @Test
@@ -427,11 +431,23 @@ public class DataUnitTest {
 
     @Test
     public void testGetNumBits() throws Exception {
+        DataUnit d = new DataUnit(1);
+        assertEquals(8, d.getNumBits());
 
+        DataUnit p = new DataUnit(2);
+        assertEquals(16, p.getNumBits());
     }
 
     @Test
     public void testReadSigned() throws Exception {
+
+        DataUnit d = new DataUnit(1);
+        d.write(129);
+        assertEquals(-127, d.readSigned());
+
+        DataUnit p = new DataUnit(1);
+        p.write(130);
+        assertEquals(-126, p.readSigned());
 
     }
 }

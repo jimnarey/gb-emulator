@@ -3,7 +3,7 @@
  */
 public class DataUnit {
 
-    public int data = 0;
+    protected int data = 0;
     private int numPermutations;
     private int numBytes;
     private int numBits;
@@ -239,12 +239,15 @@ public class DataUnit {
 
     public int readSigned () {
 
-        int valueMask = ~ (1 << (numBits - 1)) & writeMask;
-        int value = data & valueMask;
-        boolean sign = checkBit(numBits);
+        //int valueMask = ~ (1 << (numBits - 1)) & writeMask;
+        int value;
+        //boolean sign = checkBit(numBits);
 
-        if (!sign) {
-            value = 0 - value;
+        if (data > 127) {
+            value = data - 256;
+        }
+        else {
+            value = data;
         }
 
         return value;
