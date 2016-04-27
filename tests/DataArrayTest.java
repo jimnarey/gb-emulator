@@ -12,7 +12,7 @@ public class DataArrayTest {
         dA.populate(1);
         assertEquals(8, dA.getNumUnits());
     }
-    
+
     @Test
     public void testPopulate() throws Exception {
 
