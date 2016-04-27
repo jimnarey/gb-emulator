@@ -61,6 +61,15 @@ public class DataArray {
 
     }
 
+    public int readSection (int position, int length) {
+        int i = 0;
+        return i;
+    }
+
+    public void writeSection (int position, int length, int value) {
+
+    }
+
     public void add(int value) {
 
 //        int currentValue = read();
