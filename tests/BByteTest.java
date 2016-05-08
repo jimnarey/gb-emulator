@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 /**
  * Created by jamesnarey on 17/03/2016.
  */
-public class DataUnitTest {
+public class BByteTest {
 
     @Test
     public void testSub() throws Exception {
@@ -14,6 +14,11 @@ public class DataUnitTest {
         d.write(10);
         d.sub(20);
         assertEquals(246, d.read());
+
+        BByte r = new BByte();
+        r.write(50);
+        r.sub(20);
+        assertEquals(30, r.read());
 
     }
 
@@ -221,12 +226,6 @@ public class DataUnitTest {
 
     }
 
-    @Test
-    public void testGetNumBits() throws Exception {
-        BByte d = new BByte();
-        assertEquals(8, d.getNumBits());
-
-    }
 
     @Test
     public void testReadSigned() throws Exception {

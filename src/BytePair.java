@@ -1,7 +1,7 @@
 /**
  * Created by jamesnarey on 08/05/2016.
  */
-public class BytePair extends DataArray {
+public class BytePair extends DataArray implements DataInterface {
 
     public BytePair() {
         super(2);

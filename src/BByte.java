@@ -1,34 +1,19 @@
 /**
  * Created by jamesnarey on 17/03/2016.
  */
-public class BByte {
+public class BByte implements DataInterface {
 
     protected int data = 0;
-    private int numPermutations;
-    private int numBytes;
-    private int numBits;
-    private int minValue;
-    private int maxValue ;
-    private int writeMask;
 
     public BByte() {
 
-        this.numBytes = 1;
-        this.numBits = 8;
-        this.numPermutations = 256;
-        this.minValue = 0;
-        this.maxValue = 255;
-        this.writeMask = 255;
 
     }
 
-    public int getNumBits() {
-        return numBits;
-    }
 
     public void write(int value) {
 
-        data = value & writeMask;
+        data = value & 0xFF;
 
     }
 
@@ -38,61 +23,17 @@ public class BByte {
 
     }
 
-//    public int readLower() {
-//        int i = 0;
-//        return i;
-//    }
-//
-//    public void writeLower(int value) {
-//
-//    }
-//
-//    public int readByte(int byteNum) {
-//        int i = 0;
-//
-//        if (byteNum < numBytes) {
-//            int offset = byteNum * 8;
-//            i = data >>> offset;
-//            i = i & 0xFF;
-//
-//        }
-//
-//        return i;
-//
-//    }
-//
-//    public void writeByte(int byteNum, int value) {
-//
-//        //Consider different approach based on flipping bits
-//
-//        // Calculate a bitmask covering all bytes 'below' the target bytes
-//        // Use a left bit shift in lieu of a Java exponential operator
-//        int targetAndLowerBytesMask = (2 << (byteNum * 8)) - 1;
-//        int lowerBytesMask = (2 << ((byteNum - 1) * 8)) - 1;
-//        int lowerBytes = data & lowerBytesMask;
-//        int anyHigherBytes = data - (data & targetAndLowerBytesMask);
-//        value = value << ((byteNum - 1) * 8);
-//        data = value + lowerBytes + anyHigherBytes;
-//
-//    }
 
     public void add(int value) {
 
-        if (data + value > minValue + maxValue) {
-            data = (data + value) - numPermutations;
-        } else {
-            data = data + value;
-        }
+        data = (data + value) & 0xFF;
 
     }
 
     public void sub(int value) {
 
-        if (data - value < minValue) {
-            data = minValue + numPermutations - (value - data);
-        } else {
-            data = data - value;
-        }
+        data = (data - value) & 0xFF;
+
 
     }
 
@@ -109,9 +50,10 @@ public class BByte {
     }
 
     // Refactor to lose an if statement
+    // position is zero indexed (i.e. 0 - 7)
     public boolean checkBit (int position) {
 
-        if (position <= numPermutations) {
+        if (position < 8) {
 
             if (((data >>> position) & 1) != 0) {
 
@@ -126,9 +68,10 @@ public class BByte {
     }
 
     // Refactor to lose an if statement
+    // position is zero indexed (i.e. 0 - 7)
     public void  setBit (int position, boolean value) {
 
-        if (position < numPermutations) {
+        if (position < 8) {
 
 
             if (value == true) {
@@ -150,16 +93,16 @@ public class BByte {
 
         data = (data >>> 1);
 
-        setBit(numBits - 1, lsb);
+        setBit(7, lsb);
 
         return lsb;
     }
 
     public boolean rotateLeft () {
 
-        boolean msb = checkBit(numBits - 1);
+        boolean msb = checkBit(7);
 
-        data = (data << 1) & maxValue;
+        data = (data << 1) & 0xFF;
 
         setBit(0, msb);
 
@@ -173,7 +116,7 @@ public class BByte {
 
         data = (data >>> 1);
 
-        setBit(numBits - 1, flag);
+        setBit(7, flag);
 
         return lsb;
 
@@ -181,9 +124,9 @@ public class BByte {
 
     public boolean rotateLeftThroughFlag (boolean flag) {
 
-        boolean msb = checkBit(numBits - 1);
+        boolean msb = checkBit(7);
 
-        data = (data << 1) & maxValue;
+        data = (data << 1) & 0xFF;
 
         setBit(0, flag);
 
@@ -192,9 +135,9 @@ public class BByte {
 
     public String readString() {
 
-        String formatParameter = "%" + numBits + "s";
+        String formatParameter = "%" + 8 + "s";
 
-        return String.format(formatParameter, Integer.toBinaryString(data & writeMask)).replace(' ', '0');
+        return String.format(formatParameter, Integer.toBinaryString(data & 0xFF)).replace(' ', '0');
     }
 
     public void AND (int value) {
@@ -217,21 +160,14 @@ public class BByte {
 
     public void complement () {
 
-        data = ~ data & writeMask;
+        data = ~ data & 0xFF;
 
     }
 
     public void swap () {
 
-        int halfWriteMask = (int) Math.pow (2, (numBits / 2) ) -1;
-
-        int lowerHalf = data & halfWriteMask;
-        int upperHalf = (data >>> (numBits / 2) ) & halfWriteMask;
-
-        // System.out.println("halfMask: " + halfWriteMask);
-        // System.out.println("lowerHalf: " + lowerHalf);
-        // System.out.println("upperHalf: " + upperHalf);
-        // System.out.println("result: " + ( (lowerHalf << 4) | (upperHalf) ) );
+        int lowerHalf = data & 0xF;
+        int upperHalf = (data >>> 4 ) & 0xF;
 
         data = ((lowerHalf << 4) | (upperHalf));
 
@@ -239,9 +175,7 @@ public class BByte {
 
     public int readSigned () {
 
-        //int valueMask = ~ (1 << (numBits - 1)) & writeMask;
         int value;
-        //boolean sign = checkBit(numBits);
 
         if (data > 127) {
             value = data - 256;
@@ -254,13 +188,5 @@ public class BByte {
 
     }
 
-//    public int offSetRead(int offset, int bits) {
-//        int i = 0;
-//        return i;
-//    }
-//
-//    public void offSetWrite(int offset, int value) {
-//        int temp = value << offset;
-//    }
 
 }

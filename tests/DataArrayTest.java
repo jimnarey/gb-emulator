@@ -23,7 +23,13 @@ public class DataArrayTest {
 
         for (BByte unit: dA.units)
         {
-            assertEquals(8, unit.getNumBits());
+            unit.write(200);
+
+        }
+
+        for (BByte unit: dA.units)
+        {
+            assertEquals(200, unit.read());
 
         }
 
@@ -46,7 +52,8 @@ public class DataArrayTest {
         dA.populate();
         // Check can call method on returned object and that object has right
         // number of bits
-        assertEquals(8, dA.unit(0).getNumBits());
+        dA.unit(0).write(255);
+        assertEquals(255, dA.unit(0).read());
 
 
     }
