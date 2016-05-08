@@ -8,9 +8,9 @@ public class Registers {
     //How to neatly join when needed?
     //private int A, F, B, C, D, E, H, L;
 
-    public DataUnit A, F, B, C, D, E, H, L = new DataUnit(1);
+    public BByte A, F, B, C, D, E, H, L = new BByte();
 
-    public DataUnit SP, PC = new DataUnit(2);
+//    public BByte SP, PC = new BByte(2);
 
     //16bit registers, stack pointer and program counter
     //How to split up if needed?

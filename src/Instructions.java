@@ -3,11 +3,13 @@
  */
 public class Instructions {
 
-    private Processor p;
+//    private Memory memory;
+//    private Registers registers;
 
-    public Instructions(Processor processor) {
+    public Instructions() {
 
-        this.p = processor;
+//        this.memory = memory;
+//        this.registers = registers;
 
     }
 
@@ -23,17 +25,17 @@ public class Instructions {
 
     public void LD() {
 
-        // LD BC,d16 : L3:T12: -:-:-:- :0x01
-        // LD (BC),A : L1:T8: -:-:-:- :0x02
-        // LD B,d8 : L2:T8: -:-:-:- :0x06
-        // LD (a16),SP : L3:T20: -:-:-:- :0x08
-        // LD A,(BC) : L1:T8: -:-:-:- :0x0A
-        // LD C,d8 : L2:T8: -:-:-:- :0x0E
-        // LD DE,d16 : L3:T12: -:-:-:- :0x11
-        // LD (DE),A : L1:T8: -:-:-:- :0x12
-        // LD D,d8 : L2:T8: -:-:-:- :0x16
-        // LD A,(DE) : L1:T8: -:-:-:- :0x1A
-        // LD E,d8 : L2:T8: -:-:-:- :0x1E
+        // LD BC,d16 : L3:T12: -:-:-:- :0x01    16
+        // LD (BC),A : L1:T8: -:-:-:- :0x02     8
+        // LD B,d8 : L2:T8: -:-:-:- :0x06       8
+        // LD (a16),SP : L3:T20: -:-:-:- :0x08  16
+        // LD A,(BC) : L1:T8: -:-:-:- :0x0A     8
+        // LD C,d8 : L2:T8: -:-:-:- :0x0E       8
+        // LD DE,d16 : L3:T12: -:-:-:- :0x11    16
+        // LD (DE),A : L1:T8: -:-:-:- :0x12     8
+        // LD D,d8 : L2:T8: -:-:-:- :0x16       8
+        // LD A,(DE) : L1:T8: -:-:-:- :0x1A     8
+        // LD E,d8 : L2:T8: -:-:-:- :0x1E       8
         // LD HL,d16 : L3:T12: -:-:-:- :0x21
         // LD (HL+),A : L1:T8: -:-:-:- :0x22
         // LD H,d8 : L2:T8: -:-:-:- :0x26

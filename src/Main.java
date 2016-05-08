@@ -13,7 +13,7 @@ public class Main {
 
         MemoryBank bank = new MemoryBank("test", "test bank", 0, 255);
 
-        DataUnit unit = new DataUnit(2);
+        BByte unit = new BByte();
 
         unit.write(65536);
 

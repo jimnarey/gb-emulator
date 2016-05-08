@@ -66,13 +66,13 @@ public class Memory {
     }
 
 
-    public DataUnit address (int address) {
+    public BByte address (int address) {
 
         return memoryBanks[memoryMap[address][0]].unit(memoryMap[address][1]);
 
     }
 
-    public DataUnit altAddress (int address) {
+    public BByte altAddress (int address) {
 
         return memoryBanks[memoryMap[address][0]].unit(memoryMap[address][1]);
 
