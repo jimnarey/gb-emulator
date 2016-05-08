@@ -1,7 +1,7 @@
 /**
  * Created by jamesnarey on 17/03/2016.
  */
-public class DataUnit {
+public class BByte {
 
     protected int data = 0;
     private int numPermutations;
@@ -11,14 +11,14 @@ public class DataUnit {
     private int maxValue ;
     private int writeMask;
 
-    public DataUnit(int numBytes) {
+    public BByte() {
 
-        this.numBytes = numBytes;
-        this.numBits = numBytes * 8;
-        this.numPermutations = (int) Math.pow(2, numBits);
+        this.numBytes = 1;
+        this.numBits = 8;
+        this.numPermutations = 256;
         this.minValue = 0;
-        this.maxValue = numPermutations - 1;
-        this.writeMask = numPermutations - 1;
+        this.maxValue = 255;
+        this.writeMask = 255;
 
     }
 
