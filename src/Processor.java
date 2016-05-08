@@ -10,7 +10,6 @@ public class Processor {
 
         // Check if SP needs to decrement before first operation GBCPUMan 63
 
-        //inst = new Instructions(this);
 
     }
 

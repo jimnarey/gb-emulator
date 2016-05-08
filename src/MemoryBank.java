@@ -8,8 +8,6 @@ public class MemoryBank extends DataArray {
     private String description;
     private int firstByte = 0;
     private int lastByte = 0;
-    //public int[] bytes;
-    //public BByte[] units;
 
     //Consider allowing intialisation using bank size as well as first/last byte
     public MemoryBank (String name, String description, int firstByte, int lastByte) {
@@ -21,12 +19,9 @@ public class MemoryBank extends DataArray {
         this.description = description;
         this.firstByte = firstByte;
         this.lastByte = lastByte;
-        //this.bytes = new int[this.getSize()];
-        //this.units = new BByte[this.getSize()];
-
         this.populate();
 
-        System.out.println(this.name + " " + this.units.length);
+        System.out.println(this.name + " - " + this.description + " - " + this.units.length);
 
     }
 

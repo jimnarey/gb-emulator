@@ -10,7 +10,7 @@ public class BytePair extends DataArray implements DataInterface {
 
 
     public int read() {
-
+        //Simplify this
         int value = 0;
         for (int i = 0; i < 2; i++) {
             value = value + (units[i].read() << (i * 8));
@@ -20,7 +20,7 @@ public class BytePair extends DataArray implements DataInterface {
     }
 
     public void write (int value) {
-
+        //Simplify this
         for (int i = 0; i < 2; i++) {
 
             int byteValue = value >>> (i * 8);
@@ -32,19 +32,11 @@ public class BytePair extends DataArray implements DataInterface {
 
     public void add(int value) {
 
-//        int currentValue = read();
-//        currentValue = currentValue + value;
-//        write(currentValue);
-
         write(read() + value);
 
     }
 
     public void sub(int value) {
-
-//        int currentValue = read();
-//        currentValue = currentValue - value;
-//        write(currentValue);
 
         write(read() - value);
 

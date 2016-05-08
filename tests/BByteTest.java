@@ -9,7 +9,6 @@ public class BByteTest {
 
     @Test
     public void testSub() throws Exception {
-        // System.out.println("Test sub() 8bit, rollover");
         BByte d = new BByte();
         d.write(10);
         d.sub(20);
@@ -78,18 +77,14 @@ public class BByteTest {
     public void testSetBit() throws Exception {
         BByte d = new BByte();
         d.write(0);
-
         d.setBit(0, true);
         d.setBit(3, true);
-
         assertEquals(9, d.read());
-        //System.out.println(d.data);
+
 
         d.write(255);
-
         d.setBit(0, false);
         d.setBit(6, false);
-
         assertEquals(190, d.read());
 
     }
@@ -99,7 +94,6 @@ public class BByteTest {
 
         BByte d = new BByte();
         d.write(170);
-        // System.out.println(d.readString());
         assertEquals("10101010", d.readString());
 
 
@@ -111,7 +105,6 @@ public class BByteTest {
         BByte d = new BByte();
         d.write(1);
         d.inc();
-        // System.out.println(d.read());
         assertEquals(2, d.read());
 
     }
@@ -122,7 +115,6 @@ public class BByteTest {
         BByte d = new BByte();
         d.write(1);
         d.dec();
-        // System.out.println(d.read());
         assertEquals(0, d.read());
 
     }

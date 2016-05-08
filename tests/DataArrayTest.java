@@ -3,6 +3,7 @@ import org.junit.Test;
 import java.math.BigInteger;
 
 import static org.junit.Assert.*;
+
 /**
  * Created by jamesnarey on 27/04/2016.
  */
@@ -21,14 +22,12 @@ public class DataArrayTest {
         DataArray dA = new DataArray(8);
         dA.populate();
 
-        for (BByte unit: dA.units)
-        {
+        for (BByte unit : dA.units) {
             unit.write(200);
 
         }
 
-        for (BByte unit: dA.units)
-        {
+        for (BByte unit : dA.units) {
             assertEquals(200, unit.read());
 
         }
@@ -50,15 +49,11 @@ public class DataArrayTest {
 
         DataArray dA = new DataArray(8);
         dA.populate();
-        // Check can call method on returned object and that object has right
-        // number of bits
         dA.unit(0).write(255);
         assertEquals(255, dA.unit(0).read());
 
 
     }
-
-
 
 
 }

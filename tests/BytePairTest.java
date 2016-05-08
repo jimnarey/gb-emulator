@@ -30,7 +30,6 @@ public class BytePairTest {
         assertEquals(240, bP1.unit(1).read());
 
         // Check behaviour when too large a value is written
-        // Check I did this in BByte?
         BytePair bP2 = new BytePair();
         bP2.populate();
         bP2.write(98303);

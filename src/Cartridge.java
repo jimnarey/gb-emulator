@@ -43,9 +43,6 @@ public class Cartridge {
     public Cartridge(String fileName) throws IOException {
         romData = readFile(fileName);
 
-        //for (int i = 0; i < romData.length; i++ ) {
-        //    System.out.println(romData[i]);
-        //}
     }
 
     public int[] readFile(String aFileName) throws IOException {

@@ -3,21 +3,16 @@
  */
 public class Registers {
 
-    //8bit registers
-    //A is accumulator, F for flags, others general purpose
-    //How to neatly join when needed?
-    //private int A, F, B, C, D, E, H, L;
-
     public BByte A, F, B, C, D, E, H, L = new BByte();
 
-//    public BByte SP, PC = new BByte(2);
+    public BytePair SP, PC = new BytePair();
 
-    //16bit registers, stack pointer and program counter
-    //How to split up if needed?
-    //private int SP, PC;
-    public DataArray AF, BC, DE, HL = new DataArray(2);
+    public BytePair AF, BC, DE, HL = new BytePair();
 
     public Registers() {
+
+        PC.populate();
+        SP.populate();
 
         AF.setUnit(0, F);
         AF.setUnit(1, A);
