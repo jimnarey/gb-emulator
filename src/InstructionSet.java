@@ -1,15 +1,13 @@
 /**
  * Created by jamesnarey on 13/03/2016.
  */
-public class Instructions {
+public class InstructionSet {
 
-//    private Memory memory;
-//    private Registers registers;
+    private Registers r;
 
-    public Instructions() {
+    public InstructionSet(Registers registers) {
 
-//        this.memory = memory;
-//        this.registers = registers;
+        this.r = registers;
 
     }
 
@@ -23,7 +21,9 @@ public class Instructions {
 
     }
 
-    public void LD() {
+    public void LD(ByteInterface dest, ByteInterface source ) {
+
+        dest.write(source.read());
 
         // LD BC,d16 : L3:T12: -:-:-:- :0x01    16
         // LD (BC),A : L1:T8: -:-:-:- :0x02     8
@@ -120,7 +120,9 @@ public class Instructions {
 
     }
 
-    public void INC() {
+    public void INC(ByteInterface target) {
+
+        target.inc();
 
         // INC BC : L1:T8: -:-:-:- :0x03
         // INC B : L1:T4: Z:0:H:- :0x04
@@ -139,7 +141,9 @@ public class Instructions {
 
     }
 
-    public void DEC() {
+    public void DEC(ByteInterface target) {
+
+        target.dec();
 
         // DEC B : L1:T4: Z:1:H:- :0x05
         // DEC BC : L1:T8: -:-:-:- :0x0B
@@ -166,8 +170,10 @@ public class Instructions {
 
     }
 
-    public void ADD() {
-
+    public void ADD(ByteInterface target, ByteInterface source) {
+        
+        target.add(source.read());
+        
         // ADD HL,BC : L1:T8: -:0:H:C :0x09
         // ADD HL,DE : L1:T8: -:0:H:C :0x19
         // ADD HL,HL : L1:T8: -:0:H:C :0x29
@@ -287,7 +293,9 @@ public class Instructions {
 
     }
 
-    public void SUB() {
+    public void SUB(ByteInterface source) {
+
+        r.A.sub(source.read());
 
         // SUB B : L1:T4: Z:1:H:C :0x90
         // SUB C : L1:T4: Z:1:H:C :0x91

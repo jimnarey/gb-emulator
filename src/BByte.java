@@ -1,7 +1,7 @@
 /**
  * Created by jamesnarey on 17/03/2016.
  */
-public class BByte implements DataInterface {
+public class BByte implements ByteInterface {
 
     protected int data = 0;
 

@@ -13,8 +13,8 @@ public class BytePairTest {
 
         BytePair bP1 = new BytePair();
         bP1.populate();
-        bP1.unit(0).write(14);
-        bP1.unit(1).write(240);
+        bP1.units[0].data = 14;
+        bP1.units[1].data = 240;
         assertEquals(61454, bP1.read());
 
     }

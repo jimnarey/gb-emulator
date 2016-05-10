@@ -3,11 +3,21 @@
  */
 public class Registers {
 
-    public BByte A, F, B, C, D, E, H, L = new BByte();
+    public BByte A = new BByte();
+    public BByte F = new BByte();
+    public BByte B = new BByte();
+    public BByte C = new BByte();
+    public BByte D = new BByte();
+    public BByte E = new BByte();
+    public BByte H = new BByte();
+    public BByte L = new BByte();
 
-    public BytePair SP, PC = new BytePair();
-
-    public BytePair AF, BC, DE, HL = new BytePair();
+    public BytePair SP = new BytePair();
+    public BytePair PC = new BytePair();
+    public BytePair AF = new BytePair();
+    public BytePair BC = new BytePair();
+    public BytePair DE = new BytePair();
+    public BytePair HL = new BytePair();
 
     public Registers() {
 

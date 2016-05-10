@@ -71,6 +71,19 @@ public class BByteTest {
         assertEquals(false, d.checkBit(6));
         assertEquals(false, d.checkBit(7));
 
+        BByte p = new BByte();
+        p.write(170);
+
+        assertEquals(false, p.checkBit(0));
+        assertEquals(true, p.checkBit(1));
+        assertEquals(false, p.checkBit(2));
+        assertEquals(true, p.checkBit(3));
+
+        assertEquals(false, p.checkBit(4));
+        assertEquals(true, p.checkBit(5));
+        assertEquals(false, p.checkBit(6));
+        assertEquals(true, p.checkBit(7));
+
     }
 
     @Test

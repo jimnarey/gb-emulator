@@ -3,24 +3,14 @@
  */
 public class Processor {
 
-
-
+    protected Registers r;
 
     public Processor() {
 
-        // Check if SP needs to decrement before first operation GBCPUMan 63
+        this.r = new Registers();
 
 
     }
-
-
-    public void execute (int instruction) {
-
-
-
-
-    }
-
 
 
 }

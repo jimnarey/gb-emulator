@@ -10,17 +10,50 @@ public class Main {
 
         //Initialise memory
         Memory memory = new Memory();
+        Processor p = new Processor();
+        InstructionSet i = new InstructionSet(p.r);
 
-        MemoryBank bank = new MemoryBank("test", "test bank", 0, 255);
+//        memory.simpleLoadCartridge(cartridge);
 
-        BByte unit = new BByte();
+//        Registers registers = new Registers();
 
-        unit.write(65536);
-
-        System.out.println("Unit value: " + unit.read());
-
-        memory.simpleLoadCartridge(cartridge);
+        BByte bByte0 = new BByte();
+        BByte bByte1 = new BByte();
 
 
+        bByte0.write(1);
+        bByte1.write(1);
+
+//        BytePair bytePair = new BytePair();
+//        bytePair.populate();
+//        bytePair.write(227);
+
+//        InstructionSet.LD(bytePair, bByte0);
+//
+//        InstructionSet.LD(bytePair, bByte0);
+
+//        InstructionSet.LD(new BytePair( memory.address(10), memory.address(11)), bytePair);
+
+//        memory.address(10).write(200);
+//
+//        BytePair bytePair1 = new BytePair(memory.address(10), memory.address(11));
+//
+//        bytePair1.write(300);
+//
+//        System.out.println("MSB " + memory.address(11).read());
+//        System.out.println("LSB " + memory.address(10).read());
+//
+//        System.out.println(memory.address(11).readString() + " " + memory.address(10).readString());
+
+        BytePair bytePair2 = new BytePair(memory.address(200), memory.address(201));
+
+        i.LD(bytePair2, new BytePair(bByte0, bByte1));
+
+        System.out.println("MSB " + memory.address(201).read());
+        System.out.println("LSB " + memory.address(200).read());
+
+        System.out.println(memory.address(201).readString() + " " + memory.address(200).readString());
+        System.out.println();
+        
     }
 }

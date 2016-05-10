@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 /**
  * Created by jamesnarey on 27/04/2016.
  */
-public class DataArrayTest {
+public class ByteInterfaceTest {
 
     @Test
     public void testGetNumUnits() throws Exception {

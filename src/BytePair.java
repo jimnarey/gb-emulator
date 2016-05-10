@@ -1,10 +1,16 @@
 /**
  * Created by jamesnarey on 08/05/2016.
  */
-public class BytePair extends DataArray implements DataInterface {
+public class BytePair extends DataArray implements ByteInterface {
 
     public BytePair() {
         super(2);
+    }
+
+    public BytePair(BByte lsb, BByte msb) {
+        super(2);
+        setUnit(0, lsb);
+        setUnit(1, msb);
 
     }
 
