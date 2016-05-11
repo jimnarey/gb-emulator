@@ -6,17 +6,17 @@ import static org.junit.Assert.*;
 /**
  * Created by jamesnarey on 10/05/2016.
  */
-public class InstructionSetTest {
+public class InstructionsTest {
 
     Memory m;
     Processor p;
-    InstructionSet i;
+
 
     @Before
     public void setUp() {
         this.m = new Memory();
         this.p = new Processor();
-        this.i = new InstructionSet(p.r);
+
     }
 
     @Test
@@ -25,7 +25,7 @@ public class InstructionSetTest {
         BytePair bP0 = new BytePair();
         bP0.populate();
         bP0.write(257);
-        i.LD(new BytePair(m.address(0), m.address(1)), bP0);
+        Instructions.LD(new BytePair(m.address(0), m.address(1)), bP0);
         assertEquals(1, m.address(0).read());
         assertEquals(1, m.address(1).read());
 
@@ -34,7 +34,7 @@ public class InstructionSetTest {
         BytePair bP1 = new BytePair();
         bP1.populate();
         bP1.write(7001);
-        i.LD(new BytePair(m.address(335), m.address(336)), bP1);
+        Instructions.LD(new BytePair(m.address(335), m.address(336)), bP1);
         assertEquals(89, m.address(335).read());
         assertEquals(27, m.address(336).read());
 

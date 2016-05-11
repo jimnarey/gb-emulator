@@ -11,7 +11,7 @@ public class Main {
         //Initialise memory
         Memory memory = new Memory();
         Processor p = new Processor();
-        InstructionSet i = new InstructionSet(p.r);
+        Instructions i = new Instructions(p.r);
 
 //        memory.simpleLoadCartridge(cartridge);
 
@@ -28,11 +28,11 @@ public class Main {
 //        bytePair.populate();
 //        bytePair.write(227);
 
-//        InstructionSet.LD(bytePair, bByte0);
+//        Instructions.LD(bytePair, bByte0);
 //
-//        InstructionSet.LD(bytePair, bByte0);
+//        Instructions.LD(bytePair, bByte0);
 
-//        InstructionSet.LD(new BytePair( memory.address(10), memory.address(11)), bytePair);
+//        Instructions.LD(new BytePair( memory.address(10), memory.address(11)), bytePair);
 
 //        memory.address(10).write(200);
 //

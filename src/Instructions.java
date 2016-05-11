@@ -1,27 +1,24 @@
 /**
  * Created by jamesnarey on 13/03/2016.
  */
-public class InstructionSet {
+public class Instructions {
 
-    private Registers r;
+    public Instructions() {
 
-    public InstructionSet(Registers registers) {
 
-        this.r = registers;
 
     }
 
     // Main table instructions
 
-    public void NOP() {
+    public static void NOP() {
 
         // NOP : L1:T4: -:-:-:- :0x00
 
 
-
     }
 
-    public void LD(ByteInterface dest, ByteInterface source ) {
+    public static void LD(ByteInterface dest, ByteInterface source ) {
 
         dest.write(source.read());
 
@@ -120,7 +117,7 @@ public class InstructionSet {
 
     }
 
-    public void INC(ByteInterface target) {
+    public static void INC(ByteInterface target) {
 
         target.inc();
 
@@ -141,7 +138,7 @@ public class InstructionSet {
 
     }
 
-    public void DEC(ByteInterface target) {
+    public static void DEC(ByteInterface target) {
 
         target.dec();
 
@@ -162,7 +159,11 @@ public class InstructionSet {
 
     }
 
-    public void RLCA() {
+    public static void RLCA(BByte target) {
+
+        // Target is always A register
+
+        
 
         // RLCA : L1:T4: 0:0:0:C :0x07
 
@@ -170,9 +171,9 @@ public class InstructionSet {
 
     }
 
-    public void ADD(ByteInterface target, ByteInterface source) {
+    public static void ADD(ByteInterface addendDest, ByteInterface addend) {
         
-        target.add(source.read());
+        addendDest.add(addend.read());
         
         // ADD HL,BC : L1:T8: -:0:H:C :0x09
         // ADD HL,DE : L1:T8: -:0:H:C :0x19
@@ -193,7 +194,7 @@ public class InstructionSet {
 
     }
 
-    public void RRCA() {
+    public static void RRCA() {
 
         // RRCA : L1:T4: 0:0:0:C :0x0F
 
@@ -201,7 +202,7 @@ public class InstructionSet {
 
     }
 
-    public void STOP() {
+    public static void STOP() {
 
         // STOP 0 : L2:T4: -:-:-:- :0x10
 
@@ -209,7 +210,7 @@ public class InstructionSet {
 
     }
 
-    public void RLA() {
+    public static void RLA() {
 
         // RLA : L1:T4: 0:0:0:C :0x17
 
@@ -217,7 +218,7 @@ public class InstructionSet {
 
     }
 
-    public void JR() {
+    public static void JR() {
 
         // JR r8 : L2:T12: -:-:-:- :0x18
         // JR NZ,r8 : L2:T12/8: -:-:-:- :0x20
@@ -229,7 +230,7 @@ public class InstructionSet {
 
     }
 
-    public void RRA() {
+    public static void RRA() {
 
         // RRA : L1:T4: 0:0:0:C :0x1F
 
@@ -237,7 +238,7 @@ public class InstructionSet {
 
     }
 
-    public void DAA() {
+    public static void DAA() {
 
         // DAA : L1:T4: Z:-:0:C :0x27
 
@@ -245,7 +246,7 @@ public class InstructionSet {
 
     }
 
-    public void CPL() {
+    public static void CPL() {
 
         // CPL : L1:T4: -:1:1:- :0x2F
 
@@ -253,7 +254,7 @@ public class InstructionSet {
 
     }
 
-    public void SCF() {
+    public static void SCF() {
 
         // SCF : L1:T4: -:0:0:1 :0x37
 
@@ -261,7 +262,7 @@ public class InstructionSet {
 
     }
 
-    public void CCF() {
+    public static void CCF() {
 
         // CCF : L1:T4: -:0:0:C :0x3F
 
@@ -269,7 +270,7 @@ public class InstructionSet {
 
     }
 
-    public void HALT() {
+    public static void HALT() {
 
         // HALT : L1:T4: -:-:-:- :0x76
 
@@ -277,7 +278,7 @@ public class InstructionSet {
 
     }
 
-    public void ADC() {
+    public static void ADC() {
 
         // ADC A,B : L1:T4: Z:0:H:C :0x88
         // ADC A,C : L1:T4: Z:0:H:C :0x89
@@ -293,9 +294,11 @@ public class InstructionSet {
 
     }
 
-    public void SUB(ByteInterface source) {
+    public static void SUB(ByteInterface minuendDest, ByteInterface subtrahend) {
 
-        r.A.sub(source.read());
+        //minuendDest must be the A register
+
+        minuendDest.sub(subtrahend.read());
 
         // SUB B : L1:T4: Z:1:H:C :0x90
         // SUB C : L1:T4: Z:1:H:C :0x91
@@ -311,7 +314,7 @@ public class InstructionSet {
 
     }
 
-    public void SBC() {
+    public static void SBC() {
 
         // SBC A,B : L1:T4: Z:1:H:C :0x98
         // SBC A,C : L1:T4: Z:1:H:C :0x99
@@ -327,7 +330,7 @@ public class InstructionSet {
 
     }
 
-    public void AND() {
+    public static void AND() {
 
         // AND B : L1:T4: Z:0:1:0 :0xA0
         // AND C : L1:T4: Z:0:1:0 :0xA1
@@ -343,7 +346,7 @@ public class InstructionSet {
 
     }
 
-    public void XOR() {
+    public static void XOR() {
 
         // XOR B : L1:T4: Z:0:0:0 :0xA8
         // XOR C : L1:T4: Z:0:0:0 :0xA9
@@ -359,7 +362,7 @@ public class InstructionSet {
 
     }
 
-    public void OR() {
+    public static void OR() {
 
         // OR B : L1:T4: Z:0:0:0 :0xB0
         // OR C : L1:T4: Z:0:0:0 :0xB1
@@ -375,7 +378,7 @@ public class InstructionSet {
 
     }
 
-    public void CP() {
+    public static void CP() {
 
         // CP B : L1:T4: Z:1:H:C :0xB8
         // CP C : L1:T4: Z:1:H:C :0xB9
@@ -391,7 +394,7 @@ public class InstructionSet {
 
     }
 
-    public void RET() {
+    public static void RET() {
 
         // RET NZ : L1:T20/8: -:-:-:- :0xC0
         // RET Z : L1:T20/8: -:-:-:- :0xC8
@@ -403,7 +406,7 @@ public class InstructionSet {
 
     }
 
-    public void POP() {
+    public static void POP() {
         // Addresses flagregister
         // POP BC : L1:T12: -:-:-:- :0xC1
         // POP DE : L1:T12: -:-:-:- :0xD1
@@ -414,7 +417,7 @@ public class InstructionSet {
 
     }
 
-    public void JP() {
+    public static void JP() {
 
         // JP NZ,a16 : L3:T16/12: -:-:-:- :0xC2
         // JP a16 : L3:T16: -:-:-:- :0xC3
@@ -427,7 +430,7 @@ public class InstructionSet {
 
     }
 
-    public void CALL() {
+    public static void CALL() {
 
         // CALL NZ,a16 : L3:T24/12: -:-:-:- :0xC4
         // CALL Z,a16 : L3:T24/12: -:-:-:- :0xCC
@@ -439,7 +442,7 @@ public class InstructionSet {
 
     }
 
-    public void PUSH() {
+    public static void PUSH() {
         // Addresses flagregister
         // PUSH BC : L1:T16: -:-:-:- :0xC5
         // PUSH DE : L1:T16: -:-:-:- :0xD5
@@ -450,7 +453,7 @@ public class InstructionSet {
 
     }
 
-    public void RST() {
+    public static void RST() {
 
         // RST 00H : L1:T16: -:-:-:- :0xC7
         // RST 08H : L1:T16: -:-:-:- :0xCF
@@ -465,7 +468,7 @@ public class InstructionSet {
 
     }
 
-    public void PREFIX() {
+    public static void PREFIX() {
 
         // PREFIX CB : L1:T4: -:-:-:- :0xCB
 
@@ -473,7 +476,7 @@ public class InstructionSet {
 
     }
 
-    public void RETI() {
+    public static void RETI() {
 
         // RETI : L1:T16: -:-:-:- :0xD9
 
@@ -481,7 +484,7 @@ public class InstructionSet {
 
     }
 
-    public void LDH() {
+    public static void LDH() {
 
         // LDH (a8),A : L2:T12: -:-:-:- :0xE0
         // LDH A,(a8) : L2:T12: -:-:-:- :0xF0
@@ -490,7 +493,7 @@ public class InstructionSet {
 
     }
 
-    public void DI() {
+    public static void DI() {
 
         // DI : L1:T4: -:-:-:- :0xF3
 
@@ -498,7 +501,7 @@ public class InstructionSet {
 
     }
 
-    public void EI() {
+    public static void EI() {
 
         // EI : L1:T4: -:-:-:- :0xFB
 
@@ -509,7 +512,7 @@ public class InstructionSet {
 
     // CB table instructions
 
-    public void RLC() {
+    public static void RLC() {
 
         // RLC B : L2:T8: Z:0:0:C :0x00
         // RLC C : L2:T8: Z:0:0:C :0x01
@@ -524,7 +527,7 @@ public class InstructionSet {
 
     }
 
-    public void RRC() {
+    public static void RRC() {
 
         // RRC B : L2:T8: Z:0:0:C :0x08
         // RRC C : L2:T8: Z:0:0:C :0x09
@@ -539,7 +542,7 @@ public class InstructionSet {
 
     }
 
-    public void RL() {
+    public static void RL() {
 
         // RL B : L2:T8: Z:0:0:C :0x10
         // RL C : L2:T8: Z:0:0:C :0x11
@@ -554,7 +557,7 @@ public class InstructionSet {
 
     }
 
-    public void RR() {
+    public static void RR() {
 
         // RR B : L2:T8: Z:0:0:C :0x18
         // RR C : L2:T8: Z:0:0:C :0x19
@@ -569,7 +572,7 @@ public class InstructionSet {
 
     }
 
-    public void SLA() {
+    public static void SLA() {
 
         // SLA B : L2:T8: Z:0:0:C :0x20
         // SLA C : L2:T8: Z:0:0:C :0x21
@@ -584,7 +587,7 @@ public class InstructionSet {
 
     }
 
-    public void SRA() {
+    public static void SRA() {
 
         // SRA B : L2:T8: Z:0:0:0 :0x28
         // SRA C : L2:T8: Z:0:0:0 :0x29
@@ -599,7 +602,7 @@ public class InstructionSet {
 
     }
 
-    public void SWAP() {
+    public static void SWAP() {
 
         // SWAP B : L2:T8: Z:0:0:0 :0x30
         // SWAP C : L2:T8: Z:0:0:0 :0x31
@@ -614,7 +617,7 @@ public class InstructionSet {
 
     }
 
-    public void SRL() {
+    public static void SRL() {
 
         // SRL B : L2:T8: Z:0:0:C :0x38
         // SRL C : L2:T8: Z:0:0:C :0x39
@@ -629,7 +632,7 @@ public class InstructionSet {
 
     }
 
-    public void BIT() {
+    public static void BIT() {
 
         // BIT 0,B : L2:T8: Z:0:1:- :0x40
         // BIT 0,C : L2:T8: Z:0:1:- :0x41
@@ -700,7 +703,7 @@ public class InstructionSet {
 
     }
 
-    public void RES() {
+    public static void RES() {
 
         // RES 0,B : L2:T8: -:-:-:- :0x80
         // RES 0,C : L2:T8: -:-:-:- :0x81
@@ -771,7 +774,7 @@ public class InstructionSet {
 
     }
 
-    public void SET() {
+    public static void SET() {
 
         // SET 0,B : L2:T8: -:-:-:- :0xC0
         // SET 0,C : L2:T8: -:-:-:- :0xC1
