@@ -47,6 +47,9 @@ public class Main {
 
         BytePair bytePair2 = new BytePair(memory.address(200), memory.address(201));
 
+        int test = new BytePair(memory.address(200 + 1), memory.address(200 + 2)).read();
+        System.out.println(test);
+
 //        i.LD(bytePair2, new BytePair(bByte0, bByte1));
 
         System.out.println("MSB " + memory.address(201).read());
