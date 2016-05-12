@@ -14,24 +14,28 @@ public class BytePair extends DataArray implements ByteInterface {
 
     }
 
+    public static int mergeBytes (BByte lsb, BByte msb) {
+
+        return lsb.read() + (msb.read() << 8);
+
+    }
+
+    public static void splitToBytes (int value, BByte lsb, BByte msb) {
+
+        lsb.write(value & 0xFF);
+        msb.write( (value >>> 8) & 0xFF );
+
+    }
 
     public int read() {
-        //Simplify this
-        int value = 0;
-        for (int i = 0; i < 2; i++) {
-            value = value + (units[i].read() << (i * 8));
-        }
-        return value;
+
+        return mergeBytes(units[0], units[1]);
 
     }
 
     public void write (int value) {
-        //Simplify this
-        for (int i = 0; i < 2; i++) {
 
-            int byteValue = value >>> (i * 8);
-            units[i].write(byteValue & 0xFF);
-        }
+        splitToBytes(value, units[0], units[1]);
 
     }
 

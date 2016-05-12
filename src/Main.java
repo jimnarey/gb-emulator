@@ -11,7 +11,7 @@ public class Main {
         //Initialise memory
         Memory memory = new Memory();
         Processor p = new Processor();
-        Instructions i = new Instructions(p.r);
+//        Instructions i = new Instructions(p.r);
 
 //        memory.simpleLoadCartridge(cartridge);
 
@@ -47,7 +47,7 @@ public class Main {
 
         BytePair bytePair2 = new BytePair(memory.address(200), memory.address(201));
 
-        i.LD(bytePair2, new BytePair(bByte0, bByte1));
+//        i.LD(bytePair2, new BytePair(bByte0, bByte1));
 
         System.out.println("MSB " + memory.address(201).read());
         System.out.println("LSB " + memory.address(200).read());

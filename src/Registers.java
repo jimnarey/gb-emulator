@@ -3,6 +3,9 @@
  */
 public class Registers {
 
+    // !! Consider writing 0's the the non-flag bits in F each cycle
+    // !! or otherwise prevent them from being written with a 1
+
     public BByte A = new BByte();
     public BByte F = new BByte();
     public BByte B = new BByte();
