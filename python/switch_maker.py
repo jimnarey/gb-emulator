@@ -6,7 +6,7 @@ class SwitchMaker(object):
     def __init__(self):
 
         self.columns = {
-            '2' : 'opcode',
+            '1' : 'opcode',
             '5' : 'full_instruction',
             '6' : 'instruction',
             '7' : 'operand_1',
@@ -32,24 +32,7 @@ class SwitchMaker(object):
         self.main_dict = self.rows_to_dicts(self.main_array)
         self.cb_dict = self.rows_to_dicts(self.cb_array)
 
-        # self.columns2 = {
-        #     'opcode': 2,
-        #     'full_instruction': 5,
-        #     'instruction': 6,
-        #     'operand_1': 7,
-        #     'operand_2': 8,
-        #     'length': 9,
-        #     'cycles': 10,
-        #     'Z': 11,
-        #     'N': 12,
-        #     'H': 13,
-        #     'C': 14,
-        #     'write': 18,
-        # }
-
         self.registers = ['A', 'F', 'B', 'C', 'D', 'E', 'H', 'L', 'AF', 'BC', 'DE', 'HL', 'SP', 'PC']
-
-    # If contains brackets, if a8/a16
 
     @staticmethod
     def create_array(csv_reader):
@@ -76,7 +59,6 @@ class SwitchMaker(object):
 
         return list_of_dicts
 
-    # The java returned by each of these functions returns a ByteInterface object
     @staticmethod
     def d8():
         d8_string = 'm.address( r.PC.read() + 1 )'
@@ -87,7 +69,6 @@ class SwitchMaker(object):
         d16_string = 'new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) )'
         return d16_string
 
-    # The java returned by each of these functions returns an int
     @staticmethod
     def r8():
         r8_string = 'm.address( r.PC.read() + 1 ).readSigned()'
@@ -98,9 +79,11 @@ class SwitchMaker(object):
         a8_string = SwitchMaker.d8() + '.read()'
         return a8_string
 
+    # Not sure about this! --
     @staticmethod
     def a16():
-        a16_string = SwitchMaker.d16() + '.read()'
+        #a16_string = SwitchMaker.d16() + '.read()'
+        a16_string = SwitchMaker.d16()
         return a16_string
 
     @staticmethod
@@ -141,58 +124,83 @@ class SwitchMaker(object):
         return operand
 
     @staticmethod
-    def get_flag_methods(row):
+    def ins_tabs(num):
+        tab_string = ''
+        i = 0
+        while i < num:
+            tab_string = tab_string + '\t'
+            i += 1
+
+        return tab_string
+
+    @staticmethod
+    def get_flag_methods(row, num_tabs):
         
         flag_string = ''
         
         if row['Z'] != '-':
-            flag_string = flag_string + '\t\t\tr.setZF(' + row['Z'] + '); \n'
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.setZF(' + row['Z'] + '); \n'
         else:
             pass
         
         if row['N'] != '-':
-            flag_string = flag_string + '\t\t\tr.setNF(' + row['N'] + '); \n'
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.setNF(' + row['N'] + '); \n'
         else:
             pass
 
         if row['H'] != '-':
-            flag_string = flag_string + '\t\t\tr.setHF(' + row['H'] + '); \n'
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.setHF(' + row['H'] + '); \n'
         else:
             pass
 
         if row['C'] != '-':
-            flag_string = flag_string + '\t\t\tr.setCF(' + row['C'] + '); \n'
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.setCF(' + row['C'] + '); \n'
         else:
             pass
         
-        return flag_string
+        return flag_string + '\n'
 
-    # Think about clearing any whitespace from instructions/operands? 
+    @staticmethod
+    def set_opcode_time(cycles):
+        if '/' not in cycles:
+            return '\t\t\tcurrentOpcodeCycles = ' + cycles + ';'
+        else:
+            return '\t\t\t//**currentOpcodeCycles = CONDITIONAL;'
+
+    @staticmethod
+    def get_PC_command(length):
+        return '\t\t\tr.PC.add(' + length + ');\n'
+
 
     def make_cases(self, list_of_dicts):
-        print (list_of_dicts)
 
-        section = ''
+        cases_text = ''
         for row in list_of_dicts:
-
-            print(row)
 
             if len( str(row['instruction']) ) == 0:
                 pass
 
             else:
-                section = section + '\t\tcase ' + '0x' + row['opcode'] + ': \n\t\t\t//' + row['full_instruction'] + \
+                cases_text = cases_text + '\t\tcase ' + '0x' + row['opcode'] + ': \n\t\t\t//' + row['full_instruction'] + \
                           '\n\t\t\t//length ' + row['length'] + '\n\t\t\t//time ' + row['cycles'] + '\n\t\t\t//flags ' + row['Z'] + \
                           row['H'] + row['N'] + row['C'] + '\n\n'
 
+                cases_text = cases_text + SwitchMaker.set_opcode_time(row['cycles']) + '\n\n\n' + '\t\t\t'
+
                 if row['instruction'] == 'LD':
-                    section = section + '\t\t\t' + self.LDgen(row) + '\n\n'
+                    cases_text = cases_text + self.LDgen(row)
+                else:
+                    cases_text = cases_text + '//**command missing'
 
-                section = section + SwitchMaker.get_flag_methods(row)
+                cases_text = cases_text + '\n\n\n'
 
-                section = section + '\n\n\t\t\tbreak;' + '\n\n'
+                cases_text = cases_text + SwitchMaker.get_flag_methods(row, 3)
 
-        return section
+                cases_text = cases_text + SwitchMaker.get_PC_command(row['length']) + '\n'
+
+                cases_text = cases_text + SwitchMaker.ins_tabs(3) + 'break;' + '\n\n'
+
+        return cases_text
 
     def top_and_tail(self, func_name, list_of_dicts):
 
@@ -225,14 +233,15 @@ class SwitchMaker(object):
     def LDgen(self, row):
 
         if SwitchMaker.contains_operator(row['operand_1']) or SwitchMaker.contains_operator(row['operand_2']):
-            return ''
-        else:
+            return '//**LD skipped, + or -'
+        elif 'a'in row['operand_1'] or 'a' in row['operand_2']:
+            return '//**LD skipped, a8 or a16'
 
-            dest = self.get_operand(row['operand_1'])
-            source = self.get_operand(row['operand_2'])
-            # Call read because both bits of operand text refer to objects, not values
-            command_text = dest + '.write( ' + source + '.read() );'
-            return command_text
+        dest = self.get_operand(row['operand_1'])
+        source = self.get_operand(row['operand_2'])
+        # Call read because both bits of operand text refer to objects, not values
+        command_text = dest + '.write( ' + source + '.read() );'
+        return command_text
 
 if __name__ == "__main__":
 
