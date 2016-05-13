@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+
+# ! Incomplete following change of approach
+
 import csv
 
 class OpcodeHandler:
@@ -296,11 +299,11 @@ class OpcodeHandler:
 
 if __name__ == "__main__":
 
-    main_handler = OpcodeHandler('../other/main_opcodes.csv')
-    cb_handler = OpcodeHandler('../other/cb_opcodes.csv')
+    main_handler = OpcodeHandler('../other/csv/main_opcodes.csv')
+    cb_handler = OpcodeHandler('../other/csv/cb_opcodes.csv')
 
-    main_handler.write_added_list('../other/main_list.csv')
-    cb_handler.write_added_list('../other/cb_list.csv')
+    main_handler.write_added_list('../other/csv/main_list.csv')
+    cb_handler.write_added_list('../other/csv/cb_list.csv')
 
     m = main_handler.added_list
 
@@ -316,3 +319,4 @@ if __name__ == "__main__":
     #OpcodeHandler.create_annotated_methods(cl, c, '../other/cb_ann_methods.txt')
 
     OpcodeHandler.create_switch(m, '../other/switch_text.txt')
+    OpcodeHandler.create_switch(c, '../other/cb_switch_text.txt')

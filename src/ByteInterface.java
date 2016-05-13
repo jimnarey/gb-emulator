@@ -15,4 +15,6 @@ public interface ByteInterface {
 
     void dec();
 
+    boolean checkOverflow();
+
 }

@@ -15,7 +15,7 @@ public class InstructionsTest {
     @Before
     public void setUp() {
         this.m = new Memory();
-        this.p = new Processor();
+        this.p = new Processor(this.m);
 
     }
 

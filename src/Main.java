@@ -10,7 +10,7 @@ public class Main {
 
         //Initialise memory
         Memory memory = new Memory();
-        Processor p = new Processor();
+        Processor p = new Processor(memory);
 //        Instructions i = new Instructions(p.r);
 
 //        memory.simpleLoadCartridge(cartridge);

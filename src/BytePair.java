@@ -3,6 +3,8 @@
  */
 public class BytePair extends DataArray implements ByteInterface {
 
+    protected int lastWrite = 0;
+
     public BytePair() {
         super(2);
     }
@@ -11,6 +13,13 @@ public class BytePair extends DataArray implements ByteInterface {
         super(2);
         setUnit(0, lsb);
         setUnit(1, msb);
+
+    }
+
+    public boolean checkOverflow() {
+
+        if (lastWrite > 0xFF37 || lastWrite < 0) {return true;}
+        return false;
 
     }
 

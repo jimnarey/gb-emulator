@@ -4,15 +4,35 @@
 public class BByte implements ByteInterface {
 
     protected int data = 0;
+    protected int lastWrite = 0;
+    protected int lastData = 0;
 
     public BByte() {
 
 
     }
 
+    public boolean checkOverflow() {
 
+        if (lastWrite > 0xFF || lastWrite < 0) {return true;}
+        return false;
+
+    }
+
+    // Check there are not more conditions where this is true (e.g. half-underflow?)
+    public boolean checkHalfOverFlow () {
+
+        if (lastData < 16 && data >= 16) {return true;}
+        return false;
+    }
+
+    // Could speed this up by just switching between two data ints each time a write
+    // is made and changing an 'active' flag which determines which is being used
+    // though this would involve an array lookup each time the value is read
     public void write(int value) {
 
+        lastData = data;
+        lastWrite = value;
         data = value & 0xFF;
 
     }
@@ -26,43 +46,31 @@ public class BByte implements ByteInterface {
 
     public void add(int value) {
 
-        data = (data + value) & 0xFF;
+        write(data + value);
 
     }
 
     public void sub(int value) {
 
-        data = (data - value) & 0xFF;
-
-
-    }
-
-    public void inc() {
-
-        add(1);
+        write(data - value);
 
     }
 
-    public void dec() {
+    public void inc() {add(1);}
 
-        sub(1);
+    public void dec() {sub(1);}
 
+    private boolean checkAnyBit (int value, int position) {
+
+        if (((value >>> position) & 1) != 0) {return true;}
+        return false;
     }
 
     // Refactor to lose an if statement
     // position is zero indexed (i.e. 0 - 7)
     public boolean checkBit (int position) {
 
-        if (position < 8) {
-
-            if (((data >>> position) & 1) != 0) {
-
-                return true;
-
-            }
-
-        }
-
+        if (position < 8) {return checkAnyBit(data, position);}
         return false;
 
     }
@@ -74,13 +82,13 @@ public class BByte implements ByteInterface {
         if (position < 8) {
 
 
-            if (value == true) {
+            if (value) {
 
-                data = data | (1 << position);
+                write(data | (1 << position));
 
-            } else if (value == false) {
+            } else {
 
-                data = ( data & ~(1 << position) );
+                write( data & ~(1 << position) );
 
             }
         }
@@ -91,7 +99,7 @@ public class BByte implements ByteInterface {
 
         boolean lsb = checkBit(0);
 
-        data = (data >>> 1);
+        write(data >>> 1);
 
         setBit(7, lsb);
 
@@ -102,7 +110,7 @@ public class BByte implements ByteInterface {
 
         boolean msb = checkBit(7);
 
-        data = (data << 1) & 0xFF;
+        write(data << 1);
 
         setBit(0, msb);
 
@@ -114,7 +122,7 @@ public class BByte implements ByteInterface {
 
         boolean lsb = checkBit(0);
 
-        data = (data >>> 1);
+        write(data >>> 1);
 
         setBit(7, flag);
 
@@ -126,7 +134,7 @@ public class BByte implements ByteInterface {
 
         boolean msb = checkBit(7);
 
-        data = (data << 1) & 0xFF;
+        write(data << 1);
 
         setBit(0, flag);
 
@@ -142,25 +150,25 @@ public class BByte implements ByteInterface {
 
     public void AND (int value) {
 
-        data = data & value;
+        write(data & value);
 
     }
 
     public void OR (int value) {
 
-        data =  data | value;
+        write(data | value);
 
     }
 
     public void XOR (int value) {
 
-        data =  data ^ value;
+        write(data ^ value);
 
     }
 
     public void complement () {
 
-        data = ~ data & 0xFF;
+        write(~ data);
 
     }
 
@@ -169,7 +177,7 @@ public class BByte implements ByteInterface {
         int lowerHalf = data & 0xF;
         int upperHalf = (data >>> 4 ) & 0xF;
 
-        data = ((lowerHalf << 4) | (upperHalf));
+        write((lowerHalf << 4) | (upperHalf));
 
     }
 
