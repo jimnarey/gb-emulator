@@ -105,27 +105,41 @@ class SwitchMaker(object):
 
     @staticmethod
     def resolve_brackets(bracketed_operand):
-        bracketed_operand.replace('(', '')
-        bracketed_operand.replace(')', '')
-        operand_function = getattr(SwitchMaker, bracketed_operand)
-        operand_string = operand_function()
-        result_string = 'm.address( ' + operand_string + '.read() )'
+
+        # operand_function = getattr(SwitchMaker, bracketed_operand)
+        # operand_string = operand_function()
+        result_string = 'm.address( ' + bracketed_operand + '.read() )'
         return result_string
 
-    def get_operands(self, row):
+    def get_register_or_memloc(self, operand):
 
-        if row['operand_1'] in self.registers:
-            op1_text = row['operand_1']
+        if operand in self.registers:
+            op_text = 'r.' + operand
         else:
-            op1_text = getattr(SwitchMaker, row['operand_1'])()
+            op_text = getattr(SwitchMaker, operand)()
 
-        if row['operand_2'] in self.registers:
-            op2_text = row['operand_2']
+        return op_text
+
+    @staticmethod
+    def strip_brackets(string):
+        result = string.replace('(', '')
+        result = result.replace(')', '')
+        return result
+
+    def get_operand(self, input_operand):
+
+        # Is the operand bracketed?
+        if input_operand[0] == '(':
+
+            operand = SwitchMaker.strip_brackets(input_operand)
+            operand = self.get_register_or_memloc(operand)
+            operand = SwitchMaker.resolve_brackets(operand)
+            
         else:
-            op2_text = getattr(SwitchMaker, row['operand_2'])()
+            operand = self.get_register_or_memloc(input_operand)
 
-        return op1_text, op2_text
-    
+        return operand
+
     @staticmethod
     def get_flag_methods(row):
         
@@ -196,19 +210,29 @@ class SwitchMaker(object):
 
         main_text = self.top_and_tail('mainTable', self.main_dict) + '\n\n'
 
-        main_text = main_text + SwitchMaker.top_and_tail('cBTable', self.cb_dict) + '\n\n'
+        main_text = main_text + self.top_and_tail('cBTable', self.cb_dict) + '\n\n'
 
         output_file.write(main_text)
 
+    @staticmethod
+    def contains_operator(operand):
+
+        if '+' in operand or '-' in operand:
+            return True
+        else:
+            return False
 
     def LDgen(self, row):
 
-        dest, source = self.get_operands(row)
+        if SwitchMaker.contains_operator(row['operand_1']) or SwitchMaker.contains_operator(row['operand_2']):
+            return ''
+        else:
 
-        # Call read because both bits of operand text refer to objects, not values
-        command_text = dest + '.write( ' + source + '.read() );'
-
-        return command_text
+            dest = self.get_operand(row['operand_1'])
+            source = self.get_operand(row['operand_2'])
+            # Call read because both bits of operand text refer to objects, not values
+            command_text = dest + '.write( ' + source + '.read() );'
+            return command_text
 
 if __name__ == "__main__":
 

@@ -1,0 +1,6046 @@
+public void mainTable (int opcode) {
+	switch(opcode) {
+	case 0x0: 
+	//NOP
+	//length 1
+	//time 4
+	//flags ----
+
+
+
+	break;
+
+case 0x1: 
+	//LD BC,d16
+	//length 3
+	//time 12
+	//flags ----
+
+r.BC.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
+
+
+
+	break;
+
+case 0x10: 
+	//LD (BC),A
+	//length 1
+	//time 8
+	//flags ----
+
+m.address( r.BC.read() ).write( r.A.read() );
+
+
+
+	break;
+
+case 0x11: 
+	//INC BC
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+	break;
+
+case 0x100: 
+	//INC B
+	//length 1
+	//time 4
+	//flags ZH0-
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x101: 
+	//DEC B
+	//length 1
+	//time 4
+	//flags ZH1-
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x110: 
+	//LD B,d8
+	//length 2
+	//time 8
+	//flags ----
+
+r.B.write( m.address( r.PC.read() + 1 ).read() );
+
+
+
+	break;
+
+case 0x111: 
+	//RLCA
+	//length 1
+	//time 4
+	//flags 000C
+
+r.setZF(0); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x1000: 
+	//LD (a16),SP
+	//length 3
+	//time 20
+	//flags ----
+
+m.address( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read().read() ).write( r.SP.read() );
+
+
+
+	break;
+
+case 0x1001: 
+	//ADD HL,BC
+	//length 1
+	//time 8
+	//flags -H0C
+
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x1010: 
+	//LD A,(BC)
+	//length 1
+	//time 8
+	//flags ----
+
+r.A.write( m.address( r.BC.read() ).read() );
+
+
+
+	break;
+
+case 0x1011: 
+	//DEC BC
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+	break;
+
+case 0x1100: 
+	//INC C
+	//length 1
+	//time 4
+	//flags ZH0-
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x1101: 
+	//DEC C
+	//length 1
+	//time 4
+	//flags ZH1-
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x1110: 
+	//LD C,d8
+	//length 2
+	//time 8
+	//flags ----
+
+r.C.write( m.address( r.PC.read() + 1 ).read() );
+
+
+
+	break;
+
+case 0x1111: 
+	//RRCA
+	//length 1
+	//time 4
+	//flags 000C
+
+r.setZF(0); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10000: 
+	//STOP 0
+	//length 2
+	//time 4
+	//flags ----
+
+
+
+	break;
+
+case 0x10001: 
+	//LD DE,d16
+	//length 3
+	//time 12
+	//flags ----
+
+r.DE.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
+
+
+
+	break;
+
+case 0x10010: 
+	//LD (DE),A
+	//length 1
+	//time 8
+	//flags ----
+
+m.address( r.DE.read() ).write( r.A.read() );
+
+
+
+	break;
+
+case 0x10011: 
+	//INC DE
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+	break;
+
+case 0x10100: 
+	//INC D
+	//length 1
+	//time 4
+	//flags ZH0-
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x10101: 
+	//DEC D
+	//length 1
+	//time 4
+	//flags ZH1-
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x10110: 
+	//LD D,d8
+	//length 2
+	//time 8
+	//flags ----
+
+r.D.write( m.address( r.PC.read() + 1 ).read() );
+
+
+
+	break;
+
+case 0x10111: 
+	//RLA
+	//length 1
+	//time 4
+	//flags 000C
+
+r.setZF(0); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11000: 
+	//JR r8
+	//length 2
+	//time 12
+	//flags ----
+
+
+
+	break;
+
+case 0x11001: 
+	//ADD HL,DE
+	//length 1
+	//time 8
+	//flags -H0C
+
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11010: 
+	//LD A,(DE)
+	//length 1
+	//time 8
+	//flags ----
+
+r.A.write( m.address( r.DE.read() ).read() );
+
+
+
+	break;
+
+case 0x11011: 
+	//DEC DE
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+	break;
+
+case 0x11100: 
+	//INC E
+	//length 1
+	//time 4
+	//flags ZH0-
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x11101: 
+	//DEC E
+	//length 1
+	//time 4
+	//flags ZH1-
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x11110: 
+	//LD E,d8
+	//length 2
+	//time 8
+	//flags ----
+
+r.E.write( m.address( r.PC.read() + 1 ).read() );
+
+
+
+	break;
+
+case 0x11111: 
+	//RRA
+	//length 1
+	//time 4
+	//flags 000C
+
+r.setZF(0); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x100000: 
+	//JR NZ,r8
+	//length 2
+	//time 12/8
+	//flags ----
+
+
+
+	break;
+
+case 0x100001: 
+	//LD HL,d16
+	//length 3
+	//time 12
+	//flags ----
+
+r.HL.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
+
+
+
+	break;
+
+case 0x100010: 
+	//LD (HL+),A
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+
+
+	break;
+
+case 0x100011: 
+	//INC HL
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+	break;
+
+case 0x100100: 
+	//INC H
+	//length 1
+	//time 4
+	//flags ZH0-
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x100101: 
+	//DEC H
+	//length 1
+	//time 4
+	//flags ZH1-
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x100110: 
+	//LD H,d8
+	//length 2
+	//time 8
+	//flags ----
+
+r.H.write( m.address( r.PC.read() + 1 ).read() );
+
+
+
+	break;
+
+case 0x100111: 
+	//DAA
+	//length 1
+	//time 4
+	//flags Z0-C
+
+r.setZF(Z); 
+r.setHF(0); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x101000: 
+	//JR Z,r8
+	//length 2
+	//time 12/8
+	//flags ----
+
+
+
+	break;
+
+case 0x101001: 
+	//ADD HL,HL
+	//length 1
+	//time 8
+	//flags -H0C
+
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x101010: 
+	//LD A,(HL+)
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+
+
+	break;
+
+case 0x101011: 
+	//DEC HL
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+	break;
+
+case 0x101100: 
+	//INC L
+	//length 1
+	//time 4
+	//flags ZH0-
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x101101: 
+	//DEC L
+	//length 1
+	//time 4
+	//flags ZH1-
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x101110: 
+	//LD L,d8
+	//length 2
+	//time 8
+	//flags ----
+
+r.L.write( m.address( r.PC.read() + 1 ).read() );
+
+
+
+	break;
+
+case 0x101111: 
+	//CPL
+	//length 1
+	//time 4
+	//flags -11-
+
+r.setNF(1); 
+r.setHF(1); 
+
+
+	break;
+
+case 0x110000: 
+	//JR NC,r8
+	//length 2
+	//time 12/8
+	//flags ----
+
+
+
+	break;
+
+case 0x110001: 
+	//LD SP,d16
+	//length 3
+	//time 12
+	//flags ----
+
+r.SP.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
+
+
+
+	break;
+
+case 0x110010: 
+	//LD (HL-),A
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+
+
+	break;
+
+case 0x110011: 
+	//INC SP
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+	break;
+
+case 0x110100: 
+	//INC (HL)
+	//length 1
+	//time 12
+	//flags ZH0-
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x110101: 
+	//DEC (HL)
+	//length 1
+	//time 12
+	//flags ZH1-
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x110110: 
+	//LD (HL),d8
+	//length 2
+	//time 12
+	//flags ----
+
+m.address( r.HL.read() ).write( m.address( r.PC.read() + 1 ).read() );
+
+
+
+	break;
+
+case 0x110111: 
+	//SCF
+	//length 1
+	//time 4
+	//flags -001
+
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(1); 
+
+
+	break;
+
+case 0x111000: 
+	//JR C,r8
+	//length 2
+	//time 12/8
+	//flags ----
+
+
+
+	break;
+
+case 0x111001: 
+	//ADD HL,SP
+	//length 1
+	//time 8
+	//flags -H0C
+
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x111010: 
+	//LD A,(HL-)
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+
+
+	break;
+
+case 0x111011: 
+	//DEC SP
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+	break;
+
+case 0x111100: 
+	//INC A
+	//length 1
+	//time 4
+	//flags ZH0-
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x111101: 
+	//DEC A
+	//length 1
+	//time 4
+	//flags ZH1-
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x111110: 
+	//LD A,d8
+	//length 2
+	//time 8
+	//flags ----
+
+r.A.write( m.address( r.PC.read() + 1 ).read() );
+
+
+
+	break;
+
+case 0x111111: 
+	//CCF
+	//length 1
+	//time 4
+	//flags -00C
+
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x1000000: 
+	//LD B,B
+	//length 1
+	//time 4
+	//flags ----
+
+r.B.write( r.B.read() );
+
+
+
+	break;
+
+case 0x1000001: 
+	//LD B,C
+	//length 1
+	//time 4
+	//flags ----
+
+r.B.write( r.C.read() );
+
+
+
+	break;
+
+case 0x1000010: 
+	//LD B,D
+	//length 1
+	//time 4
+	//flags ----
+
+r.B.write( r.D.read() );
+
+
+
+	break;
+
+case 0x1000011: 
+	//LD B,E
+	//length 1
+	//time 4
+	//flags ----
+
+r.B.write( r.E.read() );
+
+
+
+	break;
+
+case 0x1000100: 
+	//LD B,H
+	//length 1
+	//time 4
+	//flags ----
+
+r.B.write( r.H.read() );
+
+
+
+	break;
+
+case 0x1000101: 
+	//LD B,L
+	//length 1
+	//time 4
+	//flags ----
+
+r.B.write( r.L.read() );
+
+
+
+	break;
+
+case 0x1000110: 
+	//LD B,(HL)
+	//length 1
+	//time 8
+	//flags ----
+
+r.B.write( m.address( r.HL.read() ).read() );
+
+
+
+	break;
+
+case 0x1000111: 
+	//LD B,A
+	//length 1
+	//time 4
+	//flags ----
+
+r.B.write( r.A.read() );
+
+
+
+	break;
+
+case 0x1001000: 
+	//LD C,B
+	//length 1
+	//time 4
+	//flags ----
+
+r.C.write( r.B.read() );
+
+
+
+	break;
+
+case 0x1001001: 
+	//LD C,C
+	//length 1
+	//time 4
+	//flags ----
+
+r.C.write( r.C.read() );
+
+
+
+	break;
+
+case 0x1001010: 
+	//LD C,D
+	//length 1
+	//time 4
+	//flags ----
+
+r.C.write( r.D.read() );
+
+
+
+	break;
+
+case 0x1001011: 
+	//LD C,E
+	//length 1
+	//time 4
+	//flags ----
+
+r.C.write( r.E.read() );
+
+
+
+	break;
+
+case 0x1001100: 
+	//LD C,H
+	//length 1
+	//time 4
+	//flags ----
+
+r.C.write( r.H.read() );
+
+
+
+	break;
+
+case 0x1001101: 
+	//LD C,L
+	//length 1
+	//time 4
+	//flags ----
+
+r.C.write( r.L.read() );
+
+
+
+	break;
+
+case 0x1001110: 
+	//LD C,(HL)
+	//length 1
+	//time 8
+	//flags ----
+
+r.C.write( m.address( r.HL.read() ).read() );
+
+
+
+	break;
+
+case 0x1001111: 
+	//LD C,A
+	//length 1
+	//time 4
+	//flags ----
+
+r.C.write( r.A.read() );
+
+
+
+	break;
+
+case 0x1010000: 
+	//LD D,B
+	//length 1
+	//time 4
+	//flags ----
+
+r.D.write( r.B.read() );
+
+
+
+	break;
+
+case 0x1010001: 
+	//LD D,C
+	//length 1
+	//time 4
+	//flags ----
+
+r.D.write( r.C.read() );
+
+
+
+	break;
+
+case 0x1010010: 
+	//LD D,D
+	//length 1
+	//time 4
+	//flags ----
+
+r.D.write( r.D.read() );
+
+
+
+	break;
+
+case 0x1010011: 
+	//LD D,E
+	//length 1
+	//time 4
+	//flags ----
+
+r.D.write( r.E.read() );
+
+
+
+	break;
+
+case 0x1010100: 
+	//LD D,H
+	//length 1
+	//time 4
+	//flags ----
+
+r.D.write( r.H.read() );
+
+
+
+	break;
+
+case 0x1010101: 
+	//LD D,L
+	//length 1
+	//time 4
+	//flags ----
+
+r.D.write( r.L.read() );
+
+
+
+	break;
+
+case 0x1010110: 
+	//LD D,(HL)
+	//length 1
+	//time 8
+	//flags ----
+
+r.D.write( m.address( r.HL.read() ).read() );
+
+
+
+	break;
+
+case 0x1010111: 
+	//LD D,A
+	//length 1
+	//time 4
+	//flags ----
+
+r.D.write( r.A.read() );
+
+
+
+	break;
+
+case 0x1011000: 
+	//LD E,B
+	//length 1
+	//time 4
+	//flags ----
+
+r.E.write( r.B.read() );
+
+
+
+	break;
+
+case 0x1011001: 
+	//LD E,C
+	//length 1
+	//time 4
+	//flags ----
+
+r.E.write( r.C.read() );
+
+
+
+	break;
+
+case 0x1011010: 
+	//LD E,D
+	//length 1
+	//time 4
+	//flags ----
+
+r.E.write( r.D.read() );
+
+
+
+	break;
+
+case 0x1011011: 
+	//LD E,E
+	//length 1
+	//time 4
+	//flags ----
+
+r.E.write( r.E.read() );
+
+
+
+	break;
+
+case 0x1011100: 
+	//LD E,H
+	//length 1
+	//time 4
+	//flags ----
+
+r.E.write( r.H.read() );
+
+
+
+	break;
+
+case 0x1011101: 
+	//LD E,L
+	//length 1
+	//time 4
+	//flags ----
+
+r.E.write( r.L.read() );
+
+
+
+	break;
+
+case 0x1011110: 
+	//LD E,(HL)
+	//length 1
+	//time 8
+	//flags ----
+
+r.E.write( m.address( r.HL.read() ).read() );
+
+
+
+	break;
+
+case 0x1011111: 
+	//LD E,A
+	//length 1
+	//time 4
+	//flags ----
+
+r.E.write( r.A.read() );
+
+
+
+	break;
+
+case 0x1100000: 
+	//LD H,B
+	//length 1
+	//time 4
+	//flags ----
+
+r.H.write( r.B.read() );
+
+
+
+	break;
+
+case 0x1100001: 
+	//LD H,C
+	//length 1
+	//time 4
+	//flags ----
+
+r.H.write( r.C.read() );
+
+
+
+	break;
+
+case 0x1100010: 
+	//LD H,D
+	//length 1
+	//time 4
+	//flags ----
+
+r.H.write( r.D.read() );
+
+
+
+	break;
+
+case 0x1100011: 
+	//LD H,E
+	//length 1
+	//time 4
+	//flags ----
+
+r.H.write( r.E.read() );
+
+
+
+	break;
+
+case 0x1100100: 
+	//LD H,H
+	//length 1
+	//time 4
+	//flags ----
+
+r.H.write( r.H.read() );
+
+
+
+	break;
+
+case 0x1100101: 
+	//LD H,L
+	//length 1
+	//time 4
+	//flags ----
+
+r.H.write( r.L.read() );
+
+
+
+	break;
+
+case 0x1100110: 
+	//LD H,(HL)
+	//length 1
+	//time 8
+	//flags ----
+
+r.H.write( m.address( r.HL.read() ).read() );
+
+
+
+	break;
+
+case 0x1100111: 
+	//LD H,A
+	//length 1
+	//time 4
+	//flags ----
+
+r.H.write( r.A.read() );
+
+
+
+	break;
+
+case 0x1101000: 
+	//LD L,B
+	//length 1
+	//time 4
+	//flags ----
+
+r.L.write( r.B.read() );
+
+
+
+	break;
+
+case 0x1101001: 
+	//LD L,C
+	//length 1
+	//time 4
+	//flags ----
+
+r.L.write( r.C.read() );
+
+
+
+	break;
+
+case 0x1101010: 
+	//LD L,D
+	//length 1
+	//time 4
+	//flags ----
+
+r.L.write( r.D.read() );
+
+
+
+	break;
+
+case 0x1101011: 
+	//LD L,E
+	//length 1
+	//time 4
+	//flags ----
+
+r.L.write( r.E.read() );
+
+
+
+	break;
+
+case 0x1101100: 
+	//LD L,H
+	//length 1
+	//time 4
+	//flags ----
+
+r.L.write( r.H.read() );
+
+
+
+	break;
+
+case 0x1101101: 
+	//LD L,L
+	//length 1
+	//time 4
+	//flags ----
+
+r.L.write( r.L.read() );
+
+
+
+	break;
+
+case 0x1101110: 
+	//LD L,(HL)
+	//length 1
+	//time 8
+	//flags ----
+
+r.L.write( m.address( r.HL.read() ).read() );
+
+
+
+	break;
+
+case 0x1101111: 
+	//LD L,A
+	//length 1
+	//time 4
+	//flags ----
+
+r.L.write( r.A.read() );
+
+
+
+	break;
+
+case 0x1110000: 
+	//LD (HL),B
+	//length 1
+	//time 8
+	//flags ----
+
+m.address( r.HL.read() ).write( r.B.read() );
+
+
+
+	break;
+
+case 0x1110001: 
+	//LD (HL),C
+	//length 1
+	//time 8
+	//flags ----
+
+m.address( r.HL.read() ).write( r.C.read() );
+
+
+
+	break;
+
+case 0x1110010: 
+	//LD (HL),D
+	//length 1
+	//time 8
+	//flags ----
+
+m.address( r.HL.read() ).write( r.D.read() );
+
+
+
+	break;
+
+case 0x1110011: 
+	//LD (HL),E
+	//length 1
+	//time 8
+	//flags ----
+
+m.address( r.HL.read() ).write( r.E.read() );
+
+
+
+	break;
+
+case 0x1110100: 
+	//LD (HL),H
+	//length 1
+	//time 8
+	//flags ----
+
+m.address( r.HL.read() ).write( r.H.read() );
+
+
+
+	break;
+
+case 0x1110101: 
+	//LD (HL),L
+	//length 1
+	//time 8
+	//flags ----
+
+m.address( r.HL.read() ).write( r.L.read() );
+
+
+
+	break;
+
+case 0x1110110: 
+	//HALT
+	//length 1
+	//time 4
+	//flags ----
+
+
+
+	break;
+
+case 0x1110111: 
+	//LD (HL),A
+	//length 1
+	//time 8
+	//flags ----
+
+m.address( r.HL.read() ).write( r.A.read() );
+
+
+
+	break;
+
+case 0x1111000: 
+	//LD A,B
+	//length 1
+	//time 4
+	//flags ----
+
+r.A.write( r.B.read() );
+
+
+
+	break;
+
+case 0x1111001: 
+	//LD A,C
+	//length 1
+	//time 4
+	//flags ----
+
+r.A.write( r.C.read() );
+
+
+
+	break;
+
+case 0x1111010: 
+	//LD A,D
+	//length 1
+	//time 4
+	//flags ----
+
+r.A.write( r.D.read() );
+
+
+
+	break;
+
+case 0x1111011: 
+	//LD A,E
+	//length 1
+	//time 4
+	//flags ----
+
+r.A.write( r.E.read() );
+
+
+
+	break;
+
+case 0x1111100: 
+	//LD A,H
+	//length 1
+	//time 4
+	//flags ----
+
+r.A.write( r.H.read() );
+
+
+
+	break;
+
+case 0x1111101: 
+	//LD A,L
+	//length 1
+	//time 4
+	//flags ----
+
+r.A.write( r.L.read() );
+
+
+
+	break;
+
+case 0x1111110: 
+	//LD A,(HL)
+	//length 1
+	//time 8
+	//flags ----
+
+r.A.write( m.address( r.HL.read() ).read() );
+
+
+
+	break;
+
+case 0x1111111: 
+	//LD A,A
+	//length 1
+	//time 4
+	//flags ----
+
+r.A.write( r.A.read() );
+
+
+
+	break;
+
+case 0x10000000: 
+	//ADD A,B
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10000001: 
+	//ADD A,C
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10000010: 
+	//ADD A,D
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10000011: 
+	//ADD A,E
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10000100: 
+	//ADD A,H
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10000101: 
+	//ADD A,L
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10000110: 
+	//ADD A,(HL)
+	//length 1
+	//time 8
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10000111: 
+	//ADD A,A
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10001000: 
+	//ADC A,B
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10001001: 
+	//ADC A,C
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10001010: 
+	//ADC A,D
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10001011: 
+	//ADC A,E
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10001100: 
+	//ADC A,H
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10001101: 
+	//ADC A,L
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10001110: 
+	//ADC A,(HL)
+	//length 1
+	//time 8
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10001111: 
+	//ADC A,A
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10010000: 
+	//SUB B
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10010001: 
+	//SUB C
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10010010: 
+	//SUB D
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10010011: 
+	//SUB E
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10010100: 
+	//SUB H
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10010101: 
+	//SUB L
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10010110: 
+	//SUB (HL)
+	//length 1
+	//time 8
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10010111: 
+	//SUB A
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10011000: 
+	//SBC A,B
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10011001: 
+	//SBC A,C
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10011010: 
+	//SBC A,D
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10011011: 
+	//SBC A,E
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10011100: 
+	//SBC A,H
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10011101: 
+	//SBC A,L
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10011110: 
+	//SBC A,(HL)
+	//length 1
+	//time 8
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10011111: 
+	//SBC A,A
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10100000: 
+	//AND B
+	//length 1
+	//time 4
+	//flags Z100
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(1); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10100001: 
+	//AND C
+	//length 1
+	//time 4
+	//flags Z100
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(1); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10100010: 
+	//AND D
+	//length 1
+	//time 4
+	//flags Z100
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(1); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10100011: 
+	//AND E
+	//length 1
+	//time 4
+	//flags Z100
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(1); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10100100: 
+	//AND H
+	//length 1
+	//time 4
+	//flags Z100
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(1); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10100101: 
+	//AND L
+	//length 1
+	//time 4
+	//flags Z100
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(1); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10100110: 
+	//AND (HL)
+	//length 1
+	//time 8
+	//flags Z100
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(1); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10100111: 
+	//AND A
+	//length 1
+	//time 4
+	//flags Z100
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(1); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10101000: 
+	//XOR B
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10101001: 
+	//XOR C
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10101010: 
+	//XOR D
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10101011: 
+	//XOR E
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10101100: 
+	//XOR H
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10101101: 
+	//XOR L
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10101110: 
+	//XOR (HL)
+	//length 1
+	//time 8
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10101111: 
+	//XOR A
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10110000: 
+	//OR B
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10110001: 
+	//OR C
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10110010: 
+	//OR D
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10110011: 
+	//OR E
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10110100: 
+	//OR H
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10110101: 
+	//OR L
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10110110: 
+	//OR (HL)
+	//length 1
+	//time 8
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10110111: 
+	//OR A
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10111000: 
+	//CP B
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10111001: 
+	//CP C
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10111010: 
+	//CP D
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10111011: 
+	//CP E
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10111100: 
+	//CP H
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10111101: 
+	//CP L
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10111110: 
+	//CP (HL)
+	//length 1
+	//time 8
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10111111: 
+	//CP A
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11000000: 
+	//RET NZ
+	//length 1
+	//time 20/8
+	//flags ----
+
+
+
+	break;
+
+case 0x11000001: 
+	//POP BC
+	//length 1
+	//time 12
+	//flags ----
+
+
+
+	break;
+
+case 0x11000010: 
+	//JP NZ,a16
+	//length 3
+	//time 16/12
+	//flags ----
+
+
+
+	break;
+
+case 0x11000011: 
+	//JP a16
+	//length 3
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11000100: 
+	//CALL NZ,a16
+	//length 3
+	//time 24/12
+	//flags ----
+
+
+
+	break;
+
+case 0x11000101: 
+	//PUSH BC
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11000110: 
+	//ADD A,d8
+	//length 2
+	//time 8
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11000111: 
+	//RST 00H
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11001000: 
+	//RET Z
+	//length 1
+	//time 20/8
+	//flags ----
+
+
+
+	break;
+
+case 0x11001001: 
+	//RET
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11001010: 
+	//JP Z,a16
+	//length 3
+	//time 16/12
+	//flags ----
+
+
+
+	break;
+
+case 0x11001011: 
+	//PREFIX CB
+	//length 1
+	//time 4
+	//flags ----
+
+
+
+	break;
+
+case 0x11001100: 
+	//CALL Z,a16
+	//length 3
+	//time 24/12
+	//flags ----
+
+
+
+	break;
+
+case 0x11001101: 
+	//CALL a16
+	//length 3
+	//time 24
+	//flags ----
+
+
+
+	break;
+
+case 0x11001110: 
+	//ADC A,d8
+	//length 2
+	//time 8
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11001111: 
+	//RST 08H
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11010000: 
+	//RET NC
+	//length 1
+	//time 20/8
+	//flags ----
+
+
+
+	break;
+
+case 0x11010001: 
+	//POP DE
+	//length 1
+	//time 12
+	//flags ----
+
+
+
+	break;
+
+case 0x11010010: 
+	//JP NC,a16
+	//length 3
+	//time 16/12
+	//flags ----
+
+
+
+	break;
+
+case 0x11010100: 
+	//CALL NC,a16
+	//length 3
+	//time 24/12
+	//flags ----
+
+
+
+	break;
+
+case 0x11010101: 
+	//PUSH DE
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11010110: 
+	//SUB d8
+	//length 2
+	//time 8
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11010111: 
+	//RST 10H
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11011000: 
+	//RET C
+	//length 1
+	//time 20/8
+	//flags ----
+
+
+
+	break;
+
+case 0x11011001: 
+	//RETI
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11011010: 
+	//JP C,a16
+	//length 3
+	//time 16/12
+	//flags ----
+
+
+
+	break;
+
+case 0x11011100: 
+	//CALL C,a16
+	//length 3
+	//time 24/12
+	//flags ----
+
+
+
+	break;
+
+case 0x11011110: 
+	//SBC A,d8
+	//length 2
+	//time 8
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11011111: 
+	//RST 18H
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11100000: 
+	//LDH (a8),A
+	//length 2
+	//time 12
+	//flags ----
+
+
+
+	break;
+
+case 0x11100001: 
+	//POP HL
+	//length 1
+	//time 12
+	//flags ----
+
+
+
+	break;
+
+case 0x11100010: 
+	//LD (C),A
+	//length 2
+	//time 8
+	//flags ----
+
+m.address( r.C.read() ).write( r.A.read() );
+
+
+
+	break;
+
+case 0x11100101: 
+	//PUSH HL
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11100110: 
+	//AND d8
+	//length 2
+	//time 8
+	//flags Z100
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(1); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x11100111: 
+	//RST 20H
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11101000: 
+	//ADD SP,r8
+	//length 2
+	//time 16
+	//flags 0H0C
+
+r.setZF(0); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11101001: 
+	//JP (HL)
+	//length 1
+	//time 4
+	//flags ----
+
+
+
+	break;
+
+case 0x11101010: 
+	//LD (a16),A
+	//length 3
+	//time 16
+	//flags ----
+
+m.address( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read().read() ).write( r.A.read() );
+
+
+
+	break;
+
+case 0x11101110: 
+	//XOR d8
+	//length 2
+	//time 8
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x11101111: 
+	//RST 28H
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11110000: 
+	//LDH A,(a8)
+	//length 2
+	//time 12
+	//flags ----
+
+
+
+	break;
+
+case 0x11110001: 
+	//POP AF
+	//length 1
+	//time 12
+	//flags ZHNC
+
+r.setZF(Z); 
+r.setNF(N); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11110010: 
+	//LD A,(C)
+	//length 2
+	//time 8
+	//flags ----
+
+r.A.write( m.address( r.C.read() ).read() );
+
+
+
+	break;
+
+case 0x11110011: 
+	//DI
+	//length 1
+	//time 4
+	//flags ----
+
+
+
+	break;
+
+case 0x11110101: 
+	//PUSH AF
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11110110: 
+	//OR d8
+	//length 2
+	//time 8
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x11110111: 
+	//RST 30H
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11111000: 
+	//LD HL,SP+r8
+	//length 2
+	//time 12
+	//flags 0H0C
+
+
+
+r.setZF(0); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11111001: 
+	//LD SP,HL
+	//length 1
+	//time 8
+	//flags ----
+
+r.SP.write( r.HL.read() );
+
+
+
+	break;
+
+case 0x11111010: 
+	//LD A,(a16)
+	//length 3
+	//time 16
+	//flags ----
+
+r.A.write( m.address( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read().read() ).read() );
+
+
+
+	break;
+
+case 0x11111011: 
+	//EI
+	//length 1
+	//time 4
+	//flags ----
+
+
+
+	break;
+
+case 0x11111110: 
+	//CP d8
+	//length 2
+	//time 8
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11111111: 
+	//RST 38H
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+
+}
+}
+
+public void cBTable (int opcode) {
+	switch(opcode) {
+	case 0x0: 
+	//NOP
+	//length 1
+	//time 4
+	//flags ----
+
+
+
+	break;
+
+case 0x1: 
+	//LD BC,d16
+	//length 3
+	//time 12
+	//flags ----
+
+r.BC.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
+
+
+
+	break;
+
+case 0x10: 
+	//LD (BC),A
+	//length 1
+	//time 8
+	//flags ----
+
+m.address( r.BC.read() ).write( r.A.read() );
+
+
+
+	break;
+
+case 0x11: 
+	//INC BC
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+	break;
+
+case 0x100: 
+	//INC B
+	//length 1
+	//time 4
+	//flags ZH0-
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x101: 
+	//DEC B
+	//length 1
+	//time 4
+	//flags ZH1-
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x110: 
+	//LD B,d8
+	//length 2
+	//time 8
+	//flags ----
+
+r.B.write( m.address( r.PC.read() + 1 ).read() );
+
+
+
+	break;
+
+case 0x111: 
+	//RLCA
+	//length 1
+	//time 4
+	//flags 000C
+
+r.setZF(0); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x1000: 
+	//LD (a16),SP
+	//length 3
+	//time 20
+	//flags ----
+
+m.address( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read().read() ).write( r.SP.read() );
+
+
+
+	break;
+
+case 0x1001: 
+	//ADD HL,BC
+	//length 1
+	//time 8
+	//flags -H0C
+
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x1010: 
+	//LD A,(BC)
+	//length 1
+	//time 8
+	//flags ----
+
+r.A.write( m.address( r.BC.read() ).read() );
+
+
+
+	break;
+
+case 0x1011: 
+	//DEC BC
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+	break;
+
+case 0x1100: 
+	//INC C
+	//length 1
+	//time 4
+	//flags ZH0-
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x1101: 
+	//DEC C
+	//length 1
+	//time 4
+	//flags ZH1-
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x1110: 
+	//LD C,d8
+	//length 2
+	//time 8
+	//flags ----
+
+r.C.write( m.address( r.PC.read() + 1 ).read() );
+
+
+
+	break;
+
+case 0x1111: 
+	//RRCA
+	//length 1
+	//time 4
+	//flags 000C
+
+r.setZF(0); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10000: 
+	//STOP 0
+	//length 2
+	//time 4
+	//flags ----
+
+
+
+	break;
+
+case 0x10001: 
+	//LD DE,d16
+	//length 3
+	//time 12
+	//flags ----
+
+r.DE.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
+
+
+
+	break;
+
+case 0x10010: 
+	//LD (DE),A
+	//length 1
+	//time 8
+	//flags ----
+
+m.address( r.DE.read() ).write( r.A.read() );
+
+
+
+	break;
+
+case 0x10011: 
+	//INC DE
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+	break;
+
+case 0x10100: 
+	//INC D
+	//length 1
+	//time 4
+	//flags ZH0-
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x10101: 
+	//DEC D
+	//length 1
+	//time 4
+	//flags ZH1-
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x10110: 
+	//LD D,d8
+	//length 2
+	//time 8
+	//flags ----
+
+r.D.write( m.address( r.PC.read() + 1 ).read() );
+
+
+
+	break;
+
+case 0x10111: 
+	//RLA
+	//length 1
+	//time 4
+	//flags 000C
+
+r.setZF(0); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11000: 
+	//JR r8
+	//length 2
+	//time 12
+	//flags ----
+
+
+
+	break;
+
+case 0x11001: 
+	//ADD HL,DE
+	//length 1
+	//time 8
+	//flags -H0C
+
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11010: 
+	//LD A,(DE)
+	//length 1
+	//time 8
+	//flags ----
+
+r.A.write( m.address( r.DE.read() ).read() );
+
+
+
+	break;
+
+case 0x11011: 
+	//DEC DE
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+	break;
+
+case 0x11100: 
+	//INC E
+	//length 1
+	//time 4
+	//flags ZH0-
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x11101: 
+	//DEC E
+	//length 1
+	//time 4
+	//flags ZH1-
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x11110: 
+	//LD E,d8
+	//length 2
+	//time 8
+	//flags ----
+
+r.E.write( m.address( r.PC.read() + 1 ).read() );
+
+
+
+	break;
+
+case 0x11111: 
+	//RRA
+	//length 1
+	//time 4
+	//flags 000C
+
+r.setZF(0); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x100000: 
+	//JR NZ,r8
+	//length 2
+	//time 12/8
+	//flags ----
+
+
+
+	break;
+
+case 0x100001: 
+	//LD HL,d16
+	//length 3
+	//time 12
+	//flags ----
+
+r.HL.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
+
+
+
+	break;
+
+case 0x100010: 
+	//LD (HL+),A
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+
+
+	break;
+
+case 0x100011: 
+	//INC HL
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+	break;
+
+case 0x100100: 
+	//INC H
+	//length 1
+	//time 4
+	//flags ZH0-
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x100101: 
+	//DEC H
+	//length 1
+	//time 4
+	//flags ZH1-
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x100110: 
+	//LD H,d8
+	//length 2
+	//time 8
+	//flags ----
+
+r.H.write( m.address( r.PC.read() + 1 ).read() );
+
+
+
+	break;
+
+case 0x100111: 
+	//DAA
+	//length 1
+	//time 4
+	//flags Z0-C
+
+r.setZF(Z); 
+r.setHF(0); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x101000: 
+	//JR Z,r8
+	//length 2
+	//time 12/8
+	//flags ----
+
+
+
+	break;
+
+case 0x101001: 
+	//ADD HL,HL
+	//length 1
+	//time 8
+	//flags -H0C
+
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x101010: 
+	//LD A,(HL+)
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+
+
+	break;
+
+case 0x101011: 
+	//DEC HL
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+	break;
+
+case 0x101100: 
+	//INC L
+	//length 1
+	//time 4
+	//flags ZH0-
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x101101: 
+	//DEC L
+	//length 1
+	//time 4
+	//flags ZH1-
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x101110: 
+	//LD L,d8
+	//length 2
+	//time 8
+	//flags ----
+
+r.L.write( m.address( r.PC.read() + 1 ).read() );
+
+
+
+	break;
+
+case 0x101111: 
+	//CPL
+	//length 1
+	//time 4
+	//flags -11-
+
+r.setNF(1); 
+r.setHF(1); 
+
+
+	break;
+
+case 0x110000: 
+	//JR NC,r8
+	//length 2
+	//time 12/8
+	//flags ----
+
+
+
+	break;
+
+case 0x110001: 
+	//LD SP,d16
+	//length 3
+	//time 12
+	//flags ----
+
+r.SP.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
+
+
+
+	break;
+
+case 0x110010: 
+	//LD (HL-),A
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+
+
+	break;
+
+case 0x110011: 
+	//INC SP
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+	break;
+
+case 0x110100: 
+	//INC (HL)
+	//length 1
+	//time 12
+	//flags ZH0-
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x110101: 
+	//DEC (HL)
+	//length 1
+	//time 12
+	//flags ZH1-
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x110110: 
+	//LD (HL),d8
+	//length 2
+	//time 12
+	//flags ----
+
+m.address( r.HL.read() ).write( m.address( r.PC.read() + 1 ).read() );
+
+
+
+	break;
+
+case 0x110111: 
+	//SCF
+	//length 1
+	//time 4
+	//flags -001
+
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(1); 
+
+
+	break;
+
+case 0x111000: 
+	//JR C,r8
+	//length 2
+	//time 12/8
+	//flags ----
+
+
+
+	break;
+
+case 0x111001: 
+	//ADD HL,SP
+	//length 1
+	//time 8
+	//flags -H0C
+
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x111010: 
+	//LD A,(HL-)
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+
+
+	break;
+
+case 0x111011: 
+	//DEC SP
+	//length 1
+	//time 8
+	//flags ----
+
+
+
+	break;
+
+case 0x111100: 
+	//INC A
+	//length 1
+	//time 4
+	//flags ZH0-
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x111101: 
+	//DEC A
+	//length 1
+	//time 4
+	//flags ZH1-
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+
+
+	break;
+
+case 0x111110: 
+	//LD A,d8
+	//length 2
+	//time 8
+	//flags ----
+
+r.A.write( m.address( r.PC.read() + 1 ).read() );
+
+
+
+	break;
+
+case 0x111111: 
+	//CCF
+	//length 1
+	//time 4
+	//flags -00C
+
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x1000000: 
+	//LD B,B
+	//length 1
+	//time 4
+	//flags ----
+
+r.B.write( r.B.read() );
+
+
+
+	break;
+
+case 0x1000001: 
+	//LD B,C
+	//length 1
+	//time 4
+	//flags ----
+
+r.B.write( r.C.read() );
+
+
+
+	break;
+
+case 0x1000010: 
+	//LD B,D
+	//length 1
+	//time 4
+	//flags ----
+
+r.B.write( r.D.read() );
+
+
+
+	break;
+
+case 0x1000011: 
+	//LD B,E
+	//length 1
+	//time 4
+	//flags ----
+
+r.B.write( r.E.read() );
+
+
+
+	break;
+
+case 0x1000100: 
+	//LD B,H
+	//length 1
+	//time 4
+	//flags ----
+
+r.B.write( r.H.read() );
+
+
+
+	break;
+
+case 0x1000101: 
+	//LD B,L
+	//length 1
+	//time 4
+	//flags ----
+
+r.B.write( r.L.read() );
+
+
+
+	break;
+
+case 0x1000110: 
+	//LD B,(HL)
+	//length 1
+	//time 8
+	//flags ----
+
+r.B.write( m.address( r.HL.read() ).read() );
+
+
+
+	break;
+
+case 0x1000111: 
+	//LD B,A
+	//length 1
+	//time 4
+	//flags ----
+
+r.B.write( r.A.read() );
+
+
+
+	break;
+
+case 0x1001000: 
+	//LD C,B
+	//length 1
+	//time 4
+	//flags ----
+
+r.C.write( r.B.read() );
+
+
+
+	break;
+
+case 0x1001001: 
+	//LD C,C
+	//length 1
+	//time 4
+	//flags ----
+
+r.C.write( r.C.read() );
+
+
+
+	break;
+
+case 0x1001010: 
+	//LD C,D
+	//length 1
+	//time 4
+	//flags ----
+
+r.C.write( r.D.read() );
+
+
+
+	break;
+
+case 0x1001011: 
+	//LD C,E
+	//length 1
+	//time 4
+	//flags ----
+
+r.C.write( r.E.read() );
+
+
+
+	break;
+
+case 0x1001100: 
+	//LD C,H
+	//length 1
+	//time 4
+	//flags ----
+
+r.C.write( r.H.read() );
+
+
+
+	break;
+
+case 0x1001101: 
+	//LD C,L
+	//length 1
+	//time 4
+	//flags ----
+
+r.C.write( r.L.read() );
+
+
+
+	break;
+
+case 0x1001110: 
+	//LD C,(HL)
+	//length 1
+	//time 8
+	//flags ----
+
+r.C.write( m.address( r.HL.read() ).read() );
+
+
+
+	break;
+
+case 0x1001111: 
+	//LD C,A
+	//length 1
+	//time 4
+	//flags ----
+
+r.C.write( r.A.read() );
+
+
+
+	break;
+
+case 0x1010000: 
+	//LD D,B
+	//length 1
+	//time 4
+	//flags ----
+
+r.D.write( r.B.read() );
+
+
+
+	break;
+
+case 0x1010001: 
+	//LD D,C
+	//length 1
+	//time 4
+	//flags ----
+
+r.D.write( r.C.read() );
+
+
+
+	break;
+
+case 0x1010010: 
+	//LD D,D
+	//length 1
+	//time 4
+	//flags ----
+
+r.D.write( r.D.read() );
+
+
+
+	break;
+
+case 0x1010011: 
+	//LD D,E
+	//length 1
+	//time 4
+	//flags ----
+
+r.D.write( r.E.read() );
+
+
+
+	break;
+
+case 0x1010100: 
+	//LD D,H
+	//length 1
+	//time 4
+	//flags ----
+
+r.D.write( r.H.read() );
+
+
+
+	break;
+
+case 0x1010101: 
+	//LD D,L
+	//length 1
+	//time 4
+	//flags ----
+
+r.D.write( r.L.read() );
+
+
+
+	break;
+
+case 0x1010110: 
+	//LD D,(HL)
+	//length 1
+	//time 8
+	//flags ----
+
+r.D.write( m.address( r.HL.read() ).read() );
+
+
+
+	break;
+
+case 0x1010111: 
+	//LD D,A
+	//length 1
+	//time 4
+	//flags ----
+
+r.D.write( r.A.read() );
+
+
+
+	break;
+
+case 0x1011000: 
+	//LD E,B
+	//length 1
+	//time 4
+	//flags ----
+
+r.E.write( r.B.read() );
+
+
+
+	break;
+
+case 0x1011001: 
+	//LD E,C
+	//length 1
+	//time 4
+	//flags ----
+
+r.E.write( r.C.read() );
+
+
+
+	break;
+
+case 0x1011010: 
+	//LD E,D
+	//length 1
+	//time 4
+	//flags ----
+
+r.E.write( r.D.read() );
+
+
+
+	break;
+
+case 0x1011011: 
+	//LD E,E
+	//length 1
+	//time 4
+	//flags ----
+
+r.E.write( r.E.read() );
+
+
+
+	break;
+
+case 0x1011100: 
+	//LD E,H
+	//length 1
+	//time 4
+	//flags ----
+
+r.E.write( r.H.read() );
+
+
+
+	break;
+
+case 0x1011101: 
+	//LD E,L
+	//length 1
+	//time 4
+	//flags ----
+
+r.E.write( r.L.read() );
+
+
+
+	break;
+
+case 0x1011110: 
+	//LD E,(HL)
+	//length 1
+	//time 8
+	//flags ----
+
+r.E.write( m.address( r.HL.read() ).read() );
+
+
+
+	break;
+
+case 0x1011111: 
+	//LD E,A
+	//length 1
+	//time 4
+	//flags ----
+
+r.E.write( r.A.read() );
+
+
+
+	break;
+
+case 0x1100000: 
+	//LD H,B
+	//length 1
+	//time 4
+	//flags ----
+
+r.H.write( r.B.read() );
+
+
+
+	break;
+
+case 0x1100001: 
+	//LD H,C
+	//length 1
+	//time 4
+	//flags ----
+
+r.H.write( r.C.read() );
+
+
+
+	break;
+
+case 0x1100010: 
+	//LD H,D
+	//length 1
+	//time 4
+	//flags ----
+
+r.H.write( r.D.read() );
+
+
+
+	break;
+
+case 0x1100011: 
+	//LD H,E
+	//length 1
+	//time 4
+	//flags ----
+
+r.H.write( r.E.read() );
+
+
+
+	break;
+
+case 0x1100100: 
+	//LD H,H
+	//length 1
+	//time 4
+	//flags ----
+
+r.H.write( r.H.read() );
+
+
+
+	break;
+
+case 0x1100101: 
+	//LD H,L
+	//length 1
+	//time 4
+	//flags ----
+
+r.H.write( r.L.read() );
+
+
+
+	break;
+
+case 0x1100110: 
+	//LD H,(HL)
+	//length 1
+	//time 8
+	//flags ----
+
+r.H.write( m.address( r.HL.read() ).read() );
+
+
+
+	break;
+
+case 0x1100111: 
+	//LD H,A
+	//length 1
+	//time 4
+	//flags ----
+
+r.H.write( r.A.read() );
+
+
+
+	break;
+
+case 0x1101000: 
+	//LD L,B
+	//length 1
+	//time 4
+	//flags ----
+
+r.L.write( r.B.read() );
+
+
+
+	break;
+
+case 0x1101001: 
+	//LD L,C
+	//length 1
+	//time 4
+	//flags ----
+
+r.L.write( r.C.read() );
+
+
+
+	break;
+
+case 0x1101010: 
+	//LD L,D
+	//length 1
+	//time 4
+	//flags ----
+
+r.L.write( r.D.read() );
+
+
+
+	break;
+
+case 0x1101011: 
+	//LD L,E
+	//length 1
+	//time 4
+	//flags ----
+
+r.L.write( r.E.read() );
+
+
+
+	break;
+
+case 0x1101100: 
+	//LD L,H
+	//length 1
+	//time 4
+	//flags ----
+
+r.L.write( r.H.read() );
+
+
+
+	break;
+
+case 0x1101101: 
+	//LD L,L
+	//length 1
+	//time 4
+	//flags ----
+
+r.L.write( r.L.read() );
+
+
+
+	break;
+
+case 0x1101110: 
+	//LD L,(HL)
+	//length 1
+	//time 8
+	//flags ----
+
+r.L.write( m.address( r.HL.read() ).read() );
+
+
+
+	break;
+
+case 0x1101111: 
+	//LD L,A
+	//length 1
+	//time 4
+	//flags ----
+
+r.L.write( r.A.read() );
+
+
+
+	break;
+
+case 0x1110000: 
+	//LD (HL),B
+	//length 1
+	//time 8
+	//flags ----
+
+m.address( r.HL.read() ).write( r.B.read() );
+
+
+
+	break;
+
+case 0x1110001: 
+	//LD (HL),C
+	//length 1
+	//time 8
+	//flags ----
+
+m.address( r.HL.read() ).write( r.C.read() );
+
+
+
+	break;
+
+case 0x1110010: 
+	//LD (HL),D
+	//length 1
+	//time 8
+	//flags ----
+
+m.address( r.HL.read() ).write( r.D.read() );
+
+
+
+	break;
+
+case 0x1110011: 
+	//LD (HL),E
+	//length 1
+	//time 8
+	//flags ----
+
+m.address( r.HL.read() ).write( r.E.read() );
+
+
+
+	break;
+
+case 0x1110100: 
+	//LD (HL),H
+	//length 1
+	//time 8
+	//flags ----
+
+m.address( r.HL.read() ).write( r.H.read() );
+
+
+
+	break;
+
+case 0x1110101: 
+	//LD (HL),L
+	//length 1
+	//time 8
+	//flags ----
+
+m.address( r.HL.read() ).write( r.L.read() );
+
+
+
+	break;
+
+case 0x1110110: 
+	//HALT
+	//length 1
+	//time 4
+	//flags ----
+
+
+
+	break;
+
+case 0x1110111: 
+	//LD (HL),A
+	//length 1
+	//time 8
+	//flags ----
+
+m.address( r.HL.read() ).write( r.A.read() );
+
+
+
+	break;
+
+case 0x1111000: 
+	//LD A,B
+	//length 1
+	//time 4
+	//flags ----
+
+r.A.write( r.B.read() );
+
+
+
+	break;
+
+case 0x1111001: 
+	//LD A,C
+	//length 1
+	//time 4
+	//flags ----
+
+r.A.write( r.C.read() );
+
+
+
+	break;
+
+case 0x1111010: 
+	//LD A,D
+	//length 1
+	//time 4
+	//flags ----
+
+r.A.write( r.D.read() );
+
+
+
+	break;
+
+case 0x1111011: 
+	//LD A,E
+	//length 1
+	//time 4
+	//flags ----
+
+r.A.write( r.E.read() );
+
+
+
+	break;
+
+case 0x1111100: 
+	//LD A,H
+	//length 1
+	//time 4
+	//flags ----
+
+r.A.write( r.H.read() );
+
+
+
+	break;
+
+case 0x1111101: 
+	//LD A,L
+	//length 1
+	//time 4
+	//flags ----
+
+r.A.write( r.L.read() );
+
+
+
+	break;
+
+case 0x1111110: 
+	//LD A,(HL)
+	//length 1
+	//time 8
+	//flags ----
+
+r.A.write( m.address( r.HL.read() ).read() );
+
+
+
+	break;
+
+case 0x1111111: 
+	//LD A,A
+	//length 1
+	//time 4
+	//flags ----
+
+r.A.write( r.A.read() );
+
+
+
+	break;
+
+case 0x10000000: 
+	//ADD A,B
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10000001: 
+	//ADD A,C
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10000010: 
+	//ADD A,D
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10000011: 
+	//ADD A,E
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10000100: 
+	//ADD A,H
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10000101: 
+	//ADD A,L
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10000110: 
+	//ADD A,(HL)
+	//length 1
+	//time 8
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10000111: 
+	//ADD A,A
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10001000: 
+	//ADC A,B
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10001001: 
+	//ADC A,C
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10001010: 
+	//ADC A,D
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10001011: 
+	//ADC A,E
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10001100: 
+	//ADC A,H
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10001101: 
+	//ADC A,L
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10001110: 
+	//ADC A,(HL)
+	//length 1
+	//time 8
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10001111: 
+	//ADC A,A
+	//length 1
+	//time 4
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10010000: 
+	//SUB B
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10010001: 
+	//SUB C
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10010010: 
+	//SUB D
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10010011: 
+	//SUB E
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10010100: 
+	//SUB H
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10010101: 
+	//SUB L
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10010110: 
+	//SUB (HL)
+	//length 1
+	//time 8
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10010111: 
+	//SUB A
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10011000: 
+	//SBC A,B
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10011001: 
+	//SBC A,C
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10011010: 
+	//SBC A,D
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10011011: 
+	//SBC A,E
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10011100: 
+	//SBC A,H
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10011101: 
+	//SBC A,L
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10011110: 
+	//SBC A,(HL)
+	//length 1
+	//time 8
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10011111: 
+	//SBC A,A
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10100000: 
+	//AND B
+	//length 1
+	//time 4
+	//flags Z100
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(1); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10100001: 
+	//AND C
+	//length 1
+	//time 4
+	//flags Z100
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(1); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10100010: 
+	//AND D
+	//length 1
+	//time 4
+	//flags Z100
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(1); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10100011: 
+	//AND E
+	//length 1
+	//time 4
+	//flags Z100
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(1); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10100100: 
+	//AND H
+	//length 1
+	//time 4
+	//flags Z100
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(1); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10100101: 
+	//AND L
+	//length 1
+	//time 4
+	//flags Z100
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(1); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10100110: 
+	//AND (HL)
+	//length 1
+	//time 8
+	//flags Z100
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(1); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10100111: 
+	//AND A
+	//length 1
+	//time 4
+	//flags Z100
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(1); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10101000: 
+	//XOR B
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10101001: 
+	//XOR C
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10101010: 
+	//XOR D
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10101011: 
+	//XOR E
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10101100: 
+	//XOR H
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10101101: 
+	//XOR L
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10101110: 
+	//XOR (HL)
+	//length 1
+	//time 8
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10101111: 
+	//XOR A
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10110000: 
+	//OR B
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10110001: 
+	//OR C
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10110010: 
+	//OR D
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10110011: 
+	//OR E
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10110100: 
+	//OR H
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10110101: 
+	//OR L
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10110110: 
+	//OR (HL)
+	//length 1
+	//time 8
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10110111: 
+	//OR A
+	//length 1
+	//time 4
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x10111000: 
+	//CP B
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10111001: 
+	//CP C
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10111010: 
+	//CP D
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10111011: 
+	//CP E
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10111100: 
+	//CP H
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10111101: 
+	//CP L
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10111110: 
+	//CP (HL)
+	//length 1
+	//time 8
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x10111111: 
+	//CP A
+	//length 1
+	//time 4
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11000000: 
+	//RET NZ
+	//length 1
+	//time 20/8
+	//flags ----
+
+
+
+	break;
+
+case 0x11000001: 
+	//POP BC
+	//length 1
+	//time 12
+	//flags ----
+
+
+
+	break;
+
+case 0x11000010: 
+	//JP NZ,a16
+	//length 3
+	//time 16/12
+	//flags ----
+
+
+
+	break;
+
+case 0x11000011: 
+	//JP a16
+	//length 3
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11000100: 
+	//CALL NZ,a16
+	//length 3
+	//time 24/12
+	//flags ----
+
+
+
+	break;
+
+case 0x11000101: 
+	//PUSH BC
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11000110: 
+	//ADD A,d8
+	//length 2
+	//time 8
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11000111: 
+	//RST 00H
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11001000: 
+	//RET Z
+	//length 1
+	//time 20/8
+	//flags ----
+
+
+
+	break;
+
+case 0x11001001: 
+	//RET
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11001010: 
+	//JP Z,a16
+	//length 3
+	//time 16/12
+	//flags ----
+
+
+
+	break;
+
+case 0x11001011: 
+	//PREFIX CB
+	//length 1
+	//time 4
+	//flags ----
+
+
+
+	break;
+
+case 0x11001100: 
+	//CALL Z,a16
+	//length 3
+	//time 24/12
+	//flags ----
+
+
+
+	break;
+
+case 0x11001101: 
+	//CALL a16
+	//length 3
+	//time 24
+	//flags ----
+
+
+
+	break;
+
+case 0x11001110: 
+	//ADC A,d8
+	//length 2
+	//time 8
+	//flags ZH0C
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11001111: 
+	//RST 08H
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11010000: 
+	//RET NC
+	//length 1
+	//time 20/8
+	//flags ----
+
+
+
+	break;
+
+case 0x11010001: 
+	//POP DE
+	//length 1
+	//time 12
+	//flags ----
+
+
+
+	break;
+
+case 0x11010010: 
+	//JP NC,a16
+	//length 3
+	//time 16/12
+	//flags ----
+
+
+
+	break;
+
+case 0x11010100: 
+	//CALL NC,a16
+	//length 3
+	//time 24/12
+	//flags ----
+
+
+
+	break;
+
+case 0x11010101: 
+	//PUSH DE
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11010110: 
+	//SUB d8
+	//length 2
+	//time 8
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11010111: 
+	//RST 10H
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11011000: 
+	//RET C
+	//length 1
+	//time 20/8
+	//flags ----
+
+
+
+	break;
+
+case 0x11011001: 
+	//RETI
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11011010: 
+	//JP C,a16
+	//length 3
+	//time 16/12
+	//flags ----
+
+
+
+	break;
+
+case 0x11011100: 
+	//CALL C,a16
+	//length 3
+	//time 24/12
+	//flags ----
+
+
+
+	break;
+
+case 0x11011110: 
+	//SBC A,d8
+	//length 2
+	//time 8
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11011111: 
+	//RST 18H
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11100000: 
+	//LDH (a8),A
+	//length 2
+	//time 12
+	//flags ----
+
+
+
+	break;
+
+case 0x11100001: 
+	//POP HL
+	//length 1
+	//time 12
+	//flags ----
+
+
+
+	break;
+
+case 0x11100010: 
+	//LD (C),A
+	//length 2
+	//time 8
+	//flags ----
+
+m.address( r.C.read() ).write( r.A.read() );
+
+
+
+	break;
+
+case 0x11100101: 
+	//PUSH HL
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11100110: 
+	//AND d8
+	//length 2
+	//time 8
+	//flags Z100
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(1); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x11100111: 
+	//RST 20H
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11101000: 
+	//ADD SP,r8
+	//length 2
+	//time 16
+	//flags 0H0C
+
+r.setZF(0); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11101001: 
+	//JP (HL)
+	//length 1
+	//time 4
+	//flags ----
+
+
+
+	break;
+
+case 0x11101010: 
+	//LD (a16),A
+	//length 3
+	//time 16
+	//flags ----
+
+m.address( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read().read() ).write( r.A.read() );
+
+
+
+	break;
+
+case 0x11101110: 
+	//XOR d8
+	//length 2
+	//time 8
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x11101111: 
+	//RST 28H
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11110000: 
+	//LDH A,(a8)
+	//length 2
+	//time 12
+	//flags ----
+
+
+
+	break;
+
+case 0x11110001: 
+	//POP AF
+	//length 1
+	//time 12
+	//flags ZHNC
+
+r.setZF(Z); 
+r.setNF(N); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11110010: 
+	//LD A,(C)
+	//length 2
+	//time 8
+	//flags ----
+
+r.A.write( m.address( r.C.read() ).read() );
+
+
+
+	break;
+
+case 0x11110011: 
+	//DI
+	//length 1
+	//time 4
+	//flags ----
+
+
+
+	break;
+
+case 0x11110101: 
+	//PUSH AF
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11110110: 
+	//OR d8
+	//length 2
+	//time 8
+	//flags Z000
+
+r.setZF(Z); 
+r.setNF(0); 
+r.setHF(0); 
+r.setCF(0); 
+
+
+	break;
+
+case 0x11110111: 
+	//RST 30H
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+case 0x11111000: 
+	//LD HL,SP+r8
+	//length 2
+	//time 12
+	//flags 0H0C
+
+
+
+r.setZF(0); 
+r.setNF(0); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11111001: 
+	//LD SP,HL
+	//length 1
+	//time 8
+	//flags ----
+
+r.SP.write( r.HL.read() );
+
+
+
+	break;
+
+case 0x11111010: 
+	//LD A,(a16)
+	//length 3
+	//time 16
+	//flags ----
+
+r.A.write( m.address( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read().read() ).read() );
+
+
+
+	break;
+
+case 0x11111011: 
+	//EI
+	//length 1
+	//time 4
+	//flags ----
+
+
+
+	break;
+
+case 0x11111110: 
+	//CP d8
+	//length 2
+	//time 8
+	//flags ZH1C
+
+r.setZF(Z); 
+r.setNF(1); 
+r.setHF(H); 
+r.setCF(C); 
+
+
+	break;
+
+case 0x11111111: 
+	//RST 38H
+	//length 1
+	//time 16
+	//flags ----
+
+
+
+	break;
+
+
+}
+}
+
