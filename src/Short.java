@@ -1,35 +1,28 @@
 /**
  * Created by jamesnarey on 08/05/2016.
  */
-public class BytePair extends DataArray implements ByteInterface {
+public class Short extends DataArray implements ByteInterface {
 
-    protected int lastWrite = 0;
 
-    public BytePair() {
+    public Short() {
         super(2);
     }
 
-    public BytePair(BByte lsb, BByte msb) {
+    public Short(BetterByte lsb, BetterByte msb) {
         super(2);
         setUnit(0, lsb);
         setUnit(1, msb);
 
     }
 
-    public boolean checkOverflow() {
 
-        if (lastWrite > 0xFF37 || lastWrite < 0) {return true;}
-        return false;
-
-    }
-
-    public static int mergeBytes (BByte lsb, BByte msb) {
+    public static int mergeBytes (BetterByte lsb, BetterByte msb) {
 
         return lsb.read() + (msb.read() << 8);
 
     }
 
-    public static void splitToBytes (int value, BByte lsb, BByte msb) {
+    public static void splitToBytes (int value, BetterByte lsb, BetterByte msb) {
 
         lsb.write(value & 0xFF);
         msb.write( (value >>> 8) & 0xFF );

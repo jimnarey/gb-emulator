@@ -159,7 +159,7 @@ public class Instructions {
 
     }
 
-    public static void RLCA(BByte target) {
+    public static void RLCA(BetterByte target) {
 
         // Target is always A register
 

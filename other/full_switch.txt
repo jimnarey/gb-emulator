@@ -28,7 +28,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 12;
 
 
-			r.BC.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
+			r.BC.write( new Short( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
 
 
 
@@ -323,7 +323,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 12;
 
 
-			r.DE.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
+			r.DE.write( new Short( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
 
 
 
@@ -618,7 +618,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 12;
 
 
-			r.HL.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
+			r.HL.write( new Short( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
 
 
 
@@ -910,7 +910,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 12;
 
 
-			r.SP.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
+			r.SP.write( new Short( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
 
 
 
@@ -4588,7 +4588,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 12;
 
 
-			r.BC.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
+			r.BC.write( new Short( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
 
 
 
@@ -4883,7 +4883,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 12;
 
 
-			r.DE.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
+			r.DE.write( new Short( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
 
 
 
@@ -5178,7 +5178,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 12;
 
 
-			r.HL.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
+			r.HL.write( new Short( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
 
 
 
@@ -5470,7 +5470,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 12;
 
 
-			r.SP.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
+			r.SP.write( new Short( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
 
 
 

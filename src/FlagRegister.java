@@ -1,7 +1,8 @@
 /**
  * Created by jamesnarey on 13/05/2016.
  */
-public class FlagRegister extends BByte {
+public class FlagRegister extends CheckableByte {
+
 
     public FlagRegister () {
 

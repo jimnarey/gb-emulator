@@ -66,7 +66,7 @@ class SwitchMaker(object):
 
     @staticmethod
     def d16():
-        d16_string = 'new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) )'
+        d16_string = 'new Short( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) )'
         return d16_string
 
     @staticmethod

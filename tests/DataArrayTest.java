@@ -1,13 +1,11 @@
 import org.junit.Test;
 
-import java.math.BigInteger;
-
 import static org.junit.Assert.*;
 
 /**
  * Created by jamesnarey on 27/04/2016.
  */
-public class ByteInterfaceTest {
+public class DataArrayTest {
 
     @Test
     public void testGetNumUnits() throws Exception {
@@ -22,12 +20,12 @@ public class ByteInterfaceTest {
         DataArray dA = new DataArray(8);
         dA.populate();
 
-        for (BByte unit : dA.units) {
+        for (BetterByte unit : dA.units) {
             unit.write(200);
 
         }
 
-        for (BByte unit : dA.units) {
+        for (BetterByte unit : dA.units) {
             assertEquals(200, unit.read());
 
         }
@@ -37,7 +35,7 @@ public class ByteInterfaceTest {
     @Test
     public void testSetUnit() throws Exception {
         DataArray dA = new DataArray(8);
-        BByte dU = new BByte();
+        BetterByte dU = new BetterByte();
         dU.write(14);
         dA.setUnit(0, dU);
         assertEquals(14, dA.unit(0).read());

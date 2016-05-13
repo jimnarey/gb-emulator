@@ -17,14 +17,14 @@ public class Main {
 
 //        Registers registers = new Registers();
 
-        BByte bByte0 = new BByte();
-        BByte bByte1 = new BByte();
+        BetterByte bByte0 = new BetterByte();
+        BetterByte bByte1 = new BetterByte();
 
 
         bByte0.write(1);
         bByte1.write(1);
 
-//        BytePair bytePair = new BytePair();
+//        Short bytePair = new Short();
 //        bytePair.populate();
 //        bytePair.write(227);
 
@@ -32,11 +32,11 @@ public class Main {
 //
 //        Instructions.LD(bytePair, bByte0);
 
-//        Instructions.LD(new BytePair( memory.address(10), memory.address(11)), bytePair);
+//        Instructions.LD(new Short( memory.address(10), memory.address(11)), bytePair);
 
 //        memory.address(10).write(200);
 //
-//        BytePair bytePair1 = new BytePair(memory.address(10), memory.address(11));
+//        Short bytePair1 = new Short(memory.address(10), memory.address(11));
 //
 //        bytePair1.write(300);
 //
@@ -45,12 +45,12 @@ public class Main {
 //
 //        System.out.println(memory.address(11).readString() + " " + memory.address(10).readString());
 
-        BytePair bytePair2 = new BytePair(memory.address(200), memory.address(201));
+        Short bytePair2 = new Short(memory.address(200), memory.address(201));
 
-        int test = new BytePair(memory.address(200 + 1), memory.address(200 + 2)).read();
+        int test = new Short(memory.address(200 + 1), memory.address(200 + 2)).read();
         System.out.println(test);
 
-//        i.LD(bytePair2, new BytePair(bByte0, bByte1));
+//        i.LD(bytePair2, new Short(bByte0, bByte1));
 
         System.out.println("MSB " + memory.address(201).read());
         System.out.println("LSB " + memory.address(200).read());

@@ -1,39 +1,13 @@
 /**
  * Created by jamesnarey on 17/03/2016.
  */
-public class BByte implements ByteInterface {
+public class BetterByte implements ByteInterface {
 
     protected int data = 0;
-    protected int lastWrite = 0;
-    protected int lastData = 0;
 
-    public BByte() {
+    public BetterByte() {
 
 
-    }
-
-    public boolean isZero() {
-        if (data == 0) {return true;}
-        return false;
-    }
-
-    // Create new class, inherited from this one, to hold lastData, lastWrite and
-    // corresponding methods
-
-    public boolean checkOverflow() {
-
-        if (lastWrite > 0xFF || lastWrite < 0) {return true;}
-        return false;
-
-    }
-
-    // http://stackoverflow.com/questions/8034566/overflow-and-carry-flags-on-z80
-    // Half carry flag may be set by 255 + 1
-    // Check there are not more conditions where this is true (e.g. half-underflow?)
-    public boolean checkHalfOverFlow () {
-
-        if (lastData < 16 && data >= 16) {return true;}
-        return false;
     }
 
     // Could speed this up by just switching between two data ints each time a write
@@ -41,8 +15,6 @@ public class BByte implements ByteInterface {
     // though this would involve an array lookup each time the value is read
     public void write(int value) {
 
-        lastData = data;
-        lastWrite = value;
         data = value & 0xFF;
 
     }
