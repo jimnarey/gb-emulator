@@ -146,22 +146,22 @@ class SwitchMaker(object):
         flag_string = ''
         
         if row['Z'] != '-':
-            flag_string = flag_string + 'r.setZF(' + row['Z'] + '); \n'
+            flag_string = flag_string + '\t\t\tr.setZF(' + row['Z'] + '); \n'
         else:
             pass
         
         if row['N'] != '-':
-            flag_string = flag_string + 'r.setNF(' + row['N'] + '); \n'
+            flag_string = flag_string + '\t\t\tr.setNF(' + row['N'] + '); \n'
         else:
             pass
 
         if row['H'] != '-':
-            flag_string = flag_string + 'r.setHF(' + row['H'] + '); \n'
+            flag_string = flag_string + '\t\t\tr.setHF(' + row['H'] + '); \n'
         else:
             pass
 
         if row['C'] != '-':
-            flag_string = flag_string + 'r.setCF(' + row['C'] + '); \n'
+            flag_string = flag_string + '\t\t\tr.setCF(' + row['C'] + '); \n'
         else:
             pass
         
@@ -181,22 +181,22 @@ class SwitchMaker(object):
                 pass
 
             else:
-                section = section + 'case ' + '0x' + row['opcode'] + ': \n' + '\t//' + row['full_instruction'] + \
-                          '\n\t//length ' + row['length'] + '\n\t//time ' + row['cycles'] + '\n\t//flags ' + row['Z'] + \
+                section = section + '\t\tcase ' + '0x' + row['opcode'] + ': \n\t\t\t//' + row['full_instruction'] + \
+                          '\n\t\t\t//length ' + row['length'] + '\n\t\t\t//time ' + row['cycles'] + '\n\t\t\t//flags ' + row['Z'] + \
                           row['H'] + row['N'] + row['C'] + '\n\n'
 
                 if row['instruction'] == 'LD':
-                    section = section + self.LDgen(row) + '\n\n'
+                    section = section + '\t\t\t' + self.LDgen(row) + '\n\n'
 
                 section = section + SwitchMaker.get_flag_methods(row)
 
-                section = section + '\n\n\tbreak;' + '\n\n'
+                section = section + '\n\n\t\t\tbreak;' + '\n\n'
 
         return section
 
     def top_and_tail(self, func_name, list_of_dicts):
 
-        full_text = 'public void ' + func_name + ' (int opcode) {\n\t' + 'switch(opcode) {\n\t'
+        full_text = 'public void ' + func_name + ' (int opcode) {\n\n\t' + 'switch(opcode) {\n\n'
 
         full_text = full_text + self.make_cases(list_of_dicts)
 
