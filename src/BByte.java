@@ -19,6 +19,8 @@ public class BByte implements ByteInterface {
 
     }
 
+    // http://stackoverflow.com/questions/8034566/overflow-and-carry-flags-on-z80
+    // Half carry flag may be set by 255 + 1
     // Check there are not more conditions where this is true (e.g. half-underflow?)
     public boolean checkHalfOverFlow () {
 

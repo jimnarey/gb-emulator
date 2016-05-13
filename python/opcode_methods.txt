@@ -1,0 +1,184 @@
+    @staticmethod
+    def LDD(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def LDI(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def LDH(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def LDHL(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def PUSH(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def POP(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def ADD(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def ADC(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def SUB(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def SBC(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def AND(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def OR(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def XOR(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def CP(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def INC(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def DEC(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def SWAP(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def DAA(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def CPL(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def CCF(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def SCF(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def NOP(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def HALT(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def STOP(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def DI(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def EI(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def RLCA(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def RLA(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def RRCA(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def RRA(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def RLC(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def RL(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def RRC(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def RR(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def SLA(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def SRA(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def SRL(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def BIT(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def SET(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def RES(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def JP(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def JR(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def CALL(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def RST(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def RET(operand_1, operand_2):
+        pass
+
+    @staticmethod
+    def RETI(operand_1, operand_2):
+        pass
+

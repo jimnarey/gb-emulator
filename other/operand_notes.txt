@@ -1,0 +1,47 @@
+Bracketed operands 
+(HL+)
+ (HL-)
+ d8 - immediate 8bit value
+ d16 - immediate 16bit value r
+r8 - 8bit signed data (immediate?) 
+a8 - 8bit unsigned data, which are added to $FF00 in certain instructions 
+a16 - 16 bit address 
+(a8) 
+(a16) 
+Z 
+Check
+NZ 
+NC
+ 00H
+ 08H
+ 10H
+ 20H
+ 28H
+ 30H
+ 38H
+ SP+r8
+
+  Sources
+
+cc - flag condition (C, NC, Z, NZ)
+b - bit
+d, dd - 8, 16bit *destination register*
+e - 8bit signed, 2's complement
+f - 8 x special call locations, (Page 0)
+n, nn - 8, 16bit binary number
+r - 8bit register
+s - 8bit source register or memory location
+sb - bit in a specific 8bit register or memory location
+ss - any 16bit source register or memory location
+
+
+
+Are these ever distinct operands?
+Z, H, N, C - Flags
+NC, NZ - not C and not Z
+
+
+  Make sure an error is thrown if the operand isn't found/recognised  
+
+Check usages of 'C' as an operand. Always register or sometimes flag? 
+ADC, SBC, SCF, CCF use carry flag
