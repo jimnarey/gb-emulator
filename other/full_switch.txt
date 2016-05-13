@@ -82,9 +82,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -102,9 +102,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -139,10 +139,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(0); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(C); 
+			r.F.setZ(0); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -177,9 +177,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -231,9 +231,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -251,9 +251,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -288,10 +288,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(0); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(C); 
+			r.F.setZ(0); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -377,9 +377,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -397,9 +397,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -434,10 +434,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(0); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(C); 
+			r.F.setZ(0); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -472,9 +472,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -526,9 +526,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -546,9 +546,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -583,10 +583,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(0); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(C); 
+			r.F.setZ(0); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -598,7 +598,7 @@ public void mainTable (int opcode) {
 			//time 12/8
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;12/8
 
 
 			//**command missing
@@ -672,9 +672,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -692,9 +692,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -729,9 +729,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setHF(0); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setH(0); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -743,7 +743,7 @@ public void mainTable (int opcode) {
 			//time 12/8
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;12/8
 
 
 			//**command missing
@@ -766,9 +766,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -820,9 +820,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -840,9 +840,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -877,8 +877,8 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setNF(1); 
-			r.setHF(1); 
+			r.F.setN(1); 
+			r.F.setH(1); 
 
 			r.PC.add(1);
 
@@ -890,7 +890,7 @@ public void mainTable (int opcode) {
 			//time 12/8
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;12/8
 
 
 			//**command missing
@@ -964,9 +964,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -984,9 +984,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -1021,9 +1021,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(1); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(1); 
 
 			r.PC.add(1);
 
@@ -1035,7 +1035,7 @@ public void mainTable (int opcode) {
 			//time 12/8
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;12/8
 
 
 			//**command missing
@@ -1058,9 +1058,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -1112,9 +1112,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -1132,9 +1132,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -1169,9 +1169,9 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(C); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2277,10 +2277,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2298,10 +2298,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2319,10 +2319,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2340,10 +2340,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2361,10 +2361,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2382,10 +2382,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2403,10 +2403,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2424,10 +2424,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2445,10 +2445,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2466,10 +2466,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2487,10 +2487,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2508,10 +2508,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2529,10 +2529,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2550,10 +2550,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2571,10 +2571,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2592,10 +2592,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2613,10 +2613,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2634,10 +2634,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2655,10 +2655,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2676,10 +2676,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2697,10 +2697,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2718,10 +2718,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2739,10 +2739,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2760,10 +2760,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2781,10 +2781,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2802,10 +2802,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2823,10 +2823,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2844,10 +2844,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2865,10 +2865,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2886,10 +2886,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2907,10 +2907,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2928,10 +2928,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -2949,10 +2949,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(1); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(1); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -2970,10 +2970,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(1); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(1); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -2991,10 +2991,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(1); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(1); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3012,10 +3012,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(1); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(1); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3033,10 +3033,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(1); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(1); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3054,10 +3054,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(1); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(1); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3075,10 +3075,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(1); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(1); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3096,10 +3096,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(1); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(1); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3117,10 +3117,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3138,10 +3138,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3159,10 +3159,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3180,10 +3180,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3201,10 +3201,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3222,10 +3222,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3243,10 +3243,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3264,10 +3264,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3285,10 +3285,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3306,10 +3306,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3327,10 +3327,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3348,10 +3348,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3369,10 +3369,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3390,10 +3390,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3411,10 +3411,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3432,10 +3432,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -3453,10 +3453,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -3474,10 +3474,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -3495,10 +3495,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -3516,10 +3516,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -3537,10 +3537,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -3558,10 +3558,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -3579,10 +3579,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -3600,10 +3600,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -3615,7 +3615,7 @@ public void mainTable (int opcode) {
 			//time 20/8
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;20/8
 
 
 			//**command missing
@@ -3649,7 +3649,7 @@ public void mainTable (int opcode) {
 			//time 16/12
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;16/12
 
 
 			//**command missing
@@ -3683,7 +3683,7 @@ public void mainTable (int opcode) {
 			//time 24/12
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;24/12
 
 
 			//**command missing
@@ -3723,10 +3723,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(2);
 
@@ -3755,7 +3755,7 @@ public void mainTable (int opcode) {
 			//time 20/8
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;20/8
 
 
 			//**command missing
@@ -3789,7 +3789,7 @@ public void mainTable (int opcode) {
 			//time 16/12
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;16/12
 
 
 			//**command missing
@@ -3823,7 +3823,7 @@ public void mainTable (int opcode) {
 			//time 24/12
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;24/12
 
 
 			//**command missing
@@ -3863,10 +3863,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(2);
 
@@ -3895,7 +3895,7 @@ public void mainTable (int opcode) {
 			//time 20/8
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;20/8
 
 
 			//**command missing
@@ -3929,7 +3929,7 @@ public void mainTable (int opcode) {
 			//time 16/12
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;16/12
 
 
 			//**command missing
@@ -3946,7 +3946,7 @@ public void mainTable (int opcode) {
 			//time 24/12
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;24/12
 
 
 			//**command missing
@@ -3986,10 +3986,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(2);
 
@@ -4018,7 +4018,7 @@ public void mainTable (int opcode) {
 			//time 20/8
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;20/8
 
 
 			//**command missing
@@ -4052,7 +4052,7 @@ public void mainTable (int opcode) {
 			//time 16/12
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;16/12
 
 
 			//**command missing
@@ -4069,7 +4069,7 @@ public void mainTable (int opcode) {
 			//time 24/12
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;24/12
 
 
 			//**command missing
@@ -4092,10 +4092,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(2);
 
@@ -4198,10 +4198,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(1); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(1); 
+			r.F.setC(0); 
 
 			r.PC.add(2);
 
@@ -4236,10 +4236,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(0); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(0); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(2);
 
@@ -4291,10 +4291,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(2);
 
@@ -4346,10 +4346,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(N); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(N); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -4418,10 +4418,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(2);
 
@@ -4456,10 +4456,10 @@ public void mainTable (int opcode) {
 			//**LD skipped, + or -
 
 
-			r.setZF(0); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(0); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(2);
 
@@ -4528,10 +4528,10 @@ public void mainTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(2);
 
@@ -4642,9 +4642,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -4662,9 +4662,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -4699,10 +4699,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(0); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(C); 
+			r.F.setZ(0); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -4737,9 +4737,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -4791,9 +4791,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -4811,9 +4811,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -4848,10 +4848,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(0); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(C); 
+			r.F.setZ(0); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -4937,9 +4937,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -4957,9 +4957,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -4994,10 +4994,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(0); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(C); 
+			r.F.setZ(0); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -5032,9 +5032,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -5086,9 +5086,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -5106,9 +5106,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -5143,10 +5143,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(0); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(C); 
+			r.F.setZ(0); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -5158,7 +5158,7 @@ public void cBTable (int opcode) {
 			//time 12/8
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;12/8
 
 
 			//**command missing
@@ -5232,9 +5232,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -5252,9 +5252,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -5289,9 +5289,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setHF(0); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setH(0); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -5303,7 +5303,7 @@ public void cBTable (int opcode) {
 			//time 12/8
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;12/8
 
 
 			//**command missing
@@ -5326,9 +5326,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -5380,9 +5380,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -5400,9 +5400,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -5437,8 +5437,8 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setNF(1); 
-			r.setHF(1); 
+			r.F.setN(1); 
+			r.F.setH(1); 
 
 			r.PC.add(1);
 
@@ -5450,7 +5450,7 @@ public void cBTable (int opcode) {
 			//time 12/8
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;12/8
 
 
 			//**command missing
@@ -5524,9 +5524,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -5544,9 +5544,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -5581,9 +5581,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(1); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(1); 
 
 			r.PC.add(1);
 
@@ -5595,7 +5595,7 @@ public void cBTable (int opcode) {
 			//time 12/8
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;12/8
 
 
 			//**command missing
@@ -5618,9 +5618,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -5672,9 +5672,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -5692,9 +5692,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
 
 			r.PC.add(1);
 
@@ -5729,9 +5729,9 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(C); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -6837,10 +6837,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -6858,10 +6858,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -6879,10 +6879,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -6900,10 +6900,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -6921,10 +6921,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -6942,10 +6942,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -6963,10 +6963,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -6984,10 +6984,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7005,10 +7005,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7026,10 +7026,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7047,10 +7047,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7068,10 +7068,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7089,10 +7089,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7110,10 +7110,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7131,10 +7131,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7152,10 +7152,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7173,10 +7173,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7194,10 +7194,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7215,10 +7215,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7236,10 +7236,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7257,10 +7257,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7278,10 +7278,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7299,10 +7299,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7320,10 +7320,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7341,10 +7341,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7362,10 +7362,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7383,10 +7383,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7404,10 +7404,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7425,10 +7425,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7446,10 +7446,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7467,10 +7467,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7488,10 +7488,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -7509,10 +7509,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(1); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(1); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7530,10 +7530,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(1); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(1); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7551,10 +7551,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(1); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(1); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7572,10 +7572,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(1); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(1); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7593,10 +7593,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(1); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(1); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7614,10 +7614,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(1); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(1); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7635,10 +7635,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(1); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(1); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7656,10 +7656,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(1); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(1); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7677,10 +7677,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7698,10 +7698,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7719,10 +7719,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7740,10 +7740,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7761,10 +7761,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7782,10 +7782,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7803,10 +7803,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7824,10 +7824,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7845,10 +7845,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7866,10 +7866,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7887,10 +7887,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7908,10 +7908,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7929,10 +7929,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7950,10 +7950,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7971,10 +7971,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -7992,10 +7992,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
@@ -8013,10 +8013,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -8034,10 +8034,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -8055,10 +8055,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -8076,10 +8076,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -8097,10 +8097,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -8118,10 +8118,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -8139,10 +8139,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -8160,10 +8160,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -8175,7 +8175,7 @@ public void cBTable (int opcode) {
 			//time 20/8
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;20/8
 
 
 			//**command missing
@@ -8209,7 +8209,7 @@ public void cBTable (int opcode) {
 			//time 16/12
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;16/12
 
 
 			//**command missing
@@ -8243,7 +8243,7 @@ public void cBTable (int opcode) {
 			//time 24/12
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;24/12
 
 
 			//**command missing
@@ -8283,10 +8283,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(2);
 
@@ -8315,7 +8315,7 @@ public void cBTable (int opcode) {
 			//time 20/8
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;20/8
 
 
 			//**command missing
@@ -8349,7 +8349,7 @@ public void cBTable (int opcode) {
 			//time 16/12
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;16/12
 
 
 			//**command missing
@@ -8383,7 +8383,7 @@ public void cBTable (int opcode) {
 			//time 24/12
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;24/12
 
 
 			//**command missing
@@ -8423,10 +8423,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(2);
 
@@ -8455,7 +8455,7 @@ public void cBTable (int opcode) {
 			//time 20/8
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;20/8
 
 
 			//**command missing
@@ -8489,7 +8489,7 @@ public void cBTable (int opcode) {
 			//time 16/12
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;16/12
 
 
 			//**command missing
@@ -8506,7 +8506,7 @@ public void cBTable (int opcode) {
 			//time 24/12
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;24/12
 
 
 			//**command missing
@@ -8546,10 +8546,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(2);
 
@@ -8578,7 +8578,7 @@ public void cBTable (int opcode) {
 			//time 20/8
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;20/8
 
 
 			//**command missing
@@ -8612,7 +8612,7 @@ public void cBTable (int opcode) {
 			//time 16/12
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;16/12
 
 
 			//**command missing
@@ -8629,7 +8629,7 @@ public void cBTable (int opcode) {
 			//time 24/12
 			//flags ----
 
-			//**currentOpcodeCycles = CONDITIONAL;
+			//**currentOpcodeCycles = CONDITIONAL;24/12
 
 
 			//**command missing
@@ -8652,10 +8652,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(2);
 
@@ -8758,10 +8758,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(1); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(1); 
+			r.F.setC(0); 
 
 			r.PC.add(2);
 
@@ -8796,10 +8796,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(0); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(0); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(2);
 
@@ -8851,10 +8851,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(2);
 
@@ -8906,10 +8906,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(N); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(N); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(1);
 
@@ -8978,10 +8978,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(0); 
-			r.setHF(0); 
-			r.setCF(0); 
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(2);
 
@@ -9016,10 +9016,10 @@ public void cBTable (int opcode) {
 			//**LD skipped, + or -
 
 
-			r.setZF(0); 
-			r.setNF(0); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(0); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(2);
 
@@ -9088,10 +9088,10 @@ public void cBTable (int opcode) {
 			//**command missing
 
 
-			r.setZF(Z); 
-			r.setNF(1); 
-			r.setHF(H); 
-			r.setCF(C); 
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
 
 			r.PC.add(2);
 

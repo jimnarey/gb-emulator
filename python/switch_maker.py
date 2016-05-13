@@ -53,7 +53,7 @@ class SwitchMaker(object):
 
                 if str(index) in self.columns.keys():
 
-                    row_dict[self.columns[str(index)]]  = cell
+                    row_dict[self.columns[str(index)]] = cell
 
             list_of_dicts.append(row_dict)
 
@@ -74,9 +74,11 @@ class SwitchMaker(object):
         r8_string = 'm.address( r.PC.read() + 1 ).readSigned()'
         return r8_string
 
+    # Not sure about this! --
     @staticmethod
     def a8():
         a8_string = SwitchMaker.d8() + '.read()'
+        a8_string = SwitchMaker.d8()
         return a8_string
 
     # Not sure about this! --
@@ -139,22 +141,22 @@ class SwitchMaker(object):
         flag_string = ''
         
         if row['Z'] != '-':
-            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.setZF(' + row['Z'] + '); \n'
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setZ(' + row['Z'] + '); \n'
         else:
             pass
         
         if row['N'] != '-':
-            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.setNF(' + row['N'] + '); \n'
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setN(' + row['N'] + '); \n'
         else:
             pass
 
         if row['H'] != '-':
-            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.setHF(' + row['H'] + '); \n'
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setH(' + row['H'] + '); \n'
         else:
             pass
 
         if row['C'] != '-':
-            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.setCF(' + row['C'] + '); \n'
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setC(' + row['C'] + '); \n'
         else:
             pass
         
