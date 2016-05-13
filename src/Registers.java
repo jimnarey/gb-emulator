@@ -7,7 +7,7 @@ public class Registers {
     // !! or otherwise prevent them from being written with a 1
 
     public BByte A = new BByte();
-    public BByte F = new BByte();
+    public FlagRegister F = new FlagRegister();
     public BByte B = new BByte();
     public BByte C = new BByte();
     public BByte D = new BByte();
@@ -39,54 +39,6 @@ public class Registers {
         HL.setUnit(0, L);
         HL.setUnit(1, H);
 
-
-    }
-
-    public boolean getZF () {
-
-        return F.checkBit(7);
-
-    }
-
-    public void setZF (boolean value) {
-
-        F.setBit(7, value);
-
-    }
-
-    public boolean getNF () {
-
-        return F.checkBit(6);
-
-    }
-
-    public void setNF (boolean value) {
-
-        F.setBit(6, value);
-
-    }
-
-    public boolean getHF () {
-
-        return F.checkBit(5);
-
-    }
-
-    public void setHF (boolean value) {
-
-        F.setBit(5, value);
-
-    }
-
-    public boolean getCF () {
-
-        return F.checkBit(4);
-
-    }
-
-    public void setCF (boolean value) {
-
-        F.setBit(4, value);
 
     }
 

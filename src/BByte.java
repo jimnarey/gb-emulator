@@ -12,6 +12,14 @@ public class BByte implements ByteInterface {
 
     }
 
+    public boolean isZero() {
+        if (data == 0) {return true;}
+        return false;
+    }
+
+    // Create new class, inherited from this one, to hold lastData, lastWrite and
+    // corresponding methods
+
     public boolean checkOverflow() {
 
         if (lastWrite > 0xFF || lastWrite < 0) {return true;}
@@ -62,6 +70,9 @@ public class BByte implements ByteInterface {
 
     public void dec() {sub(1);}
 
+
+    // This and checkBit can be recombined. It doesn't matter if the value of 'position' is
+    // greater than the number of used bits, it will correctly return zero
     private boolean checkAnyBit (int value, int position) {
 
         if (((value >>> position) & 1) != 0) {return true;}

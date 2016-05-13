@@ -8,7 +8,14 @@ public void mainTable (int opcode) {
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
@@ -18,3004 +25,4532 @@ public void mainTable (int opcode) {
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
+
+
 			r.BC.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
 
 
 
+			r.PC.add(3);
+
 			break;
 
-		case 0x10: 
+		case 0x2: 
 			//LD (BC),A
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.BC.read() ).write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x11: 
+		case 0x3: 
 			//INC BC
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x100: 
+		case 0x4: 
 			//INC B
 			//length 1
 			//time 4
 			//flags ZH0-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x101: 
+		case 0x5: 
 			//DEC B
 			//length 1
 			//time 4
 			//flags ZH1-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x110: 
+		case 0x6: 
 			//LD B,d8
 			//length 2
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.B.write( m.address( r.PC.read() + 1 ).read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x111: 
+		case 0x7: 
 			//RLCA
 			//length 1
 			//time 4
 			//flags 000C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(0); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x1000: 
+		case 0x8: 
 			//LD (a16),SP
 			//length 3
 			//time 20
 			//flags ----
 
-			m.address( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read().read() ).write( r.SP.read() );
+			currentOpcodeCycles = 20;
 
 
+			//**LD skipped, a8 or a16
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x1001: 
+		case 0x9: 
 			//ADD HL,BC
 			//length 1
 			//time 8
 			//flags -H0C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x1010: 
+		case 0x0A: 
 			//LD A,(BC)
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.A.write( m.address( r.BC.read() ).read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1011: 
+		case 0x0B: 
 			//DEC BC
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x1100: 
+		case 0x0C: 
 			//INC C
 			//length 1
 			//time 4
 			//flags ZH0-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x1101: 
+		case 0x0D: 
 			//DEC C
 			//length 1
 			//time 4
 			//flags ZH1-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x1110: 
+		case 0x0E: 
 			//LD C,d8
 			//length 2
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.C.write( m.address( r.PC.read() + 1 ).read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x1111: 
+		case 0x0F: 
 			//RRCA
 			//length 1
 			//time 4
 			//flags 000C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(0); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10000: 
+		case 0x10: 
 			//STOP 0
 			//length 2
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
 
+
+			//**command missing
+
+
+
+			r.PC.add(2);
 
 			break;
 
-		case 0x10001: 
+		case 0x11: 
 			//LD DE,d16
 			//length 3
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
+
+
 			r.DE.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
 
 
 
+			r.PC.add(3);
+
 			break;
 
-		case 0x10010: 
+		case 0x12: 
 			//LD (DE),A
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.DE.read() ).write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x10011: 
+		case 0x13: 
 			//INC DE
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x10100: 
+		case 0x14: 
 			//INC D
 			//length 1
 			//time 4
 			//flags ZH0-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10101: 
+		case 0x15: 
 			//DEC D
 			//length 1
 			//time 4
 			//flags ZH1-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10110: 
+		case 0x16: 
 			//LD D,d8
 			//length 2
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.D.write( m.address( r.PC.read() + 1 ).read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x10111: 
+		case 0x17: 
 			//RLA
 			//length 1
 			//time 4
 			//flags 000C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(0); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x11000: 
+		case 0x18: 
 			//JR r8
 			//length 2
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
 
+
+			//**command missing
+
+
+
+			r.PC.add(2);
 
 			break;
 
-		case 0x11001: 
+		case 0x19: 
 			//ADD HL,DE
 			//length 1
 			//time 8
 			//flags -H0C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x11010: 
+		case 0x1A: 
 			//LD A,(DE)
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.A.write( m.address( r.DE.read() ).read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x11011: 
+		case 0x1B: 
 			//DEC DE
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11100: 
+		case 0x1C: 
 			//INC E
 			//length 1
 			//time 4
 			//flags ZH0-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x11101: 
+		case 0x1D: 
 			//DEC E
 			//length 1
 			//time 4
 			//flags ZH1-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x11110: 
+		case 0x1E: 
 			//LD E,d8
 			//length 2
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.E.write( m.address( r.PC.read() + 1 ).read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x11111: 
+		case 0x1F: 
 			//RRA
 			//length 1
 			//time 4
 			//flags 000C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(0); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x100000: 
+		case 0x20: 
 			//JR NZ,r8
 			//length 2
 			//time 12/8
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(2);
 
 			break;
 
-		case 0x100001: 
+		case 0x21: 
 			//LD HL,d16
 			//length 3
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
+
+
 			r.HL.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
 
 
 
+			r.PC.add(3);
+
 			break;
 
-		case 0x100010: 
+		case 0x22: 
 			//LD (HL+),A
 			//length 1
 			//time 8
 			//flags ----
 
-			
+			currentOpcodeCycles = 8;
 
 
+			//**LD skipped, + or -
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x100011: 
+		case 0x23: 
 			//INC HL
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x100100: 
+		case 0x24: 
 			//INC H
 			//length 1
 			//time 4
 			//flags ZH0-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x100101: 
+		case 0x25: 
 			//DEC H
 			//length 1
 			//time 4
 			//flags ZH1-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x100110: 
+		case 0x26: 
 			//LD H,d8
 			//length 2
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.H.write( m.address( r.PC.read() + 1 ).read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x100111: 
+		case 0x27: 
 			//DAA
 			//length 1
 			//time 4
 			//flags Z0-C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setHF(0); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x101000: 
+		case 0x28: 
 			//JR Z,r8
 			//length 2
 			//time 12/8
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(2);
 
 			break;
 
-		case 0x101001: 
+		case 0x29: 
 			//ADD HL,HL
 			//length 1
 			//time 8
 			//flags -H0C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x101010: 
+		case 0x2A: 
 			//LD A,(HL+)
 			//length 1
 			//time 8
 			//flags ----
 
-			
+			currentOpcodeCycles = 8;
 
 
+			//**LD skipped, + or -
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x101011: 
+		case 0x2B: 
 			//DEC HL
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x101100: 
+		case 0x2C: 
 			//INC L
 			//length 1
 			//time 4
 			//flags ZH0-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x101101: 
+		case 0x2D: 
 			//DEC L
 			//length 1
 			//time 4
 			//flags ZH1-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x101110: 
+		case 0x2E: 
 			//LD L,d8
 			//length 2
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.L.write( m.address( r.PC.read() + 1 ).read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x101111: 
+		case 0x2F: 
 			//CPL
 			//length 1
 			//time 4
 			//flags -11-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setNF(1); 
 			r.setHF(1); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x110000: 
+		case 0x30: 
 			//JR NC,r8
 			//length 2
 			//time 12/8
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(2);
 
 			break;
 
-		case 0x110001: 
+		case 0x31: 
 			//LD SP,d16
 			//length 3
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
+
+
 			r.SP.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
 
 
 
+			r.PC.add(3);
+
 			break;
 
-		case 0x110010: 
+		case 0x32: 
 			//LD (HL-),A
 			//length 1
 			//time 8
 			//flags ----
 
-			
+			currentOpcodeCycles = 8;
 
 
+			//**LD skipped, + or -
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x110011: 
+		case 0x33: 
 			//INC SP
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x110100: 
+		case 0x34: 
 			//INC (HL)
 			//length 1
 			//time 12
 			//flags ZH0-
 
+			currentOpcodeCycles = 12;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x110101: 
+		case 0x35: 
 			//DEC (HL)
 			//length 1
 			//time 12
 			//flags ZH1-
 
+			currentOpcodeCycles = 12;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x110110: 
+		case 0x36: 
 			//LD (HL),d8
 			//length 2
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
+
+
 			m.address( r.HL.read() ).write( m.address( r.PC.read() + 1 ).read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x110111: 
+		case 0x37: 
 			//SCF
 			//length 1
 			//time 4
 			//flags -001
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(1); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x111000: 
+		case 0x38: 
 			//JR C,r8
 			//length 2
 			//time 12/8
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(2);
 
 			break;
 
-		case 0x111001: 
+		case 0x39: 
 			//ADD HL,SP
 			//length 1
 			//time 8
 			//flags -H0C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x111010: 
+		case 0x3A: 
 			//LD A,(HL-)
 			//length 1
 			//time 8
 			//flags ----
 
-			
+			currentOpcodeCycles = 8;
 
 
+			//**LD skipped, + or -
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x111011: 
+		case 0x3B: 
 			//DEC SP
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x111100: 
+		case 0x3C: 
 			//INC A
 			//length 1
 			//time 4
 			//flags ZH0-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x111101: 
+		case 0x3D: 
 			//DEC A
 			//length 1
 			//time 4
 			//flags ZH1-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x111110: 
+		case 0x3E: 
 			//LD A,d8
 			//length 2
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.A.write( m.address( r.PC.read() + 1 ).read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x111111: 
+		case 0x3F: 
 			//CCF
 			//length 1
 			//time 4
 			//flags -00C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x1000000: 
+		case 0x40: 
 			//LD B,B
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.B.write( r.B.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1000001: 
+		case 0x41: 
 			//LD B,C
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.B.write( r.C.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1000010: 
+		case 0x42: 
 			//LD B,D
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.B.write( r.D.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1000011: 
+		case 0x43: 
 			//LD B,E
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.B.write( r.E.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1000100: 
+		case 0x44: 
 			//LD B,H
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.B.write( r.H.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1000101: 
+		case 0x45: 
 			//LD B,L
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.B.write( r.L.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1000110: 
+		case 0x46: 
 			//LD B,(HL)
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.B.write( m.address( r.HL.read() ).read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1000111: 
+		case 0x47: 
 			//LD B,A
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.B.write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1001000: 
+		case 0x48: 
 			//LD C,B
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.C.write( r.B.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1001001: 
+		case 0x49: 
 			//LD C,C
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.C.write( r.C.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1001010: 
+		case 0x4A: 
 			//LD C,D
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.C.write( r.D.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1001011: 
+		case 0x4B: 
 			//LD C,E
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.C.write( r.E.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1001100: 
+		case 0x4C: 
 			//LD C,H
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.C.write( r.H.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1001101: 
+		case 0x4D: 
 			//LD C,L
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.C.write( r.L.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1001110: 
+		case 0x4E: 
 			//LD C,(HL)
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.C.write( m.address( r.HL.read() ).read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1001111: 
+		case 0x4F: 
 			//LD C,A
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.C.write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1010000: 
+		case 0x50: 
 			//LD D,B
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.D.write( r.B.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1010001: 
+		case 0x51: 
 			//LD D,C
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.D.write( r.C.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1010010: 
+		case 0x52: 
 			//LD D,D
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.D.write( r.D.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1010011: 
+		case 0x53: 
 			//LD D,E
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.D.write( r.E.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1010100: 
+		case 0x54: 
 			//LD D,H
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.D.write( r.H.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1010101: 
+		case 0x55: 
 			//LD D,L
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.D.write( r.L.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1010110: 
+		case 0x56: 
 			//LD D,(HL)
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.D.write( m.address( r.HL.read() ).read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1010111: 
+		case 0x57: 
 			//LD D,A
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.D.write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1011000: 
+		case 0x58: 
 			//LD E,B
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.E.write( r.B.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1011001: 
+		case 0x59: 
 			//LD E,C
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.E.write( r.C.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1011010: 
+		case 0x5A: 
 			//LD E,D
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.E.write( r.D.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1011011: 
+		case 0x5B: 
 			//LD E,E
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.E.write( r.E.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1011100: 
+		case 0x5C: 
 			//LD E,H
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.E.write( r.H.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1011101: 
+		case 0x5D: 
 			//LD E,L
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.E.write( r.L.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1011110: 
+		case 0x5E: 
 			//LD E,(HL)
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.E.write( m.address( r.HL.read() ).read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1011111: 
+		case 0x5F: 
 			//LD E,A
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.E.write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1100000: 
+		case 0x60: 
 			//LD H,B
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.H.write( r.B.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1100001: 
+		case 0x61: 
 			//LD H,C
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.H.write( r.C.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1100010: 
+		case 0x62: 
 			//LD H,D
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.H.write( r.D.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1100011: 
+		case 0x63: 
 			//LD H,E
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.H.write( r.E.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1100100: 
+		case 0x64: 
 			//LD H,H
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.H.write( r.H.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1100101: 
+		case 0x65: 
 			//LD H,L
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.H.write( r.L.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1100110: 
+		case 0x66: 
 			//LD H,(HL)
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.H.write( m.address( r.HL.read() ).read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1100111: 
+		case 0x67: 
 			//LD H,A
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.H.write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1101000: 
+		case 0x68: 
 			//LD L,B
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.L.write( r.B.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1101001: 
+		case 0x69: 
 			//LD L,C
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.L.write( r.C.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1101010: 
+		case 0x6A: 
 			//LD L,D
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.L.write( r.D.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1101011: 
+		case 0x6B: 
 			//LD L,E
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.L.write( r.E.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1101100: 
+		case 0x6C: 
 			//LD L,H
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.L.write( r.H.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1101101: 
+		case 0x6D: 
 			//LD L,L
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.L.write( r.L.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1101110: 
+		case 0x6E: 
 			//LD L,(HL)
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.L.write( m.address( r.HL.read() ).read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1101111: 
+		case 0x6F: 
 			//LD L,A
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.L.write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1110000: 
+		case 0x70: 
 			//LD (HL),B
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.HL.read() ).write( r.B.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1110001: 
+		case 0x71: 
 			//LD (HL),C
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.HL.read() ).write( r.C.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1110010: 
+		case 0x72: 
 			//LD (HL),D
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.HL.read() ).write( r.D.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1110011: 
+		case 0x73: 
 			//LD (HL),E
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.HL.read() ).write( r.E.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1110100: 
+		case 0x74: 
 			//LD (HL),H
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.HL.read() ).write( r.H.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1110101: 
+		case 0x75: 
 			//LD (HL),L
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.HL.read() ).write( r.L.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1110110: 
+		case 0x76: 
 			//HALT
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x1110111: 
+		case 0x77: 
 			//LD (HL),A
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.HL.read() ).write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1111000: 
+		case 0x78: 
 			//LD A,B
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.A.write( r.B.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1111001: 
+		case 0x79: 
 			//LD A,C
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.A.write( r.C.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1111010: 
+		case 0x7A: 
 			//LD A,D
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.A.write( r.D.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1111011: 
+		case 0x7B: 
 			//LD A,E
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.A.write( r.E.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1111100: 
+		case 0x7C: 
 			//LD A,H
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.A.write( r.H.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1111101: 
+		case 0x7D: 
 			//LD A,L
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.A.write( r.L.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1111110: 
+		case 0x7E: 
 			//LD A,(HL)
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.A.write( m.address( r.HL.read() ).read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1111111: 
+		case 0x7F: 
 			//LD A,A
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.A.write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x10000000: 
+		case 0x80: 
 			//ADD A,B
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10000001: 
+		case 0x81: 
 			//ADD A,C
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10000010: 
+		case 0x82: 
 			//ADD A,D
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10000011: 
+		case 0x83: 
 			//ADD A,E
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10000100: 
+		case 0x84: 
 			//ADD A,H
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10000101: 
+		case 0x85: 
 			//ADD A,L
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10000110: 
+		case 0x86: 
 			//ADD A,(HL)
 			//length 1
 			//time 8
 			//flags ZH0C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10000111: 
+		case 0x87: 
 			//ADD A,A
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10001000: 
+		case 0x88: 
 			//ADC A,B
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10001001: 
+		case 0x89: 
 			//ADC A,C
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10001010: 
+		case 0x8A: 
 			//ADC A,D
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10001011: 
+		case 0x8B: 
 			//ADC A,E
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10001100: 
+		case 0x8C: 
 			//ADC A,H
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10001101: 
+		case 0x8D: 
 			//ADC A,L
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10001110: 
+		case 0x8E: 
 			//ADC A,(HL)
 			//length 1
 			//time 8
 			//flags ZH0C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10001111: 
+		case 0x8F: 
 			//ADC A,A
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10010000: 
+		case 0x90: 
 			//SUB B
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10010001: 
+		case 0x91: 
 			//SUB C
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10010010: 
+		case 0x92: 
 			//SUB D
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10010011: 
+		case 0x93: 
 			//SUB E
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10010100: 
+		case 0x94: 
 			//SUB H
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10010101: 
+		case 0x95: 
 			//SUB L
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10010110: 
+		case 0x96: 
 			//SUB (HL)
 			//length 1
 			//time 8
 			//flags ZH1C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10010111: 
+		case 0x97: 
 			//SUB A
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10011000: 
+		case 0x98: 
 			//SBC A,B
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10011001: 
+		case 0x99: 
 			//SBC A,C
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10011010: 
+		case 0x9A: 
 			//SBC A,D
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10011011: 
+		case 0x9B: 
 			//SBC A,E
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10011100: 
+		case 0x9C: 
 			//SBC A,H
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10011101: 
+		case 0x9D: 
 			//SBC A,L
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10011110: 
+		case 0x9E: 
 			//SBC A,(HL)
 			//length 1
 			//time 8
 			//flags ZH1C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10011111: 
+		case 0x9F: 
 			//SBC A,A
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10100000: 
+		case 0xA0: 
 			//AND B
 			//length 1
 			//time 4
 			//flags Z100
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(1); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10100001: 
+		case 0xA1: 
 			//AND C
 			//length 1
 			//time 4
 			//flags Z100
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(1); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10100010: 
+		case 0xA2: 
 			//AND D
 			//length 1
 			//time 4
 			//flags Z100
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(1); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10100011: 
+		case 0xA3: 
 			//AND E
 			//length 1
 			//time 4
 			//flags Z100
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(1); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10100100: 
+		case 0xA4: 
 			//AND H
 			//length 1
 			//time 4
 			//flags Z100
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(1); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10100101: 
+		case 0xA5: 
 			//AND L
 			//length 1
 			//time 4
 			//flags Z100
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(1); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10100110: 
+		case 0xA6: 
 			//AND (HL)
 			//length 1
 			//time 8
 			//flags Z100
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(1); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10100111: 
+		case 0xA7: 
 			//AND A
 			//length 1
 			//time 4
 			//flags Z100
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(1); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10101000: 
+		case 0xA8: 
 			//XOR B
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10101001: 
+		case 0xA9: 
 			//XOR C
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10101010: 
+		case 0xAA: 
 			//XOR D
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10101011: 
+		case 0xAB: 
 			//XOR E
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10101100: 
+		case 0xAC: 
 			//XOR H
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10101101: 
+		case 0xAD: 
 			//XOR L
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10101110: 
+		case 0xAE: 
 			//XOR (HL)
 			//length 1
 			//time 8
 			//flags Z000
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10101111: 
+		case 0xAF: 
 			//XOR A
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10110000: 
+		case 0xB0: 
 			//OR B
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10110001: 
+		case 0xB1: 
 			//OR C
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10110010: 
+		case 0xB2: 
 			//OR D
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10110011: 
+		case 0xB3: 
 			//OR E
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10110100: 
+		case 0xB4: 
 			//OR H
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10110101: 
+		case 0xB5: 
 			//OR L
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10110110: 
+		case 0xB6: 
 			//OR (HL)
 			//length 1
 			//time 8
 			//flags Z000
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10110111: 
+		case 0xB7: 
 			//OR A
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10111000: 
+		case 0xB8: 
 			//CP B
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10111001: 
+		case 0xB9: 
 			//CP C
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10111010: 
+		case 0xBA: 
 			//CP D
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10111011: 
+		case 0xBB: 
 			//CP E
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10111100: 
+		case 0xBC: 
 			//CP H
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10111101: 
+		case 0xBD: 
 			//CP L
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10111110: 
+		case 0xBE: 
 			//CP (HL)
 			//length 1
 			//time 8
 			//flags ZH1C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10111111: 
+		case 0xBF: 
 			//CP A
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x11000000: 
+		case 0xC0: 
 			//RET NZ
 			//length 1
 			//time 20/8
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11000001: 
+		case 0xC1: 
 			//POP BC
 			//length 1
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11000010: 
+		case 0xC2: 
 			//JP NZ,a16
 			//length 3
 			//time 16/12
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11000011: 
+		case 0xC3: 
 			//JP a16
 			//length 3
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11000100: 
+		case 0xC4: 
 			//CALL NZ,a16
 			//length 3
 			//time 24/12
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11000101: 
+		case 0xC5: 
 			//PUSH BC
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11000110: 
+		case 0xC6: 
 			//ADD A,d8
 			//length 2
 			//time 8
 			//flags ZH0C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11000111: 
+		case 0xC7: 
 			//RST 00H
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11001000: 
+		case 0xC8: 
 			//RET Z
 			//length 1
 			//time 20/8
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11001001: 
+		case 0xC9: 
 			//RET
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11001010: 
+		case 0xCA: 
 			//JP Z,a16
 			//length 3
 			//time 16/12
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11001011: 
+		case 0xCB: 
 			//PREFIX CB
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11001100: 
+		case 0xCC: 
 			//CALL Z,a16
 			//length 3
 			//time 24/12
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11001101: 
+		case 0xCD: 
 			//CALL a16
 			//length 3
 			//time 24
 			//flags ----
 
+			currentOpcodeCycles = 24;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11001110: 
+		case 0xCE: 
 			//ADC A,d8
 			//length 2
 			//time 8
 			//flags ZH0C
+
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
 
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11001111: 
+		case 0xCF: 
 			//RST 08H
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11010000: 
+		case 0xD0: 
 			//RET NC
 			//length 1
 			//time 20/8
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11010001: 
+		case 0xD1: 
 			//POP DE
 			//length 1
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11010010: 
+		case 0xD2: 
 			//JP NC,a16
 			//length 3
 			//time 16/12
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11010100: 
+		case 0xD4: 
 			//CALL NC,a16
 			//length 3
 			//time 24/12
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11010101: 
+		case 0xD5: 
 			//PUSH DE
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11010110: 
+		case 0xD6: 
 			//SUB d8
 			//length 2
 			//time 8
 			//flags ZH1C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11010111: 
+		case 0xD7: 
 			//RST 10H
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11011000: 
+		case 0xD8: 
 			//RET C
 			//length 1
 			//time 20/8
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11011001: 
+		case 0xD9: 
 			//RETI
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11011010: 
+		case 0xDA: 
 			//JP C,a16
 			//length 3
 			//time 16/12
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11011100: 
+		case 0xDC: 
 			//CALL C,a16
 			//length 3
 			//time 24/12
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11011110: 
+		case 0xDE: 
 			//SBC A,d8
 			//length 2
 			//time 8
 			//flags ZH1C
+
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
 
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11011111: 
+		case 0xDF: 
 			//RST 18H
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11100000: 
+		case 0xE0: 
 			//LDH (a8),A
 			//length 2
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
 
+
+			//**command missing
+
+
+
+			r.PC.add(2);
 
 			break;
 
-		case 0x11100001: 
+		case 0xE1: 
 			//POP HL
 			//length 1
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11100010: 
+		case 0xE2: 
 			//LD (C),A
 			//length 2
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.C.read() ).write( r.A.read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x11100101: 
+		case 0xE5: 
 			//PUSH HL
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11100110: 
+		case 0xE6: 
 			//AND d8
 			//length 2
 			//time 8
 			//flags Z100
+
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
 
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(1); 
 			r.setCF(0); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11100111: 
+		case 0xE7: 
 			//RST 20H
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11101000: 
+		case 0xE8: 
 			//ADD SP,r8
 			//length 2
 			//time 16
 			//flags 0H0C
+
+			currentOpcodeCycles = 16;
+
+
+			//**command missing
+
 
 			r.setZF(0); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11101001: 
+		case 0xE9: 
 			//JP (HL)
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11101010: 
+		case 0xEA: 
 			//LD (a16),A
 			//length 3
 			//time 16
 			//flags ----
 
-			m.address( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read().read() ).write( r.A.read() );
+			currentOpcodeCycles = 16;
 
 
+			//**LD skipped, a8 or a16
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11101110: 
+		case 0xEE: 
 			//XOR d8
 			//length 2
 			//time 8
 			//flags Z000
+
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
 
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11101111: 
+		case 0xEF: 
 			//RST 28H
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11110000: 
+		case 0xF0: 
 			//LDH A,(a8)
 			//length 2
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
 
+
+			//**command missing
+
+
+
+			r.PC.add(2);
 
 			break;
 
-		case 0x11110001: 
+		case 0xF1: 
 			//POP AF
 			//length 1
 			//time 12
 			//flags ZHNC
+
+			currentOpcodeCycles = 12;
+
+
+			//**command missing
+
 
 			r.setZF(Z); 
 			r.setNF(N); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x11110010: 
+		case 0xF2: 
 			//LD A,(C)
 			//length 2
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.A.write( m.address( r.C.read() ).read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x11110011: 
+		case 0xF3: 
 			//DI
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11110101: 
+		case 0xF5: 
 			//PUSH AF
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11110110: 
+		case 0xF6: 
 			//OR d8
 			//length 2
 			//time 8
 			//flags Z000
+
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
 
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11110111: 
+		case 0xF7: 
 			//RST 30H
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11111000: 
+		case 0xF8: 
 			//LD HL,SP+r8
 			//length 2
 			//time 12
 			//flags 0H0C
 
-			
+			currentOpcodeCycles = 12;
+
+
+			//**LD skipped, + or -
+
 
 			r.setZF(0); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11111001: 
+		case 0xF9: 
 			//LD SP,HL
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.SP.write( r.HL.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x11111010: 
+		case 0xFA: 
 			//LD A,(a16)
 			//length 3
 			//time 16
 			//flags ----
 
-			r.A.write( m.address( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read().read() ).read() );
+			currentOpcodeCycles = 16;
 
 
+			//**LD skipped, a8 or a16
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11111011: 
+		case 0xFB: 
 			//EI
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11111110: 
+		case 0xFE: 
 			//CP d8
 			//length 2
 			//time 8
 			//flags ZH1C
+
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
 
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11111111: 
+		case 0xFF: 
 			//RST 38H
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
@@ -3033,7 +4568,14 @@ public void cBTable (int opcode) {
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
@@ -3043,3004 +4585,4532 @@ public void cBTable (int opcode) {
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
+
+
 			r.BC.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
 
 
 
+			r.PC.add(3);
+
 			break;
 
-		case 0x10: 
+		case 0x2: 
 			//LD (BC),A
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.BC.read() ).write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x11: 
+		case 0x3: 
 			//INC BC
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x100: 
+		case 0x4: 
 			//INC B
 			//length 1
 			//time 4
 			//flags ZH0-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x101: 
+		case 0x5: 
 			//DEC B
 			//length 1
 			//time 4
 			//flags ZH1-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x110: 
+		case 0x6: 
 			//LD B,d8
 			//length 2
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.B.write( m.address( r.PC.read() + 1 ).read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x111: 
+		case 0x7: 
 			//RLCA
 			//length 1
 			//time 4
 			//flags 000C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(0); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x1000: 
+		case 0x8: 
 			//LD (a16),SP
 			//length 3
 			//time 20
 			//flags ----
 
-			m.address( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read().read() ).write( r.SP.read() );
+			currentOpcodeCycles = 20;
 
 
+			//**LD skipped, a8 or a16
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x1001: 
+		case 0x9: 
 			//ADD HL,BC
 			//length 1
 			//time 8
 			//flags -H0C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x1010: 
+		case 0x0A: 
 			//LD A,(BC)
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.A.write( m.address( r.BC.read() ).read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1011: 
+		case 0x0B: 
 			//DEC BC
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x1100: 
+		case 0x0C: 
 			//INC C
 			//length 1
 			//time 4
 			//flags ZH0-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x1101: 
+		case 0x0D: 
 			//DEC C
 			//length 1
 			//time 4
 			//flags ZH1-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x1110: 
+		case 0x0E: 
 			//LD C,d8
 			//length 2
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.C.write( m.address( r.PC.read() + 1 ).read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x1111: 
+		case 0x0F: 
 			//RRCA
 			//length 1
 			//time 4
 			//flags 000C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(0); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10000: 
+		case 0x10: 
 			//STOP 0
 			//length 2
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
 
+
+			//**command missing
+
+
+
+			r.PC.add(2);
 
 			break;
 
-		case 0x10001: 
+		case 0x11: 
 			//LD DE,d16
 			//length 3
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
+
+
 			r.DE.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
 
 
 
+			r.PC.add(3);
+
 			break;
 
-		case 0x10010: 
+		case 0x12: 
 			//LD (DE),A
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.DE.read() ).write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x10011: 
+		case 0x13: 
 			//INC DE
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x10100: 
+		case 0x14: 
 			//INC D
 			//length 1
 			//time 4
 			//flags ZH0-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10101: 
+		case 0x15: 
 			//DEC D
 			//length 1
 			//time 4
 			//flags ZH1-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10110: 
+		case 0x16: 
 			//LD D,d8
 			//length 2
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.D.write( m.address( r.PC.read() + 1 ).read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x10111: 
+		case 0x17: 
 			//RLA
 			//length 1
 			//time 4
 			//flags 000C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(0); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x11000: 
+		case 0x18: 
 			//JR r8
 			//length 2
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
 
+
+			//**command missing
+
+
+
+			r.PC.add(2);
 
 			break;
 
-		case 0x11001: 
+		case 0x19: 
 			//ADD HL,DE
 			//length 1
 			//time 8
 			//flags -H0C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x11010: 
+		case 0x1A: 
 			//LD A,(DE)
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.A.write( m.address( r.DE.read() ).read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x11011: 
+		case 0x1B: 
 			//DEC DE
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11100: 
+		case 0x1C: 
 			//INC E
 			//length 1
 			//time 4
 			//flags ZH0-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x11101: 
+		case 0x1D: 
 			//DEC E
 			//length 1
 			//time 4
 			//flags ZH1-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x11110: 
+		case 0x1E: 
 			//LD E,d8
 			//length 2
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.E.write( m.address( r.PC.read() + 1 ).read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x11111: 
+		case 0x1F: 
 			//RRA
 			//length 1
 			//time 4
 			//flags 000C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(0); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x100000: 
+		case 0x20: 
 			//JR NZ,r8
 			//length 2
 			//time 12/8
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(2);
 
 			break;
 
-		case 0x100001: 
+		case 0x21: 
 			//LD HL,d16
 			//length 3
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
+
+
 			r.HL.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
 
 
 
+			r.PC.add(3);
+
 			break;
 
-		case 0x100010: 
+		case 0x22: 
 			//LD (HL+),A
 			//length 1
 			//time 8
 			//flags ----
 
-			
+			currentOpcodeCycles = 8;
 
 
+			//**LD skipped, + or -
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x100011: 
+		case 0x23: 
 			//INC HL
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x100100: 
+		case 0x24: 
 			//INC H
 			//length 1
 			//time 4
 			//flags ZH0-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x100101: 
+		case 0x25: 
 			//DEC H
 			//length 1
 			//time 4
 			//flags ZH1-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x100110: 
+		case 0x26: 
 			//LD H,d8
 			//length 2
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.H.write( m.address( r.PC.read() + 1 ).read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x100111: 
+		case 0x27: 
 			//DAA
 			//length 1
 			//time 4
 			//flags Z0-C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setHF(0); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x101000: 
+		case 0x28: 
 			//JR Z,r8
 			//length 2
 			//time 12/8
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(2);
 
 			break;
 
-		case 0x101001: 
+		case 0x29: 
 			//ADD HL,HL
 			//length 1
 			//time 8
 			//flags -H0C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x101010: 
+		case 0x2A: 
 			//LD A,(HL+)
 			//length 1
 			//time 8
 			//flags ----
 
-			
+			currentOpcodeCycles = 8;
 
 
+			//**LD skipped, + or -
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x101011: 
+		case 0x2B: 
 			//DEC HL
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x101100: 
+		case 0x2C: 
 			//INC L
 			//length 1
 			//time 4
 			//flags ZH0-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x101101: 
+		case 0x2D: 
 			//DEC L
 			//length 1
 			//time 4
 			//flags ZH1-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x101110: 
+		case 0x2E: 
 			//LD L,d8
 			//length 2
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.L.write( m.address( r.PC.read() + 1 ).read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x101111: 
+		case 0x2F: 
 			//CPL
 			//length 1
 			//time 4
 			//flags -11-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setNF(1); 
 			r.setHF(1); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x110000: 
+		case 0x30: 
 			//JR NC,r8
 			//length 2
 			//time 12/8
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(2);
 
 			break;
 
-		case 0x110001: 
+		case 0x31: 
 			//LD SP,d16
 			//length 3
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
+
+
 			r.SP.write( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read() );
 
 
 
+			r.PC.add(3);
+
 			break;
 
-		case 0x110010: 
+		case 0x32: 
 			//LD (HL-),A
 			//length 1
 			//time 8
 			//flags ----
 
-			
+			currentOpcodeCycles = 8;
 
 
+			//**LD skipped, + or -
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x110011: 
+		case 0x33: 
 			//INC SP
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x110100: 
+		case 0x34: 
 			//INC (HL)
 			//length 1
 			//time 12
 			//flags ZH0-
 
+			currentOpcodeCycles = 12;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x110101: 
+		case 0x35: 
 			//DEC (HL)
 			//length 1
 			//time 12
 			//flags ZH1-
 
+			currentOpcodeCycles = 12;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x110110: 
+		case 0x36: 
 			//LD (HL),d8
 			//length 2
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
+
+
 			m.address( r.HL.read() ).write( m.address( r.PC.read() + 1 ).read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x110111: 
+		case 0x37: 
 			//SCF
 			//length 1
 			//time 4
 			//flags -001
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(1); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x111000: 
+		case 0x38: 
 			//JR C,r8
 			//length 2
 			//time 12/8
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(2);
 
 			break;
 
-		case 0x111001: 
+		case 0x39: 
 			//ADD HL,SP
 			//length 1
 			//time 8
 			//flags -H0C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x111010: 
+		case 0x3A: 
 			//LD A,(HL-)
 			//length 1
 			//time 8
 			//flags ----
 
-			
+			currentOpcodeCycles = 8;
 
 
+			//**LD skipped, + or -
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x111011: 
+		case 0x3B: 
 			//DEC SP
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x111100: 
+		case 0x3C: 
 			//INC A
 			//length 1
 			//time 4
 			//flags ZH0-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x111101: 
+		case 0x3D: 
 			//DEC A
 			//length 1
 			//time 4
 			//flags ZH1-
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x111110: 
+		case 0x3E: 
 			//LD A,d8
 			//length 2
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.A.write( m.address( r.PC.read() + 1 ).read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x111111: 
+		case 0x3F: 
 			//CCF
 			//length 1
 			//time 4
 			//flags -00C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x1000000: 
+		case 0x40: 
 			//LD B,B
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.B.write( r.B.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1000001: 
+		case 0x41: 
 			//LD B,C
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.B.write( r.C.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1000010: 
+		case 0x42: 
 			//LD B,D
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.B.write( r.D.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1000011: 
+		case 0x43: 
 			//LD B,E
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.B.write( r.E.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1000100: 
+		case 0x44: 
 			//LD B,H
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.B.write( r.H.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1000101: 
+		case 0x45: 
 			//LD B,L
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.B.write( r.L.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1000110: 
+		case 0x46: 
 			//LD B,(HL)
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.B.write( m.address( r.HL.read() ).read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1000111: 
+		case 0x47: 
 			//LD B,A
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.B.write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1001000: 
+		case 0x48: 
 			//LD C,B
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.C.write( r.B.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1001001: 
+		case 0x49: 
 			//LD C,C
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.C.write( r.C.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1001010: 
+		case 0x4A: 
 			//LD C,D
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.C.write( r.D.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1001011: 
+		case 0x4B: 
 			//LD C,E
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.C.write( r.E.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1001100: 
+		case 0x4C: 
 			//LD C,H
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.C.write( r.H.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1001101: 
+		case 0x4D: 
 			//LD C,L
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.C.write( r.L.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1001110: 
+		case 0x4E: 
 			//LD C,(HL)
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.C.write( m.address( r.HL.read() ).read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1001111: 
+		case 0x4F: 
 			//LD C,A
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.C.write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1010000: 
+		case 0x50: 
 			//LD D,B
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.D.write( r.B.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1010001: 
+		case 0x51: 
 			//LD D,C
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.D.write( r.C.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1010010: 
+		case 0x52: 
 			//LD D,D
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.D.write( r.D.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1010011: 
+		case 0x53: 
 			//LD D,E
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.D.write( r.E.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1010100: 
+		case 0x54: 
 			//LD D,H
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.D.write( r.H.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1010101: 
+		case 0x55: 
 			//LD D,L
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.D.write( r.L.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1010110: 
+		case 0x56: 
 			//LD D,(HL)
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.D.write( m.address( r.HL.read() ).read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1010111: 
+		case 0x57: 
 			//LD D,A
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.D.write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1011000: 
+		case 0x58: 
 			//LD E,B
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.E.write( r.B.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1011001: 
+		case 0x59: 
 			//LD E,C
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.E.write( r.C.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1011010: 
+		case 0x5A: 
 			//LD E,D
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.E.write( r.D.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1011011: 
+		case 0x5B: 
 			//LD E,E
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.E.write( r.E.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1011100: 
+		case 0x5C: 
 			//LD E,H
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.E.write( r.H.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1011101: 
+		case 0x5D: 
 			//LD E,L
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.E.write( r.L.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1011110: 
+		case 0x5E: 
 			//LD E,(HL)
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.E.write( m.address( r.HL.read() ).read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1011111: 
+		case 0x5F: 
 			//LD E,A
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.E.write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1100000: 
+		case 0x60: 
 			//LD H,B
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.H.write( r.B.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1100001: 
+		case 0x61: 
 			//LD H,C
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.H.write( r.C.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1100010: 
+		case 0x62: 
 			//LD H,D
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.H.write( r.D.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1100011: 
+		case 0x63: 
 			//LD H,E
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.H.write( r.E.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1100100: 
+		case 0x64: 
 			//LD H,H
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.H.write( r.H.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1100101: 
+		case 0x65: 
 			//LD H,L
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.H.write( r.L.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1100110: 
+		case 0x66: 
 			//LD H,(HL)
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.H.write( m.address( r.HL.read() ).read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1100111: 
+		case 0x67: 
 			//LD H,A
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.H.write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1101000: 
+		case 0x68: 
 			//LD L,B
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.L.write( r.B.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1101001: 
+		case 0x69: 
 			//LD L,C
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.L.write( r.C.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1101010: 
+		case 0x6A: 
 			//LD L,D
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.L.write( r.D.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1101011: 
+		case 0x6B: 
 			//LD L,E
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.L.write( r.E.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1101100: 
+		case 0x6C: 
 			//LD L,H
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.L.write( r.H.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1101101: 
+		case 0x6D: 
 			//LD L,L
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.L.write( r.L.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1101110: 
+		case 0x6E: 
 			//LD L,(HL)
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.L.write( m.address( r.HL.read() ).read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1101111: 
+		case 0x6F: 
 			//LD L,A
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.L.write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1110000: 
+		case 0x70: 
 			//LD (HL),B
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.HL.read() ).write( r.B.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1110001: 
+		case 0x71: 
 			//LD (HL),C
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.HL.read() ).write( r.C.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1110010: 
+		case 0x72: 
 			//LD (HL),D
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.HL.read() ).write( r.D.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1110011: 
+		case 0x73: 
 			//LD (HL),E
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.HL.read() ).write( r.E.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1110100: 
+		case 0x74: 
 			//LD (HL),H
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.HL.read() ).write( r.H.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1110101: 
+		case 0x75: 
 			//LD (HL),L
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.HL.read() ).write( r.L.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1110110: 
+		case 0x76: 
 			//HALT
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x1110111: 
+		case 0x77: 
 			//LD (HL),A
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.HL.read() ).write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1111000: 
+		case 0x78: 
 			//LD A,B
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.A.write( r.B.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1111001: 
+		case 0x79: 
 			//LD A,C
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.A.write( r.C.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1111010: 
+		case 0x7A: 
 			//LD A,D
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.A.write( r.D.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1111011: 
+		case 0x7B: 
 			//LD A,E
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.A.write( r.E.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1111100: 
+		case 0x7C: 
 			//LD A,H
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.A.write( r.H.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1111101: 
+		case 0x7D: 
 			//LD A,L
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.A.write( r.L.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1111110: 
+		case 0x7E: 
 			//LD A,(HL)
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.A.write( m.address( r.HL.read() ).read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x1111111: 
+		case 0x7F: 
 			//LD A,A
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
+
+
 			r.A.write( r.A.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x10000000: 
+		case 0x80: 
 			//ADD A,B
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10000001: 
+		case 0x81: 
 			//ADD A,C
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10000010: 
+		case 0x82: 
 			//ADD A,D
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10000011: 
+		case 0x83: 
 			//ADD A,E
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10000100: 
+		case 0x84: 
 			//ADD A,H
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10000101: 
+		case 0x85: 
 			//ADD A,L
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10000110: 
+		case 0x86: 
 			//ADD A,(HL)
 			//length 1
 			//time 8
 			//flags ZH0C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10000111: 
+		case 0x87: 
 			//ADD A,A
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10001000: 
+		case 0x88: 
 			//ADC A,B
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10001001: 
+		case 0x89: 
 			//ADC A,C
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10001010: 
+		case 0x8A: 
 			//ADC A,D
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10001011: 
+		case 0x8B: 
 			//ADC A,E
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10001100: 
+		case 0x8C: 
 			//ADC A,H
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10001101: 
+		case 0x8D: 
 			//ADC A,L
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10001110: 
+		case 0x8E: 
 			//ADC A,(HL)
 			//length 1
 			//time 8
 			//flags ZH0C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10001111: 
+		case 0x8F: 
 			//ADC A,A
 			//length 1
 			//time 4
 			//flags ZH0C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10010000: 
+		case 0x90: 
 			//SUB B
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10010001: 
+		case 0x91: 
 			//SUB C
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10010010: 
+		case 0x92: 
 			//SUB D
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10010011: 
+		case 0x93: 
 			//SUB E
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10010100: 
+		case 0x94: 
 			//SUB H
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10010101: 
+		case 0x95: 
 			//SUB L
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10010110: 
+		case 0x96: 
 			//SUB (HL)
 			//length 1
 			//time 8
 			//flags ZH1C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10010111: 
+		case 0x97: 
 			//SUB A
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10011000: 
+		case 0x98: 
 			//SBC A,B
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10011001: 
+		case 0x99: 
 			//SBC A,C
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10011010: 
+		case 0x9A: 
 			//SBC A,D
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10011011: 
+		case 0x9B: 
 			//SBC A,E
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10011100: 
+		case 0x9C: 
 			//SBC A,H
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10011101: 
+		case 0x9D: 
 			//SBC A,L
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10011110: 
+		case 0x9E: 
 			//SBC A,(HL)
 			//length 1
 			//time 8
 			//flags ZH1C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10011111: 
+		case 0x9F: 
 			//SBC A,A
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10100000: 
+		case 0xA0: 
 			//AND B
 			//length 1
 			//time 4
 			//flags Z100
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(1); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10100001: 
+		case 0xA1: 
 			//AND C
 			//length 1
 			//time 4
 			//flags Z100
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(1); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10100010: 
+		case 0xA2: 
 			//AND D
 			//length 1
 			//time 4
 			//flags Z100
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(1); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10100011: 
+		case 0xA3: 
 			//AND E
 			//length 1
 			//time 4
 			//flags Z100
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(1); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10100100: 
+		case 0xA4: 
 			//AND H
 			//length 1
 			//time 4
 			//flags Z100
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(1); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10100101: 
+		case 0xA5: 
 			//AND L
 			//length 1
 			//time 4
 			//flags Z100
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(1); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10100110: 
+		case 0xA6: 
 			//AND (HL)
 			//length 1
 			//time 8
 			//flags Z100
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(1); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10100111: 
+		case 0xA7: 
 			//AND A
 			//length 1
 			//time 4
 			//flags Z100
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(1); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10101000: 
+		case 0xA8: 
 			//XOR B
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10101001: 
+		case 0xA9: 
 			//XOR C
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10101010: 
+		case 0xAA: 
 			//XOR D
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10101011: 
+		case 0xAB: 
 			//XOR E
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10101100: 
+		case 0xAC: 
 			//XOR H
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10101101: 
+		case 0xAD: 
 			//XOR L
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10101110: 
+		case 0xAE: 
 			//XOR (HL)
 			//length 1
 			//time 8
 			//flags Z000
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10101111: 
+		case 0xAF: 
 			//XOR A
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10110000: 
+		case 0xB0: 
 			//OR B
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10110001: 
+		case 0xB1: 
 			//OR C
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10110010: 
+		case 0xB2: 
 			//OR D
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10110011: 
+		case 0xB3: 
 			//OR E
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10110100: 
+		case 0xB4: 
 			//OR H
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10110101: 
+		case 0xB5: 
 			//OR L
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10110110: 
+		case 0xB6: 
 			//OR (HL)
 			//length 1
 			//time 8
 			//flags Z000
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10110111: 
+		case 0xB7: 
 			//OR A
 			//length 1
 			//time 4
 			//flags Z000
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10111000: 
+		case 0xB8: 
 			//CP B
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10111001: 
+		case 0xB9: 
 			//CP C
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10111010: 
+		case 0xBA: 
 			//CP D
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10111011: 
+		case 0xBB: 
 			//CP E
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10111100: 
+		case 0xBC: 
 			//CP H
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10111101: 
+		case 0xBD: 
 			//CP L
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10111110: 
+		case 0xBE: 
 			//CP (HL)
 			//length 1
 			//time 8
 			//flags ZH1C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x10111111: 
+		case 0xBF: 
 			//CP A
 			//length 1
 			//time 4
 			//flags ZH1C
 
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x11000000: 
+		case 0xC0: 
 			//RET NZ
 			//length 1
 			//time 20/8
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11000001: 
+		case 0xC1: 
 			//POP BC
 			//length 1
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11000010: 
+		case 0xC2: 
 			//JP NZ,a16
 			//length 3
 			//time 16/12
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11000011: 
+		case 0xC3: 
 			//JP a16
 			//length 3
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11000100: 
+		case 0xC4: 
 			//CALL NZ,a16
 			//length 3
 			//time 24/12
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11000101: 
+		case 0xC5: 
 			//PUSH BC
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11000110: 
+		case 0xC6: 
 			//ADD A,d8
 			//length 2
 			//time 8
 			//flags ZH0C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11000111: 
+		case 0xC7: 
 			//RST 00H
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11001000: 
+		case 0xC8: 
 			//RET Z
 			//length 1
 			//time 20/8
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11001001: 
+		case 0xC9: 
 			//RET
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11001010: 
+		case 0xCA: 
 			//JP Z,a16
 			//length 3
 			//time 16/12
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11001011: 
+		case 0xCB: 
 			//PREFIX CB
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11001100: 
+		case 0xCC: 
 			//CALL Z,a16
 			//length 3
 			//time 24/12
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11001101: 
+		case 0xCD: 
 			//CALL a16
 			//length 3
 			//time 24
 			//flags ----
 
+			currentOpcodeCycles = 24;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11001110: 
+		case 0xCE: 
 			//ADC A,d8
 			//length 2
 			//time 8
 			//flags ZH0C
+
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
 
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11001111: 
+		case 0xCF: 
 			//RST 08H
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11010000: 
+		case 0xD0: 
 			//RET NC
 			//length 1
 			//time 20/8
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11010001: 
+		case 0xD1: 
 			//POP DE
 			//length 1
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11010010: 
+		case 0xD2: 
 			//JP NC,a16
 			//length 3
 			//time 16/12
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11010100: 
+		case 0xD4: 
 			//CALL NC,a16
 			//length 3
 			//time 24/12
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11010101: 
+		case 0xD5: 
 			//PUSH DE
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11010110: 
+		case 0xD6: 
 			//SUB d8
 			//length 2
 			//time 8
 			//flags ZH1C
 
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11010111: 
+		case 0xD7: 
 			//RST 10H
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11011000: 
+		case 0xD8: 
 			//RET C
 			//length 1
 			//time 20/8
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11011001: 
+		case 0xD9: 
 			//RETI
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11011010: 
+		case 0xDA: 
 			//JP C,a16
 			//length 3
 			//time 16/12
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11011100: 
+		case 0xDC: 
 			//CALL C,a16
 			//length 3
 			//time 24/12
 			//flags ----
 
+			//**currentOpcodeCycles = CONDITIONAL;
 
+
+			//**command missing
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11011110: 
+		case 0xDE: 
 			//SBC A,d8
 			//length 2
 			//time 8
 			//flags ZH1C
+
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
 
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11011111: 
+		case 0xDF: 
 			//RST 18H
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11100000: 
+		case 0xE0: 
 			//LDH (a8),A
 			//length 2
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
 
+
+			//**command missing
+
+
+
+			r.PC.add(2);
 
 			break;
 
-		case 0x11100001: 
+		case 0xE1: 
 			//POP HL
 			//length 1
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11100010: 
+		case 0xE2: 
 			//LD (C),A
 			//length 2
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			m.address( r.C.read() ).write( r.A.read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x11100101: 
+		case 0xE5: 
 			//PUSH HL
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11100110: 
+		case 0xE6: 
 			//AND d8
 			//length 2
 			//time 8
 			//flags Z100
+
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
 
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(1); 
 			r.setCF(0); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11100111: 
+		case 0xE7: 
 			//RST 20H
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11101000: 
+		case 0xE8: 
 			//ADD SP,r8
 			//length 2
 			//time 16
 			//flags 0H0C
+
+			currentOpcodeCycles = 16;
+
+
+			//**command missing
+
 
 			r.setZF(0); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11101001: 
+		case 0xE9: 
 			//JP (HL)
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11101010: 
+		case 0xEA: 
 			//LD (a16),A
 			//length 3
 			//time 16
 			//flags ----
 
-			m.address( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read().read() ).write( r.A.read() );
+			currentOpcodeCycles = 16;
 
 
+			//**LD skipped, a8 or a16
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11101110: 
+		case 0xEE: 
 			//XOR d8
 			//length 2
 			//time 8
 			//flags Z000
+
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
 
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11101111: 
+		case 0xEF: 
 			//RST 28H
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11110000: 
+		case 0xF0: 
 			//LDH A,(a8)
 			//length 2
 			//time 12
 			//flags ----
 
+			currentOpcodeCycles = 12;
 
+
+			//**command missing
+
+
+
+			r.PC.add(2);
 
 			break;
 
-		case 0x11110001: 
+		case 0xF1: 
 			//POP AF
 			//length 1
 			//time 12
 			//flags ZHNC
+
+			currentOpcodeCycles = 12;
+
+
+			//**command missing
+
 
 			r.setZF(Z); 
 			r.setNF(N); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(1);
 
 			break;
 
-		case 0x11110010: 
+		case 0xF2: 
 			//LD A,(C)
 			//length 2
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.A.write( m.address( r.C.read() ).read() );
 
 
 
+			r.PC.add(2);
+
 			break;
 
-		case 0x11110011: 
+		case 0xF3: 
 			//DI
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11110101: 
+		case 0xF5: 
 			//PUSH AF
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11110110: 
+		case 0xF6: 
 			//OR d8
 			//length 2
 			//time 8
 			//flags Z000
+
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
 
 			r.setZF(Z); 
 			r.setNF(0); 
 			r.setHF(0); 
 			r.setCF(0); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11110111: 
+		case 0xF7: 
 			//RST 30H
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11111000: 
+		case 0xF8: 
 			//LD HL,SP+r8
 			//length 2
 			//time 12
 			//flags 0H0C
 
-			
+			currentOpcodeCycles = 12;
+
+
+			//**LD skipped, + or -
+
 
 			r.setZF(0); 
 			r.setNF(0); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11111001: 
+		case 0xF9: 
 			//LD SP,HL
 			//length 1
 			//time 8
 			//flags ----
 
+			currentOpcodeCycles = 8;
+
+
 			r.SP.write( r.HL.read() );
 
 
 
+			r.PC.add(1);
+
 			break;
 
-		case 0x11111010: 
+		case 0xFA: 
 			//LD A,(a16)
 			//length 3
 			//time 16
 			//flags ----
 
-			r.A.write( m.address( new BytePair( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) ).read().read() ).read() );
+			currentOpcodeCycles = 16;
 
 
+			//**LD skipped, a8 or a16
+
+
+
+			r.PC.add(3);
 
 			break;
 
-		case 0x11111011: 
+		case 0xFB: 
 			//EI
 			//length 1
 			//time 4
 			//flags ----
 
+			currentOpcodeCycles = 4;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 
-		case 0x11111110: 
+		case 0xFE: 
 			//CP d8
 			//length 2
 			//time 8
 			//flags ZH1C
+
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
 
 			r.setZF(Z); 
 			r.setNF(1); 
 			r.setHF(H); 
 			r.setCF(C); 
 
+			r.PC.add(2);
 
 			break;
 
-		case 0x11111111: 
+		case 0xFF: 
 			//RST 38H
 			//length 1
 			//time 16
 			//flags ----
 
+			currentOpcodeCycles = 16;
 
+
+			//**command missing
+
+
+
+			r.PC.add(1);
 
 			break;
 

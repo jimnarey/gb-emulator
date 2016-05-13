@@ -7,65 +7,65 @@ import static org.junit.Assert.*;
  */
 public class RegistersTest {
 
-
+    // Move all of these to FlagRegisters test class
     @Test
-    public void testGetZF() throws Exception {
+    public void testGetZ() throws Exception {
         Registers reg = new Registers();
-        assertEquals(false, reg.getZF());
+        assertEquals(false, reg.F.getZ());
         reg.F.write(128);
-        assertEquals(true, reg.getZF());
+        assertEquals(true, reg.F.getZ());
     }
 
     @Test
-    public void testSetZF() throws Exception {
+    public void testSetZ() throws Exception {
         Registers reg = new Registers();
-        reg.setZF(true);
+        reg.F.setZ(true);
         assertEquals(128, reg.F.read());
 
     }
 
     @Test
-    public void testGetNF() throws Exception {
+    public void testGetN() throws Exception {
         Registers reg = new Registers();
-        assertEquals(false, reg.getNF());
+        assertEquals(false, reg.F.getN());
         reg.F.write(64);
-        assertEquals(true, reg.getNF());
+        assertEquals(true, reg.F.getN());
     }
 
     @Test
-    public void testSetNF() throws Exception {
+    public void testSetN() throws Exception {
         Registers reg = new Registers();
-        reg.setNF(true);
+        reg.F.setN(true);
         assertEquals(64, reg.F.read());
     }
 
     @Test
-    public void testGetHF() throws Exception {
+    public void testGetH() throws Exception {
         Registers reg = new Registers();
-        assertEquals(false, reg.getHF());
+        assertEquals(false, reg.F.getH());
         reg.F.write(32);
-        assertEquals(true, reg.getHF());
+        assertEquals(true, reg.F.getH());
     }
 
     @Test
-    public void testSetHF() throws Exception {
+    public void testSetH() throws Exception {
         Registers reg = new Registers();
-        reg.setHF(true);
+        reg.F.setH(true);
         assertEquals(32, reg.F.read());
     }
 
     @Test
-    public void testGetCF() throws Exception {
+    public void testGetC() throws Exception {
         Registers reg = new Registers();
-        assertEquals(false, reg.getCF());
+        assertEquals(false, reg.F.getC());
         reg.F.write(16);
-        assertEquals(true, reg.getCF());
+        assertEquals(true, reg.F.getC());
     }
 
     @Test
-    public void testSetCF() throws Exception {
+    public void testSetC() throws Exception {
         Registers reg = new Registers();
-        reg.setCF(true);
+        reg.F.setC(true);
         assertEquals(16, reg.F.read());
     }
 }

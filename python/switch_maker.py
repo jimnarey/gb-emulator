@@ -165,7 +165,7 @@ class SwitchMaker(object):
         if '/' not in cycles:
             return '\t\t\tcurrentOpcodeCycles = ' + cycles + ';'
         else:
-            return '\t\t\t//**currentOpcodeCycles = CONDITIONAL;'
+            return '\t\t\t//**currentOpcodeCycles = CONDITIONAL;' + cycles
 
     @staticmethod
     def get_PC_command(length):
