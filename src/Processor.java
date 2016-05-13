@@ -13,14 +13,14 @@ public class Processor {
 
     }
 
-    public void setFlags (ByteInterface result, boolean wasSubtraction) {
-
-        r.F.write(0);
-        if (result.read() == 0) {r.setZF(true);}
-        r.setNF(wasSubtraction);
+//    public void setFlags (ByteInterface result, boolean wasSubtraction) {
+//
+//        r.F.write(0);
+//        if (result.read() == 0) {r.setZF(true);}
+//        r.setNF(wasSubtraction);
 //        if (result.)
-
-    }
+//
+//    }
 
     public void runInstruction() {
 
@@ -31,8 +31,6 @@ public class Processor {
         else {
             mainTable();
         }
-
-
 
     }
 
