@@ -2946,7 +2946,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.and( r.B.read() );
 
 
 			r.F.setZ(Z); 
@@ -2967,7 +2967,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.and( r.C.read() );
 
 
 			r.F.setZ(Z); 
@@ -2988,7 +2988,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.and( r.D.read() );
 
 
 			r.F.setZ(Z); 
@@ -3009,7 +3009,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.and( r.E.read() );
 
 
 			r.F.setZ(Z); 
@@ -3030,7 +3030,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.and( r.H.read() );
 
 
 			r.F.setZ(Z); 
@@ -3051,7 +3051,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.and( r.L.read() );
 
 
 			r.F.setZ(Z); 
@@ -3072,7 +3072,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.A.and( m.address( r.HL.read() ).read() );
 
 
 			r.F.setZ(Z); 
@@ -3093,7 +3093,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.and( r.A.read() );
 
 
 			r.F.setZ(Z); 
@@ -3114,7 +3114,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.xor( r.B.read() );
 
 
 			r.F.setZ(Z); 
@@ -3135,7 +3135,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.xor( r.C.read() );
 
 
 			r.F.setZ(Z); 
@@ -3156,7 +3156,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.xor( r.D.read() );
 
 
 			r.F.setZ(Z); 
@@ -3177,7 +3177,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.xor( r.E.read() );
 
 
 			r.F.setZ(Z); 
@@ -3198,7 +3198,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.xor( r.H.read() );
 
 
 			r.F.setZ(Z); 
@@ -3219,7 +3219,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.xor( r.L.read() );
 
 
 			r.F.setZ(Z); 
@@ -3240,7 +3240,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.A.xor( m.address( r.HL.read() ).read() );
 
 
 			r.F.setZ(Z); 
@@ -3261,7 +3261,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.xor( r.A.read() );
 
 
 			r.F.setZ(Z); 
@@ -3282,7 +3282,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.or( r.B.read() );
 
 
 			r.F.setZ(Z); 
@@ -3303,7 +3303,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.or( r.C.read() );
 
 
 			r.F.setZ(Z); 
@@ -3324,7 +3324,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.or( r.D.read() );
 
 
 			r.F.setZ(Z); 
@@ -3345,7 +3345,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.or( r.E.read() );
 
 
 			r.F.setZ(Z); 
@@ -3366,7 +3366,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.or( r.H.read() );
 
 
 			r.F.setZ(Z); 
@@ -3387,7 +3387,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.or( r.L.read() );
 
 
 			r.F.setZ(Z); 
@@ -3408,7 +3408,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.A.or( m.address( r.HL.read() ).read() );
 
 
 			r.F.setZ(Z); 
@@ -3429,7 +3429,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.or( r.A.read() );
 
 
 			r.F.setZ(Z); 
@@ -4195,7 +4195,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.A.and( m.address( r.PC.read() + 1 ).read() );
 
 
 			r.F.setZ(Z); 
@@ -4288,7 +4288,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.A.xor( m.address( r.PC.read() + 1 ).read() );
 
 
 			r.F.setZ(Z); 
@@ -4415,7 +4415,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.A.or( m.address( r.PC.read() + 1 ).read() );
 
 
 			r.F.setZ(Z); 
@@ -5579,7 +5579,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.B.swap();
 
 
 			r.F.setZ(Z); 
@@ -5600,7 +5600,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.C.swap();
 
 
 			r.F.setZ(Z); 
@@ -5621,7 +5621,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.D.swap();
 
 
 			r.F.setZ(Z); 
@@ -5642,7 +5642,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.E.swap();
 
 
 			r.F.setZ(Z); 
@@ -5663,7 +5663,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.H.swap();
 
 
 			r.F.setZ(Z); 
@@ -5684,7 +5684,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.L.swap();
 
 
 			r.F.setZ(Z); 
@@ -5705,7 +5705,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 16;
 
 
-			//**command missing
+			m.address( r.HL.read() ).swap();
 
 
 			r.F.setZ(Z); 
@@ -5726,7 +5726,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.A.swap();
 
 
 			r.F.setZ(Z); 

@@ -332,15 +332,15 @@ public class Instructions {
 
     public static void AND() {
 
-        // AND B : L1:T4: Z:0:1:0 :0xA0
-        // AND C : L1:T4: Z:0:1:0 :0xA1
-        // AND D : L1:T4: Z:0:1:0 :0xA2
-        // AND E : L1:T4: Z:0:1:0 :0xA3
-        // AND H : L1:T4: Z:0:1:0 :0xA4
-        // AND L : L1:T4: Z:0:1:0 :0xA5
-        // AND (HL) : L1:T8: Z:0:1:0 :0xA6
-        // AND A : L1:T4: Z:0:1:0 :0xA7
-        // AND d8 : L2:T8: Z:0:1:0 :0xE6
+        // and B : L1:T4: Z:0:1:0 :0xA0
+        // and C : L1:T4: Z:0:1:0 :0xA1
+        // and D : L1:T4: Z:0:1:0 :0xA2
+        // and E : L1:T4: Z:0:1:0 :0xA3
+        // and H : L1:T4: Z:0:1:0 :0xA4
+        // and L : L1:T4: Z:0:1:0 :0xA5
+        // and (HL) : L1:T8: Z:0:1:0 :0xA6
+        // and A : L1:T4: Z:0:1:0 :0xA7
+        // and d8 : L2:T8: Z:0:1:0 :0xE6
 
 
 
@@ -348,15 +348,15 @@ public class Instructions {
 
     public static void XOR() {
 
-        // XOR B : L1:T4: Z:0:0:0 :0xA8
-        // XOR C : L1:T4: Z:0:0:0 :0xA9
-        // XOR D : L1:T4: Z:0:0:0 :0xAA
-        // XOR E : L1:T4: Z:0:0:0 :0xAB
-        // XOR H : L1:T4: Z:0:0:0 :0xAC
-        // XOR L : L1:T4: Z:0:0:0 :0xAD
-        // XOR (HL) : L1:T8: Z:0:0:0 :0xAE
-        // XOR A : L1:T4: Z:0:0:0 :0xAF
-        // XOR d8 : L2:T8: Z:0:0:0 :0xEE
+        // xor B : L1:T4: Z:0:0:0 :0xA8
+        // xor C : L1:T4: Z:0:0:0 :0xA9
+        // xor D : L1:T4: Z:0:0:0 :0xAA
+        // xor E : L1:T4: Z:0:0:0 :0xAB
+        // xor H : L1:T4: Z:0:0:0 :0xAC
+        // xor L : L1:T4: Z:0:0:0 :0xAD
+        // xor (HL) : L1:T8: Z:0:0:0 :0xAE
+        // xor A : L1:T4: Z:0:0:0 :0xAF
+        // xor d8 : L2:T8: Z:0:0:0 :0xEE
 
 
 
@@ -364,15 +364,15 @@ public class Instructions {
 
     public static void OR() {
 
-        // OR B : L1:T4: Z:0:0:0 :0xB0
-        // OR C : L1:T4: Z:0:0:0 :0xB1
-        // OR D : L1:T4: Z:0:0:0 :0xB2
-        // OR E : L1:T4: Z:0:0:0 :0xB3
-        // OR H : L1:T4: Z:0:0:0 :0xB4
-        // OR L : L1:T4: Z:0:0:0 :0xB5
-        // OR (HL) : L1:T8: Z:0:0:0 :0xB6
-        // OR A : L1:T4: Z:0:0:0 :0xB7
-        // OR d8 : L2:T8: Z:0:0:0 :0xF6
+        // or B : L1:T4: Z:0:0:0 :0xB0
+        // or C : L1:T4: Z:0:0:0 :0xB1
+        // or D : L1:T4: Z:0:0:0 :0xB2
+        // or E : L1:T4: Z:0:0:0 :0xB3
+        // or H : L1:T4: Z:0:0:0 :0xB4
+        // or L : L1:T4: Z:0:0:0 :0xB5
+        // or (HL) : L1:T8: Z:0:0:0 :0xB6
+        // or A : L1:T4: Z:0:0:0 :0xB7
+        // or d8 : L2:T8: Z:0:0:0 :0xF6
 
 
 

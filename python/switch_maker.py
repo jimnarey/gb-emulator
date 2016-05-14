@@ -205,13 +205,11 @@ class SwitchMaker(object):
 
                 if row['instruction'] == 'LD':
                     cases_text = cases_text + self.ld_gen(row)
-                elif row['instruction'] == 'INC':
-                    cases_text = cases_text + self.simple_single_operand_gen(row, 'inc')
-                elif row['instruction'] == 'DEC':
-                    cases_text = cases_text + self.simple_single_operand_gen(row, 'dec')
+                elif row['instruction'] in ['INC', 'DEC', 'SWAP']:
+                    cases_text = cases_text + self.simple_single_operand_gen(row, row['instruction'].lower())
                 elif row['instruction'] == 'ADD':
                     cases_text = cases_text + self.simple_double_operand_gen(row, 'add')
-                elif row['instruction'] == 'SUB':
+                elif row['instruction'] in ['SUB', 'AND', 'OR', 'XOR']:
                     cases_text = cases_text + self.a_reg_op_gen(row, row['instruction'].lower())
                 elif row['instruction'] in ['RES', 'BIT', 'SET']:
                     cases_text = cases_text + self.single_bit_gen(row)

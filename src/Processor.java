@@ -1481,7 +1481,7 @@ public class Processor {
                 break;
 
             case 0xA0:
-                //AND B
+                //and B
                 //length 1
                 //time 4
                 //flags Z010
@@ -1490,7 +1490,7 @@ public class Processor {
                 break;
 
             case 0xA1:
-                //AND C
+                //and C
                 //length 1
                 //time 4
                 //flags Z010
@@ -1499,7 +1499,7 @@ public class Processor {
                 break;
 
             case 0xA2:
-                //AND D
+                //and D
                 //length 1
                 //time 4
                 //flags Z010
@@ -1508,7 +1508,7 @@ public class Processor {
                 break;
 
             case 0xA3:
-                //AND E
+                //and E
                 //length 1
                 //time 4
                 //flags Z010
@@ -1517,7 +1517,7 @@ public class Processor {
                 break;
 
             case 0xA4:
-                //AND H
+                //and H
                 //length 1
                 //time 4
                 //flags Z010
@@ -1526,7 +1526,7 @@ public class Processor {
                 break;
 
             case 0xA5:
-                //AND L
+                //and L
                 //length 1
                 //time 4
                 //flags Z010
@@ -1535,7 +1535,7 @@ public class Processor {
                 break;
 
             case 0xA6:
-                //AND (HL)
+                //and (HL)
                 //length 1
                 //time 8
                 //flags Z010
@@ -1544,7 +1544,7 @@ public class Processor {
                 break;
 
             case 0xA7:
-                //AND A
+                //and A
                 //length 1
                 //time 4
                 //flags Z010
@@ -1553,7 +1553,7 @@ public class Processor {
                 break;
 
             case 0xA8:
-                //XOR B
+                //xor B
                 //length 1
                 //time 4
                 //flags Z000
@@ -1562,7 +1562,7 @@ public class Processor {
                 break;
 
             case 0xA9:
-                //XOR C
+                //xor C
                 //length 1
                 //time 4
                 //flags Z000
@@ -1571,7 +1571,7 @@ public class Processor {
                 break;
 
             case 0xAA:
-                //XOR D
+                //xor D
                 //length 1
                 //time 4
                 //flags Z000
@@ -1580,7 +1580,7 @@ public class Processor {
                 break;
 
             case 0xAB:
-                //XOR E
+                //xor E
                 //length 1
                 //time 4
                 //flags Z000
@@ -1589,7 +1589,7 @@ public class Processor {
                 break;
 
             case 0xAC:
-                //XOR H
+                //xor H
                 //length 1
                 //time 4
                 //flags Z000
@@ -1598,7 +1598,7 @@ public class Processor {
                 break;
 
             case 0xAD:
-                //XOR L
+                //xor L
                 //length 1
                 //time 4
                 //flags Z000
@@ -1607,7 +1607,7 @@ public class Processor {
                 break;
 
             case 0xAE:
-                //XOR (HL)
+                //xor (HL)
                 //length 1
                 //time 8
                 //flags Z000
@@ -1616,7 +1616,7 @@ public class Processor {
                 break;
 
             case 0xAF:
-                //XOR A
+                //xor A
                 //length 1
                 //time 4
                 //flags Z000
@@ -1625,7 +1625,7 @@ public class Processor {
                 break;
 
             case 0xB0:
-                //OR B
+                //or B
                 //length 1
                 //time 4
                 //flags Z000
@@ -1634,7 +1634,7 @@ public class Processor {
                 break;
 
             case 0xB1:
-                //OR C
+                //or C
                 //length 1
                 //time 4
                 //flags Z000
@@ -1643,7 +1643,7 @@ public class Processor {
                 break;
 
             case 0xB2:
-                //OR D
+                //or D
                 //length 1
                 //time 4
                 //flags Z000
@@ -1652,7 +1652,7 @@ public class Processor {
                 break;
 
             case 0xB3:
-                //OR E
+                //or E
                 //length 1
                 //time 4
                 //flags Z000
@@ -1661,7 +1661,7 @@ public class Processor {
                 break;
 
             case 0xB4:
-                //OR H
+                //or H
                 //length 1
                 //time 4
                 //flags Z000
@@ -1670,7 +1670,7 @@ public class Processor {
                 break;
 
             case 0xB5:
-                //OR L
+                //or L
                 //length 1
                 //time 4
                 //flags Z000
@@ -1679,7 +1679,7 @@ public class Processor {
                 break;
 
             case 0xB6:
-                //OR (HL)
+                //or (HL)
                 //length 1
                 //time 8
                 //flags Z000
@@ -1688,7 +1688,7 @@ public class Processor {
                 break;
 
             case 0xB7:
-                //OR A
+                //or A
                 //length 1
                 //time 4
                 //flags Z000
@@ -2066,7 +2066,7 @@ public class Processor {
                 break;
 
             case 0xE6:
-                //AND d8
+                //and d8
                 //length 2
                 //time 8
                 //flags Z010
@@ -2111,7 +2111,7 @@ public class Processor {
                 break;
 
             case 0xEE:
-                //XOR d8
+                //xor d8
                 //length 2
                 //time 8
                 //flags Z000
@@ -2174,7 +2174,7 @@ public class Processor {
                 break;
 
             case 0xF6:
-                //OR d8
+                //or d8
                 //length 2
                 //time 8
                 //flags Z000

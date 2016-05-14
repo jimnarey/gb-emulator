@@ -133,19 +133,19 @@ public class BetterByte implements ByteInterface {
         return String.format(formatParameter, Integer.toBinaryString(data & 0xFF)).replace(' ', '0');
     }
 
-    public void AND (int value) {
+    public void and(int value) {
 
         write(data & value);
 
     }
 
-    public void OR (int value) {
+    public void or(int value) {
 
         write(data | value);
 
     }
 
-    public void XOR (int value) {
+    public void xor(int value) {
 
         write(data ^ value);
 

@@ -178,7 +178,7 @@ public class BetterByteTest {
 
         BetterByte d = new BetterByte();
         d.write(80);
-        d.AND(54);
+        d.and(54);
         assertEquals(16, d.read());
 
 
@@ -189,7 +189,7 @@ public class BetterByteTest {
 
         BetterByte d = new BetterByte();
         d.write(48);
-        d.OR(12);
+        d.or(12);
         assertEquals(60, d.read());
 
 
@@ -200,7 +200,7 @@ public class BetterByteTest {
 
         BetterByte d = new BetterByte();
         d.write(240);
-        d.XOR(60);
+        d.xor(60);
         assertEquals(204, d.read());
 
     }
