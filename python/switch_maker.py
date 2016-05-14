@@ -1,6 +1,5 @@
 import csv
 
-
 class SwitchMaker(object):
 
     def __init__(self):
@@ -20,6 +19,9 @@ class SwitchMaker(object):
             '18': 'write',
         }
 
+        # Open source files, read as CSV, copy into 2dim array then
+        # convert each *row* to a dictionary using the key above (self.columns)
+
         self.main_table = open('../other/working/op_codes_main.csv', newline='')
         self.cb_table = open('../other/working/op_codes_cb.csv', newline='')
 
@@ -34,6 +36,8 @@ class SwitchMaker(object):
 
         self.registers = ['A', 'F', 'B', 'C', 'D', 'E', 'H', 'L', 'AF', 'BC', 'DE', 'HL', 'SP', 'PC']
 
+    # Methods for creating initial arrays and dicts
+
     @staticmethod
     def create_array(csv_reader):
         op_table = []
@@ -44,19 +48,12 @@ class SwitchMaker(object):
     def rows_to_dicts(self, array):
 
         list_of_dicts = []
-
         for row in array:
-
             row_dict = {}
-
             for index, cell in enumerate(row):
-
                 if str(index) in self.columns.keys():
-
                     row_dict[self.columns[str(index)]] = cell
-
             list_of_dicts.append(row_dict)
-
         return list_of_dicts
 
     @staticmethod
@@ -77,7 +74,7 @@ class SwitchMaker(object):
     # Not sure about this! --
     @staticmethod
     def a8():
-        a8_string = SwitchMaker.d8() + '.read()'
+        # a8_string = SwitchMaker.d8() + '.read()'
         a8_string = SwitchMaker.d8()
         return a8_string
 
@@ -90,16 +87,16 @@ class SwitchMaker(object):
 
     @staticmethod
     def resolve_brackets(bracketed_operand):
-
-        # operand_function = getattr(SwitchMaker, bracketed_operand)
-        # operand_string = operand_function()
         result_string = 'm.address( ' + bracketed_operand + '.read() )'
         return result_string
 
+    # Methods for interpreting operands into the correct java code
     def get_register_or_memloc(self, operand):
 
         if operand in self.registers:
             op_text = 'r.' + operand
+        elif operand in ['0', '1', '2', '3', '4', '5', '6', '7']:
+            op_text = operand
         else:
             op_text = getattr(SwitchMaker, operand)()
 
@@ -125,6 +122,7 @@ class SwitchMaker(object):
 
         return operand
 
+    # Generate tabs
     @staticmethod
     def ins_tabs(num):
         tab_string = ''
@@ -135,6 +133,7 @@ class SwitchMaker(object):
 
         return tab_string
 
+    # Generate flag setting function calls
     @staticmethod
     def get_flag_methods(row, num_tabs):
         
@@ -162,6 +161,7 @@ class SwitchMaker(object):
         
         return flag_string + '\n'
 
+    # Generate call to set the number of cycles used by current instruction
     @staticmethod
     def set_opcode_time(cycles):
         if '/' not in cycles:
@@ -169,10 +169,13 @@ class SwitchMaker(object):
         else:
             return '\t\t\t//**currentOpcodeCycles = CONDITIONAL;' + cycles
 
+    # Generate call to increment the PC at the end of each opcode's execution
     @staticmethod
     def get_PC_command(length):
         return '\t\t\tr.PC.add(' + length + ');\n'
 
+    # Create a switch statement for either the main opcode table or the CB table
+    # taking a dictionary based on one/other as second argument
     def make_cases(self, list_of_dicts):
 
         cases_text = ''
@@ -201,7 +204,7 @@ class SwitchMaker(object):
                 cases_text = cases_text + SwitchMaker.set_opcode_time(row['cycles']) + '\n\n\n' + '\t\t\t'
 
                 if row['instruction'] == 'LD':
-                    cases_text = cases_text + self.LDgen(row)
+                    cases_text = cases_text + self.ld_gen(row)
                 elif row['instruction'] == 'INC':
                     cases_text = cases_text + self.simple_single_operand_gen(row, 'inc')
                 elif row['instruction'] == 'DEC':
@@ -209,7 +212,9 @@ class SwitchMaker(object):
                 elif row['instruction'] == 'ADD':
                     cases_text = cases_text + self.simple_double_operand_gen(row, 'add')
                 elif row['instruction'] == 'SUB':
-                    cases_text = cases_text + self.SUBgen(row)
+                    cases_text = cases_text + self.a_reg_op_gen(row, row['instruction'].lower())
+                elif row['instruction'] in ['RES', 'BIT', 'SET']:
+                    cases_text = cases_text + self.single_bit_gen(row)
                 else:
                     cases_text = cases_text + '//**command missing'
 
@@ -223,6 +228,8 @@ class SwitchMaker(object):
 
         return cases_text
 
+    # Generate function declaration, line containing switch statement itself and
+    # necessary curly braces to wrap around output from main_cases
     def top_and_tail(self, func_name, list_of_dicts):
 
         full_text = 'public void ' + func_name + ' (int opcode) {\n\n\t' + 'switch(opcode) {\n\n'
@@ -233,6 +240,7 @@ class SwitchMaker(object):
 
         return full_text
 
+    # Produce a single large string with both switch/case functions (main and cb)
     def make_string(self):
 
         main_text = self.top_and_tail('mainTable', self.main_dict) + '\n\n'
@@ -254,7 +262,7 @@ class SwitchMaker(object):
 
         return False
 
-    def LDgen(self, row):
+    def ld_gen(self, row):
 
         if SwitchMaker.skip_chars(row['operand_1'], row['operand_2']):
             return '//**skipped command'
@@ -265,12 +273,34 @@ class SwitchMaker(object):
         command_text = dest + '.write( ' + source + '.read() );'
         return command_text
 
-    def SUBgen(self, row):
+    def single_bit_gen(self, row):
+
+        if row['operand_1'] == '' or row['operand_2'] == '':
+            return '//**skipped'
+
+        if SwitchMaker.skip_chars(row['operand_1']) or SwitchMaker.skip_chars(row['operand_2']):
+            return '//**skipped'
+
+        bit = self.get_operand(row['operand_1'])
+        byte = self.get_operand(row['operand_2'])
+
+        if row['instruction'] == 'BIT':
+            method_string = 'checkBit(' + bit + ')'
+        elif row['instruction'] == 'RES':
+            method_string = 'setBit(' + bit + ', 0' + ')'
+        elif row['instruction'] == 'SET':
+            method_string = 'setBit(' + bit + ', 1' + ')'
+        else:
+            method_string = '**error'
+
+        return byte + '.' + method_string + ';'
+
+    def a_reg_op_gen(self, row, method):
 
         if row['operand_2'] == '' and not SwitchMaker.skip_chars(row['operand_1']):
             source = self.get_operand(row['operand_1'])
 
-            return 'r.A.sub( ' + source + '.read() );'
+            return 'r.A.' + method + '( ' + source + '.read() );'
 
         return '//**skipped'
 
@@ -295,8 +325,6 @@ class SwitchMaker(object):
         source = self.get_operand(row['operand_2'])
 
         return dest + '.' + method + '( ' + source + '.read() );'
-
-
 
 if __name__ == "__main__":
 
