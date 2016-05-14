@@ -173,7 +173,6 @@ class SwitchMaker(object):
     def get_PC_command(length):
         return '\t\t\tr.PC.add(' + length + ');\n'
 
-
     def make_cases(self, list_of_dicts):
 
         cases_text = ''
@@ -183,14 +182,34 @@ class SwitchMaker(object):
                 pass
 
             else:
-                cases_text = cases_text + '\t\tcase ' + '0x' + row['opcode'] + ': \n\t\t\t//' + row['full_instruction'] + \
-                          '\n\t\t\t//length ' + row['length'] + '\n\t\t\t//time ' + row['cycles'] + '\n\t\t\t//flags ' + row['Z'] + \
-                          row['H'] + row['N'] + row['C'] + '\n\n'
+                cases_text = cases_text +\
+                            '\t\t' +\
+                            'case ' + '0x' + row['opcode'] + ':' + '\n' +\
+                            '\t\t\t' +\
+                            '//ins ' +\
+                            row['full_instruction'] + '\n' +\
+                            '\t\t\t' +\
+                            '//length ' +\
+                            row['length'] + '\n' +\
+                            '\t\t\t' +\
+                            '//time ' +\
+                            row['cycles'] + '\n' +\
+                            '\t\t\t' +\
+                            '//flags ' +\
+                            row['Z'] + row['N'] + row['H'] + row['C'] + '\n\n'
 
                 cases_text = cases_text + SwitchMaker.set_opcode_time(row['cycles']) + '\n\n\n' + '\t\t\t'
 
                 if row['instruction'] == 'LD':
                     cases_text = cases_text + self.LDgen(row)
+                elif row['instruction'] == 'INC':
+                    cases_text = cases_text + self.simple_single_operand_gen(row, 'inc')
+                elif row['instruction'] == 'DEC':
+                    cases_text = cases_text + self.simple_single_operand_gen(row, 'dec')
+                elif row['instruction'] == 'ADD':
+                    cases_text = cases_text + self.simple_double_operand_gen(row, 'add')
+                elif row['instruction'] == 'SUB':
+                    cases_text = cases_text + self.SUBgen(row)
                 else:
                     cases_text = cases_text + '//**command missing'
 
@@ -214,30 +233,31 @@ class SwitchMaker(object):
 
         return full_text
 
-    def make_file(self):
-
-        output_file = open('../other/full_switch.txt', 'w')
+    def make_string(self):
 
         main_text = self.top_and_tail('mainTable', self.main_dict) + '\n\n'
 
         main_text = main_text + self.top_and_tail('cBTable', self.cb_dict) + '\n\n'
 
-        output_file.write(main_text)
+        return main_text
 
     @staticmethod
-    def contains_operator(operand):
+    def skip_chars(*args):
 
-        if '+' in operand or '-' in operand:
-            return True
-        else:
-            return False
+        skip_list = ['+', '-', 'a', 'r']
+
+        for arg in args:
+
+            for char in arg:
+                if char in skip_list:
+                    return True
+
+        return False
 
     def LDgen(self, row):
 
-        if SwitchMaker.contains_operator(row['operand_1']) or SwitchMaker.contains_operator(row['operand_2']):
-            return '//**LD skipped, + or -'
-        elif 'a'in row['operand_1'] or 'a' in row['operand_2']:
-            return '//**LD skipped, a8 or a16'
+        if SwitchMaker.skip_chars(row['operand_1'], row['operand_2']):
+            return '//**skipped command'
 
         dest = self.get_operand(row['operand_1'])
         source = self.get_operand(row['operand_2'])
@@ -245,7 +265,47 @@ class SwitchMaker(object):
         command_text = dest + '.write( ' + source + '.read() );'
         return command_text
 
+    def SUBgen(self, row):
+
+        if row['operand_2'] == '' and not SwitchMaker.skip_chars(row['operand_1']):
+            source = self.get_operand(row['operand_1'])
+
+            return 'r.A.sub( ' + source + '.read() );'
+
+        return '//**skipped'
+
+    def simple_single_operand_gen(self, row, method):
+
+        if row['operand_2'] == '' and not SwitchMaker.skip_chars(row['operand_1']):
+            dest = self.get_operand(row['operand_1'])
+
+            return dest + '.' + method + '();'
+
+        return '//**skipped'
+
+    def simple_double_operand_gen(self, row, method):
+
+        if row['operand_1'] == '' or row['operand_2'] == '':
+            return '//**skipped'
+
+        if SwitchMaker.skip_chars(row['operand_1']) or SwitchMaker.skip_chars(row['operand_2']):
+            return '//**skipped'
+
+        dest = self.get_operand(row['operand_1'])
+        source = self.get_operand(row['operand_2'])
+
+        return dest + '.' + method + '( ' + source + '.read() );'
+
+
+
 if __name__ == "__main__":
 
     sm = SwitchMaker()
-    sm.make_file()
+    output_string = sm.make_string()
+
+    output_file = open('../other/full_switch.txt', 'w')
+    output_file.write(output_string)
+    output_file.close()
+
+    print('Missing commands: ' + str(output_string.count('missing')))
+    print('Skipped commands: ' + str(output_string.count('skipped')))

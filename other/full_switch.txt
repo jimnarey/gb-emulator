@@ -2,8 +2,8 @@ public void mainTable (int opcode) {
 
 	switch(opcode) {
 
-		case 0x0: 
-			//NOP
+		case 0x0:
+			//ins NOP
 			//length 1
 			//time 4
 			//flags ----
@@ -19,8 +19,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x1: 
-			//LD BC,d16
+		case 0x1:
+			//ins LD BC,d16
 			//length 3
 			//time 12
 			//flags ----
@@ -36,8 +36,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x2: 
-			//LD (BC),A
+		case 0x2:
+			//ins LD (BC),A
 			//length 1
 			//time 8
 			//flags ----
@@ -53,8 +53,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x3: 
-			//INC BC
+		case 0x3:
+			//ins INC BC
 			//length 1
 			//time 8
 			//flags ----
@@ -62,7 +62,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.BC.inc();
 
 
 
@@ -70,16 +70,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x4: 
-			//INC B
+		case 0x4:
+			//ins INC B
 			//length 1
 			//time 4
-			//flags ZH0-
+			//flags Z0H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.B.inc();
 
 
 			r.F.setZ(Z); 
@@ -90,16 +90,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x5: 
-			//DEC B
+		case 0x5:
+			//ins DEC B
 			//length 1
 			//time 4
-			//flags ZH1-
+			//flags Z1H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.B.dec();
 
 
 			r.F.setZ(Z); 
@@ -110,8 +110,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x6: 
-			//LD B,d8
+		case 0x6:
+			//ins LD B,d8
 			//length 2
 			//time 8
 			//flags ----
@@ -127,8 +127,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x7: 
-			//RLCA
+		case 0x7:
+			//ins RLCA
 			//length 1
 			//time 4
 			//flags 000C
@@ -148,8 +148,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x8: 
-			//LD (a16),SP
+		case 0x8:
+			//ins LD (a16),SP
 			//length 3
 			//time 20
 			//flags ----
@@ -157,7 +157,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 20;
 
 
-			//**LD skipped, a8 or a16
+			//**skipped command
 
 
 
@@ -165,16 +165,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x9: 
-			//ADD HL,BC
+		case 0x9:
+			//ins ADD HL,BC
 			//length 1
 			//time 8
-			//flags -H0C
+			//flags -0HC
 
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.HL.add( r.BC.read() );
 
 
 			r.F.setN(0); 
@@ -185,8 +185,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x0A: 
-			//LD A,(BC)
+		case 0x0A:
+			//ins LD A,(BC)
 			//length 1
 			//time 8
 			//flags ----
@@ -202,8 +202,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x0B: 
-			//DEC BC
+		case 0x0B:
+			//ins DEC BC
 			//length 1
 			//time 8
 			//flags ----
@@ -211,7 +211,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.BC.dec();
 
 
 
@@ -219,16 +219,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x0C: 
-			//INC C
+		case 0x0C:
+			//ins INC C
 			//length 1
 			//time 4
-			//flags ZH0-
+			//flags Z0H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.C.inc();
 
 
 			r.F.setZ(Z); 
@@ -239,16 +239,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x0D: 
-			//DEC C
+		case 0x0D:
+			//ins DEC C
 			//length 1
 			//time 4
-			//flags ZH1-
+			//flags Z1H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.C.dec();
 
 
 			r.F.setZ(Z); 
@@ -259,8 +259,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x0E: 
-			//LD C,d8
+		case 0x0E:
+			//ins LD C,d8
 			//length 2
 			//time 8
 			//flags ----
@@ -276,8 +276,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x0F: 
-			//RRCA
+		case 0x0F:
+			//ins RRCA
 			//length 1
 			//time 4
 			//flags 000C
@@ -297,8 +297,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x10: 
-			//STOP 0
+		case 0x10:
+			//ins STOP 0
 			//length 2
 			//time 4
 			//flags ----
@@ -314,8 +314,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x11: 
-			//LD DE,d16
+		case 0x11:
+			//ins LD DE,d16
 			//length 3
 			//time 12
 			//flags ----
@@ -331,8 +331,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x12: 
-			//LD (DE),A
+		case 0x12:
+			//ins LD (DE),A
 			//length 1
 			//time 8
 			//flags ----
@@ -348,8 +348,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x13: 
-			//INC DE
+		case 0x13:
+			//ins INC DE
 			//length 1
 			//time 8
 			//flags ----
@@ -357,7 +357,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.DE.inc();
 
 
 
@@ -365,16 +365,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x14: 
-			//INC D
+		case 0x14:
+			//ins INC D
 			//length 1
 			//time 4
-			//flags ZH0-
+			//flags Z0H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.D.inc();
 
 
 			r.F.setZ(Z); 
@@ -385,16 +385,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x15: 
-			//DEC D
+		case 0x15:
+			//ins DEC D
 			//length 1
 			//time 4
-			//flags ZH1-
+			//flags Z1H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.D.dec();
 
 
 			r.F.setZ(Z); 
@@ -405,8 +405,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x16: 
-			//LD D,d8
+		case 0x16:
+			//ins LD D,d8
 			//length 2
 			//time 8
 			//flags ----
@@ -422,8 +422,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x17: 
-			//RLA
+		case 0x17:
+			//ins RLA
 			//length 1
 			//time 4
 			//flags 000C
@@ -443,8 +443,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x18: 
-			//JR r8
+		case 0x18:
+			//ins JR r8
 			//length 2
 			//time 12
 			//flags ----
@@ -460,16 +460,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x19: 
-			//ADD HL,DE
+		case 0x19:
+			//ins ADD HL,DE
 			//length 1
 			//time 8
-			//flags -H0C
+			//flags -0HC
 
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.HL.add( r.DE.read() );
 
 
 			r.F.setN(0); 
@@ -480,8 +480,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x1A: 
-			//LD A,(DE)
+		case 0x1A:
+			//ins LD A,(DE)
 			//length 1
 			//time 8
 			//flags ----
@@ -497,8 +497,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x1B: 
-			//DEC DE
+		case 0x1B:
+			//ins DEC DE
 			//length 1
 			//time 8
 			//flags ----
@@ -506,7 +506,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.DE.dec();
 
 
 
@@ -514,16 +514,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x1C: 
-			//INC E
+		case 0x1C:
+			//ins INC E
 			//length 1
 			//time 4
-			//flags ZH0-
+			//flags Z0H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.E.inc();
 
 
 			r.F.setZ(Z); 
@@ -534,16 +534,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x1D: 
-			//DEC E
+		case 0x1D:
+			//ins DEC E
 			//length 1
 			//time 4
-			//flags ZH1-
+			//flags Z1H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.E.dec();
 
 
 			r.F.setZ(Z); 
@@ -554,8 +554,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x1E: 
-			//LD E,d8
+		case 0x1E:
+			//ins LD E,d8
 			//length 2
 			//time 8
 			//flags ----
@@ -571,8 +571,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x1F: 
-			//RRA
+		case 0x1F:
+			//ins RRA
 			//length 1
 			//time 4
 			//flags 000C
@@ -592,8 +592,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x20: 
-			//JR NZ,r8
+		case 0x20:
+			//ins JR NZ,r8
 			//length 2
 			//time 12/8
 			//flags ----
@@ -609,8 +609,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x21: 
-			//LD HL,d16
+		case 0x21:
+			//ins LD HL,d16
 			//length 3
 			//time 12
 			//flags ----
@@ -626,8 +626,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x22: 
-			//LD (HL+),A
+		case 0x22:
+			//ins LD (HL+),A
 			//length 1
 			//time 8
 			//flags ----
@@ -635,7 +635,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**LD skipped, + or -
+			//**skipped command
 
 
 
@@ -643,8 +643,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x23: 
-			//INC HL
+		case 0x23:
+			//ins INC HL
 			//length 1
 			//time 8
 			//flags ----
@@ -652,7 +652,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.HL.inc();
 
 
 
@@ -660,16 +660,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x24: 
-			//INC H
+		case 0x24:
+			//ins INC H
 			//length 1
 			//time 4
-			//flags ZH0-
+			//flags Z0H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.H.inc();
 
 
 			r.F.setZ(Z); 
@@ -680,16 +680,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x25: 
-			//DEC H
+		case 0x25:
+			//ins DEC H
 			//length 1
 			//time 4
-			//flags ZH1-
+			//flags Z1H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.H.dec();
 
 
 			r.F.setZ(Z); 
@@ -700,8 +700,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x26: 
-			//LD H,d8
+		case 0x26:
+			//ins LD H,d8
 			//length 2
 			//time 8
 			//flags ----
@@ -717,11 +717,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x27: 
-			//DAA
+		case 0x27:
+			//ins DAA
 			//length 1
 			//time 4
-			//flags Z0-C
+			//flags Z-0C
 
 			currentOpcodeCycles = 4;
 
@@ -737,8 +737,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x28: 
-			//JR Z,r8
+		case 0x28:
+			//ins JR Z,r8
 			//length 2
 			//time 12/8
 			//flags ----
@@ -754,16 +754,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x29: 
-			//ADD HL,HL
+		case 0x29:
+			//ins ADD HL,HL
 			//length 1
 			//time 8
-			//flags -H0C
+			//flags -0HC
 
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.HL.add( r.HL.read() );
 
 
 			r.F.setN(0); 
@@ -774,8 +774,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x2A: 
-			//LD A,(HL+)
+		case 0x2A:
+			//ins LD A,(HL+)
 			//length 1
 			//time 8
 			//flags ----
@@ -783,7 +783,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**LD skipped, + or -
+			//**skipped command
 
 
 
@@ -791,8 +791,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x2B: 
-			//DEC HL
+		case 0x2B:
+			//ins DEC HL
 			//length 1
 			//time 8
 			//flags ----
@@ -800,7 +800,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.HL.dec();
 
 
 
@@ -808,16 +808,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x2C: 
-			//INC L
+		case 0x2C:
+			//ins INC L
 			//length 1
 			//time 4
-			//flags ZH0-
+			//flags Z0H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.L.inc();
 
 
 			r.F.setZ(Z); 
@@ -828,16 +828,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x2D: 
-			//DEC L
+		case 0x2D:
+			//ins DEC L
 			//length 1
 			//time 4
-			//flags ZH1-
+			//flags Z1H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.L.dec();
 
 
 			r.F.setZ(Z); 
@@ -848,8 +848,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x2E: 
-			//LD L,d8
+		case 0x2E:
+			//ins LD L,d8
 			//length 2
 			//time 8
 			//flags ----
@@ -865,8 +865,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x2F: 
-			//CPL
+		case 0x2F:
+			//ins CPL
 			//length 1
 			//time 4
 			//flags -11-
@@ -884,8 +884,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x30: 
-			//JR NC,r8
+		case 0x30:
+			//ins JR NC,r8
 			//length 2
 			//time 12/8
 			//flags ----
@@ -901,8 +901,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x31: 
-			//LD SP,d16
+		case 0x31:
+			//ins LD SP,d16
 			//length 3
 			//time 12
 			//flags ----
@@ -918,8 +918,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x32: 
-			//LD (HL-),A
+		case 0x32:
+			//ins LD (HL-),A
 			//length 1
 			//time 8
 			//flags ----
@@ -927,7 +927,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**LD skipped, + or -
+			//**skipped command
 
 
 
@@ -935,8 +935,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x33: 
-			//INC SP
+		case 0x33:
+			//ins INC SP
 			//length 1
 			//time 8
 			//flags ----
@@ -944,7 +944,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.SP.inc();
 
 
 
@@ -952,16 +952,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x34: 
-			//INC (HL)
+		case 0x34:
+			//ins INC (HL)
 			//length 1
 			//time 12
-			//flags ZH0-
+			//flags Z0H-
 
 			currentOpcodeCycles = 12;
 
 
-			//**command missing
+			m.address( r.HL.read() ).inc();
 
 
 			r.F.setZ(Z); 
@@ -972,16 +972,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x35: 
-			//DEC (HL)
+		case 0x35:
+			//ins DEC (HL)
 			//length 1
 			//time 12
-			//flags ZH1-
+			//flags Z1H-
 
 			currentOpcodeCycles = 12;
 
 
-			//**command missing
+			m.address( r.HL.read() ).dec();
 
 
 			r.F.setZ(Z); 
@@ -992,8 +992,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x36: 
-			//LD (HL),d8
+		case 0x36:
+			//ins LD (HL),d8
 			//length 2
 			//time 12
 			//flags ----
@@ -1009,8 +1009,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x37: 
-			//SCF
+		case 0x37:
+			//ins SCF
 			//length 1
 			//time 4
 			//flags -001
@@ -1029,8 +1029,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x38: 
-			//JR C,r8
+		case 0x38:
+			//ins JR C,r8
 			//length 2
 			//time 12/8
 			//flags ----
@@ -1046,16 +1046,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x39: 
-			//ADD HL,SP
+		case 0x39:
+			//ins ADD HL,SP
 			//length 1
 			//time 8
-			//flags -H0C
+			//flags -0HC
 
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.HL.add( r.SP.read() );
 
 
 			r.F.setN(0); 
@@ -1066,8 +1066,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x3A: 
-			//LD A,(HL-)
+		case 0x3A:
+			//ins LD A,(HL-)
 			//length 1
 			//time 8
 			//flags ----
@@ -1075,7 +1075,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**LD skipped, + or -
+			//**skipped command
 
 
 
@@ -1083,8 +1083,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x3B: 
-			//DEC SP
+		case 0x3B:
+			//ins DEC SP
 			//length 1
 			//time 8
 			//flags ----
@@ -1092,7 +1092,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.SP.dec();
 
 
 
@@ -1100,16 +1100,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x3C: 
-			//INC A
+		case 0x3C:
+			//ins INC A
 			//length 1
 			//time 4
-			//flags ZH0-
+			//flags Z0H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.inc();
 
 
 			r.F.setZ(Z); 
@@ -1120,16 +1120,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x3D: 
-			//DEC A
+		case 0x3D:
+			//ins DEC A
 			//length 1
 			//time 4
-			//flags ZH1-
+			//flags Z1H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.dec();
 
 
 			r.F.setZ(Z); 
@@ -1140,8 +1140,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x3E: 
-			//LD A,d8
+		case 0x3E:
+			//ins LD A,d8
 			//length 2
 			//time 8
 			//flags ----
@@ -1157,8 +1157,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x3F: 
-			//CCF
+		case 0x3F:
+			//ins CCF
 			//length 1
 			//time 4
 			//flags -00C
@@ -1177,8 +1177,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x40: 
-			//LD B,B
+		case 0x40:
+			//ins LD B,B
 			//length 1
 			//time 4
 			//flags ----
@@ -1194,8 +1194,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x41: 
-			//LD B,C
+		case 0x41:
+			//ins LD B,C
 			//length 1
 			//time 4
 			//flags ----
@@ -1211,8 +1211,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x42: 
-			//LD B,D
+		case 0x42:
+			//ins LD B,D
 			//length 1
 			//time 4
 			//flags ----
@@ -1228,8 +1228,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x43: 
-			//LD B,E
+		case 0x43:
+			//ins LD B,E
 			//length 1
 			//time 4
 			//flags ----
@@ -1245,8 +1245,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x44: 
-			//LD B,H
+		case 0x44:
+			//ins LD B,H
 			//length 1
 			//time 4
 			//flags ----
@@ -1262,8 +1262,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x45: 
-			//LD B,L
+		case 0x45:
+			//ins LD B,L
 			//length 1
 			//time 4
 			//flags ----
@@ -1279,8 +1279,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x46: 
-			//LD B,(HL)
+		case 0x46:
+			//ins LD B,(HL)
 			//length 1
 			//time 8
 			//flags ----
@@ -1296,8 +1296,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x47: 
-			//LD B,A
+		case 0x47:
+			//ins LD B,A
 			//length 1
 			//time 4
 			//flags ----
@@ -1313,8 +1313,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x48: 
-			//LD C,B
+		case 0x48:
+			//ins LD C,B
 			//length 1
 			//time 4
 			//flags ----
@@ -1330,8 +1330,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x49: 
-			//LD C,C
+		case 0x49:
+			//ins LD C,C
 			//length 1
 			//time 4
 			//flags ----
@@ -1347,8 +1347,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x4A: 
-			//LD C,D
+		case 0x4A:
+			//ins LD C,D
 			//length 1
 			//time 4
 			//flags ----
@@ -1364,8 +1364,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x4B: 
-			//LD C,E
+		case 0x4B:
+			//ins LD C,E
 			//length 1
 			//time 4
 			//flags ----
@@ -1381,8 +1381,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x4C: 
-			//LD C,H
+		case 0x4C:
+			//ins LD C,H
 			//length 1
 			//time 4
 			//flags ----
@@ -1398,8 +1398,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x4D: 
-			//LD C,L
+		case 0x4D:
+			//ins LD C,L
 			//length 1
 			//time 4
 			//flags ----
@@ -1415,8 +1415,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x4E: 
-			//LD C,(HL)
+		case 0x4E:
+			//ins LD C,(HL)
 			//length 1
 			//time 8
 			//flags ----
@@ -1432,8 +1432,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x4F: 
-			//LD C,A
+		case 0x4F:
+			//ins LD C,A
 			//length 1
 			//time 4
 			//flags ----
@@ -1449,8 +1449,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x50: 
-			//LD D,B
+		case 0x50:
+			//ins LD D,B
 			//length 1
 			//time 4
 			//flags ----
@@ -1466,8 +1466,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x51: 
-			//LD D,C
+		case 0x51:
+			//ins LD D,C
 			//length 1
 			//time 4
 			//flags ----
@@ -1483,8 +1483,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x52: 
-			//LD D,D
+		case 0x52:
+			//ins LD D,D
 			//length 1
 			//time 4
 			//flags ----
@@ -1500,8 +1500,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x53: 
-			//LD D,E
+		case 0x53:
+			//ins LD D,E
 			//length 1
 			//time 4
 			//flags ----
@@ -1517,8 +1517,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x54: 
-			//LD D,H
+		case 0x54:
+			//ins LD D,H
 			//length 1
 			//time 4
 			//flags ----
@@ -1534,8 +1534,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x55: 
-			//LD D,L
+		case 0x55:
+			//ins LD D,L
 			//length 1
 			//time 4
 			//flags ----
@@ -1551,8 +1551,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x56: 
-			//LD D,(HL)
+		case 0x56:
+			//ins LD D,(HL)
 			//length 1
 			//time 8
 			//flags ----
@@ -1568,8 +1568,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x57: 
-			//LD D,A
+		case 0x57:
+			//ins LD D,A
 			//length 1
 			//time 4
 			//flags ----
@@ -1585,8 +1585,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x58: 
-			//LD E,B
+		case 0x58:
+			//ins LD E,B
 			//length 1
 			//time 4
 			//flags ----
@@ -1602,8 +1602,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x59: 
-			//LD E,C
+		case 0x59:
+			//ins LD E,C
 			//length 1
 			//time 4
 			//flags ----
@@ -1619,8 +1619,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x5A: 
-			//LD E,D
+		case 0x5A:
+			//ins LD E,D
 			//length 1
 			//time 4
 			//flags ----
@@ -1636,8 +1636,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x5B: 
-			//LD E,E
+		case 0x5B:
+			//ins LD E,E
 			//length 1
 			//time 4
 			//flags ----
@@ -1653,8 +1653,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x5C: 
-			//LD E,H
+		case 0x5C:
+			//ins LD E,H
 			//length 1
 			//time 4
 			//flags ----
@@ -1670,8 +1670,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x5D: 
-			//LD E,L
+		case 0x5D:
+			//ins LD E,L
 			//length 1
 			//time 4
 			//flags ----
@@ -1687,8 +1687,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x5E: 
-			//LD E,(HL)
+		case 0x5E:
+			//ins LD E,(HL)
 			//length 1
 			//time 8
 			//flags ----
@@ -1704,8 +1704,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x5F: 
-			//LD E,A
+		case 0x5F:
+			//ins LD E,A
 			//length 1
 			//time 4
 			//flags ----
@@ -1721,8 +1721,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x60: 
-			//LD H,B
+		case 0x60:
+			//ins LD H,B
 			//length 1
 			//time 4
 			//flags ----
@@ -1738,8 +1738,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x61: 
-			//LD H,C
+		case 0x61:
+			//ins LD H,C
 			//length 1
 			//time 4
 			//flags ----
@@ -1755,8 +1755,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x62: 
-			//LD H,D
+		case 0x62:
+			//ins LD H,D
 			//length 1
 			//time 4
 			//flags ----
@@ -1772,8 +1772,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x63: 
-			//LD H,E
+		case 0x63:
+			//ins LD H,E
 			//length 1
 			//time 4
 			//flags ----
@@ -1789,8 +1789,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x64: 
-			//LD H,H
+		case 0x64:
+			//ins LD H,H
 			//length 1
 			//time 4
 			//flags ----
@@ -1806,8 +1806,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x65: 
-			//LD H,L
+		case 0x65:
+			//ins LD H,L
 			//length 1
 			//time 4
 			//flags ----
@@ -1823,8 +1823,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x66: 
-			//LD H,(HL)
+		case 0x66:
+			//ins LD H,(HL)
 			//length 1
 			//time 8
 			//flags ----
@@ -1840,8 +1840,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x67: 
-			//LD H,A
+		case 0x67:
+			//ins LD H,A
 			//length 1
 			//time 4
 			//flags ----
@@ -1857,8 +1857,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x68: 
-			//LD L,B
+		case 0x68:
+			//ins LD L,B
 			//length 1
 			//time 4
 			//flags ----
@@ -1874,8 +1874,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x69: 
-			//LD L,C
+		case 0x69:
+			//ins LD L,C
 			//length 1
 			//time 4
 			//flags ----
@@ -1891,8 +1891,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x6A: 
-			//LD L,D
+		case 0x6A:
+			//ins LD L,D
 			//length 1
 			//time 4
 			//flags ----
@@ -1908,8 +1908,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x6B: 
-			//LD L,E
+		case 0x6B:
+			//ins LD L,E
 			//length 1
 			//time 4
 			//flags ----
@@ -1925,8 +1925,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x6C: 
-			//LD L,H
+		case 0x6C:
+			//ins LD L,H
 			//length 1
 			//time 4
 			//flags ----
@@ -1942,8 +1942,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x6D: 
-			//LD L,L
+		case 0x6D:
+			//ins LD L,L
 			//length 1
 			//time 4
 			//flags ----
@@ -1959,8 +1959,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x6E: 
-			//LD L,(HL)
+		case 0x6E:
+			//ins LD L,(HL)
 			//length 1
 			//time 8
 			//flags ----
@@ -1976,8 +1976,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x6F: 
-			//LD L,A
+		case 0x6F:
+			//ins LD L,A
 			//length 1
 			//time 4
 			//flags ----
@@ -1993,8 +1993,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x70: 
-			//LD (HL),B
+		case 0x70:
+			//ins LD (HL),B
 			//length 1
 			//time 8
 			//flags ----
@@ -2010,8 +2010,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x71: 
-			//LD (HL),C
+		case 0x71:
+			//ins LD (HL),C
 			//length 1
 			//time 8
 			//flags ----
@@ -2027,8 +2027,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x72: 
-			//LD (HL),D
+		case 0x72:
+			//ins LD (HL),D
 			//length 1
 			//time 8
 			//flags ----
@@ -2044,8 +2044,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x73: 
-			//LD (HL),E
+		case 0x73:
+			//ins LD (HL),E
 			//length 1
 			//time 8
 			//flags ----
@@ -2061,8 +2061,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x74: 
-			//LD (HL),H
+		case 0x74:
+			//ins LD (HL),H
 			//length 1
 			//time 8
 			//flags ----
@@ -2078,8 +2078,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x75: 
-			//LD (HL),L
+		case 0x75:
+			//ins LD (HL),L
 			//length 1
 			//time 8
 			//flags ----
@@ -2095,8 +2095,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x76: 
-			//HALT
+		case 0x76:
+			//ins HALT
 			//length 1
 			//time 4
 			//flags ----
@@ -2112,8 +2112,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x77: 
-			//LD (HL),A
+		case 0x77:
+			//ins LD (HL),A
 			//length 1
 			//time 8
 			//flags ----
@@ -2129,8 +2129,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x78: 
-			//LD A,B
+		case 0x78:
+			//ins LD A,B
 			//length 1
 			//time 4
 			//flags ----
@@ -2146,8 +2146,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x79: 
-			//LD A,C
+		case 0x79:
+			//ins LD A,C
 			//length 1
 			//time 4
 			//flags ----
@@ -2163,8 +2163,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x7A: 
-			//LD A,D
+		case 0x7A:
+			//ins LD A,D
 			//length 1
 			//time 4
 			//flags ----
@@ -2180,8 +2180,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x7B: 
-			//LD A,E
+		case 0x7B:
+			//ins LD A,E
 			//length 1
 			//time 4
 			//flags ----
@@ -2197,8 +2197,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x7C: 
-			//LD A,H
+		case 0x7C:
+			//ins LD A,H
 			//length 1
 			//time 4
 			//flags ----
@@ -2214,8 +2214,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x7D: 
-			//LD A,L
+		case 0x7D:
+			//ins LD A,L
 			//length 1
 			//time 4
 			//flags ----
@@ -2231,8 +2231,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x7E: 
-			//LD A,(HL)
+		case 0x7E:
+			//ins LD A,(HL)
 			//length 1
 			//time 8
 			//flags ----
@@ -2248,8 +2248,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x7F: 
-			//LD A,A
+		case 0x7F:
+			//ins LD A,A
 			//length 1
 			//time 4
 			//flags ----
@@ -2265,16 +2265,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x80: 
-			//ADD A,B
+		case 0x80:
+			//ins ADD A,B
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z0HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.add( r.B.read() );
 
 
 			r.F.setZ(Z); 
@@ -2286,16 +2286,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x81: 
-			//ADD A,C
+		case 0x81:
+			//ins ADD A,C
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z0HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.add( r.C.read() );
 
 
 			r.F.setZ(Z); 
@@ -2307,16 +2307,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x82: 
-			//ADD A,D
+		case 0x82:
+			//ins ADD A,D
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z0HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.add( r.D.read() );
 
 
 			r.F.setZ(Z); 
@@ -2328,16 +2328,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x83: 
-			//ADD A,E
+		case 0x83:
+			//ins ADD A,E
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z0HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.add( r.E.read() );
 
 
 			r.F.setZ(Z); 
@@ -2349,16 +2349,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x84: 
-			//ADD A,H
+		case 0x84:
+			//ins ADD A,H
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z0HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.add( r.H.read() );
 
 
 			r.F.setZ(Z); 
@@ -2370,16 +2370,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x85: 
-			//ADD A,L
+		case 0x85:
+			//ins ADD A,L
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z0HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.add( r.L.read() );
 
 
 			r.F.setZ(Z); 
@@ -2391,11 +2391,179 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x86: 
-			//ADD A,(HL)
+		case 0x86:
+			//ins ADD A,(HL)
 			//length 1
 			//time 8
-			//flags ZH0C
+			//flags Z0HC
+
+			currentOpcodeCycles = 8;
+
+
+			r.A.add( m.address( r.HL.read() ).read() );
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0x87:
+			//ins ADD A,A
+			//length 1
+			//time 4
+			//flags Z0HC
+
+			currentOpcodeCycles = 4;
+
+
+			r.A.add( r.A.read() );
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0x88:
+			//ins ADC A,B
+			//length 1
+			//time 4
+			//flags Z0HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0x89:
+			//ins ADC A,C
+			//length 1
+			//time 4
+			//flags Z0HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0x8A:
+			//ins ADC A,D
+			//length 1
+			//time 4
+			//flags Z0HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0x8B:
+			//ins ADC A,E
+			//length 1
+			//time 4
+			//flags Z0HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0x8C:
+			//ins ADC A,H
+			//length 1
+			//time 4
+			//flags Z0HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0x8D:
+			//ins ADC A,L
+			//length 1
+			//time 4
+			//flags Z0HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0x8E:
+			//ins ADC A,(HL)
+			//length 1
+			//time 8
+			//flags Z0HC
 
 			currentOpcodeCycles = 8;
 
@@ -2412,11 +2580,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x87: 
-			//ADD A,A
+		case 0x8F:
+			//ins ADC A,A
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z0HC
 
 			currentOpcodeCycles = 4;
 
@@ -2433,20 +2601,20 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x88: 
-			//ADC A,B
+		case 0x90:
+			//ins SUB B
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.B.read() );
 
 
 			r.F.setZ(Z); 
-			r.F.setN(0); 
+			r.F.setN(1); 
 			r.F.setH(H); 
 			r.F.setC(C); 
 
@@ -2454,20 +2622,20 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x89: 
-			//ADC A,C
+		case 0x91:
+			//ins SUB C
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.C.read() );
 
 
 			r.F.setZ(Z); 
-			r.F.setN(0); 
+			r.F.setN(1); 
 			r.F.setH(H); 
 			r.F.setC(C); 
 
@@ -2475,20 +2643,20 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x8A: 
-			//ADC A,D
+		case 0x92:
+			//ins SUB D
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.D.read() );
 
 
 			r.F.setZ(Z); 
-			r.F.setN(0); 
+			r.F.setN(1); 
 			r.F.setH(H); 
 			r.F.setC(C); 
 
@@ -2496,20 +2664,20 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x8B: 
-			//ADC A,E
+		case 0x93:
+			//ins SUB E
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.E.read() );
 
 
 			r.F.setZ(Z); 
-			r.F.setN(0); 
+			r.F.setN(1); 
 			r.F.setH(H); 
 			r.F.setC(C); 
 
@@ -2517,20 +2685,20 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x8C: 
-			//ADC A,H
+		case 0x94:
+			//ins SUB H
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.H.read() );
 
 
 			r.F.setZ(Z); 
-			r.F.setN(0); 
+			r.F.setN(1); 
 			r.F.setH(H); 
 			r.F.setC(C); 
 
@@ -2538,20 +2706,20 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x8D: 
-			//ADC A,L
+		case 0x95:
+			//ins SUB L
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.L.read() );
 
 
 			r.F.setZ(Z); 
-			r.F.setN(0); 
+			r.F.setN(1); 
 			r.F.setH(H); 
 			r.F.setC(C); 
 
@@ -2559,20 +2727,20 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x8E: 
-			//ADC A,(HL)
+		case 0x96:
+			//ins SUB (HL)
 			//length 1
 			//time 8
-			//flags ZH0C
+			//flags Z1HC
 
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.A.sub( m.address( r.HL.read() ).read() );
 
 
 			r.F.setZ(Z); 
-			r.F.setN(0); 
+			r.F.setN(1); 
 			r.F.setH(H); 
 			r.F.setC(C); 
 
@@ -2580,20 +2748,20 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x8F: 
-			//ADC A,A
+		case 0x97:
+			//ins SUB A
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.A.read() );
 
 
 			r.F.setZ(Z); 
-			r.F.setN(0); 
+			r.F.setN(1); 
 			r.F.setH(H); 
 			r.F.setC(C); 
 
@@ -2601,11 +2769,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x90: 
-			//SUB B
+		case 0x98:
+			//ins SBC A,B
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
@@ -2622,11 +2790,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x91: 
-			//SUB C
+		case 0x99:
+			//ins SBC A,C
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
@@ -2643,11 +2811,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x92: 
-			//SUB D
+		case 0x9A:
+			//ins SBC A,D
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
@@ -2664,11 +2832,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x93: 
-			//SUB E
+		case 0x9B:
+			//ins SBC A,E
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
@@ -2685,11 +2853,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x94: 
-			//SUB H
+		case 0x9C:
+			//ins SBC A,H
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
@@ -2706,11 +2874,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x95: 
-			//SUB L
+		case 0x9D:
+			//ins SBC A,L
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
@@ -2727,179 +2895,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x96: 
-			//SUB (HL)
+		case 0x9E:
+			//ins SBC A,(HL)
 			//length 1
 			//time 8
-			//flags ZH1C
-
-			currentOpcodeCycles = 8;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0x97: 
-			//SUB A
-			//length 1
-			//time 4
-			//flags ZH1C
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0x98: 
-			//SBC A,B
-			//length 1
-			//time 4
-			//flags ZH1C
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0x99: 
-			//SBC A,C
-			//length 1
-			//time 4
-			//flags ZH1C
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0x9A: 
-			//SBC A,D
-			//length 1
-			//time 4
-			//flags ZH1C
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0x9B: 
-			//SBC A,E
-			//length 1
-			//time 4
-			//flags ZH1C
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0x9C: 
-			//SBC A,H
-			//length 1
-			//time 4
-			//flags ZH1C
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0x9D: 
-			//SBC A,L
-			//length 1
-			//time 4
-			//flags ZH1C
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0x9E: 
-			//SBC A,(HL)
-			//length 1
-			//time 8
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 8;
 
@@ -2916,11 +2916,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0x9F: 
-			//SBC A,A
+		case 0x9F:
+			//ins SBC A,A
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
@@ -2937,11 +2937,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xA0: 
-			//AND B
+		case 0xA0:
+			//ins AND B
 			//length 1
 			//time 4
-			//flags Z100
+			//flags Z010
 
 			currentOpcodeCycles = 4;
 
@@ -2958,11 +2958,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xA1: 
-			//AND C
+		case 0xA1:
+			//ins AND C
 			//length 1
 			//time 4
-			//flags Z100
+			//flags Z010
 
 			currentOpcodeCycles = 4;
 
@@ -2979,11 +2979,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xA2: 
-			//AND D
+		case 0xA2:
+			//ins AND D
 			//length 1
 			//time 4
-			//flags Z100
+			//flags Z010
 
 			currentOpcodeCycles = 4;
 
@@ -3000,11 +3000,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xA3: 
-			//AND E
+		case 0xA3:
+			//ins AND E
 			//length 1
 			//time 4
-			//flags Z100
+			//flags Z010
 
 			currentOpcodeCycles = 4;
 
@@ -3021,11 +3021,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xA4: 
-			//AND H
+		case 0xA4:
+			//ins AND H
 			//length 1
 			//time 4
-			//flags Z100
+			//flags Z010
 
 			currentOpcodeCycles = 4;
 
@@ -3042,11 +3042,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xA5: 
-			//AND L
+		case 0xA5:
+			//ins AND L
 			//length 1
 			//time 4
-			//flags Z100
+			//flags Z010
 
 			currentOpcodeCycles = 4;
 
@@ -3063,11 +3063,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xA6: 
-			//AND (HL)
+		case 0xA6:
+			//ins AND (HL)
 			//length 1
 			//time 8
-			//flags Z100
+			//flags Z010
 
 			currentOpcodeCycles = 8;
 
@@ -3084,11 +3084,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xA7: 
-			//AND A
+		case 0xA7:
+			//ins AND A
 			//length 1
 			//time 4
-			//flags Z100
+			//flags Z010
 
 			currentOpcodeCycles = 4;
 
@@ -3105,8 +3105,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xA8: 
-			//XOR B
+		case 0xA8:
+			//ins XOR B
 			//length 1
 			//time 4
 			//flags Z000
@@ -3126,8 +3126,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xA9: 
-			//XOR C
+		case 0xA9:
+			//ins XOR C
 			//length 1
 			//time 4
 			//flags Z000
@@ -3147,8 +3147,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xAA: 
-			//XOR D
+		case 0xAA:
+			//ins XOR D
 			//length 1
 			//time 4
 			//flags Z000
@@ -3168,8 +3168,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xAB: 
-			//XOR E
+		case 0xAB:
+			//ins XOR E
 			//length 1
 			//time 4
 			//flags Z000
@@ -3189,8 +3189,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xAC: 
-			//XOR H
+		case 0xAC:
+			//ins XOR H
 			//length 1
 			//time 4
 			//flags Z000
@@ -3210,8 +3210,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xAD: 
-			//XOR L
+		case 0xAD:
+			//ins XOR L
 			//length 1
 			//time 4
 			//flags Z000
@@ -3231,176 +3231,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xAE: 
-			//XOR (HL)
-			//length 1
-			//time 8
-			//flags Z000
-
-			currentOpcodeCycles = 8;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(0); 
-			r.F.setH(0); 
-			r.F.setC(0); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xAF: 
-			//XOR A
-			//length 1
-			//time 4
-			//flags Z000
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(0); 
-			r.F.setH(0); 
-			r.F.setC(0); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xB0: 
-			//OR B
-			//length 1
-			//time 4
-			//flags Z000
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(0); 
-			r.F.setH(0); 
-			r.F.setC(0); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xB1: 
-			//OR C
-			//length 1
-			//time 4
-			//flags Z000
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(0); 
-			r.F.setH(0); 
-			r.F.setC(0); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xB2: 
-			//OR D
-			//length 1
-			//time 4
-			//flags Z000
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(0); 
-			r.F.setH(0); 
-			r.F.setC(0); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xB3: 
-			//OR E
-			//length 1
-			//time 4
-			//flags Z000
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(0); 
-			r.F.setH(0); 
-			r.F.setC(0); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xB4: 
-			//OR H
-			//length 1
-			//time 4
-			//flags Z000
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(0); 
-			r.F.setH(0); 
-			r.F.setC(0); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xB5: 
-			//OR L
-			//length 1
-			//time 4
-			//flags Z000
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(0); 
-			r.F.setH(0); 
-			r.F.setC(0); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xB6: 
-			//OR (HL)
+		case 0xAE:
+			//ins XOR (HL)
 			//length 1
 			//time 8
 			//flags Z000
@@ -3420,8 +3252,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xB7: 
-			//OR A
+		case 0xAF:
+			//ins XOR A
 			//length 1
 			//time 4
 			//flags Z000
@@ -3441,11 +3273,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xB8: 
-			//CP B
+		case 0xB0:
+			//ins OR B
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z000
 
 			currentOpcodeCycles = 4;
 
@@ -3454,19 +3286,19 @@ public void mainTable (int opcode) {
 
 
 			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
 			break;
 
-		case 0xB9: 
-			//CP C
+		case 0xB1:
+			//ins OR C
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z000
 
 			currentOpcodeCycles = 4;
 
@@ -3475,19 +3307,19 @@ public void mainTable (int opcode) {
 
 
 			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
 			break;
 
-		case 0xBA: 
-			//CP D
+		case 0xB2:
+			//ins OR D
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z000
 
 			currentOpcodeCycles = 4;
 
@@ -3496,19 +3328,19 @@ public void mainTable (int opcode) {
 
 
 			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
 			break;
 
-		case 0xBB: 
-			//CP E
+		case 0xB3:
+			//ins OR E
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z000
 
 			currentOpcodeCycles = 4;
 
@@ -3517,19 +3349,19 @@ public void mainTable (int opcode) {
 
 
 			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
 			break;
 
-		case 0xBC: 
-			//CP H
+		case 0xB4:
+			//ins OR H
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z000
 
 			currentOpcodeCycles = 4;
 
@@ -3538,19 +3370,19 @@ public void mainTable (int opcode) {
 
 
 			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
 			break;
 
-		case 0xBD: 
-			//CP L
+		case 0xB5:
+			//ins OR L
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z000
 
 			currentOpcodeCycles = 4;
 
@@ -3559,19 +3391,187 @@ public void mainTable (int opcode) {
 
 
 			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
 			break;
 
-		case 0xBE: 
-			//CP (HL)
+		case 0xB6:
+			//ins OR (HL)
 			//length 1
 			//time 8
-			//flags ZH1C
+			//flags Z000
+
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xB7:
+			//ins OR A
+			//length 1
+			//time 4
+			//flags Z000
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xB8:
+			//ins CP B
+			//length 1
+			//time 4
+			//flags Z1HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xB9:
+			//ins CP C
+			//length 1
+			//time 4
+			//flags Z1HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xBA:
+			//ins CP D
+			//length 1
+			//time 4
+			//flags Z1HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xBB:
+			//ins CP E
+			//length 1
+			//time 4
+			//flags Z1HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xBC:
+			//ins CP H
+			//length 1
+			//time 4
+			//flags Z1HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xBD:
+			//ins CP L
+			//length 1
+			//time 4
+			//flags Z1HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xBE:
+			//ins CP (HL)
+			//length 1
+			//time 8
+			//flags Z1HC
 
 			currentOpcodeCycles = 8;
 
@@ -3588,11 +3588,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xBF: 
-			//CP A
+		case 0xBF:
+			//ins CP A
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
@@ -3609,8 +3609,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xC0: 
-			//RET NZ
+		case 0xC0:
+			//ins RET NZ
 			//length 1
 			//time 20/8
 			//flags ----
@@ -3626,8 +3626,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xC1: 
-			//POP BC
+		case 0xC1:
+			//ins POP BC
 			//length 1
 			//time 12
 			//flags ----
@@ -3643,8 +3643,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xC2: 
-			//JP NZ,a16
+		case 0xC2:
+			//ins JP NZ,a16
 			//length 3
 			//time 16/12
 			//flags ----
@@ -3660,8 +3660,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xC3: 
-			//JP a16
+		case 0xC3:
+			//ins JP a16
 			//length 3
 			//time 16
 			//flags ----
@@ -3677,8 +3677,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xC4: 
-			//CALL NZ,a16
+		case 0xC4:
+			//ins CALL NZ,a16
 			//length 3
 			//time 24/12
 			//flags ----
@@ -3694,8 +3694,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xC5: 
-			//PUSH BC
+		case 0xC5:
+			//ins PUSH BC
 			//length 1
 			//time 16
 			//flags ----
@@ -3711,16 +3711,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xC6: 
-			//ADD A,d8
+		case 0xC6:
+			//ins ADD A,d8
 			//length 2
 			//time 8
-			//flags ZH0C
+			//flags Z0HC
 
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.A.add( m.address( r.PC.read() + 1 ).read() );
 
 
 			r.F.setZ(Z); 
@@ -3732,8 +3732,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xC7: 
-			//RST 00H
+		case 0xC7:
+			//ins RST 00H
 			//length 1
 			//time 16
 			//flags ----
@@ -3749,8 +3749,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xC8: 
-			//RET Z
+		case 0xC8:
+			//ins RET Z
 			//length 1
 			//time 20/8
 			//flags ----
@@ -3766,8 +3766,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xC9: 
-			//RET
+		case 0xC9:
+			//ins RET
 			//length 1
 			//time 16
 			//flags ----
@@ -3783,8 +3783,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xCA: 
-			//JP Z,a16
+		case 0xCA:
+			//ins JP Z,a16
 			//length 3
 			//time 16/12
 			//flags ----
@@ -3800,8 +3800,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xCB: 
-			//PREFIX CB
+		case 0xCB:
+			//ins PREFIX CB
 			//length 1
 			//time 4
 			//flags ----
@@ -3817,8 +3817,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xCC: 
-			//CALL Z,a16
+		case 0xCC:
+			//ins CALL Z,a16
 			//length 3
 			//time 24/12
 			//flags ----
@@ -3834,8 +3834,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xCD: 
-			//CALL a16
+		case 0xCD:
+			//ins CALL a16
 			//length 3
 			//time 24
 			//flags ----
@@ -3851,11 +3851,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xCE: 
-			//ADC A,d8
+		case 0xCE:
+			//ins ADC A,d8
 			//length 2
 			//time 8
-			//flags ZH0C
+			//flags Z0HC
 
 			currentOpcodeCycles = 8;
 
@@ -3872,8 +3872,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xCF: 
-			//RST 08H
+		case 0xCF:
+			//ins RST 08H
 			//length 1
 			//time 16
 			//flags ----
@@ -3889,8 +3889,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xD0: 
-			//RET NC
+		case 0xD0:
+			//ins RET NC
 			//length 1
 			//time 20/8
 			//flags ----
@@ -3906,8 +3906,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xD1: 
-			//POP DE
+		case 0xD1:
+			//ins POP DE
 			//length 1
 			//time 12
 			//flags ----
@@ -3923,8 +3923,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xD2: 
-			//JP NC,a16
+		case 0xD2:
+			//ins JP NC,a16
 			//length 3
 			//time 16/12
 			//flags ----
@@ -3940,8 +3940,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xD4: 
-			//CALL NC,a16
+		case 0xD4:
+			//ins CALL NC,a16
 			//length 3
 			//time 24/12
 			//flags ----
@@ -3957,8 +3957,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xD5: 
-			//PUSH DE
+		case 0xD5:
+			//ins PUSH DE
 			//length 1
 			//time 16
 			//flags ----
@@ -3974,11 +3974,117 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xD6: 
-			//SUB d8
+		case 0xD6:
+			//ins SUB d8
 			//length 2
 			//time 8
-			//flags ZH1C
+			//flags Z1HC
+
+			currentOpcodeCycles = 8;
+
+
+			r.A.sub( m.address( r.PC.read() + 1 ).read() );
+
+
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(2);
+
+			break;
+
+		case 0xD7:
+			//ins RST 10H
+			//length 1
+			//time 16
+			//flags ----
+
+			currentOpcodeCycles = 16;
+
+
+			//**command missing
+
+
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xD8:
+			//ins RET C
+			//length 1
+			//time 20/8
+			//flags ----
+
+			//**currentOpcodeCycles = CONDITIONAL;20/8
+
+
+			//**command missing
+
+
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xD9:
+			//ins RETI
+			//length 1
+			//time 16
+			//flags ----
+
+			currentOpcodeCycles = 16;
+
+
+			//**command missing
+
+
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xDA:
+			//ins JP C,a16
+			//length 3
+			//time 16/12
+			//flags ----
+
+			//**currentOpcodeCycles = CONDITIONAL;16/12
+
+
+			//**command missing
+
+
+
+			r.PC.add(3);
+
+			break;
+
+		case 0xDC:
+			//ins CALL C,a16
+			//length 3
+			//time 24/12
+			//flags ----
+
+			//**currentOpcodeCycles = CONDITIONAL;24/12
+
+
+			//**command missing
+
+
+
+			r.PC.add(3);
+
+			break;
+
+		case 0xDE:
+			//ins SBC A,d8
+			//length 2
+			//time 8
+			//flags Z1HC
 
 			currentOpcodeCycles = 8;
 
@@ -3995,8 +4101,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xD7: 
-			//RST 10H
+		case 0xDF:
+			//ins RST 18H
 			//length 1
 			//time 16
 			//flags ----
@@ -4012,114 +4118,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xD8: 
-			//RET C
-			//length 1
-			//time 20/8
-			//flags ----
-
-			//**currentOpcodeCycles = CONDITIONAL;20/8
-
-
-			//**command missing
-
-
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xD9: 
-			//RETI
-			//length 1
-			//time 16
-			//flags ----
-
-			currentOpcodeCycles = 16;
-
-
-			//**command missing
-
-
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xDA: 
-			//JP C,a16
-			//length 3
-			//time 16/12
-			//flags ----
-
-			//**currentOpcodeCycles = CONDITIONAL;16/12
-
-
-			//**command missing
-
-
-
-			r.PC.add(3);
-
-			break;
-
-		case 0xDC: 
-			//CALL C,a16
-			//length 3
-			//time 24/12
-			//flags ----
-
-			//**currentOpcodeCycles = CONDITIONAL;24/12
-
-
-			//**command missing
-
-
-
-			r.PC.add(3);
-
-			break;
-
-		case 0xDE: 
-			//SBC A,d8
-			//length 2
-			//time 8
-			//flags ZH1C
-
-			currentOpcodeCycles = 8;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
-
-			r.PC.add(2);
-
-			break;
-
-		case 0xDF: 
-			//RST 18H
-			//length 1
-			//time 16
-			//flags ----
-
-			currentOpcodeCycles = 16;
-
-
-			//**command missing
-
-
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xE0: 
-			//LDH (a8),A
+		case 0xE0:
+			//ins LDH (a8),A
 			//length 2
 			//time 12
 			//flags ----
@@ -4135,8 +4135,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xE1: 
-			//POP HL
+		case 0xE1:
+			//ins POP HL
 			//length 1
 			//time 12
 			//flags ----
@@ -4152,8 +4152,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xE2: 
-			//LD (C),A
+		case 0xE2:
+			//ins LD (C),A
 			//length 2
 			//time 8
 			//flags ----
@@ -4169,8 +4169,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xE5: 
-			//PUSH HL
+		case 0xE5:
+			//ins PUSH HL
 			//length 1
 			//time 16
 			//flags ----
@@ -4186,11 +4186,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xE6: 
-			//AND d8
+		case 0xE6:
+			//ins AND d8
 			//length 2
 			//time 8
-			//flags Z100
+			//flags Z010
 
 			currentOpcodeCycles = 8;
 
@@ -4207,8 +4207,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xE7: 
-			//RST 20H
+		case 0xE7:
+			//ins RST 20H
 			//length 1
 			//time 16
 			//flags ----
@@ -4224,16 +4224,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xE8: 
-			//ADD SP,r8
+		case 0xE8:
+			//ins ADD SP,r8
 			//length 2
 			//time 16
-			//flags 0H0C
+			//flags 00HC
 
 			currentOpcodeCycles = 16;
 
 
-			//**command missing
+			//**skipped
 
 
 			r.F.setZ(0); 
@@ -4245,8 +4245,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xE9: 
-			//JP (HL)
+		case 0xE9:
+			//ins JP (HL)
 			//length 1
 			//time 4
 			//flags ----
@@ -4262,8 +4262,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xEA: 
-			//LD (a16),A
+		case 0xEA:
+			//ins LD (a16),A
 			//length 3
 			//time 16
 			//flags ----
@@ -4271,7 +4271,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 16;
 
 
-			//**LD skipped, a8 or a16
+			//**skipped command
 
 
 
@@ -4279,8 +4279,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xEE: 
-			//XOR d8
+		case 0xEE:
+			//ins XOR d8
 			//length 2
 			//time 8
 			//flags Z000
@@ -4300,8 +4300,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xEF: 
-			//RST 28H
+		case 0xEF:
+			//ins RST 28H
 			//length 1
 			//time 16
 			//flags ----
@@ -4317,8 +4317,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xF0: 
-			//LDH A,(a8)
+		case 0xF0:
+			//ins LDH A,(a8)
 			//length 2
 			//time 12
 			//flags ----
@@ -4334,11 +4334,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xF1: 
-			//POP AF
+		case 0xF1:
+			//ins POP AF
 			//length 1
 			//time 12
-			//flags ZHNC
+			//flags ZNHC
 
 			currentOpcodeCycles = 12;
 
@@ -4355,8 +4355,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xF2: 
-			//LD A,(C)
+		case 0xF2:
+			//ins LD A,(C)
 			//length 2
 			//time 8
 			//flags ----
@@ -4372,8 +4372,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xF3: 
-			//DI
+		case 0xF3:
+			//ins DI
 			//length 1
 			//time 4
 			//flags ----
@@ -4389,8 +4389,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xF5: 
-			//PUSH AF
+		case 0xF5:
+			//ins PUSH AF
 			//length 1
 			//time 16
 			//flags ----
@@ -4406,8 +4406,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xF6: 
-			//OR d8
+		case 0xF6:
+			//ins OR d8
 			//length 2
 			//time 8
 			//flags Z000
@@ -4427,8 +4427,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xF7: 
-			//RST 30H
+		case 0xF7:
+			//ins RST 30H
 			//length 1
 			//time 16
 			//flags ----
@@ -4444,16 +4444,16 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xF8: 
-			//LD HL,SP+r8
+		case 0xF8:
+			//ins LD HL,SP+r8
 			//length 2
 			//time 12
-			//flags 0H0C
+			//flags 00HC
 
 			currentOpcodeCycles = 12;
 
 
-			//**LD skipped, + or -
+			//**skipped command
 
 
 			r.F.setZ(0); 
@@ -4465,8 +4465,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xF9: 
-			//LD SP,HL
+		case 0xF9:
+			//ins LD SP,HL
 			//length 1
 			//time 8
 			//flags ----
@@ -4482,8 +4482,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xFA: 
-			//LD A,(a16)
+		case 0xFA:
+			//ins LD A,(a16)
 			//length 3
 			//time 16
 			//flags ----
@@ -4491,7 +4491,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 16;
 
 
-			//**LD skipped, a8 or a16
+			//**skipped command
 
 
 
@@ -4499,8 +4499,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xFB: 
-			//EI
+		case 0xFB:
+			//ins EI
 			//length 1
 			//time 4
 			//flags ----
@@ -4516,11 +4516,11 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xFE: 
-			//CP d8
+		case 0xFE:
+			//ins CP d8
 			//length 2
 			//time 8
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 8;
 
@@ -4537,8 +4537,8 @@ public void mainTable (int opcode) {
 
 			break;
 
-		case 0xFF: 
-			//RST 38H
+		case 0xFF:
+			//ins RST 38H
 			//length 1
 			//time 16
 			//flags ----
@@ -4562,8 +4562,8 @@ public void cBTable (int opcode) {
 
 	switch(opcode) {
 
-		case 0x0: 
-			//NOP
+		case 0x0:
+			//ins NOP
 			//length 1
 			//time 4
 			//flags ----
@@ -4579,8 +4579,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x1: 
-			//LD BC,d16
+		case 0x1:
+			//ins LD BC,d16
 			//length 3
 			//time 12
 			//flags ----
@@ -4596,8 +4596,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x2: 
-			//LD (BC),A
+		case 0x2:
+			//ins LD (BC),A
 			//length 1
 			//time 8
 			//flags ----
@@ -4613,8 +4613,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x3: 
-			//INC BC
+		case 0x3:
+			//ins INC BC
 			//length 1
 			//time 8
 			//flags ----
@@ -4622,7 +4622,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.BC.inc();
 
 
 
@@ -4630,16 +4630,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x4: 
-			//INC B
+		case 0x4:
+			//ins INC B
 			//length 1
 			//time 4
-			//flags ZH0-
+			//flags Z0H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.B.inc();
 
 
 			r.F.setZ(Z); 
@@ -4650,16 +4650,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x5: 
-			//DEC B
+		case 0x5:
+			//ins DEC B
 			//length 1
 			//time 4
-			//flags ZH1-
+			//flags Z1H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.B.dec();
 
 
 			r.F.setZ(Z); 
@@ -4670,8 +4670,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x6: 
-			//LD B,d8
+		case 0x6:
+			//ins LD B,d8
 			//length 2
 			//time 8
 			//flags ----
@@ -4687,8 +4687,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x7: 
-			//RLCA
+		case 0x7:
+			//ins RLCA
 			//length 1
 			//time 4
 			//flags 000C
@@ -4708,8 +4708,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x8: 
-			//LD (a16),SP
+		case 0x8:
+			//ins LD (a16),SP
 			//length 3
 			//time 20
 			//flags ----
@@ -4717,7 +4717,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 20;
 
 
-			//**LD skipped, a8 or a16
+			//**skipped command
 
 
 
@@ -4725,16 +4725,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x9: 
-			//ADD HL,BC
+		case 0x9:
+			//ins ADD HL,BC
 			//length 1
 			//time 8
-			//flags -H0C
+			//flags -0HC
 
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.HL.add( r.BC.read() );
 
 
 			r.F.setN(0); 
@@ -4745,8 +4745,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x0A: 
-			//LD A,(BC)
+		case 0x0A:
+			//ins LD A,(BC)
 			//length 1
 			//time 8
 			//flags ----
@@ -4762,8 +4762,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x0B: 
-			//DEC BC
+		case 0x0B:
+			//ins DEC BC
 			//length 1
 			//time 8
 			//flags ----
@@ -4771,7 +4771,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.BC.dec();
 
 
 
@@ -4779,16 +4779,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x0C: 
-			//INC C
+		case 0x0C:
+			//ins INC C
 			//length 1
 			//time 4
-			//flags ZH0-
+			//flags Z0H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.C.inc();
 
 
 			r.F.setZ(Z); 
@@ -4799,16 +4799,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x0D: 
-			//DEC C
+		case 0x0D:
+			//ins DEC C
 			//length 1
 			//time 4
-			//flags ZH1-
+			//flags Z1H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.C.dec();
 
 
 			r.F.setZ(Z); 
@@ -4819,8 +4819,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x0E: 
-			//LD C,d8
+		case 0x0E:
+			//ins LD C,d8
 			//length 2
 			//time 8
 			//flags ----
@@ -4836,8 +4836,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x0F: 
-			//RRCA
+		case 0x0F:
+			//ins RRCA
 			//length 1
 			//time 4
 			//flags 000C
@@ -4857,8 +4857,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x10: 
-			//STOP 0
+		case 0x10:
+			//ins STOP 0
 			//length 2
 			//time 4
 			//flags ----
@@ -4874,8 +4874,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x11: 
-			//LD DE,d16
+		case 0x11:
+			//ins LD DE,d16
 			//length 3
 			//time 12
 			//flags ----
@@ -4891,8 +4891,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x12: 
-			//LD (DE),A
+		case 0x12:
+			//ins LD (DE),A
 			//length 1
 			//time 8
 			//flags ----
@@ -4908,8 +4908,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x13: 
-			//INC DE
+		case 0x13:
+			//ins INC DE
 			//length 1
 			//time 8
 			//flags ----
@@ -4917,7 +4917,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.DE.inc();
 
 
 
@@ -4925,16 +4925,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x14: 
-			//INC D
+		case 0x14:
+			//ins INC D
 			//length 1
 			//time 4
-			//flags ZH0-
+			//flags Z0H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.D.inc();
 
 
 			r.F.setZ(Z); 
@@ -4945,16 +4945,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x15: 
-			//DEC D
+		case 0x15:
+			//ins DEC D
 			//length 1
 			//time 4
-			//flags ZH1-
+			//flags Z1H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.D.dec();
 
 
 			r.F.setZ(Z); 
@@ -4965,8 +4965,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x16: 
-			//LD D,d8
+		case 0x16:
+			//ins LD D,d8
 			//length 2
 			//time 8
 			//flags ----
@@ -4982,8 +4982,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x17: 
-			//RLA
+		case 0x17:
+			//ins RLA
 			//length 1
 			//time 4
 			//flags 000C
@@ -5003,8 +5003,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x18: 
-			//JR r8
+		case 0x18:
+			//ins JR r8
 			//length 2
 			//time 12
 			//flags ----
@@ -5020,16 +5020,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x19: 
-			//ADD HL,DE
+		case 0x19:
+			//ins ADD HL,DE
 			//length 1
 			//time 8
-			//flags -H0C
+			//flags -0HC
 
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.HL.add( r.DE.read() );
 
 
 			r.F.setN(0); 
@@ -5040,8 +5040,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x1A: 
-			//LD A,(DE)
+		case 0x1A:
+			//ins LD A,(DE)
 			//length 1
 			//time 8
 			//flags ----
@@ -5057,8 +5057,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x1B: 
-			//DEC DE
+		case 0x1B:
+			//ins DEC DE
 			//length 1
 			//time 8
 			//flags ----
@@ -5066,7 +5066,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.DE.dec();
 
 
 
@@ -5074,16 +5074,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x1C: 
-			//INC E
+		case 0x1C:
+			//ins INC E
 			//length 1
 			//time 4
-			//flags ZH0-
+			//flags Z0H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.E.inc();
 
 
 			r.F.setZ(Z); 
@@ -5094,16 +5094,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x1D: 
-			//DEC E
+		case 0x1D:
+			//ins DEC E
 			//length 1
 			//time 4
-			//flags ZH1-
+			//flags Z1H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.E.dec();
 
 
 			r.F.setZ(Z); 
@@ -5114,8 +5114,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x1E: 
-			//LD E,d8
+		case 0x1E:
+			//ins LD E,d8
 			//length 2
 			//time 8
 			//flags ----
@@ -5131,8 +5131,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x1F: 
-			//RRA
+		case 0x1F:
+			//ins RRA
 			//length 1
 			//time 4
 			//flags 000C
@@ -5152,8 +5152,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x20: 
-			//JR NZ,r8
+		case 0x20:
+			//ins JR NZ,r8
 			//length 2
 			//time 12/8
 			//flags ----
@@ -5169,8 +5169,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x21: 
-			//LD HL,d16
+		case 0x21:
+			//ins LD HL,d16
 			//length 3
 			//time 12
 			//flags ----
@@ -5186,8 +5186,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x22: 
-			//LD (HL+),A
+		case 0x22:
+			//ins LD (HL+),A
 			//length 1
 			//time 8
 			//flags ----
@@ -5195,7 +5195,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**LD skipped, + or -
+			//**skipped command
 
 
 
@@ -5203,8 +5203,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x23: 
-			//INC HL
+		case 0x23:
+			//ins INC HL
 			//length 1
 			//time 8
 			//flags ----
@@ -5212,7 +5212,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.HL.inc();
 
 
 
@@ -5220,16 +5220,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x24: 
-			//INC H
+		case 0x24:
+			//ins INC H
 			//length 1
 			//time 4
-			//flags ZH0-
+			//flags Z0H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.H.inc();
 
 
 			r.F.setZ(Z); 
@@ -5240,16 +5240,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x25: 
-			//DEC H
+		case 0x25:
+			//ins DEC H
 			//length 1
 			//time 4
-			//flags ZH1-
+			//flags Z1H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.H.dec();
 
 
 			r.F.setZ(Z); 
@@ -5260,8 +5260,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x26: 
-			//LD H,d8
+		case 0x26:
+			//ins LD H,d8
 			//length 2
 			//time 8
 			//flags ----
@@ -5277,11 +5277,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x27: 
-			//DAA
+		case 0x27:
+			//ins DAA
 			//length 1
 			//time 4
-			//flags Z0-C
+			//flags Z-0C
 
 			currentOpcodeCycles = 4;
 
@@ -5297,8 +5297,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x28: 
-			//JR Z,r8
+		case 0x28:
+			//ins JR Z,r8
 			//length 2
 			//time 12/8
 			//flags ----
@@ -5314,16 +5314,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x29: 
-			//ADD HL,HL
+		case 0x29:
+			//ins ADD HL,HL
 			//length 1
 			//time 8
-			//flags -H0C
+			//flags -0HC
 
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.HL.add( r.HL.read() );
 
 
 			r.F.setN(0); 
@@ -5334,8 +5334,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x2A: 
-			//LD A,(HL+)
+		case 0x2A:
+			//ins LD A,(HL+)
 			//length 1
 			//time 8
 			//flags ----
@@ -5343,7 +5343,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**LD skipped, + or -
+			//**skipped command
 
 
 
@@ -5351,8 +5351,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x2B: 
-			//DEC HL
+		case 0x2B:
+			//ins DEC HL
 			//length 1
 			//time 8
 			//flags ----
@@ -5360,7 +5360,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.HL.dec();
 
 
 
@@ -5368,16 +5368,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x2C: 
-			//INC L
+		case 0x2C:
+			//ins INC L
 			//length 1
 			//time 4
-			//flags ZH0-
+			//flags Z0H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.L.inc();
 
 
 			r.F.setZ(Z); 
@@ -5388,16 +5388,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x2D: 
-			//DEC L
+		case 0x2D:
+			//ins DEC L
 			//length 1
 			//time 4
-			//flags ZH1-
+			//flags Z1H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.L.dec();
 
 
 			r.F.setZ(Z); 
@@ -5408,8 +5408,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x2E: 
-			//LD L,d8
+		case 0x2E:
+			//ins LD L,d8
 			//length 2
 			//time 8
 			//flags ----
@@ -5425,8 +5425,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x2F: 
-			//CPL
+		case 0x2F:
+			//ins CPL
 			//length 1
 			//time 4
 			//flags -11-
@@ -5444,8 +5444,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x30: 
-			//JR NC,r8
+		case 0x30:
+			//ins JR NC,r8
 			//length 2
 			//time 12/8
 			//flags ----
@@ -5461,8 +5461,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x31: 
-			//LD SP,d16
+		case 0x31:
+			//ins LD SP,d16
 			//length 3
 			//time 12
 			//flags ----
@@ -5478,8 +5478,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x32: 
-			//LD (HL-),A
+		case 0x32:
+			//ins LD (HL-),A
 			//length 1
 			//time 8
 			//flags ----
@@ -5487,7 +5487,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**LD skipped, + or -
+			//**skipped command
 
 
 
@@ -5495,8 +5495,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x33: 
-			//INC SP
+		case 0x33:
+			//ins INC SP
 			//length 1
 			//time 8
 			//flags ----
@@ -5504,7 +5504,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.SP.inc();
 
 
 
@@ -5512,16 +5512,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x34: 
-			//INC (HL)
+		case 0x34:
+			//ins INC (HL)
 			//length 1
 			//time 12
-			//flags ZH0-
+			//flags Z0H-
 
 			currentOpcodeCycles = 12;
 
 
-			//**command missing
+			m.address( r.HL.read() ).inc();
 
 
 			r.F.setZ(Z); 
@@ -5532,16 +5532,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x35: 
-			//DEC (HL)
+		case 0x35:
+			//ins DEC (HL)
 			//length 1
 			//time 12
-			//flags ZH1-
+			//flags Z1H-
 
 			currentOpcodeCycles = 12;
 
 
-			//**command missing
+			m.address( r.HL.read() ).dec();
 
 
 			r.F.setZ(Z); 
@@ -5552,8 +5552,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x36: 
-			//LD (HL),d8
+		case 0x36:
+			//ins LD (HL),d8
 			//length 2
 			//time 12
 			//flags ----
@@ -5569,8 +5569,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x37: 
-			//SCF
+		case 0x37:
+			//ins SCF
 			//length 1
 			//time 4
 			//flags -001
@@ -5589,8 +5589,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x38: 
-			//JR C,r8
+		case 0x38:
+			//ins JR C,r8
 			//length 2
 			//time 12/8
 			//flags ----
@@ -5606,16 +5606,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x39: 
-			//ADD HL,SP
+		case 0x39:
+			//ins ADD HL,SP
 			//length 1
 			//time 8
-			//flags -H0C
+			//flags -0HC
 
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.HL.add( r.SP.read() );
 
 
 			r.F.setN(0); 
@@ -5626,8 +5626,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x3A: 
-			//LD A,(HL-)
+		case 0x3A:
+			//ins LD A,(HL-)
 			//length 1
 			//time 8
 			//flags ----
@@ -5635,7 +5635,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**LD skipped, + or -
+			//**skipped command
 
 
 
@@ -5643,8 +5643,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x3B: 
-			//DEC SP
+		case 0x3B:
+			//ins DEC SP
 			//length 1
 			//time 8
 			//flags ----
@@ -5652,7 +5652,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.SP.dec();
 
 
 
@@ -5660,16 +5660,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x3C: 
-			//INC A
+		case 0x3C:
+			//ins INC A
 			//length 1
 			//time 4
-			//flags ZH0-
+			//flags Z0H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.inc();
 
 
 			r.F.setZ(Z); 
@@ -5680,16 +5680,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x3D: 
-			//DEC A
+		case 0x3D:
+			//ins DEC A
 			//length 1
 			//time 4
-			//flags ZH1-
+			//flags Z1H-
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.dec();
 
 
 			r.F.setZ(Z); 
@@ -5700,8 +5700,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x3E: 
-			//LD A,d8
+		case 0x3E:
+			//ins LD A,d8
 			//length 2
 			//time 8
 			//flags ----
@@ -5717,8 +5717,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x3F: 
-			//CCF
+		case 0x3F:
+			//ins CCF
 			//length 1
 			//time 4
 			//flags -00C
@@ -5737,8 +5737,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x40: 
-			//LD B,B
+		case 0x40:
+			//ins LD B,B
 			//length 1
 			//time 4
 			//flags ----
@@ -5754,8 +5754,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x41: 
-			//LD B,C
+		case 0x41:
+			//ins LD B,C
 			//length 1
 			//time 4
 			//flags ----
@@ -5771,8 +5771,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x42: 
-			//LD B,D
+		case 0x42:
+			//ins LD B,D
 			//length 1
 			//time 4
 			//flags ----
@@ -5788,8 +5788,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x43: 
-			//LD B,E
+		case 0x43:
+			//ins LD B,E
 			//length 1
 			//time 4
 			//flags ----
@@ -5805,8 +5805,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x44: 
-			//LD B,H
+		case 0x44:
+			//ins LD B,H
 			//length 1
 			//time 4
 			//flags ----
@@ -5822,8 +5822,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x45: 
-			//LD B,L
+		case 0x45:
+			//ins LD B,L
 			//length 1
 			//time 4
 			//flags ----
@@ -5839,8 +5839,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x46: 
-			//LD B,(HL)
+		case 0x46:
+			//ins LD B,(HL)
 			//length 1
 			//time 8
 			//flags ----
@@ -5856,8 +5856,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x47: 
-			//LD B,A
+		case 0x47:
+			//ins LD B,A
 			//length 1
 			//time 4
 			//flags ----
@@ -5873,8 +5873,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x48: 
-			//LD C,B
+		case 0x48:
+			//ins LD C,B
 			//length 1
 			//time 4
 			//flags ----
@@ -5890,8 +5890,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x49: 
-			//LD C,C
+		case 0x49:
+			//ins LD C,C
 			//length 1
 			//time 4
 			//flags ----
@@ -5907,8 +5907,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x4A: 
-			//LD C,D
+		case 0x4A:
+			//ins LD C,D
 			//length 1
 			//time 4
 			//flags ----
@@ -5924,8 +5924,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x4B: 
-			//LD C,E
+		case 0x4B:
+			//ins LD C,E
 			//length 1
 			//time 4
 			//flags ----
@@ -5941,8 +5941,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x4C: 
-			//LD C,H
+		case 0x4C:
+			//ins LD C,H
 			//length 1
 			//time 4
 			//flags ----
@@ -5958,8 +5958,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x4D: 
-			//LD C,L
+		case 0x4D:
+			//ins LD C,L
 			//length 1
 			//time 4
 			//flags ----
@@ -5975,8 +5975,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x4E: 
-			//LD C,(HL)
+		case 0x4E:
+			//ins LD C,(HL)
 			//length 1
 			//time 8
 			//flags ----
@@ -5992,8 +5992,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x4F: 
-			//LD C,A
+		case 0x4F:
+			//ins LD C,A
 			//length 1
 			//time 4
 			//flags ----
@@ -6009,8 +6009,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x50: 
-			//LD D,B
+		case 0x50:
+			//ins LD D,B
 			//length 1
 			//time 4
 			//flags ----
@@ -6026,8 +6026,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x51: 
-			//LD D,C
+		case 0x51:
+			//ins LD D,C
 			//length 1
 			//time 4
 			//flags ----
@@ -6043,8 +6043,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x52: 
-			//LD D,D
+		case 0x52:
+			//ins LD D,D
 			//length 1
 			//time 4
 			//flags ----
@@ -6060,8 +6060,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x53: 
-			//LD D,E
+		case 0x53:
+			//ins LD D,E
 			//length 1
 			//time 4
 			//flags ----
@@ -6077,8 +6077,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x54: 
-			//LD D,H
+		case 0x54:
+			//ins LD D,H
 			//length 1
 			//time 4
 			//flags ----
@@ -6094,8 +6094,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x55: 
-			//LD D,L
+		case 0x55:
+			//ins LD D,L
 			//length 1
 			//time 4
 			//flags ----
@@ -6111,8 +6111,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x56: 
-			//LD D,(HL)
+		case 0x56:
+			//ins LD D,(HL)
 			//length 1
 			//time 8
 			//flags ----
@@ -6128,8 +6128,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x57: 
-			//LD D,A
+		case 0x57:
+			//ins LD D,A
 			//length 1
 			//time 4
 			//flags ----
@@ -6145,8 +6145,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x58: 
-			//LD E,B
+		case 0x58:
+			//ins LD E,B
 			//length 1
 			//time 4
 			//flags ----
@@ -6162,8 +6162,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x59: 
-			//LD E,C
+		case 0x59:
+			//ins LD E,C
 			//length 1
 			//time 4
 			//flags ----
@@ -6179,8 +6179,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x5A: 
-			//LD E,D
+		case 0x5A:
+			//ins LD E,D
 			//length 1
 			//time 4
 			//flags ----
@@ -6196,8 +6196,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x5B: 
-			//LD E,E
+		case 0x5B:
+			//ins LD E,E
 			//length 1
 			//time 4
 			//flags ----
@@ -6213,8 +6213,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x5C: 
-			//LD E,H
+		case 0x5C:
+			//ins LD E,H
 			//length 1
 			//time 4
 			//flags ----
@@ -6230,8 +6230,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x5D: 
-			//LD E,L
+		case 0x5D:
+			//ins LD E,L
 			//length 1
 			//time 4
 			//flags ----
@@ -6247,8 +6247,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x5E: 
-			//LD E,(HL)
+		case 0x5E:
+			//ins LD E,(HL)
 			//length 1
 			//time 8
 			//flags ----
@@ -6264,8 +6264,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x5F: 
-			//LD E,A
+		case 0x5F:
+			//ins LD E,A
 			//length 1
 			//time 4
 			//flags ----
@@ -6281,8 +6281,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x60: 
-			//LD H,B
+		case 0x60:
+			//ins LD H,B
 			//length 1
 			//time 4
 			//flags ----
@@ -6298,8 +6298,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x61: 
-			//LD H,C
+		case 0x61:
+			//ins LD H,C
 			//length 1
 			//time 4
 			//flags ----
@@ -6315,8 +6315,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x62: 
-			//LD H,D
+		case 0x62:
+			//ins LD H,D
 			//length 1
 			//time 4
 			//flags ----
@@ -6332,8 +6332,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x63: 
-			//LD H,E
+		case 0x63:
+			//ins LD H,E
 			//length 1
 			//time 4
 			//flags ----
@@ -6349,8 +6349,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x64: 
-			//LD H,H
+		case 0x64:
+			//ins LD H,H
 			//length 1
 			//time 4
 			//flags ----
@@ -6366,8 +6366,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x65: 
-			//LD H,L
+		case 0x65:
+			//ins LD H,L
 			//length 1
 			//time 4
 			//flags ----
@@ -6383,8 +6383,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x66: 
-			//LD H,(HL)
+		case 0x66:
+			//ins LD H,(HL)
 			//length 1
 			//time 8
 			//flags ----
@@ -6400,8 +6400,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x67: 
-			//LD H,A
+		case 0x67:
+			//ins LD H,A
 			//length 1
 			//time 4
 			//flags ----
@@ -6417,8 +6417,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x68: 
-			//LD L,B
+		case 0x68:
+			//ins LD L,B
 			//length 1
 			//time 4
 			//flags ----
@@ -6434,8 +6434,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x69: 
-			//LD L,C
+		case 0x69:
+			//ins LD L,C
 			//length 1
 			//time 4
 			//flags ----
@@ -6451,8 +6451,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x6A: 
-			//LD L,D
+		case 0x6A:
+			//ins LD L,D
 			//length 1
 			//time 4
 			//flags ----
@@ -6468,8 +6468,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x6B: 
-			//LD L,E
+		case 0x6B:
+			//ins LD L,E
 			//length 1
 			//time 4
 			//flags ----
@@ -6485,8 +6485,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x6C: 
-			//LD L,H
+		case 0x6C:
+			//ins LD L,H
 			//length 1
 			//time 4
 			//flags ----
@@ -6502,8 +6502,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x6D: 
-			//LD L,L
+		case 0x6D:
+			//ins LD L,L
 			//length 1
 			//time 4
 			//flags ----
@@ -6519,8 +6519,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x6E: 
-			//LD L,(HL)
+		case 0x6E:
+			//ins LD L,(HL)
 			//length 1
 			//time 8
 			//flags ----
@@ -6536,8 +6536,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x6F: 
-			//LD L,A
+		case 0x6F:
+			//ins LD L,A
 			//length 1
 			//time 4
 			//flags ----
@@ -6553,8 +6553,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x70: 
-			//LD (HL),B
+		case 0x70:
+			//ins LD (HL),B
 			//length 1
 			//time 8
 			//flags ----
@@ -6570,8 +6570,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x71: 
-			//LD (HL),C
+		case 0x71:
+			//ins LD (HL),C
 			//length 1
 			//time 8
 			//flags ----
@@ -6587,8 +6587,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x72: 
-			//LD (HL),D
+		case 0x72:
+			//ins LD (HL),D
 			//length 1
 			//time 8
 			//flags ----
@@ -6604,8 +6604,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x73: 
-			//LD (HL),E
+		case 0x73:
+			//ins LD (HL),E
 			//length 1
 			//time 8
 			//flags ----
@@ -6621,8 +6621,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x74: 
-			//LD (HL),H
+		case 0x74:
+			//ins LD (HL),H
 			//length 1
 			//time 8
 			//flags ----
@@ -6638,8 +6638,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x75: 
-			//LD (HL),L
+		case 0x75:
+			//ins LD (HL),L
 			//length 1
 			//time 8
 			//flags ----
@@ -6655,8 +6655,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x76: 
-			//HALT
+		case 0x76:
+			//ins HALT
 			//length 1
 			//time 4
 			//flags ----
@@ -6672,8 +6672,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x77: 
-			//LD (HL),A
+		case 0x77:
+			//ins LD (HL),A
 			//length 1
 			//time 8
 			//flags ----
@@ -6689,8 +6689,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x78: 
-			//LD A,B
+		case 0x78:
+			//ins LD A,B
 			//length 1
 			//time 4
 			//flags ----
@@ -6706,8 +6706,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x79: 
-			//LD A,C
+		case 0x79:
+			//ins LD A,C
 			//length 1
 			//time 4
 			//flags ----
@@ -6723,8 +6723,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x7A: 
-			//LD A,D
+		case 0x7A:
+			//ins LD A,D
 			//length 1
 			//time 4
 			//flags ----
@@ -6740,8 +6740,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x7B: 
-			//LD A,E
+		case 0x7B:
+			//ins LD A,E
 			//length 1
 			//time 4
 			//flags ----
@@ -6757,8 +6757,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x7C: 
-			//LD A,H
+		case 0x7C:
+			//ins LD A,H
 			//length 1
 			//time 4
 			//flags ----
@@ -6774,8 +6774,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x7D: 
-			//LD A,L
+		case 0x7D:
+			//ins LD A,L
 			//length 1
 			//time 4
 			//flags ----
@@ -6791,8 +6791,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x7E: 
-			//LD A,(HL)
+		case 0x7E:
+			//ins LD A,(HL)
 			//length 1
 			//time 8
 			//flags ----
@@ -6808,8 +6808,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x7F: 
-			//LD A,A
+		case 0x7F:
+			//ins LD A,A
 			//length 1
 			//time 4
 			//flags ----
@@ -6825,16 +6825,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x80: 
-			//ADD A,B
+		case 0x80:
+			//ins ADD A,B
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z0HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.add( r.B.read() );
 
 
 			r.F.setZ(Z); 
@@ -6846,16 +6846,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x81: 
-			//ADD A,C
+		case 0x81:
+			//ins ADD A,C
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z0HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.add( r.C.read() );
 
 
 			r.F.setZ(Z); 
@@ -6867,16 +6867,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x82: 
-			//ADD A,D
+		case 0x82:
+			//ins ADD A,D
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z0HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.add( r.D.read() );
 
 
 			r.F.setZ(Z); 
@@ -6888,16 +6888,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x83: 
-			//ADD A,E
+		case 0x83:
+			//ins ADD A,E
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z0HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.add( r.E.read() );
 
 
 			r.F.setZ(Z); 
@@ -6909,16 +6909,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x84: 
-			//ADD A,H
+		case 0x84:
+			//ins ADD A,H
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z0HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.add( r.H.read() );
 
 
 			r.F.setZ(Z); 
@@ -6930,16 +6930,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x85: 
-			//ADD A,L
+		case 0x85:
+			//ins ADD A,L
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z0HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.add( r.L.read() );
 
 
 			r.F.setZ(Z); 
@@ -6951,11 +6951,179 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x86: 
-			//ADD A,(HL)
+		case 0x86:
+			//ins ADD A,(HL)
 			//length 1
 			//time 8
-			//flags ZH0C
+			//flags Z0HC
+
+			currentOpcodeCycles = 8;
+
+
+			r.A.add( m.address( r.HL.read() ).read() );
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0x87:
+			//ins ADD A,A
+			//length 1
+			//time 4
+			//flags Z0HC
+
+			currentOpcodeCycles = 4;
+
+
+			r.A.add( r.A.read() );
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0x88:
+			//ins ADC A,B
+			//length 1
+			//time 4
+			//flags Z0HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0x89:
+			//ins ADC A,C
+			//length 1
+			//time 4
+			//flags Z0HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0x8A:
+			//ins ADC A,D
+			//length 1
+			//time 4
+			//flags Z0HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0x8B:
+			//ins ADC A,E
+			//length 1
+			//time 4
+			//flags Z0HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0x8C:
+			//ins ADC A,H
+			//length 1
+			//time 4
+			//flags Z0HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0x8D:
+			//ins ADC A,L
+			//length 1
+			//time 4
+			//flags Z0HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0x8E:
+			//ins ADC A,(HL)
+			//length 1
+			//time 8
+			//flags Z0HC
 
 			currentOpcodeCycles = 8;
 
@@ -6972,11 +7140,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x87: 
-			//ADD A,A
+		case 0x8F:
+			//ins ADC A,A
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z0HC
 
 			currentOpcodeCycles = 4;
 
@@ -6993,20 +7161,20 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x88: 
-			//ADC A,B
+		case 0x90:
+			//ins SUB B
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.B.read() );
 
 
 			r.F.setZ(Z); 
-			r.F.setN(0); 
+			r.F.setN(1); 
 			r.F.setH(H); 
 			r.F.setC(C); 
 
@@ -7014,20 +7182,20 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x89: 
-			//ADC A,C
+		case 0x91:
+			//ins SUB C
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.C.read() );
 
 
 			r.F.setZ(Z); 
-			r.F.setN(0); 
+			r.F.setN(1); 
 			r.F.setH(H); 
 			r.F.setC(C); 
 
@@ -7035,20 +7203,20 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x8A: 
-			//ADC A,D
+		case 0x92:
+			//ins SUB D
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.D.read() );
 
 
 			r.F.setZ(Z); 
-			r.F.setN(0); 
+			r.F.setN(1); 
 			r.F.setH(H); 
 			r.F.setC(C); 
 
@@ -7056,20 +7224,20 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x8B: 
-			//ADC A,E
+		case 0x93:
+			//ins SUB E
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.E.read() );
 
 
 			r.F.setZ(Z); 
-			r.F.setN(0); 
+			r.F.setN(1); 
 			r.F.setH(H); 
 			r.F.setC(C); 
 
@@ -7077,20 +7245,20 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x8C: 
-			//ADC A,H
+		case 0x94:
+			//ins SUB H
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.H.read() );
 
 
 			r.F.setZ(Z); 
-			r.F.setN(0); 
+			r.F.setN(1); 
 			r.F.setH(H); 
 			r.F.setC(C); 
 
@@ -7098,20 +7266,20 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x8D: 
-			//ADC A,L
+		case 0x95:
+			//ins SUB L
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.L.read() );
 
 
 			r.F.setZ(Z); 
-			r.F.setN(0); 
+			r.F.setN(1); 
 			r.F.setH(H); 
 			r.F.setC(C); 
 
@@ -7119,20 +7287,20 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x8E: 
-			//ADC A,(HL)
+		case 0x96:
+			//ins SUB (HL)
 			//length 1
 			//time 8
-			//flags ZH0C
+			//flags Z1HC
 
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.A.sub( m.address( r.HL.read() ).read() );
 
 
 			r.F.setZ(Z); 
-			r.F.setN(0); 
+			r.F.setN(1); 
 			r.F.setH(H); 
 			r.F.setC(C); 
 
@@ -7140,20 +7308,20 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x8F: 
-			//ADC A,A
+		case 0x97:
+			//ins SUB A
 			//length 1
 			//time 4
-			//flags ZH0C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.A.read() );
 
 
 			r.F.setZ(Z); 
-			r.F.setN(0); 
+			r.F.setN(1); 
 			r.F.setH(H); 
 			r.F.setC(C); 
 
@@ -7161,11 +7329,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x90: 
-			//SUB B
+		case 0x98:
+			//ins SBC A,B
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
@@ -7182,11 +7350,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x91: 
-			//SUB C
+		case 0x99:
+			//ins SBC A,C
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
@@ -7203,11 +7371,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x92: 
-			//SUB D
+		case 0x9A:
+			//ins SBC A,D
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
@@ -7224,11 +7392,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x93: 
-			//SUB E
+		case 0x9B:
+			//ins SBC A,E
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
@@ -7245,11 +7413,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x94: 
-			//SUB H
+		case 0x9C:
+			//ins SBC A,H
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
@@ -7266,11 +7434,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x95: 
-			//SUB L
+		case 0x9D:
+			//ins SBC A,L
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
@@ -7287,179 +7455,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x96: 
-			//SUB (HL)
+		case 0x9E:
+			//ins SBC A,(HL)
 			//length 1
 			//time 8
-			//flags ZH1C
-
-			currentOpcodeCycles = 8;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0x97: 
-			//SUB A
-			//length 1
-			//time 4
-			//flags ZH1C
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0x98: 
-			//SBC A,B
-			//length 1
-			//time 4
-			//flags ZH1C
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0x99: 
-			//SBC A,C
-			//length 1
-			//time 4
-			//flags ZH1C
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0x9A: 
-			//SBC A,D
-			//length 1
-			//time 4
-			//flags ZH1C
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0x9B: 
-			//SBC A,E
-			//length 1
-			//time 4
-			//flags ZH1C
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0x9C: 
-			//SBC A,H
-			//length 1
-			//time 4
-			//flags ZH1C
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0x9D: 
-			//SBC A,L
-			//length 1
-			//time 4
-			//flags ZH1C
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0x9E: 
-			//SBC A,(HL)
-			//length 1
-			//time 8
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 8;
 
@@ -7476,11 +7476,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0x9F: 
-			//SBC A,A
+		case 0x9F:
+			//ins SBC A,A
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
@@ -7497,11 +7497,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xA0: 
-			//AND B
+		case 0xA0:
+			//ins AND B
 			//length 1
 			//time 4
-			//flags Z100
+			//flags Z010
 
 			currentOpcodeCycles = 4;
 
@@ -7518,11 +7518,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xA1: 
-			//AND C
+		case 0xA1:
+			//ins AND C
 			//length 1
 			//time 4
-			//flags Z100
+			//flags Z010
 
 			currentOpcodeCycles = 4;
 
@@ -7539,11 +7539,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xA2: 
-			//AND D
+		case 0xA2:
+			//ins AND D
 			//length 1
 			//time 4
-			//flags Z100
+			//flags Z010
 
 			currentOpcodeCycles = 4;
 
@@ -7560,11 +7560,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xA3: 
-			//AND E
+		case 0xA3:
+			//ins AND E
 			//length 1
 			//time 4
-			//flags Z100
+			//flags Z010
 
 			currentOpcodeCycles = 4;
 
@@ -7581,11 +7581,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xA4: 
-			//AND H
+		case 0xA4:
+			//ins AND H
 			//length 1
 			//time 4
-			//flags Z100
+			//flags Z010
 
 			currentOpcodeCycles = 4;
 
@@ -7602,11 +7602,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xA5: 
-			//AND L
+		case 0xA5:
+			//ins AND L
 			//length 1
 			//time 4
-			//flags Z100
+			//flags Z010
 
 			currentOpcodeCycles = 4;
 
@@ -7623,11 +7623,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xA6: 
-			//AND (HL)
+		case 0xA6:
+			//ins AND (HL)
 			//length 1
 			//time 8
-			//flags Z100
+			//flags Z010
 
 			currentOpcodeCycles = 8;
 
@@ -7644,11 +7644,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xA7: 
-			//AND A
+		case 0xA7:
+			//ins AND A
 			//length 1
 			//time 4
-			//flags Z100
+			//flags Z010
 
 			currentOpcodeCycles = 4;
 
@@ -7665,8 +7665,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xA8: 
-			//XOR B
+		case 0xA8:
+			//ins XOR B
 			//length 1
 			//time 4
 			//flags Z000
@@ -7686,8 +7686,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xA9: 
-			//XOR C
+		case 0xA9:
+			//ins XOR C
 			//length 1
 			//time 4
 			//flags Z000
@@ -7707,8 +7707,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xAA: 
-			//XOR D
+		case 0xAA:
+			//ins XOR D
 			//length 1
 			//time 4
 			//flags Z000
@@ -7728,8 +7728,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xAB: 
-			//XOR E
+		case 0xAB:
+			//ins XOR E
 			//length 1
 			//time 4
 			//flags Z000
@@ -7749,8 +7749,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xAC: 
-			//XOR H
+		case 0xAC:
+			//ins XOR H
 			//length 1
 			//time 4
 			//flags Z000
@@ -7770,8 +7770,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xAD: 
-			//XOR L
+		case 0xAD:
+			//ins XOR L
 			//length 1
 			//time 4
 			//flags Z000
@@ -7791,176 +7791,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xAE: 
-			//XOR (HL)
-			//length 1
-			//time 8
-			//flags Z000
-
-			currentOpcodeCycles = 8;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(0); 
-			r.F.setH(0); 
-			r.F.setC(0); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xAF: 
-			//XOR A
-			//length 1
-			//time 4
-			//flags Z000
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(0); 
-			r.F.setH(0); 
-			r.F.setC(0); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xB0: 
-			//OR B
-			//length 1
-			//time 4
-			//flags Z000
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(0); 
-			r.F.setH(0); 
-			r.F.setC(0); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xB1: 
-			//OR C
-			//length 1
-			//time 4
-			//flags Z000
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(0); 
-			r.F.setH(0); 
-			r.F.setC(0); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xB2: 
-			//OR D
-			//length 1
-			//time 4
-			//flags Z000
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(0); 
-			r.F.setH(0); 
-			r.F.setC(0); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xB3: 
-			//OR E
-			//length 1
-			//time 4
-			//flags Z000
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(0); 
-			r.F.setH(0); 
-			r.F.setC(0); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xB4: 
-			//OR H
-			//length 1
-			//time 4
-			//flags Z000
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(0); 
-			r.F.setH(0); 
-			r.F.setC(0); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xB5: 
-			//OR L
-			//length 1
-			//time 4
-			//flags Z000
-
-			currentOpcodeCycles = 4;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(0); 
-			r.F.setH(0); 
-			r.F.setC(0); 
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xB6: 
-			//OR (HL)
+		case 0xAE:
+			//ins XOR (HL)
 			//length 1
 			//time 8
 			//flags Z000
@@ -7980,8 +7812,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xB7: 
-			//OR A
+		case 0xAF:
+			//ins XOR A
 			//length 1
 			//time 4
 			//flags Z000
@@ -8001,11 +7833,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xB8: 
-			//CP B
+		case 0xB0:
+			//ins OR B
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z000
 
 			currentOpcodeCycles = 4;
 
@@ -8014,19 +7846,19 @@ public void cBTable (int opcode) {
 
 
 			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
 			break;
 
-		case 0xB9: 
-			//CP C
+		case 0xB1:
+			//ins OR C
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z000
 
 			currentOpcodeCycles = 4;
 
@@ -8035,19 +7867,19 @@ public void cBTable (int opcode) {
 
 
 			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
 			break;
 
-		case 0xBA: 
-			//CP D
+		case 0xB2:
+			//ins OR D
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z000
 
 			currentOpcodeCycles = 4;
 
@@ -8056,19 +7888,19 @@ public void cBTable (int opcode) {
 
 
 			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
 			break;
 
-		case 0xBB: 
-			//CP E
+		case 0xB3:
+			//ins OR E
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z000
 
 			currentOpcodeCycles = 4;
 
@@ -8077,19 +7909,19 @@ public void cBTable (int opcode) {
 
 
 			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
 			break;
 
-		case 0xBC: 
-			//CP H
+		case 0xB4:
+			//ins OR H
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z000
 
 			currentOpcodeCycles = 4;
 
@@ -8098,19 +7930,19 @@ public void cBTable (int opcode) {
 
 
 			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
 			break;
 
-		case 0xBD: 
-			//CP L
+		case 0xB5:
+			//ins OR L
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z000
 
 			currentOpcodeCycles = 4;
 
@@ -8119,19 +7951,187 @@ public void cBTable (int opcode) {
 
 
 			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
 
 			r.PC.add(1);
 
 			break;
 
-		case 0xBE: 
-			//CP (HL)
+		case 0xB6:
+			//ins OR (HL)
 			//length 1
 			//time 8
-			//flags ZH1C
+			//flags Z000
+
+			currentOpcodeCycles = 8;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xB7:
+			//ins OR A
+			//length 1
+			//time 4
+			//flags Z000
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(0); 
+			r.F.setH(0); 
+			r.F.setC(0); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xB8:
+			//ins CP B
+			//length 1
+			//time 4
+			//flags Z1HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xB9:
+			//ins CP C
+			//length 1
+			//time 4
+			//flags Z1HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xBA:
+			//ins CP D
+			//length 1
+			//time 4
+			//flags Z1HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xBB:
+			//ins CP E
+			//length 1
+			//time 4
+			//flags Z1HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xBC:
+			//ins CP H
+			//length 1
+			//time 4
+			//flags Z1HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xBD:
+			//ins CP L
+			//length 1
+			//time 4
+			//flags Z1HC
+
+			currentOpcodeCycles = 4;
+
+
+			//**command missing
+
+
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xBE:
+			//ins CP (HL)
+			//length 1
+			//time 8
+			//flags Z1HC
 
 			currentOpcodeCycles = 8;
 
@@ -8148,11 +8148,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xBF: 
-			//CP A
+		case 0xBF:
+			//ins CP A
 			//length 1
 			//time 4
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 4;
 
@@ -8169,8 +8169,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xC0: 
-			//RET NZ
+		case 0xC0:
+			//ins RET NZ
 			//length 1
 			//time 20/8
 			//flags ----
@@ -8186,8 +8186,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xC1: 
-			//POP BC
+		case 0xC1:
+			//ins POP BC
 			//length 1
 			//time 12
 			//flags ----
@@ -8203,8 +8203,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xC2: 
-			//JP NZ,a16
+		case 0xC2:
+			//ins JP NZ,a16
 			//length 3
 			//time 16/12
 			//flags ----
@@ -8220,8 +8220,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xC3: 
-			//JP a16
+		case 0xC3:
+			//ins JP a16
 			//length 3
 			//time 16
 			//flags ----
@@ -8237,8 +8237,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xC4: 
-			//CALL NZ,a16
+		case 0xC4:
+			//ins CALL NZ,a16
 			//length 3
 			//time 24/12
 			//flags ----
@@ -8254,8 +8254,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xC5: 
-			//PUSH BC
+		case 0xC5:
+			//ins PUSH BC
 			//length 1
 			//time 16
 			//flags ----
@@ -8271,16 +8271,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xC6: 
-			//ADD A,d8
+		case 0xC6:
+			//ins ADD A,d8
 			//length 2
 			//time 8
-			//flags ZH0C
+			//flags Z0HC
 
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.A.add( m.address( r.PC.read() + 1 ).read() );
 
 
 			r.F.setZ(Z); 
@@ -8292,8 +8292,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xC7: 
-			//RST 00H
+		case 0xC7:
+			//ins RST 00H
 			//length 1
 			//time 16
 			//flags ----
@@ -8309,8 +8309,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xC8: 
-			//RET Z
+		case 0xC8:
+			//ins RET Z
 			//length 1
 			//time 20/8
 			//flags ----
@@ -8326,8 +8326,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xC9: 
-			//RET
+		case 0xC9:
+			//ins RET
 			//length 1
 			//time 16
 			//flags ----
@@ -8343,8 +8343,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xCA: 
-			//JP Z,a16
+		case 0xCA:
+			//ins JP Z,a16
 			//length 3
 			//time 16/12
 			//flags ----
@@ -8360,8 +8360,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xCB: 
-			//PREFIX CB
+		case 0xCB:
+			//ins PREFIX CB
 			//length 1
 			//time 4
 			//flags ----
@@ -8377,8 +8377,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xCC: 
-			//CALL Z,a16
+		case 0xCC:
+			//ins CALL Z,a16
 			//length 3
 			//time 24/12
 			//flags ----
@@ -8394,8 +8394,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xCD: 
-			//CALL a16
+		case 0xCD:
+			//ins CALL a16
 			//length 3
 			//time 24
 			//flags ----
@@ -8411,11 +8411,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xCE: 
-			//ADC A,d8
+		case 0xCE:
+			//ins ADC A,d8
 			//length 2
 			//time 8
-			//flags ZH0C
+			//flags Z0HC
 
 			currentOpcodeCycles = 8;
 
@@ -8432,8 +8432,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xCF: 
-			//RST 08H
+		case 0xCF:
+			//ins RST 08H
 			//length 1
 			//time 16
 			//flags ----
@@ -8449,8 +8449,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xD0: 
-			//RET NC
+		case 0xD0:
+			//ins RET NC
 			//length 1
 			//time 20/8
 			//flags ----
@@ -8466,8 +8466,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xD1: 
-			//POP DE
+		case 0xD1:
+			//ins POP DE
 			//length 1
 			//time 12
 			//flags ----
@@ -8483,8 +8483,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xD2: 
-			//JP NC,a16
+		case 0xD2:
+			//ins JP NC,a16
 			//length 3
 			//time 16/12
 			//flags ----
@@ -8500,8 +8500,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xD4: 
-			//CALL NC,a16
+		case 0xD4:
+			//ins CALL NC,a16
 			//length 3
 			//time 24/12
 			//flags ----
@@ -8517,8 +8517,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xD5: 
-			//PUSH DE
+		case 0xD5:
+			//ins PUSH DE
 			//length 1
 			//time 16
 			//flags ----
@@ -8534,11 +8534,117 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xD6: 
-			//SUB d8
+		case 0xD6:
+			//ins SUB d8
 			//length 2
 			//time 8
-			//flags ZH1C
+			//flags Z1HC
+
+			currentOpcodeCycles = 8;
+
+
+			r.A.sub( m.address( r.PC.read() + 1 ).read() );
+
+
+			r.F.setZ(Z); 
+			r.F.setN(1); 
+			r.F.setH(H); 
+			r.F.setC(C); 
+
+			r.PC.add(2);
+
+			break;
+
+		case 0xD7:
+			//ins RST 10H
+			//length 1
+			//time 16
+			//flags ----
+
+			currentOpcodeCycles = 16;
+
+
+			//**command missing
+
+
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xD8:
+			//ins RET C
+			//length 1
+			//time 20/8
+			//flags ----
+
+			//**currentOpcodeCycles = CONDITIONAL;20/8
+
+
+			//**command missing
+
+
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xD9:
+			//ins RETI
+			//length 1
+			//time 16
+			//flags ----
+
+			currentOpcodeCycles = 16;
+
+
+			//**command missing
+
+
+
+			r.PC.add(1);
+
+			break;
+
+		case 0xDA:
+			//ins JP C,a16
+			//length 3
+			//time 16/12
+			//flags ----
+
+			//**currentOpcodeCycles = CONDITIONAL;16/12
+
+
+			//**command missing
+
+
+
+			r.PC.add(3);
+
+			break;
+
+		case 0xDC:
+			//ins CALL C,a16
+			//length 3
+			//time 24/12
+			//flags ----
+
+			//**currentOpcodeCycles = CONDITIONAL;24/12
+
+
+			//**command missing
+
+
+
+			r.PC.add(3);
+
+			break;
+
+		case 0xDE:
+			//ins SBC A,d8
+			//length 2
+			//time 8
+			//flags Z1HC
 
 			currentOpcodeCycles = 8;
 
@@ -8555,8 +8661,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xD7: 
-			//RST 10H
+		case 0xDF:
+			//ins RST 18H
 			//length 1
 			//time 16
 			//flags ----
@@ -8572,114 +8678,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xD8: 
-			//RET C
-			//length 1
-			//time 20/8
-			//flags ----
-
-			//**currentOpcodeCycles = CONDITIONAL;20/8
-
-
-			//**command missing
-
-
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xD9: 
-			//RETI
-			//length 1
-			//time 16
-			//flags ----
-
-			currentOpcodeCycles = 16;
-
-
-			//**command missing
-
-
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xDA: 
-			//JP C,a16
-			//length 3
-			//time 16/12
-			//flags ----
-
-			//**currentOpcodeCycles = CONDITIONAL;16/12
-
-
-			//**command missing
-
-
-
-			r.PC.add(3);
-
-			break;
-
-		case 0xDC: 
-			//CALL C,a16
-			//length 3
-			//time 24/12
-			//flags ----
-
-			//**currentOpcodeCycles = CONDITIONAL;24/12
-
-
-			//**command missing
-
-
-
-			r.PC.add(3);
-
-			break;
-
-		case 0xDE: 
-			//SBC A,d8
-			//length 2
-			//time 8
-			//flags ZH1C
-
-			currentOpcodeCycles = 8;
-
-
-			//**command missing
-
-
-			r.F.setZ(Z); 
-			r.F.setN(1); 
-			r.F.setH(H); 
-			r.F.setC(C); 
-
-			r.PC.add(2);
-
-			break;
-
-		case 0xDF: 
-			//RST 18H
-			//length 1
-			//time 16
-			//flags ----
-
-			currentOpcodeCycles = 16;
-
-
-			//**command missing
-
-
-
-			r.PC.add(1);
-
-			break;
-
-		case 0xE0: 
-			//LDH (a8),A
+		case 0xE0:
+			//ins LDH (a8),A
 			//length 2
 			//time 12
 			//flags ----
@@ -8695,8 +8695,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xE1: 
-			//POP HL
+		case 0xE1:
+			//ins POP HL
 			//length 1
 			//time 12
 			//flags ----
@@ -8712,8 +8712,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xE2: 
-			//LD (C),A
+		case 0xE2:
+			//ins LD (C),A
 			//length 2
 			//time 8
 			//flags ----
@@ -8729,8 +8729,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xE5: 
-			//PUSH HL
+		case 0xE5:
+			//ins PUSH HL
 			//length 1
 			//time 16
 			//flags ----
@@ -8746,11 +8746,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xE6: 
-			//AND d8
+		case 0xE6:
+			//ins AND d8
 			//length 2
 			//time 8
-			//flags Z100
+			//flags Z010
 
 			currentOpcodeCycles = 8;
 
@@ -8767,8 +8767,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xE7: 
-			//RST 20H
+		case 0xE7:
+			//ins RST 20H
 			//length 1
 			//time 16
 			//flags ----
@@ -8784,16 +8784,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xE8: 
-			//ADD SP,r8
+		case 0xE8:
+			//ins ADD SP,r8
 			//length 2
 			//time 16
-			//flags 0H0C
+			//flags 00HC
 
 			currentOpcodeCycles = 16;
 
 
-			//**command missing
+			//**skipped
 
 
 			r.F.setZ(0); 
@@ -8805,8 +8805,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xE9: 
-			//JP (HL)
+		case 0xE9:
+			//ins JP (HL)
 			//length 1
 			//time 4
 			//flags ----
@@ -8822,8 +8822,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xEA: 
-			//LD (a16),A
+		case 0xEA:
+			//ins LD (a16),A
 			//length 3
 			//time 16
 			//flags ----
@@ -8831,7 +8831,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 16;
 
 
-			//**LD skipped, a8 or a16
+			//**skipped command
 
 
 
@@ -8839,8 +8839,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xEE: 
-			//XOR d8
+		case 0xEE:
+			//ins XOR d8
 			//length 2
 			//time 8
 			//flags Z000
@@ -8860,8 +8860,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xEF: 
-			//RST 28H
+		case 0xEF:
+			//ins RST 28H
 			//length 1
 			//time 16
 			//flags ----
@@ -8877,8 +8877,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xF0: 
-			//LDH A,(a8)
+		case 0xF0:
+			//ins LDH A,(a8)
 			//length 2
 			//time 12
 			//flags ----
@@ -8894,11 +8894,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xF1: 
-			//POP AF
+		case 0xF1:
+			//ins POP AF
 			//length 1
 			//time 12
-			//flags ZHNC
+			//flags ZNHC
 
 			currentOpcodeCycles = 12;
 
@@ -8915,8 +8915,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xF2: 
-			//LD A,(C)
+		case 0xF2:
+			//ins LD A,(C)
 			//length 2
 			//time 8
 			//flags ----
@@ -8932,8 +8932,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xF3: 
-			//DI
+		case 0xF3:
+			//ins DI
 			//length 1
 			//time 4
 			//flags ----
@@ -8949,8 +8949,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xF5: 
-			//PUSH AF
+		case 0xF5:
+			//ins PUSH AF
 			//length 1
 			//time 16
 			//flags ----
@@ -8966,8 +8966,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xF6: 
-			//OR d8
+		case 0xF6:
+			//ins OR d8
 			//length 2
 			//time 8
 			//flags Z000
@@ -8987,8 +8987,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xF7: 
-			//RST 30H
+		case 0xF7:
+			//ins RST 30H
 			//length 1
 			//time 16
 			//flags ----
@@ -9004,16 +9004,16 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xF8: 
-			//LD HL,SP+r8
+		case 0xF8:
+			//ins LD HL,SP+r8
 			//length 2
 			//time 12
-			//flags 0H0C
+			//flags 00HC
 
 			currentOpcodeCycles = 12;
 
 
-			//**LD skipped, + or -
+			//**skipped command
 
 
 			r.F.setZ(0); 
@@ -9025,8 +9025,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xF9: 
-			//LD SP,HL
+		case 0xF9:
+			//ins LD SP,HL
 			//length 1
 			//time 8
 			//flags ----
@@ -9042,8 +9042,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xFA: 
-			//LD A,(a16)
+		case 0xFA:
+			//ins LD A,(a16)
 			//length 3
 			//time 16
 			//flags ----
@@ -9051,7 +9051,7 @@ public void cBTable (int opcode) {
 			currentOpcodeCycles = 16;
 
 
-			//**LD skipped, a8 or a16
+			//**skipped command
 
 
 
@@ -9059,8 +9059,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xFB: 
-			//EI
+		case 0xFB:
+			//ins EI
 			//length 1
 			//time 4
 			//flags ----
@@ -9076,11 +9076,11 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xFE: 
-			//CP d8
+		case 0xFE:
+			//ins CP d8
 			//length 2
 			//time 8
-			//flags ZH1C
+			//flags Z1HC
 
 			currentOpcodeCycles = 8;
 
@@ -9097,8 +9097,8 @@ public void cBTable (int opcode) {
 
 			break;
 
-		case 0xFF: 
-			//RST 38H
+		case 0xFF:
+			//ins RST 38H
 			//length 1
 			//time 16
 			//flags ----
