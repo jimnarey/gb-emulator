@@ -36,6 +36,8 @@ class SwitchMaker(object):
 
         self.registers = ['A', 'F', 'B', 'C', 'D', 'E', 'H', 'L', 'AF', 'BC', 'DE', 'HL', 'SP', 'PC']
 
+        self.blank_lines = 0
+
     # Methods for creating initial arrays and dicts
 
     @staticmethod
@@ -181,8 +183,8 @@ class SwitchMaker(object):
         cases_text = ''
         for row in list_of_dicts:
 
-            if len( str(row['instruction']) ) == 0:
-                pass
+            if row['instruction'] == '':
+                self.blank_lines += 1
 
             else:
                 cases_text = cases_text +\
@@ -204,21 +206,25 @@ class SwitchMaker(object):
                 cases_text = cases_text + SwitchMaker.set_opcode_time(row['cycles']) + '\n\n\n' + '\t\t\t'
 
                 if row['instruction'] == 'LD':
-                    cases_text = cases_text + self.ld_gen(row)
+                    cases_text += self.ld_gen(row)
                 elif row['instruction'] in ['INC', 'DEC', 'SWAP']:
-                    cases_text = cases_text + self.simple_single_operand_gen(row, row['instruction'].lower())
+                    cases_text += self.simple_single_operand_gen(row, row['instruction'].lower())
                 elif row['instruction'] == 'ADD':
-                    cases_text = cases_text + self.simple_double_operand_gen(row, 'add')
+                    cases_text += self.simple_double_operand_gen(row, 'add')
                 elif row['instruction'] in ['SUB', 'AND', 'OR', 'XOR']:
-                    cases_text = cases_text + self.a_reg_op_gen(row, row['instruction'].lower())
+                    cases_text += self.a_reg_op_gen(row, row['instruction'].lower())
                 elif row['instruction'] in ['RES', 'BIT', 'SET']:
-                    cases_text = cases_text + self.single_bit_gen(row)
+                    cases_text += self.single_bit_gen(row)
+                elif row['instruction'] == 'ADC':
+                    cases_text += self.adc_gen(row)
+                elif row['instruction'] == 'SBC':
+                    cases_text += self.sbc_gen(row)
                 else:
-                    cases_text = cases_text + '//**command missing'
+                    cases_text += '//**command missing'
 
-                cases_text = cases_text + '\n\n\n'
+                cases_text += '\n\n\n'
 
-                cases_text = cases_text + SwitchMaker.get_flag_methods(row, 3)
+                cases_text += SwitchMaker.get_flag_methods(row, 3)
 
                 cases_text = cases_text + SwitchMaker.get_PC_command(row['length']) + '\n'
 
@@ -293,6 +299,32 @@ class SwitchMaker(object):
 
         return byte + '.' + method_string + ';'
 
+    def adc_gen(self, row):
+
+        if row['operand_1'] == '' or row['operand_2'] == '':
+            return '//**skipped'
+
+        if SwitchMaker.skip_chars(row['operand_1']) or SwitchMaker.skip_chars(row['operand_2']):
+            return '//**skipped'
+
+        dest = self.get_operand(row['operand_1'])
+        source = self.get_operand(row['operand_2'])
+
+        return dest + '.add( ' + source + '.read() + r.F.checkBit(4) );'
+
+    def sbc_gen(self, row):
+
+        if row['operand_1'] == '' or row['operand_2'] == '':
+            return '//**skipped'
+
+        if SwitchMaker.skip_chars(row['operand_1']) or SwitchMaker.skip_chars(row['operand_2']):
+            return '//**skipped'
+
+        dest = self.get_operand(row['operand_1'])
+        source = self.get_operand(row['operand_2'])
+
+        return dest + '.sub( ' + source + '.read() + r.F.checkBit(4) );'
+
     def a_reg_op_gen(self, row, method):
 
         if row['operand_2'] == '' and not SwitchMaker.skip_chars(row['operand_1']):
@@ -335,3 +367,4 @@ if __name__ == "__main__":
 
     print('Missing commands: ' + str(output_string.count('missing')))
     print('Skipped commands: ' + str(output_string.count('skipped')))
+    print('Blank lines: ' + str(sm.blank_lines))

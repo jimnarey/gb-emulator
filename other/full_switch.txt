@@ -2442,7 +2442,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.add( r.B.read() + r.F.checkBit(4) );
 
 
 			r.F.setZ(Z); 
@@ -2463,7 +2463,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.add( r.C.read() + r.F.checkBit(4) );
 
 
 			r.F.setZ(Z); 
@@ -2484,7 +2484,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.add( r.D.read() + r.F.checkBit(4) );
 
 
 			r.F.setZ(Z); 
@@ -2505,7 +2505,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.add( r.E.read() + r.F.checkBit(4) );
 
 
 			r.F.setZ(Z); 
@@ -2526,7 +2526,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.add( r.H.read() + r.F.checkBit(4) );
 
 
 			r.F.setZ(Z); 
@@ -2547,7 +2547,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.add( r.L.read() + r.F.checkBit(4) );
 
 
 			r.F.setZ(Z); 
@@ -2568,7 +2568,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.A.add( m.address( r.HL.read() ).read() + r.F.checkBit(4) );
 
 
 			r.F.setZ(Z); 
@@ -2589,7 +2589,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.add( r.A.read() + r.F.checkBit(4) );
 
 
 			r.F.setZ(Z); 
@@ -2778,7 +2778,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.B.read() + r.F.checkBit(4) );
 
 
 			r.F.setZ(Z); 
@@ -2799,7 +2799,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.C.read() + r.F.checkBit(4) );
 
 
 			r.F.setZ(Z); 
@@ -2820,7 +2820,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.D.read() + r.F.checkBit(4) );
 
 
 			r.F.setZ(Z); 
@@ -2841,7 +2841,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.E.read() + r.F.checkBit(4) );
 
 
 			r.F.setZ(Z); 
@@ -2862,7 +2862,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.H.read() + r.F.checkBit(4) );
 
 
 			r.F.setZ(Z); 
@@ -2883,7 +2883,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.L.read() + r.F.checkBit(4) );
 
 
 			r.F.setZ(Z); 
@@ -2904,7 +2904,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.A.sub( m.address( r.HL.read() ).read() + r.F.checkBit(4) );
 
 
 			r.F.setZ(Z); 
@@ -2925,7 +2925,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 4;
 
 
-			//**command missing
+			r.A.sub( r.A.read() + r.F.checkBit(4) );
 
 
 			r.F.setZ(Z); 
@@ -3860,7 +3860,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.A.add( m.address( r.PC.read() + 1 ).read() + r.F.checkBit(4) );
 
 
 			r.F.setZ(Z); 
@@ -4089,7 +4089,7 @@ public void mainTable (int opcode) {
 			currentOpcodeCycles = 8;
 
 
-			//**command missing
+			r.A.sub( m.address( r.PC.read() + 1 ).read() + r.F.checkBit(4) );
 
 
 			r.F.setZ(Z); 
