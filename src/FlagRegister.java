@@ -1,7 +1,7 @@
 /**
  * Created by jamesnarey on 13/05/2016.
  */
-public class FlagRegister extends CByte {
+public class FlagRegister extends BByte {
 
 
     public FlagRegister () {
@@ -10,8 +10,6 @@ public class FlagRegister extends CByte {
 
     public void write(int value) {
 
-        lastData = data;
-        lastWrite = value;
         data = value & 0xF0; // To ensure that the lower 4 bits always = 0
 
     }
