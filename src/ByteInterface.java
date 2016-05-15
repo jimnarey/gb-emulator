@@ -7,12 +7,12 @@ public interface ByteInterface {
 
     void write(int value);
 
-    void add(int value);
-
-    void sub(int value);
-
-    void inc();
-
-    void dec();
+//    void add(int value);
+//
+//    void sub(int value);
+//
+//    void inc();
+//
+//    void dec();
 
 }
