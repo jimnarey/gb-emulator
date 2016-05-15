@@ -5,13 +5,13 @@ import static org.junit.Assert.*;
 /**
  * Created by jamesnarey on 27/04/2016.
  */
-public class BytePairTest {
+public class BShortTest {
 
 
     @Test
     public void testRead() throws Exception {
 
-        Short bP1 = new Short();
+        BShort bP1 = new BShort();
         bP1.populate();
         bP1.units[0].data = 14;
         bP1.units[1].data = 240;
@@ -23,14 +23,14 @@ public class BytePairTest {
     public void testWrite() throws Exception {
 
 
-        Short bP1 = new Short();
+        BShort bP1 = new BShort();
         bP1.populate();
         bP1.write(61454);
         assertEquals(14, bP1.unit(0).read());
         assertEquals(240, bP1.unit(1).read());
 
         // Check behaviour when too large a value is written
-        Short bP2 = new Short();
+        BShort bP2 = new BShort();
         bP2.populate();
         bP2.write(98303);
         assertEquals(32767, bP2.read());
@@ -42,7 +42,7 @@ public class BytePairTest {
     @Test
     public void testAdd() throws Exception {
 
-        Short bP = new Short();
+        BShort bP = new BShort();
         bP.populate();
         bP.write(8191);
         bP.add(5);
@@ -54,7 +54,7 @@ public class BytePairTest {
     @Test
     public void testSub() throws Exception {
 
-        Short bP = new Short();
+        BShort bP = new BShort();
         bP.populate();
         bP.write(8191);
         bP.sub(5);
@@ -65,13 +65,13 @@ public class BytePairTest {
     @Test
     public void testInc() throws Exception {
 
-        Short bP = new Short();
+        BShort bP = new BShort();
         bP.populate();
         bP.write(700);
         bP.inc();
         assertEquals(701, bP.read());
 
-        Short bP2 = new Short();
+        BShort bP2 = new BShort();
         bP2.populate();
         bP2.write(65535);
         bP2.inc();
@@ -82,13 +82,13 @@ public class BytePairTest {
     @Test
     public void testDec() throws Exception {
 
-        Short bP = new Short();
+        BShort bP = new BShort();
         bP.populate();
         bP.write(700);
         bP.dec();
         assertEquals(699, bP.read());
 
-        Short bP2 = new Short();
+        BShort bP2 = new BShort();
         bP2.populate();
         bP2.write(0);
         bP2.dec();

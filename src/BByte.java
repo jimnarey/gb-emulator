@@ -1,11 +1,11 @@
 /**
  * Created by jamesnarey on 17/03/2016.
  */
-public class BetterByte implements ByteInterface {
+public class BByte implements ByteInterface {
 
     protected int data = 0;
 
-    public BetterByte() {
+    public BByte() {
 
 
     }
@@ -91,18 +91,6 @@ public class BetterByte implements ByteInterface {
         return lsb;
     }
 
-    public boolean rotateLeft () {
-
-        boolean msb = checkBit(7);
-
-        write(data << 1);
-
-        setBit(0, msb);
-
-        return msb;
-
-    }
-
     public boolean rotateRightThroughFlag (boolean flag) {
 
         boolean lsb = checkBit(0);
@@ -112,6 +100,18 @@ public class BetterByte implements ByteInterface {
         setBit(7, flag);
 
         return lsb;
+
+    }
+
+    public boolean rotateLeft () {
+
+        boolean msb = checkBit(7);
+
+        write(data << 1);
+
+        setBit(0, msb);
+
+        return msb;
 
     }
 

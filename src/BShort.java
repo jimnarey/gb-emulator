@@ -1,14 +1,14 @@
 /**
  * Created by jamesnarey on 08/05/2016.
  */
-public class Short extends DataArray implements ByteInterface {
+public class BShort extends DataArray implements ByteInterface {
 
 
-    public Short() {
+    public BShort() {
         super(2);
     }
 
-    public Short(BetterByte lsb, BetterByte msb) {
+    public BShort(BByte lsb, BByte msb) {
         super(2);
         setUnit(0, lsb);
         setUnit(1, msb);
@@ -16,13 +16,13 @@ public class Short extends DataArray implements ByteInterface {
     }
 
 
-    public static int mergeBytes (BetterByte lsb, BetterByte msb) {
+    public static int mergeBytes (BByte lsb, BByte msb) {
 
         return lsb.read() + (msb.read() << 8);
 
     }
 
-    public static void splitToBytes (int value, BetterByte lsb, BetterByte msb) {
+    public static void splitToBytes (int value, BByte lsb, BByte msb) {
 
         lsb.write(value & 0xFF);
         msb.write( (value >>> 8) & 0xFF );

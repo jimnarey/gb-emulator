@@ -1,7 +1,7 @@
 /**
  * Created by jamesnarey on 13/05/2016.
  */
-public interface CheckableByteInterface extends ByteInterface {
+public interface CByteInterface extends ByteInterface {
 
     boolean checkOverflow ();
 

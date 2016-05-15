@@ -5,16 +5,16 @@ import static org.junit.Assert.*;
 /**
  * Created by jamesnarey on 17/03/2016.
  */
-public class BetterByteTest {
+public class BByteTest {
 
     @Test
     public void testSub() throws Exception {
-        BetterByte d = new BetterByte();
+        BByte d = new BByte();
         d.write(10);
         d.sub(20);
         assertEquals(246, d.read());
 
-        BetterByte r = new BetterByte();
+        BByte r = new BByte();
         r.write(50);
         r.sub(20);
         assertEquals(30, r.read());
@@ -25,13 +25,13 @@ public class BetterByteTest {
     public void testAdd() throws Exception {
 
         // System.out.println("Test add() 8bit, rollover");
-        BetterByte d = new BetterByte();
+        BByte d = new BByte();
         d.write(245);
         d.add(20);
         assertEquals(9, d.read());
 
         // System.out.println("Test add() 8bit, rollover");
-        BetterByte r = new BetterByte();
+        BByte r = new BByte();
         r.write(50);
         r.add(20);
         assertEquals(70, r.read());
@@ -40,25 +40,25 @@ public class BetterByteTest {
 
     @Test
     public void testRead() throws Exception {
-        BetterByte d = new BetterByte();
+        BByte d = new BByte();
         d.data = 200;
         assertEquals(d.data, d.read());
     }
 
     @Test
     public void testWrite() throws Exception {
-        BetterByte d = new BetterByte();
+        BByte d = new BByte();
         d.write(256);
         assertEquals(0, d.data);
 
-        BetterByte q = new BetterByte();
+        BByte q = new BByte();
         q.write(15);
         assertEquals(15, q.data);
     }
 
     @Test
     public void testCheckBit() throws Exception {
-        BetterByte d = new BetterByte();
+        BByte d = new BByte();
         d.write(9);
 
         assertEquals(true, d.checkBit(0));
@@ -71,7 +71,7 @@ public class BetterByteTest {
         assertEquals(false, d.checkBit(6));
         assertEquals(false, d.checkBit(7));
 
-        BetterByte p = new BetterByte();
+        BByte p = new BByte();
         p.write(170);
 
         assertEquals(false, p.checkBit(0));
@@ -88,7 +88,7 @@ public class BetterByteTest {
 
     @Test
     public void testSetBit() throws Exception {
-        BetterByte d = new BetterByte();
+        BByte d = new BByte();
         d.write(0);
         d.setBit(0, true);
         d.setBit(3, true);
@@ -105,7 +105,7 @@ public class BetterByteTest {
     @Test
     public void testReadString() throws Exception {
 
-        BetterByte d = new BetterByte();
+        BByte d = new BByte();
         d.write(170);
         assertEquals("10101010", d.readString());
 
@@ -115,7 +115,7 @@ public class BetterByteTest {
     @Test
     public void testInc() throws Exception {
 
-        BetterByte d = new BetterByte();
+        BByte d = new BByte();
         d.write(1);
         d.inc();
         assertEquals(2, d.read());
@@ -125,7 +125,7 @@ public class BetterByteTest {
     @Test
     public void testDec() throws Exception {
 
-        BetterByte d = new BetterByte();
+        BByte d = new BByte();
         d.write(1);
         d.dec();
         assertEquals(0, d.read());
@@ -134,7 +134,7 @@ public class BetterByteTest {
 
     @Test
     public void testRotateRight() throws Exception {
-        BetterByte d = new BetterByte();
+        BByte d = new BByte();
         d.write(8);
         d.rotateRight();
         assertEquals(4, d.read());
@@ -145,7 +145,7 @@ public class BetterByteTest {
     @Test
     public void testRotateLeft() throws Exception {
 
-        BetterByte d = new BetterByte();
+        BByte d = new BByte();
         d.write(32);
         d.rotateLeft();
         assertEquals(64, d.read());
@@ -155,7 +155,7 @@ public class BetterByteTest {
     @Test
     public void testRotateRightThroughFlag() throws Exception {
 
-        BetterByte d = new BetterByte();
+        BByte d = new BByte();
         d.write(12);
         d.rotateRightThroughFlag(true);
         assertEquals(134, d.read());
@@ -165,7 +165,7 @@ public class BetterByteTest {
     @Test
     public void testRotateLeftThroughFlag() throws Exception {
 
-        BetterByte d = new BetterByte();
+        BByte d = new BByte();
         d.write(12);
         d.rotateLeftThroughFlag(true);
         assertEquals(25, d.read());
@@ -176,7 +176,7 @@ public class BetterByteTest {
     @Test
     public void testAND() throws Exception {
 
-        BetterByte d = new BetterByte();
+        BByte d = new BByte();
         d.write(80);
         d.and(54);
         assertEquals(16, d.read());
@@ -187,7 +187,7 @@ public class BetterByteTest {
     @Test
     public void testOR() throws Exception {
 
-        BetterByte d = new BetterByte();
+        BByte d = new BByte();
         d.write(48);
         d.or(12);
         assertEquals(60, d.read());
@@ -198,7 +198,7 @@ public class BetterByteTest {
     @Test
     public void testXOR() throws Exception {
 
-        BetterByte d = new BetterByte();
+        BByte d = new BByte();
         d.write(240);
         d.xor(60);
         assertEquals(204, d.read());
@@ -208,7 +208,7 @@ public class BetterByteTest {
     @Test
     public void testComplement() throws Exception {
 
-        BetterByte d = new BetterByte();
+        BByte d = new BByte();
         d.write(170);
         d.complement();
         assertEquals(85, d.read());
@@ -218,13 +218,13 @@ public class BetterByteTest {
     @Test
     public void testSwap() throws Exception {
 
-        BetterByte d = new BetterByte();
+        BByte d = new BByte();
         d.write(240);
         d.swap();
         System.out.println(d.read());
         assertEquals(15, d.read());
 
-        BetterByte q = new BetterByte();
+        BByte q = new BByte();
         q.write(192);
         q.swap();
         assertEquals(12, q.read());
@@ -235,11 +235,11 @@ public class BetterByteTest {
     @Test
     public void testReadSigned() throws Exception {
 
-        BetterByte d = new BetterByte();
+        BByte d = new BByte();
         d.write(129);
         assertEquals(-127, d.readSigned());
 
-        BetterByte p = new BetterByte();
+        BByte p = new BByte();
         p.write(130);
         assertEquals(-126, p.readSigned());
 

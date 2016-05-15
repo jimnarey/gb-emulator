@@ -1,4 +1,5 @@
 import csv
+import pprint
 
 class SwitchMaker(object):
 
@@ -37,6 +38,9 @@ class SwitchMaker(object):
         self.registers = ['A', 'F', 'B', 'C', 'D', 'E', 'H', 'L', 'AF', 'BC', 'DE', 'HL', 'SP', 'PC']
 
         self.blank_lines = 0
+        self.skipped = []
+        self.missing = []
+        self.error = []
 
     # Methods for creating initial arrays and dicts
 
@@ -65,7 +69,7 @@ class SwitchMaker(object):
 
     @staticmethod
     def d16():
-        d16_string = 'new Short( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) )'
+        d16_string = 'new BShort( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) )'
         return d16_string
 
     @staticmethod
@@ -208,7 +212,8 @@ class SwitchMaker(object):
                 if row['instruction'] == 'LD':
                     cases_text += self.ld_gen(row)
                 elif row['instruction'] in ['INC', 'DEC', 'SWAP']:
-                    cases_text += self.simple_single_operand_gen(row, row['instruction'].lower())
+                    # Note that this next line adds brackets/line end to the method's output
+                    cases_text += self.simple_single_operand_gen(row, row['instruction'].lower()) + '();'
                 elif row['instruction'] == 'ADD':
                     cases_text += self.simple_double_operand_gen(row, 'add')
                 elif row['instruction'] in ['SUB', 'AND', 'OR', 'XOR']:
@@ -219,8 +224,25 @@ class SwitchMaker(object):
                     cases_text += self.adc_gen(row)
                 elif row['instruction'] == 'SBC':
                     cases_text += self.sbc_gen(row)
+
+                # Need to double check implementation of the carry flag with these instructions
+                elif row['instruction'] == 'RRC':
+                    cases_text += self.simple_single_operand_gen(row, 'rotateRight();')
+                elif row['instruction'] == 'RR':
+                    cases_text += self.simple_single_operand_gen(row, 'rotateRightThroughFlag( r.F.getC() );')
+                elif row['instruction'] == 'RLC':
+                    cases_text += self.simple_single_operand_gen(row, 'rotateLeft();')
+                elif row['instruction'] == 'RL':
+                    cases_text += self.simple_single_operand_gen(row, 'rotateLeftThroughFlag( r.F.getC() );')
+                elif row['instruction'] == 'SRA':
+                    # Next line is a bit messy, get_operand is also called in the sra_sla_srl method
+                    cases_text += self.sra_sla_srl_gen(row, 'rotateRightThroughFlag', self.get_operand(row['operand_1']) + '.checkBit(7)')
+                elif row['instruction'] == 'SLA':
+                    cases_text += self.sra_sla_srl_gen(row, 'rotateLeftThroughFlag', 'false')
+                elif row['instruction'] == 'SRL':
+                    cases_text += self.sra_sla_srl_gen(row, 'rotateRightThroughFlag', 'false')
                 else:
-                    cases_text += '//**command missing'
+                    cases_text += self.add_missing(row)
 
                 cases_text += '\n\n\n'
 
@@ -266,10 +288,22 @@ class SwitchMaker(object):
 
         return False
 
+    def add_skip(self, row):
+        self.skipped.append(row['full_instruction'])
+        return '//**skipped'
+
+    def add_missing(self, row):
+        self.missing.append(row['full_instruction'])
+        return '//**missing'
+
+    def add_error(self, row):
+        self.error.append(row['full_instruction'])
+        return '//**error'
+
     def ld_gen(self, row):
 
         if SwitchMaker.skip_chars(row['operand_1'], row['operand_2']):
-            return '//**skipped command'
+            return self.add_skip(row)
 
         dest = self.get_operand(row['operand_1'])
         source = self.get_operand(row['operand_2'])
@@ -280,10 +314,10 @@ class SwitchMaker(object):
     def single_bit_gen(self, row):
 
         if row['operand_1'] == '' or row['operand_2'] == '':
-            return '//**skipped'
+            return self.add_skip(row)
 
         if SwitchMaker.skip_chars(row['operand_1']) or SwitchMaker.skip_chars(row['operand_2']):
-            return '//**skipped'
+            return self.add_skip(row)
 
         bit = self.get_operand(row['operand_1'])
         byte = self.get_operand(row['operand_2'])
@@ -295,17 +329,17 @@ class SwitchMaker(object):
         elif row['instruction'] == 'SET':
             method_string = 'setBit(' + bit + ', 1' + ')'
         else:
-            method_string = '**error'
+            method_string = self.add_error(row)
 
         return byte + '.' + method_string + ';'
 
     def adc_gen(self, row):
 
         if row['operand_1'] == '' or row['operand_2'] == '':
-            return '//**skipped'
+            return self.add_skip(row)
 
         if SwitchMaker.skip_chars(row['operand_1']) or SwitchMaker.skip_chars(row['operand_2']):
-            return '//**skipped'
+            return self.add_skip(row)
 
         dest = self.get_operand(row['operand_1'])
         source = self.get_operand(row['operand_2'])
@@ -315,15 +349,24 @@ class SwitchMaker(object):
     def sbc_gen(self, row):
 
         if row['operand_1'] == '' or row['operand_2'] == '':
-            return '//**skipped'
+            return self.add_skip(row)
 
         if SwitchMaker.skip_chars(row['operand_1']) or SwitchMaker.skip_chars(row['operand_2']):
-            return '//**skipped'
+            return self.add_skip(row)
 
         dest = self.get_operand(row['operand_1'])
         source = self.get_operand(row['operand_2'])
 
         return dest + '.sub( ' + source + '.read() + r.F.checkBit(4) );'
+
+    def sra_sla_srl_gen(self, row, method, param):
+
+        if row['operand_2'] == '' and not SwitchMaker.skip_chars(row['operand_1']):
+            dest = self.get_operand(row['operand_1'])
+
+            return dest + '.' + method + '(' + param + ');'
+
+        return self.add_skip(row)
 
     def a_reg_op_gen(self, row, method):
 
@@ -332,24 +375,24 @@ class SwitchMaker(object):
 
             return 'r.A.' + method + '( ' + source + '.read() );'
 
-        return '//**skipped'
+        return self.add_skip(row)
 
     def simple_single_operand_gen(self, row, method):
 
         if row['operand_2'] == '' and not SwitchMaker.skip_chars(row['operand_1']):
             dest = self.get_operand(row['operand_1'])
 
-            return dest + '.' + method + '();'
+            return dest + '.' + method
 
-        return '//**skipped'
+        return self.add_skip(row)
 
     def simple_double_operand_gen(self, row, method):
 
         if row['operand_1'] == '' or row['operand_2'] == '':
-            return '//**skipped'
+            return self.add_skip(row)
 
         if SwitchMaker.skip_chars(row['operand_1']) or SwitchMaker.skip_chars(row['operand_2']):
-            return '//**skipped'
+            return self.add_skip(row)
 
         dest = self.get_operand(row['operand_1'])
         source = self.get_operand(row['operand_2'])
@@ -368,3 +411,7 @@ if __name__ == "__main__":
     print('Missing commands: ' + str(output_string.count('missing')))
     print('Skipped commands: ' + str(output_string.count('skipped')))
     print('Blank lines: ' + str(sm.blank_lines))
+    print(' ')
+    pprint.pprint(sorted(sm.skipped))
+    pprint.pprint(sorted(sm.missing))
+    pprint.pprint(sorted(sm.error))

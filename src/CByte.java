@@ -1,13 +1,13 @@
 /**
  * Created by jamesnarey on 13/05/2016.
  */
-public class CheckableByte extends BetterByte implements CheckableByteInterface {
+public class CByte extends BByte implements CheckableByteInterface {
 
     protected int lastWrite = 0;
     protected int lastData = 0;
 
 
-    public CheckableByte () {
+    public CByte() {
 
     }
 
@@ -23,9 +23,6 @@ public class CheckableByte extends BetterByte implements CheckableByteInterface 
         if (data == 0) {return true;}
         return false;
     }
-
-    // Create new class, inherited from this one, to hold lastData, lastWrite and
-    // corresponding methods
 
     public boolean checkOverflow() {
 
