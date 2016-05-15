@@ -25,15 +25,31 @@ public class Processor {
 //
 //    }
 
-    public void add(ByteInterface dest, ByteInterface source) {
+    public void ld(ByteInterface dest, ByteInterface source) {
 
-        dest.write( dest.read() + source.read() );
+        dest.write( source.read() );
 
     }
 
-    public void sub(ByteInterface dest, ByteInterface source) {
+    public void add(ByteInterface source) {
 
-        dest.write( dest.read() - source.read() );
+        r.A.write( r.A.read() + source.read() );
+
+    }
+
+    public void adc(BByte source) {
+        r.A.write( r.A.read() + (source.read() + (r.F.getC() ? 1 : 0)) );
+    }
+
+    public void sub(ByteInterface source) {
+
+        r.A.write( r.A.read() - source.read() );
+
+    }
+
+    public void sbc(BByte source) {
+
+        r.A.write( r.A.read() - (source.read() + (r.F.getC() ? 1 : 0)) );
 
     }
 
@@ -45,7 +61,8 @@ public class Processor {
         dest.write( dest.read() - 1);
     }
 
-    public boolean rotateRight (BByte dest) {
+    // Add tests for the return values, where they exist
+    public boolean rrc(BByte dest) {
 
         boolean lsb = dest.checkBit(0);
 
@@ -56,19 +73,19 @@ public class Processor {
         return lsb;
     }
 
-    public boolean rotateRightThroughFlag (BByte dest, boolean flag) {
+    public boolean rr(BByte dest) {
 
         boolean lsb = dest.checkBit(0);
 
         dest.write(dest.data >>> 1);
 
-        dest.setBit(7, flag);
+        dest.setBit(7, r.F.getC());
 
         return lsb;
 
     }
 
-    public boolean rotateLeft (BByte dest) {
+    public boolean rlc(BByte dest) {
 
         boolean msb = dest.checkBit(7);
 
@@ -80,42 +97,95 @@ public class Processor {
 
     }
 
-    public boolean rotateLeftThroughFlag (BByte dest, boolean flag) {
+    public boolean rl(BByte dest) {
 
         boolean msb = dest.checkBit(7);
 
         dest.write(dest.read() << 1);
 
-        dest.setBit(0, flag);
+        dest.setBit(0, r.F.getC());
 
         return msb;
     }
 
-    public void and(BByte dest, BByte source) {
+    public boolean sra(BByte dest) {
 
-        dest.write(dest.read() & source.read());
+        boolean msb = dest.checkBit(7);
+        boolean lsb = dest.checkBit(0);
 
-    }
+        dest.write(dest.read() >>> 1);
 
-    public void or(BByte dest, BByte source) {
+        dest.setBit(7, msb);
 
-        dest.write(dest.read() | source.read());
-
-    }
-
-    public void xor(BByte dest, BByte source) {
-
-        dest.write(dest.read() ^ source.read());
+        // To carry flag
+        return lsb;
 
     }
 
-    public void complement (BByte dest) {
+    public boolean srl(BByte dest) {
+
+        boolean lsb = dest.checkBit(0);
+
+        dest.write(dest.read() >>> 1);
+
+        dest.setBit(7, false);
+
+        // To carry flag
+        return lsb;
+
+    }
+
+    public boolean sla(BByte dest) {
+
+        boolean msb = dest.checkBit(7);
+
+        dest.write(dest.read() << 1);
+
+        // Is this needed? Presumably will always pull zero from the right?
+        dest.setBit(0, false);
+
+        // To carry flag
+        return msb;
+
+    }
+
+    public boolean bit(BByte dest, int position) {
+        return dest.checkBit(position);
+    }
+
+    public void set(BByte dest, int position) {
+        dest.setBit(position, true);
+    }
+
+    public void res(BByte dest, int position) {
+        dest.setBit(position, false);
+    }
+
+    public void and(BByte source) {
+
+        r.A.write( r.A.read() & source.read());
+
+    }
+
+    public void or(BByte source) {
+
+        r.A.write( r.A.read() | source.read());
+
+    }
+
+    public void xor(BByte source) {
+
+        r.A.write( r.A.read() ^ source.read());
+
+    }
+
+    public void cpl(BByte dest) {
 
         dest.write( ~ dest.read());
 
     }
 
-    public void nibbleSwap(BByte dest) {
+    public void swap(BByte dest) {
 
         //Consider removing these temporary variables
         int lowerHalf = dest.read() & 0xF;

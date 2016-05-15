@@ -81,7 +81,7 @@ public class ProcessorTest {
     public void testRotateRight() throws Exception {
         BByte d = new BByte();
         d.write(8);
-        p.rotateRight(d);
+        p.rrc(d);
         assertEquals(4, d.read());
 
 
@@ -92,7 +92,7 @@ public class ProcessorTest {
 
         BByte d = new BByte();
         d.write(32);
-        p.rotateLeft(d);
+        p.rlc(d);
         assertEquals(64, d.read());
 
     }
@@ -102,8 +102,15 @@ public class ProcessorTest {
 
         BByte d = new BByte();
         d.write(12);
-        p.rotateRightThroughFlag(d, true);
+        p.r.F.setC(true);
+        p.rr(d);
         assertEquals(134, d.read());
+
+        BByte q = new BByte();
+        q.write(12);
+        p.r.F.setC(false);
+        p.rr(q);
+        assertEquals(6, q.read());
 
     }
 
@@ -112,8 +119,15 @@ public class ProcessorTest {
 
         BByte d = new BByte();
         d.write(12);
-        p.rotateLeftThroughFlag(d, true);
+        p.r.F.setC(true);
+        p.rl(d);
         assertEquals(25, d.read());
+
+        BByte q = new BByte();
+        q.write(12);
+        p.r.F.setC(false);
+        p.rl(q);
+        assertEquals(24, q.read());
 
 
     }
@@ -161,7 +175,7 @@ public class ProcessorTest {
 
         BByte d = new BByte();
         d.write(170);
-        p.complement(d);
+        p.cpl(d);
         assertEquals(85, d.read());
 
     }
@@ -171,13 +185,13 @@ public class ProcessorTest {
 
         BByte d = new BByte();
         d.write(240);
-        p.nibbleSwap(d);
+        p.swap(d);
         System.out.println(d.read());
         assertEquals(15, d.read());
 
         BByte q = new BByte();
         q.write(192);
-        p.nibbleSwap(q);
+        p.swap(q);
         assertEquals(12, q.read());
 
     }
