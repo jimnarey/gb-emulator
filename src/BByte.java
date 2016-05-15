@@ -10,6 +10,8 @@ public class BByte implements ByteInterface {
 
     }
 
+//    public boolean[] runWithChecks ()
+
     // Could speed this up by just switching between two data ints each time a write
     // is made and changing an 'active' flag which determines which is being used
     // though this would involve an array lookup each time the value is read
@@ -25,6 +27,27 @@ public class BByte implements ByteInterface {
 
     }
 
+    public int readSigned () {
+
+        int value;
+
+        if (data > 127) {
+            value = data - 256;
+        }
+        else {
+            value = data;
+        }
+
+        return value;
+
+    }
+
+    public String readString() {
+
+        String formatParameter = "%" + 8 + "s";
+
+        return String.format(formatParameter, Integer.toBinaryString(data & 0xFF)).replace(' ', '0');
+    }
 
     public void add(int value) {
 
@@ -126,13 +149,6 @@ public class BByte implements ByteInterface {
         return msb;
     }
 
-    public String readString() {
-
-        String formatParameter = "%" + 8 + "s";
-
-        return String.format(formatParameter, Integer.toBinaryString(data & 0xFF)).replace(' ', '0');
-    }
-
     public void and(int value) {
 
         write(data & value);
@@ -166,18 +182,10 @@ public class BByte implements ByteInterface {
 
     }
 
-    public int readSigned () {
+    public boolean isZero() {
 
-        int value;
-
-        if (data > 127) {
-            value = data - 256;
-        }
-        else {
-            value = data;
-        }
-
-        return value;
+        if (data == 0) {return true;}
+        return false;
 
     }
 
