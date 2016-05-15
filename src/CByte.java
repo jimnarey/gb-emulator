@@ -1,7 +1,7 @@
 /**
  * Created by jamesnarey on 13/05/2016.
  */
-public class CByte extends BByte implements CheckableByteInterface {
+public class CByte extends BByte implements CByteInterface {
 
     protected int lastWrite = 0;
     protected int lastData = 0;

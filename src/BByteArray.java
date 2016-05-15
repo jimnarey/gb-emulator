@@ -1,12 +1,12 @@
 /**
  * Created by jamesnarey on 17/03/2016.
  */
-public class CByteArray {
+public class BByteArray {
 
     protected int numUnits;
     protected BByte[] bytes;
 
-    public CByteArray(int numUnits) {
+    public BByteArray(int numUnits) {
 
         //Set a maximum number of bytes
         this.numUnits = numUnits;

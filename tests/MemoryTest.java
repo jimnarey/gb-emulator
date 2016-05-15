@@ -22,7 +22,7 @@ public class MemoryTest {
         m.address(50).write(100);
 
         assertEquals(100, m.address(50).read());
-        assertEquals(100, m.memoryBanks[0].units[50].data);
+        assertEquals(100, m.memoryBanks[0].bytes[50].data);
     }
 
 }

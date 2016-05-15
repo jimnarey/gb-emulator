@@ -1,7 +1,7 @@
 /**
  * Created by jamesnarey on 15/03/2016.
  */
-public class MemoryBank extends DataArray {
+public class MemoryBank extends BByteArray {
 
 
     private String name;
@@ -21,7 +21,7 @@ public class MemoryBank extends DataArray {
         this.lastByte = lastByte;
         this.populate();
 
-        System.out.println(this.name + " - " + this.description + " - " + this.units.length);
+        System.out.println(this.name + " - " + this.description + " - " + this.bytes.length);
 
     }
 

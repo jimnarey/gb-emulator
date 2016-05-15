@@ -13,8 +13,8 @@ public class BShortTest {
 
         BShort bP1 = new BShort();
         bP1.populate();
-        bP1.units[0].data = 14;
-        bP1.units[1].data = 240;
+        bP1.bytes[0].data = 14;
+        bP1.bytes[1].data = 240;
         assertEquals(61454, bP1.read());
 
     }

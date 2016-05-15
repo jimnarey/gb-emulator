@@ -20,12 +20,12 @@ public class BByteArrayTest {
         BByteArray dA = new BByteArray(8);
         dA.populate();
 
-        for (BByte unit : dA.units) {
+        for (BByte unit : dA.bytes) {
             unit.write(200);
 
         }
 
-        for (BByte unit : dA.units) {
+        for (BByte unit : dA.bytes) {
             assertEquals(200, unit.read());
 
         }

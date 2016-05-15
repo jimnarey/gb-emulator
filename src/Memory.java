@@ -49,7 +49,7 @@ public class Memory {
         for (int i = 0; i < this.memoryBanks.length; i++) {
 
             // Within each memory bank, iterate up to the total no. of bytes in that bank
-            for (int j = 0; j < this.memoryBanks[i].units.length; j++) {
+            for (int j = 0; j < this.memoryBanks[i].bytes.length; j++) {
                 memoryMap[addressIncrement][0] = i;
                 memoryMap[addressIncrement][1] = j;
                 addressIncrement++;
@@ -60,7 +60,7 @@ public class Memory {
     }
 
 
-    public BetterByte address (int address) {
+    public BByte address (int address) {
 
         return memoryBanks[memoryMap[address][0]].unit(memoryMap[address][1]);
 

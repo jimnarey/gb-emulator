@@ -10,7 +10,7 @@ public class MemoryBankTest {
     @Test
     public void testGetSize() throws Exception {
         MemoryBank m = new MemoryBank("test", "test bank", 0, 1024);
-        m.units[2].write(100);
-        assertEquals(100, m.units[2].read());
+        m.bytes[2].write(100);
+        assertEquals(100, m.bytes[2].read());
     }
 }

@@ -1,7 +1,7 @@
 /**
  * Created by jamesnarey on 08/05/2016.
  */
-public class BShort extends DataArray implements ByteInterface {
+public class BShort extends BByteArray implements ByteInterface {
 
 
     public BShort() {
@@ -31,13 +31,13 @@ public class BShort extends DataArray implements ByteInterface {
 
     public int read() {
 
-        return mergeBytes(units[0], units[1]);
+        return mergeBytes(bytes[0], bytes[1]);
 
     }
 
     public void write (int value) {
 
-        splitToBytes(value, units[0], units[1]);
+        splitToBytes(value, bytes[0], bytes[1]);
 
     }
 

@@ -6,21 +6,21 @@ public class Registers {
     // !! Consider writing 0's the the non-flag bits in F each cycle
     // !! or otherwise prevent them from being written with a 1
 
-    public BetterByte A = new BetterByte();
+    public BByte A = new BByte();
     public FlagRegister F = new FlagRegister();
-    public BetterByte B = new BetterByte();
-    public BetterByte C = new BetterByte();
-    public BetterByte D = new BetterByte();
-    public BetterByte E = new BetterByte();
-    public BetterByte H = new BetterByte();
-    public BetterByte L = new BetterByte();
+    public BByte B = new BByte();
+    public BByte C = new BByte();
+    public BByte D = new BByte();
+    public BByte E = new BByte();
+    public BByte H = new BByte();
+    public BByte L = new BByte();
 
-    public Short SP = new Short();
-    public Short PC = new Short();
-    public Short AF = new Short();
-    public Short BC = new Short();
-    public Short DE = new Short();
-    public Short HL = new Short();
+    public BShort SP = new BShort();
+    public BShort PC = new BShort();
+    public BShort AF = new BShort();
+    public BShort BC = new BShort();
+    public BShort DE = new BShort();
+    public BShort HL = new BShort();
 
     public Registers() {
 
