@@ -4,13 +4,16 @@
 public class BByte implements ByteInterface {
 
     protected int data = 0;
+    protected final int maxValue = 0xFF;
 
     public BByte() {
 
 
     }
 
-//    public boolean[] runWithChecks ()
+    public int getMaxValue () {
+        return maxValue;
+    }
 
     // Could speed this up by just switching between two data ints each time a write
     // is made and changing an 'active' flag which determines which is being used

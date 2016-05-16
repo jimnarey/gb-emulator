@@ -3,6 +3,7 @@
  */
 public class BShort extends BByteArray implements ByteInterface {
 
+    protected final int maxValue = 0xFFFF;
 
     public BShort() {
         super(2);
@@ -15,6 +16,9 @@ public class BShort extends BByteArray implements ByteInterface {
 
     }
 
+    public int getMaxValue () {
+        return maxValue;
+    }
 
     public static int mergeBytes (BByte lsb, BByte msb) {
 

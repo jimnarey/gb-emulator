@@ -25,119 +25,173 @@ public class Processor {
 //
 //    }
 
+    // Need to add tests for all the methods' flag setting/resetting
+    public boolean calcCarryFlag(int maxValue, int writeValue) {
+
+        if (writeValue > maxValue || writeValue < 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
+    // This isn't write - it assumes an add!!!!!!
+    public boolean calcHalfFlag (int currentValue, int writeValue) {
+        //((a&0xf) + (value&0xf))&0x10
+        if ( (((currentValue & 0xF) + (writeValue & 0xF)) & 0x10) == 0x10) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public void ld(ByteInterface dest, ByteInterface source) {
 
         dest.write( source.read() );
 
     }
 
-    public void add(ByteInterface source) {
+    public void add(ByteInterface dest, ByteInterface source) {
 
-        r.A.write( r.A.read() + source.read() );
+        int writeValue = dest.read() + source.read();
+        r.F.setC(calcCarryFlag(dest.getMaxValue(), writeValue));
+        //r.F.setH(calcHalfFlag(dest.read(), writeValue));
+        dest.write(writeValue);
+
 
     }
 
     public void adc(BByte source) {
-        r.A.write( r.A.read() + (source.read() + (r.F.getC() ? 1 : 0)) );
+
+        int writeValue = r.A.read() + (source.read() + (r.F.getC() ? 1 : 0));
+        r.F.setC(calcCarryFlag(255, writeValue));
+
+        r.A.write( writeValue );
+
     }
 
     public void sub(ByteInterface source) {
 
-        r.A.write( r.A.read() - source.read() );
+        int writeValue = r.A.read() - source.read();
+        r.F.setC(calcCarryFlag(255, writeValue ));
+
+        r.A.write( writeValue );
 
     }
 
     public void sbc(BByte source) {
 
-        r.A.write( r.A.read() - (source.read() + (r.F.getC() ? 1 : 0)) );
+        int writeValue = r.A.read() - (source.read() + (r.F.getC() ? 1 : 0));
+        r.F.setC(calcCarryFlag(255, writeValue ));
+
+        r.A.write( writeValue );
 
     }
 
     public void inc(ByteInterface dest) {
-        dest.write( dest.read() + 1);
+
+        int writeValue = dest.read() + 1;
+        r.F.setC(calcCarryFlag(dest.getMaxValue(), writeValue ));
+
+        dest.write( writeValue);
+
     }
 
     public void dec(ByteInterface dest) {
+
+        int writeValue = dest.read() - 1;
+        r.F.setC(calcCarryFlag(dest.getMaxValue(), writeValue ));
+
         dest.write( dest.read() - 1);
+
     }
 
-    // Add tests for the return values, where they exist
-    public boolean rrc(BByte dest) {
+    public void rrc(BByte dest) {
 
         boolean lsb = dest.checkBit(0);
+        r.F.setC(lsb);
 
         dest.write(dest.read() >>> 1);
 
         dest.setBit(7, lsb);
 
-        return lsb;
+
     }
 
-    public boolean rr(BByte dest) {
+    public void rr(BByte dest) {
 
         boolean lsb = dest.checkBit(0);
+        r.F.setC(lsb);
 
         dest.write(dest.data >>> 1);
 
         dest.setBit(7, r.F.getC());
 
-        return lsb;
+
 
     }
 
-    public boolean rlc(BByte dest) {
+    public void rlc(BByte dest) {
 
         boolean msb = dest.checkBit(7);
+        r.F.setC(msb);
 
         dest.write(dest.data << 1);
 
         dest.setBit(0, msb);
 
-        return msb;
+
 
     }
 
-    public boolean rl(BByte dest) {
+    public void rl(BByte dest) {
 
         boolean msb = dest.checkBit(7);
+        r.F.setC(msb);
 
         dest.write(dest.read() << 1);
 
         dest.setBit(0, r.F.getC());
 
-        return msb;
+
     }
 
-    public boolean sra(BByte dest) {
+    public void sra(BByte dest) {
 
         boolean msb = dest.checkBit(7);
         boolean lsb = dest.checkBit(0);
+        r.F.setC(lsb);
 
         dest.write(dest.read() >>> 1);
 
         dest.setBit(7, msb);
 
         // To carry flag
-        return lsb;
+
 
     }
 
-    public boolean srl(BByte dest) {
+    public void srl(BByte dest) {
 
         boolean lsb = dest.checkBit(0);
+        r.F.setC(lsb);
 
         dest.write(dest.read() >>> 1);
 
         dest.setBit(7, false);
 
         // To carry flag
-        return lsb;
+
 
     }
 
-    public boolean sla(BByte dest) {
+    public void sla(BByte dest) {
 
         boolean msb = dest.checkBit(7);
+        r.F.setC(msb);
 
         dest.write(dest.read() << 1);
 
@@ -145,7 +199,7 @@ public class Processor {
         dest.setBit(0, false);
 
         // To carry flag
-        return msb;
+
 
     }
 
@@ -196,19 +250,19 @@ public class Processor {
     }
 
     public void rst (BByte addressByte) {
-        pushShort( r.PC );
+        push( r.PC );
         r.PC.write( addressByte.read() );
 
     }
 
     //Test that if a short is pushed, the same short is returned from a pop
     //Double check these are supposed to be LSB first
-    public void pushShort (BShort addressShort) {
+    public void push(BShort addressShort) {
         pushByte(addressShort.unit(0));
         pushByte(addressShort.unit(1));
     }
 
-    public BShort popShort () {
+    public BShort pop() {
         BShort addressShort = new BShort();
         addressShort.setUnit(1, popByte());
         addressShort.setUnit(0, popByte());
