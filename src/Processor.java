@@ -37,7 +37,7 @@ public class Processor {
 
     }
 
-    // This isn't write - it assumes an add!!!!!!
+    // This isn't right - it assumes an add!!!!!!
     public boolean calcHalfFlag (int currentValue, int writeValue) {
         //((a&0xf) + (value&0xf))&0x10
         if ( (((currentValue & 0xF) + (writeValue & 0xF)) & 0x10) == 0x10) {
@@ -73,7 +73,7 @@ public class Processor {
 
     }
 
-    public void sub(ByteInterface source) {
+    public void sub(BByte source) {
 
         int writeValue = r.A.read() - source.read();
         r.F.setC(calcCarryFlag(255, writeValue ));
