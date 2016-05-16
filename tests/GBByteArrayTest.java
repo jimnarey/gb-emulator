@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 /**
  * Created by jamesnarey on 27/04/2016.
  */
-public class BByteArrayTest {
+public class GBByteArrayTest {
 
     @Test
     public void testGetNumUnits() throws Exception {

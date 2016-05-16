@@ -1,16 +1,16 @@
 /**
  * Created by jamesnarey on 17/03/2016.
  */
-public class BByteArray {
+public class GBByteArray {
 
     protected int numUnits;
-    protected BByte[] bytes;
+    protected GBByte[] bytes;
 
-    public BByteArray(int numUnits) {
+    public GBByteArray(int numUnits) {
 
         //Set a maximum number of bytes
         this.numUnits = numUnits;
-        this.bytes = new BByte[numUnits];
+        this.bytes = new GBByte[numUnits];
 
     }
 
@@ -21,16 +21,16 @@ public class BByteArray {
 
     public void populate() {
         for (int i = 0; i < this.getNumUnits(); i++) {
-            this.bytes[i] = new BByte();
+            this.bytes[i] = new GBByte();
         }
     }
 
-    public void setUnit(int position, BByte unit) {
+    public void setUnit(int position, GBByte unit) {
         bytes[position] = unit;
     }
 
 
-    public BByte unit(int position) {
+    public GBByte unit(int position) {
 
         return bytes[position];
     }

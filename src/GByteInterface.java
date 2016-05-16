@@ -1,7 +1,7 @@
 /**
  * Created by jamesnarey on 07/05/2016.
  */
-public interface ByteInterface {
+public interface GByteInterface {
 
     int read();
 

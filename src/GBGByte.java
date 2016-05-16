@@ -1,11 +1,11 @@
 /**
  * Created by jamesnarey on 17/03/2016.
  */
-public class BByte implements ByteInterface {
+public class GBGByte implements GByteInterface {
 
     protected int data = 0;
 
-    public BByte() {
+    public GBGByte() {
 
 
     }

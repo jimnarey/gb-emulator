@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 /**
  * Created by jamesnarey on 17/03/2016.
  */
-public class BByteTest {
+public class GBByteTest {
 
     @Test
     public void testSub() throws Exception {
