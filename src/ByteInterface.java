@@ -7,6 +7,12 @@ public interface ByteInterface {
 
     void write(int value);
 
-    int getMaxValue();
+    void add(int value);
+
+    void sub(int value);
+
+    void inc();
+
+    void dec();
 
 }

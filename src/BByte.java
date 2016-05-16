@@ -4,15 +4,10 @@
 public class BByte implements ByteInterface {
 
     protected int data = 0;
-    protected final int maxValue = 0xFF;
 
     public BByte() {
 
 
-    }
-
-    public int getMaxValue () {
-        return maxValue;
     }
 
     // Could speed this up by just switching between two data ints each time a write
@@ -30,29 +25,22 @@ public class BByte implements ByteInterface {
 
     }
 
-    public int readSigned () {
 
-        int value;
+    public void add(int value) {
 
-        if (data > 127) {
-            value = data - 256;
-        }
-        else {
-            value = data;
-        }
-
-        return value;
+        write(data + value);
 
     }
 
-    public String readString() {
+    public void sub(int value) {
 
-        String formatParameter = "%" + 8 + "s";
+        write(data - value);
 
-        return String.format(formatParameter, Integer.toBinaryString(data & 0xFF)).replace(' ', '0');
     }
 
+    public void inc() {add(1);}
 
+    public void dec() {sub(1);}
 
 
     // This and checkBit can be recombined. It doesn't matter if the value of 'position' is
@@ -92,11 +80,104 @@ public class BByte implements ByteInterface {
 
     }
 
+    public boolean rotateRight () {
 
-    public boolean isZero() {
+        boolean lsb = checkBit(0);
 
-        if (data == 0) {return true;}
-        return false;
+        write(data >>> 1);
+
+        setBit(7, lsb);
+
+        return lsb;
+    }
+
+    public boolean rotateRightThroughFlag (boolean flag) {
+
+        boolean lsb = checkBit(0);
+
+        write(data >>> 1);
+
+        setBit(7, flag);
+
+        return lsb;
+
+    }
+
+    public boolean rotateLeft () {
+
+        boolean msb = checkBit(7);
+
+        write(data << 1);
+
+        setBit(0, msb);
+
+        return msb;
+
+    }
+
+    public boolean rotateLeftThroughFlag (boolean flag) {
+
+        boolean msb = checkBit(7);
+
+        write(data << 1);
+
+        setBit(0, flag);
+
+        return msb;
+    }
+
+    public String readString() {
+
+        String formatParameter = "%" + 8 + "s";
+
+        return String.format(formatParameter, Integer.toBinaryString(data & 0xFF)).replace(' ', '0');
+    }
+
+    public void and(int value) {
+
+        write(data & value);
+
+    }
+
+    public void or(int value) {
+
+        write(data | value);
+
+    }
+
+    public void xor(int value) {
+
+        write(data ^ value);
+
+    }
+
+    public void complement () {
+
+        write(~ data);
+
+    }
+
+    public void swap () {
+
+        int lowerHalf = data & 0xF;
+        int upperHalf = (data >>> 4 ) & 0xF;
+
+        write((lowerHalf << 4) | (upperHalf));
+
+    }
+
+    public int readSigned () {
+
+        int value;
+
+        if (data > 127) {
+            value = data - 256;
+        }
+        else {
+            value = data;
+        }
+
+        return value;
 
     }
 
