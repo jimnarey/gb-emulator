@@ -25,7 +25,7 @@ public class Processor {
 //
 //    }
 
-    public void rst (BByte addressByte) {
+    public void rst (GBByte addressByte) {
         pushShort( r.PC );
         r.PC.write( addressByte.read() );
 
@@ -33,25 +33,25 @@ public class Processor {
 
     //Test that if a short is pushed, the same short is returned from a pop
     //Double check these are supposed to be LSB first
-    public void pushShort (BShort addressShort) {
+    public void pushShort (GBShort addressShort) {
         pushByte(addressShort.unit(0));
         pushByte(addressShort.unit(1));
     }
 
-    public BShort popShort () {
-        BShort addressShort = new BShort();
+    public GBShort popShort () {
+        GBShort addressShort = new GBShort();
         addressShort.setUnit(1, popByte());
         addressShort.setUnit(0, popByte());
         return addressShort;
 
     }
 
-    public void pushByte (BByte addressByte) {
+    public void pushByte (GBByte addressByte) {
         m.address( r.SP.read() ).write( addressByte.read() );
         r.SP.dec();
     }
 
-    public BByte popByte () {
+    public GBByte popByte () {
         r.SP.inc();
         return m.address( r.SP.read() - 1 );
     }

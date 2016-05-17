@@ -1,7 +1,7 @@
 /**
  * Created by jamesnarey on 15/03/2016.
  */
-public class MemoryBank extends BByteArray {
+public class MemoryBank extends GBByteArray {
 
 
     private String name;

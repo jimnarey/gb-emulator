@@ -22,23 +22,23 @@ public class InstructionsTest {
     @Test
     public void testLD() throws Exception {
 
-        BShort bP0 = new BShort();
+        GBShort bP0 = new GBShort();
         bP0.populate();
         bP0.write(257);
-        Instructions.LD(new BShort(m.address(0), m.address(1)), bP0);
+        Instructions.LD(new GBShort(m.address(0), m.address(1)), bP0);
         assertEquals(1, m.address(0).read());
         assertEquals(1, m.address(1).read());
 
-        // 335 & 336 chosen to test everything works when the BShort spans two
+        // 335 & 336 chosen to test everything works when the GBShort spans two
         // memory banks.
-        BShort bP1 = new BShort();
+        GBShort bP1 = new GBShort();
         bP1.populate();
         bP1.write(7001);
-        Instructions.LD(new BShort(m.address(335), m.address(336)), bP1);
+        Instructions.LD(new GBShort(m.address(335), m.address(336)), bP1);
         assertEquals(89, m.address(335).read());
         assertEquals(27, m.address(336).read());
 
-        //Need test to check when using a newly instantiated BShort/Byte
+        //Need test to check when using a newly instantiated GBShort/Byte
         //as source
 
 

@@ -18,7 +18,7 @@ public class Instructions {
 
     }
 
-    public static void LD(ByteInterface dest, ByteInterface source ) {
+    public static void LD(GByteInterface dest, GByteInterface source ) {
 
         dest.write(source.read());
 
@@ -117,7 +117,7 @@ public class Instructions {
 
     }
 
-    public static void INC(ByteInterface target) {
+    public static void INC(GByteInterface target) {
 
         target.inc();
 
@@ -138,7 +138,7 @@ public class Instructions {
 
     }
 
-    public static void DEC(ByteInterface target) {
+    public static void DEC(GByteInterface target) {
 
         target.dec();
 
@@ -159,7 +159,7 @@ public class Instructions {
 
     }
 
-    public static void RLCA(BByte target) {
+    public static void RLCA(GBByte target) {
 
         // Target is always A register
 
@@ -171,7 +171,7 @@ public class Instructions {
 
     }
 
-    public static void ADD(ByteInterface addendDest, ByteInterface addend) {
+    public static void ADD(GByteInterface addendDest, GByteInterface addend) {
         
         addendDest.add(addend.read());
         
@@ -294,7 +294,7 @@ public class Instructions {
 
     }
 
-    public static void SUB(ByteInterface minuendDest, ByteInterface subtrahend) {
+    public static void SUB(GByteInterface minuendDest, GByteInterface subtrahend) {
 
         //minuendDest must be the A register
 

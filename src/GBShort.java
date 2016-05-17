@@ -1,7 +1,7 @@
 /**
  * Created by jamesnarey on 08/05/2016.
  */
-public class GBShort extends BByteArray implements ByteInterface {
+public class GBShort extends GBByteArray implements GByteInterface {
 
 
     public GBShort() {
@@ -15,6 +15,18 @@ public class GBShort extends BByteArray implements ByteInterface {
 
     }
 
+    public boolean isZero() {
+        if (read() == 0) {return true;}
+        return false;
+    }
+
+    public boolean getCarryFlag () {
+        return bytes[1].carryFlag;
+    }
+
+    public boolean getHalfFlag () {
+        return bytes[1].halfFlag;
+    }
 
     public static int mergeBytes (GBByte lsb, GBByte msb) {
 
@@ -44,7 +56,8 @@ public class GBShort extends BByteArray implements ByteInterface {
 
     public void add(int value) {
 
-        write(read() + value);
+        bytes[0].add( value & 0xFF );
+        bytes[1].add( ((value >>> 8) & 0xFF) + (bytes[0].getCarryFlag() ? 1 : 0) );
 
     }
 
@@ -65,5 +78,7 @@ public class GBShort extends BByteArray implements ByteInterface {
         sub(1);
 
     }
+
+
 
 }

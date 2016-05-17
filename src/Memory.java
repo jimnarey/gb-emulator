@@ -60,7 +60,7 @@ public class Memory {
     }
 
 
-    public BByte address (int address) {
+    public GBByte address (int address) {
 
         return memoryBanks[memoryMap[address][0]].unit(memoryMap[address][1]);
 

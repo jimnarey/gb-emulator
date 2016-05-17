@@ -1,13 +1,68 @@
 /**
  * Created by jamesnarey on 17/03/2016.
  */
-public class GBGByte implements GByteInterface {
+public class GBByte implements GByteInterface {
 
     protected int data = 0;
+    protected boolean carryFlag = false;
+    protected boolean halfFlag = false;
 
-    public GBGByte() {
+    public GBByte() {
 
 
+    }
+
+    private void setAddCarryFlag (int newValue) {
+        if ( (newValue + data) > 255) {
+            carryFlag = true;
+        }
+        else {
+            carryFlag = false;
+        }
+    }
+
+    private void setSubCarryFlag (int newValue) {
+        if ( (data - newValue) < 0) {
+            carryFlag = true;
+        }
+        else {
+            carryFlag = false;
+        }
+    }
+
+    private void setAddHalfFlag (int newValue) {
+
+        if ( ((data & 0xF) + (newValue & 0xF)) > 0xF ) {
+            halfFlag = true;
+        }
+        else {
+            halfFlag = false;
+        }
+
+    }
+
+    private void setSubHalfFlag (int newValue) {
+
+        if ( ( ((data >>> 4) & 0xF) + ((newValue >>> 4) & 0xF) ) < 0 ) {
+            halfFlag = true;
+        }
+        else {
+            halfFlag = false;
+        }
+
+    }
+
+    public boolean isZero() {
+        if (data == 0) {return true;}
+        return false;
+    }
+
+    public boolean getCarryFlag () {
+        return carryFlag;
+    }
+
+    public boolean getHalfFlag () {
+        return halfFlag;
     }
 
     // Could speed this up by just switching between two data ints each time a write
@@ -25,8 +80,10 @@ public class GBGByte implements GByteInterface {
 
     }
 
-
     public void add(int value) {
+
+        setAddCarryFlag(value);
+        setAddHalfFlag(value);
 
         write(data + value);
 
@@ -34,14 +91,24 @@ public class GBGByte implements GByteInterface {
 
     public void sub(int value) {
 
+        setSubCarryFlag(value);
+        setSubHalfFlag(value);
+
         write(data - value);
 
     }
 
-    public void inc() {add(1);}
+    public void inc() {
+        setAddHalfFlag(data + 1);
+        write(data + 1);
+    }
 
-    public void dec() {sub(1);}
+    public void dec() {
+        setSubHalfFlag(data + 1);
+        write(data - 1);
+    }
 
+//    public void add
 
     // This and checkBit can be recombined. It doesn't matter if the value of 'position' is
     // greater than the number of used bits, it will correctly return zero
@@ -80,7 +147,7 @@ public class GBGByte implements GByteInterface {
 
     }
 
-    public boolean rotateRight () {
+    public void rotateRight () {
 
         boolean lsb = checkBit(0);
 
@@ -88,10 +155,10 @@ public class GBGByte implements GByteInterface {
 
         setBit(7, lsb);
 
-        return lsb;
+        carryFlag = lsb;
     }
 
-    public boolean rotateRightThroughFlag (boolean flag) {
+    public void rotateRightThroughFlag (boolean flag) {
 
         boolean lsb = checkBit(0);
 
@@ -99,11 +166,11 @@ public class GBGByte implements GByteInterface {
 
         setBit(7, flag);
 
-        return lsb;
+        carryFlag =  lsb;
 
     }
 
-    public boolean rotateLeft () {
+    public void rotateLeft () {
 
         boolean msb = checkBit(7);
 
@@ -111,11 +178,11 @@ public class GBGByte implements GByteInterface {
 
         setBit(0, msb);
 
-        return msb;
+        carryFlag =  msb;
 
     }
 
-    public boolean rotateLeftThroughFlag (boolean flag) {
+    public void rotateLeftThroughFlag (boolean flag) {
 
         boolean msb = checkBit(7);
 
@@ -123,7 +190,7 @@ public class GBGByte implements GByteInterface {
 
         setBit(0, flag);
 
-        return msb;
+        carryFlag =  msb;
     }
 
     public String readString() {

@@ -1,6 +1,7 @@
 import csv
 import pprint
 
+
 class SwitchMaker(object):
 
     def __init__(self):
