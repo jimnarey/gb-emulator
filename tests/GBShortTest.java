@@ -1,4 +1,5 @@
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -7,98 +8,119 @@ import static org.junit.Assert.*;
  */
 public class GBShortTest {
 
+    GBShort s;
+
+    @Before
+    public void setUp() {
+        s = new GBShort();
+        s.populate();
+    }
 
     @Test
     public void testRead() throws Exception {
 
-        GBShort bP1 = new GBShort();
-        bP1.populate();
-        bP1.bytes[0].data = 14;
-        bP1.bytes[1].data = 240;
-        assertEquals(61454, bP1.read());
+        s.bytes[0].data = 14;
+        s.bytes[1].data = 240;
+        assertEquals(61454, s.read());
 
     }
 
     @Test
     public void testWrite() throws Exception {
 
-
-        GBShort bP1 = new GBShort();
-        bP1.populate();
-        bP1.write(61454);
-        assertEquals(14, bP1.unit(0).read());
-        assertEquals(240, bP1.unit(1).read());
+        s.write(61454);
+        assertEquals(14, s.unit(0).read());
+        assertEquals(240, s.unit(1).read());
 
         // Check behaviour when too large a value is written
-        GBShort bP2 = new GBShort();
-        bP2.populate();
-        bP2.write(98303);
-        assertEquals(32767, bP2.read());
-
-
+        s.write(98303);
+        assertEquals(32767, s.read());
 
     }
 
     @Test
     public void testAdd() throws Exception {
 
-        GBShort bP = new GBShort();
-        bP.populate();
-        bP.write(8191);
-        bP.add(5);
-        assertEquals(8196, bP.read());
+        s.write(8191);
+        s.add(5);
+        assertEquals(8196, s.read());
 
-        GBShort bP2 = new GBShort();
-        bP2.populate();
-        bP2.write(200);
-        bP2.add(100);
-        assertEquals(300, bP2.read());
+        s.write(200);
+        s.add(100);
+        assertEquals(300, s.read());
 
     }
 
     @Test
     public void testSub() throws Exception {
 
-        GBShort bP = new GBShort();
-        bP.populate();
-        bP.write(8191);
-        bP.sub(5);
-        assertEquals(8186, bP.read());
+        s.write(8191);
+        s.sub(5);
+        assertEquals(8186, s.read());
 
     }
 
     @Test
     public void testInc() throws Exception {
 
-        GBShort bP = new GBShort();
-        bP.populate();
-        bP.write(700);
-        bP.inc();
-        assertEquals(701, bP.read());
+        s.write(700);
+        s.inc();
+        assertEquals(701, s.read());
 
-        GBShort bP2 = new GBShort();
-        bP2.populate();
-        bP2.write(65535);
-        bP2.inc();
-        assertEquals(0, bP2.read());
+        s.write(65535);
+        s.inc();
+        assertEquals(0, s.read());
 
     }
 
     @Test
     public void testDec() throws Exception {
 
-        GBShort bP = new GBShort();
-        bP.populate();
-        bP.write(700);
-        bP.dec();
-        assertEquals(699, bP.read());
+        s.write(700);
+        s.dec();
+        assertEquals(699, s.read());
 
-        GBShort bP2 = new GBShort();
-        bP2.populate();
-        bP2.write(0);
-        bP2.dec();
-        assertEquals(65535, bP2.read());
+        s.write(0);
+        s.dec();
+        assertEquals(65535, s.read());
 
+    }
+
+    @Test
+    public void testIsZero() throws Exception {
+        s.write(0);
+        assertEquals(true, s.isZero());
+
+        s.write(1);
+        assertEquals(false, s.isZero());
+    }
+
+    @Test
+    public void testGetCarryFlag() throws Exception {
+        s.bytes[1].carryFlag = true;
+        assertEquals(true, s.getCarryFlag());
+
+        s.bytes[1].carryFlag = false;
+        assertEquals(false, s.getCarryFlag());
+    }
+
+    @Test
+    public void testGetHalfFlag() throws Exception {
+        s.bytes[1].halfFlag = true;
+        assertEquals(true, s.getHalfFlag());
+
+        s.bytes[1].halfFlag = false;
+        assertEquals(false, s.getHalfFlag());
+    }
+
+    @Test
+    public void testMergeBytes() throws Exception {
+        // Tested by read()
+    }
+
+    @Test
+    public void testSplitToBytes() throws Exception {
+        // Tested by write()
     }
 }
  

@@ -43,7 +43,7 @@ public class GBByte implements GByteInterface {
 
     private void setSubHalfFlag (int newValue) {
 
-        if ( ( ((data >>> 4) & 0xF) + ((newValue >>> 4) & 0xF) ) < 0 ) {
+        if ( ( ((data >>> 4) & 0xF) - ((newValue >>> 4) & 0xF) ) < 0 ) {
             halfFlag = true;
         }
         else {

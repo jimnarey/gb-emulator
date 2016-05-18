@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -7,17 +8,55 @@ import static org.junit.Assert.*;
  */
 public class GBByteTest {
 
+    GBByte d, r, q, p;
+
+    @Before
+    public void setUp() {
+
+        d = new GBByte();
+        r = new GBByte();
+        q = new GBByte();
+        p = new GBByte();
+    }
+
     @Test
     public void testSub() throws Exception {
-        GBByte d = new GBByte();
+
         d.write(10);
         d.sub(20);
         assertEquals(246, d.read());
 
-        GBByte r = new GBByte();
         r.write(50);
         r.sub(20);
         assertEquals(30, r.read());
+
+        // Test half-carry behaviour
+        d.write(144);
+        d.halfFlag = false;
+        d.sub(160);
+        assertEquals(240, d.read());
+        assertEquals(true, d.getHalfFlag());
+
+        d.write(128);
+        d.halfFlag = true;
+        d.sub(20);
+        assertEquals(108, d.read());
+        assertEquals(false, d.getHalfFlag());
+
+        // Test carry flag behaviour
+        d.write(144);
+        d.carryFlag = false;
+        d.sub(160);
+        assertEquals(240, d.read());
+        assertEquals(true, d.getCarryFlag());
+
+        d.write(128);
+        d.carryFlag = true;
+        d.sub(20);
+        assertEquals(108, d.read());
+        assertEquals(false, d.getCarryFlag());
+
+        // Consider tests for both half & full carry
 
     }
 
@@ -25,40 +64,40 @@ public class GBByteTest {
     public void testAdd() throws Exception {
 
         // System.out.println("Test add() 8bit, rollover");
-        GBByte d = new GBByte();
         d.write(245);
         d.add(20);
         assertEquals(9, d.read());
 
         // System.out.println("Test add() 8bit, rollover");
-        GBByte r = new GBByte();
         r.write(50);
         r.add(20);
         assertEquals(70, r.read());
+
+        //To test carry flag behaviour
 
     }
 
     @Test
     public void testRead() throws Exception {
-        GBByte d = new GBByte();
+
         d.data = 200;
         assertEquals(d.data, d.read());
     }
 
     @Test
     public void testWrite() throws Exception {
-        GBByte d = new GBByte();
+
         d.write(256);
         assertEquals(0, d.data);
 
-        GBByte q = new GBByte();
+
         q.write(15);
         assertEquals(15, q.data);
     }
 
     @Test
     public void testCheckBit() throws Exception {
-        GBByte d = new GBByte();
+
         d.write(9);
 
         assertEquals(true, d.checkBit(0));
@@ -71,7 +110,7 @@ public class GBByteTest {
         assertEquals(false, d.checkBit(6));
         assertEquals(false, d.checkBit(7));
 
-        GBByte p = new GBByte();
+
         p.write(170);
 
         assertEquals(false, p.checkBit(0));
@@ -88,7 +127,7 @@ public class GBByteTest {
 
     @Test
     public void testSetBit() throws Exception {
-        GBByte d = new GBByte();
+
         d.write(0);
         d.setBit(0, true);
         d.setBit(3, true);
@@ -105,7 +144,7 @@ public class GBByteTest {
     @Test
     public void testReadString() throws Exception {
 
-        GBByte d = new GBByte();
+
         d.write(170);
         assertEquals("10101010", d.readString());
 
@@ -115,7 +154,6 @@ public class GBByteTest {
     @Test
     public void testInc() throws Exception {
 
-        GBByte d = new GBByte();
         d.write(1);
         d.inc();
         assertEquals(2, d.read());
@@ -125,7 +163,6 @@ public class GBByteTest {
     @Test
     public void testDec() throws Exception {
 
-        GBByte d = new GBByte();
         d.write(1);
         d.dec();
         assertEquals(0, d.read());
@@ -134,7 +171,8 @@ public class GBByteTest {
 
     @Test
     public void testRotateRight() throws Exception {
-        GBByte d = new GBByte();
+
+
         d.write(8);
         d.rotateRight();
         assertEquals(4, d.read());
@@ -145,7 +183,6 @@ public class GBByteTest {
     @Test
     public void testRotateLeft() throws Exception {
 
-        GBByte d = new GBByte();
         d.write(32);
         d.rotateLeft();
         assertEquals(64, d.read());
@@ -155,7 +192,6 @@ public class GBByteTest {
     @Test
     public void testRotateRightThroughFlag() throws Exception {
 
-        GBByte d = new GBByte();
         d.write(12);
         d.rotateRightThroughFlag(true);
         assertEquals(134, d.read());
@@ -165,7 +201,6 @@ public class GBByteTest {
     @Test
     public void testRotateLeftThroughFlag() throws Exception {
 
-        GBByte d = new GBByte();
         d.write(12);
         d.rotateLeftThroughFlag(true);
         assertEquals(25, d.read());
@@ -174,9 +209,8 @@ public class GBByteTest {
     }
 
     @Test
-    public void testAND() throws Exception {
+    public void testAnd() throws Exception {
 
-        GBByte d = new GBByte();
         d.write(80);
         d.and(54);
         assertEquals(16, d.read());
@@ -185,20 +219,17 @@ public class GBByteTest {
     }
 
     @Test
-    public void testOR() throws Exception {
+    public void testOr() throws Exception {
 
-        GBByte d = new GBByte();
         d.write(48);
         d.or(12);
         assertEquals(60, d.read());
 
-
     }
 
     @Test
-    public void testXOR() throws Exception {
+    public void testXor() throws Exception {
 
-        GBByte d = new GBByte();
         d.write(240);
         d.xor(60);
         assertEquals(204, d.read());
@@ -208,7 +239,6 @@ public class GBByteTest {
     @Test
     public void testComplement() throws Exception {
 
-        GBByte d = new GBByte();
         d.write(170);
         d.complement();
         assertEquals(85, d.read());
@@ -218,13 +248,10 @@ public class GBByteTest {
     @Test
     public void testSwap() throws Exception {
 
-        GBByte d = new GBByte();
         d.write(240);
         d.swap();
-        System.out.println(d.read());
         assertEquals(15, d.read());
 
-        GBByte q = new GBByte();
         q.write(192);
         q.swap();
         assertEquals(12, q.read());
@@ -235,13 +262,41 @@ public class GBByteTest {
     @Test
     public void testReadSigned() throws Exception {
 
-        GBByte d = new GBByte();
         d.write(129);
         assertEquals(-127, d.readSigned());
 
-        GBByte p = new GBByte();
         p.write(130);
         assertEquals(-126, p.readSigned());
 
     }
+
+    @Test
+    public void testIsZero() throws Exception {
+        d.write(0);
+        assertEquals(true, d.isZero());
+
+        d.write(1);
+        assertEquals(false, d.isZero());
+    }
+
+    @Test
+    public void testGetCarryFlag() throws Exception {
+        d.carryFlag = false;
+        assertEquals(false, d.getCarryFlag());
+
+        d.carryFlag = true;
+        assertEquals(true, d.getCarryFlag());
+
+    }
+
+    @Test
+    public void testGetHalfFlag() throws Exception {
+        d.halfFlag = false;
+        assertEquals(false, d.getHalfFlag());
+
+        d.halfFlag = true;
+        assertEquals(true, d.getHalfFlag());
+    }
+
+
 }

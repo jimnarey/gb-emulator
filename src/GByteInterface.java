@@ -15,4 +15,10 @@ public interface GByteInterface {
 
     void dec();
 
+    boolean isZero();
+
+    boolean getCarryFlag();
+
+    boolean getHalfFlag();
+
 }
