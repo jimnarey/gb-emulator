@@ -191,7 +191,7 @@ class SwitchMaker(object):
             pass
 
         if row['C'] == 'C':
-            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setH(' + dest + '.getCarryFlag() ); \n'
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setC(' + dest + '.getCarryFlag() ); \n'
         elif row['C'] == '0':
             flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setC( false ); \n'
         elif row['C'] == '1':

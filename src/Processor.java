@@ -234,7 +234,7 @@ public class Processor {
 
                 r.F.setN( false );
                 r.F.setH(r.HL.getHalfFlag() );
-                r.F.setH(r.HL.getCarryFlag() );
+                r.F.setC(r.HL.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -430,7 +430,7 @@ public class Processor {
 
                 r.F.setN( false );
                 r.F.setH(r.HL.getHalfFlag() );
-                r.F.setH(r.HL.getCarryFlag() );
+                r.F.setC(r.HL.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -624,7 +624,7 @@ public class Processor {
 
                 r.F.setN( false );
                 r.F.setH(r.HL.getHalfFlag() );
-                r.F.setH(r.HL.getCarryFlag() );
+                r.F.setC(r.HL.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -816,7 +816,7 @@ public class Processor {
 
                 r.F.setN( false );
                 r.F.setH(r.HL.getHalfFlag() );
-                r.F.setH(r.HL.getCarryFlag() );
+                r.F.setC(r.HL.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1608,7 +1608,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1624,7 +1624,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1640,7 +1640,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1656,7 +1656,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1672,7 +1672,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1688,7 +1688,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1704,7 +1704,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1720,7 +1720,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1736,7 +1736,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1752,7 +1752,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1768,7 +1768,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1784,7 +1784,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1800,7 +1800,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1816,7 +1816,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1832,7 +1832,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1848,7 +1848,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1864,7 +1864,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1880,7 +1880,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1896,7 +1896,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1912,7 +1912,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1928,7 +1928,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1944,7 +1944,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1960,7 +1960,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1976,7 +1976,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -1992,7 +1992,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -2008,7 +2008,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -2024,7 +2024,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -2040,7 +2040,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -2056,7 +2056,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -2072,7 +2072,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -2088,7 +2088,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -2104,7 +2104,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -2504,7 +2504,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -2520,7 +2520,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -2536,7 +2536,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -2552,7 +2552,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -2568,7 +2568,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -2584,7 +2584,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -2600,7 +2600,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -2616,7 +2616,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -2698,7 +2698,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -2791,7 +2791,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -2873,7 +2873,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -2944,7 +2944,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3042,7 +3042,7 @@ public class Processor {
                 r.F.setZ( false );
                 r.F.setN( false );
                 r.F.setH(r.SP.getHalfFlag() );
-                r.F.setH(r.SP.getCarryFlag() );
+                r.F.setC(r.SP.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3231,7 +3231,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( true );
                 r.F.setH(r.A.getHalfFlag() );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3266,7 +3266,7 @@ public class Processor {
                 r.F.setZ(r.B.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.B.getCarryFlag() );
+                r.F.setC(r.B.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3282,7 +3282,7 @@ public class Processor {
                 r.F.setZ(r.C.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.C.getCarryFlag() );
+                r.F.setC(r.C.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3298,7 +3298,7 @@ public class Processor {
                 r.F.setZ(r.D.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.D.getCarryFlag() );
+                r.F.setC(r.D.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3314,7 +3314,7 @@ public class Processor {
                 r.F.setZ(r.E.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.E.getCarryFlag() );
+                r.F.setC(r.E.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3330,7 +3330,7 @@ public class Processor {
                 r.F.setZ(r.H.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.H.getCarryFlag() );
+                r.F.setC(r.H.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3346,7 +3346,7 @@ public class Processor {
                 r.F.setZ(r.L.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.L.getCarryFlag() );
+                r.F.setC(r.L.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3362,7 +3362,7 @@ public class Processor {
                 r.F.setZ(m.address( r.HL.read() ).isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(m.address( r.HL.read() ).getCarryFlag() );
+                r.F.setC(m.address( r.HL.read() ).getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3378,7 +3378,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3394,7 +3394,7 @@ public class Processor {
                 r.F.setZ(r.B.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.B.getCarryFlag() );
+                r.F.setC(r.B.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3410,7 +3410,7 @@ public class Processor {
                 r.F.setZ(r.C.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.C.getCarryFlag() );
+                r.F.setC(r.C.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3426,7 +3426,7 @@ public class Processor {
                 r.F.setZ(r.D.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.D.getCarryFlag() );
+                r.F.setC(r.D.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3442,7 +3442,7 @@ public class Processor {
                 r.F.setZ(r.E.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.E.getCarryFlag() );
+                r.F.setC(r.E.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3458,7 +3458,7 @@ public class Processor {
                 r.F.setZ(r.H.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.H.getCarryFlag() );
+                r.F.setC(r.H.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3474,7 +3474,7 @@ public class Processor {
                 r.F.setZ(r.L.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.L.getCarryFlag() );
+                r.F.setC(r.L.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3490,7 +3490,7 @@ public class Processor {
                 r.F.setZ(m.address( r.HL.read() ).isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(m.address( r.HL.read() ).getCarryFlag() );
+                r.F.setC(m.address( r.HL.read() ).getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3506,7 +3506,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3522,7 +3522,7 @@ public class Processor {
                 r.F.setZ(r.B.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.B.getCarryFlag() );
+                r.F.setC(r.B.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3538,7 +3538,7 @@ public class Processor {
                 r.F.setZ(r.C.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.C.getCarryFlag() );
+                r.F.setC(r.C.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3554,7 +3554,7 @@ public class Processor {
                 r.F.setZ(r.D.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.D.getCarryFlag() );
+                r.F.setC(r.D.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3570,7 +3570,7 @@ public class Processor {
                 r.F.setZ(r.E.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.E.getCarryFlag() );
+                r.F.setC(r.E.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3586,7 +3586,7 @@ public class Processor {
                 r.F.setZ(r.H.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.H.getCarryFlag() );
+                r.F.setC(r.H.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3602,7 +3602,7 @@ public class Processor {
                 r.F.setZ(r.L.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.L.getCarryFlag() );
+                r.F.setC(r.L.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3618,7 +3618,7 @@ public class Processor {
                 r.F.setZ(m.address( r.HL.read() ).isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(m.address( r.HL.read() ).getCarryFlag() );
+                r.F.setC(m.address( r.HL.read() ).getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3634,7 +3634,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3650,7 +3650,7 @@ public class Processor {
                 r.F.setZ(r.B.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.B.getCarryFlag() );
+                r.F.setC(r.B.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3666,7 +3666,7 @@ public class Processor {
                 r.F.setZ(r.C.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.C.getCarryFlag() );
+                r.F.setC(r.C.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3682,7 +3682,7 @@ public class Processor {
                 r.F.setZ(r.D.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.D.getCarryFlag() );
+                r.F.setC(r.D.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3698,7 +3698,7 @@ public class Processor {
                 r.F.setZ(r.E.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.E.getCarryFlag() );
+                r.F.setC(r.E.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3714,7 +3714,7 @@ public class Processor {
                 r.F.setZ(r.H.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.H.getCarryFlag() );
+                r.F.setC(r.H.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3730,7 +3730,7 @@ public class Processor {
                 r.F.setZ(r.L.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.L.getCarryFlag() );
+                r.F.setC(r.L.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3746,7 +3746,7 @@ public class Processor {
                 r.F.setZ(m.address( r.HL.read() ).isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(m.address( r.HL.read() ).getCarryFlag() );
+                r.F.setC(m.address( r.HL.read() ).getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3762,7 +3762,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3778,7 +3778,7 @@ public class Processor {
                 r.F.setZ(r.B.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.B.getCarryFlag() );
+                r.F.setC(r.B.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3794,7 +3794,7 @@ public class Processor {
                 r.F.setZ(r.C.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.C.getCarryFlag() );
+                r.F.setC(r.C.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3810,7 +3810,7 @@ public class Processor {
                 r.F.setZ(r.D.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.D.getCarryFlag() );
+                r.F.setC(r.D.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3826,7 +3826,7 @@ public class Processor {
                 r.F.setZ(r.E.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.E.getCarryFlag() );
+                r.F.setC(r.E.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3842,7 +3842,7 @@ public class Processor {
                 r.F.setZ(r.H.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.H.getCarryFlag() );
+                r.F.setC(r.H.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3858,7 +3858,7 @@ public class Processor {
                 r.F.setZ(r.L.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.L.getCarryFlag() );
+                r.F.setC(r.L.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3874,7 +3874,7 @@ public class Processor {
                 r.F.setZ(m.address( r.HL.read() ).isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(m.address( r.HL.read() ).getCarryFlag() );
+                r.F.setC(m.address( r.HL.read() ).getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -3890,7 +3890,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -4162,7 +4162,7 @@ public class Processor {
                 r.F.setZ(r.B.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.B.getCarryFlag() );
+                r.F.setC(r.B.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -4178,7 +4178,7 @@ public class Processor {
                 r.F.setZ(r.C.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.C.getCarryFlag() );
+                r.F.setC(r.C.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -4194,7 +4194,7 @@ public class Processor {
                 r.F.setZ(r.D.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.D.getCarryFlag() );
+                r.F.setC(r.D.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -4210,7 +4210,7 @@ public class Processor {
                 r.F.setZ(r.E.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.E.getCarryFlag() );
+                r.F.setC(r.E.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -4226,7 +4226,7 @@ public class Processor {
                 r.F.setZ(r.H.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.H.getCarryFlag() );
+                r.F.setC(r.H.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -4242,7 +4242,7 @@ public class Processor {
                 r.F.setZ(r.L.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.L.getCarryFlag() );
+                r.F.setC(r.L.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -4258,7 +4258,7 @@ public class Processor {
                 r.F.setZ(m.address( r.HL.read() ).isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(m.address( r.HL.read() ).getCarryFlag() );
+                r.F.setC(m.address( r.HL.read() ).getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -4274,7 +4274,7 @@ public class Processor {
                 r.F.setZ(r.A.isZero() );
                 r.F.setN( false );
                 r.F.setH( false );
-                r.F.setH(r.A.getCarryFlag() );
+                r.F.setC(r.A.getCarryFlag() );
 
                 r.PC.add(2);
 
@@ -6651,6 +6651,8 @@ public class Processor {
 
         }
     }
+
+
 
 
 
