@@ -82,10 +82,17 @@ public class GBByte implements GByteInterface {
 
     public void add(int value) {
 
-        setAddCarryFlag(value);
-        setAddHalfFlag(value);
+        if (value < 0) {
 
-        write(data + value);
+            sub(value);
+        }
+        else {
+
+            setAddCarryFlag(value);
+            setAddHalfFlag(value);
+
+            write(data + value);
+        }
 
     }
 

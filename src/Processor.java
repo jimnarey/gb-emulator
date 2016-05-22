@@ -45,6 +45,34 @@ public class Processor {
 
     }
 
+    public void daa () {
+
+        int correctionFactor = 0;
+
+        if (r.A.read() > 0x99 || r.F.getC() ) {
+
+            correctionFactor += (6 << 4);
+            r.F.setC(true);
+
+        }
+        else {
+            r.F.setC(false);
+        }
+
+        if ( (r.A.read() & 0x0F) > 9 || r.F.getH() ) {
+            correctionFactor += 6;
+
+        }
+
+        if ( r.F.getN() ) {
+            r.A.sub( correctionFactor );
+        }
+        else {
+            r.A.add( correctionFactor );
+        }
+
+    }
+
     public void jp (boolean condition, GByteInterface address) {
 
         if (condition) {
@@ -565,7 +593,12 @@ public class Processor {
 
                 currentOpcodeCycles = 8;
 
-                //**skipped			r.PC.add(1);
+                //**manual
+
+                m.address( r.HL.read() ).write( r.A.read() );
+                r.HL.inc();
+
+                r.PC.add(1);
 
                 break;
 
@@ -626,7 +659,16 @@ public class Processor {
 
                 currentOpcodeCycles = 4;
 
-                //**missing
+                // Some dispute as to flags. Above not the same as
+                // http://www.worldofspectrum.org/faq/reference/z80reference.htm#DAA
+
+                //**manual
+
+                daa();
+
+                r.F.setZ( r.A.isZero() );
+                // Note carry flag is set in daa method
+                // !!!check!!! half carry is set as part of the add/sub method called in daa
 
                 r.PC.add(1);
 
@@ -663,7 +705,12 @@ public class Processor {
 
                 currentOpcodeCycles = 8;
 
-                //**skipped			r.PC.add(1);
+                //**manual
+
+                r.A.write( m.address( r.HL.read() ).read() );
+                r.HL.inc();
+
+                r.PC.add(1);
 
                 break;
 
@@ -724,7 +771,12 @@ public class Processor {
 
                 currentOpcodeCycles = 4;
 
-                //**missing
+                //**manual
+
+                r.A.complement();
+
+                r.F.setN( true );
+                r.F.setH( true );
 
                 r.PC.add(1);
 
@@ -757,7 +809,12 @@ public class Processor {
 
                 currentOpcodeCycles = 8;
 
-                //**skipped			r.PC.add(1);
+                //**manual
+
+                m.address( r.HL.read() ).write( r.A.read() );
+                r.HL.dec();
+
+                r.PC.add(1);
 
                 break;
 
@@ -818,7 +875,11 @@ public class Processor {
 
                 currentOpcodeCycles = 4;
 
-                //**missing
+                //**manual
+
+                r.F.setN( false );
+                r.F.setH( false );
+                r.F.setC( true ); // This is the whole instruction
 
                 r.PC.add(1);
 
@@ -855,7 +916,12 @@ public class Processor {
 
                 currentOpcodeCycles = 8;
 
-                //**skipped			r.PC.add(1);
+                //**manual
+
+                r.A.write( m.address( r.HL.read() ).read() );
+                r.HL.dec();
+
+                r.PC.add(1);
 
                 break;
 
@@ -916,7 +982,11 @@ public class Processor {
 
                 currentOpcodeCycles = 4;
 
-                //**missing
+                //**manual
+
+                r.F.setN( false );
+                r.F.setH( false );
+                r.F.setC( !r.F.getC() ); // This is the whole instruction
 
                 r.PC.add(1);
 
@@ -2994,7 +3064,9 @@ public class Processor {
 
                 currentOpcodeCycles = 12;
 
-                //**missing
+                //**manual
+
+                m.address( r.PC.read() + 0xFF00 + 1 ).write( r.A.read() ); // check this is correct
 
                 r.PC.add(2);
 
@@ -3130,7 +3202,9 @@ public class Processor {
 
                 currentOpcodeCycles = 12;
 
-                //**missing
+                //**manual
+
+                r.A.write( m.address( r.PC.read() + 0xFF00 + 1 ).read() ); // check this is correct
 
                 r.PC.add(2);
 
@@ -3212,7 +3286,20 @@ public class Processor {
 
                 currentOpcodeCycles = 12;
 
-                //**skipped			r.PC.add(2);
+                //**manual
+
+                int value = m.address( r.PC.read() + 1 ).readSigned();
+                GBShort tempShort = new GBShort();
+                tempShort.write( r.SP.read() );
+                tempShort.add(value);
+                r.HL.write( tempShort.read() );
+
+                r.F.setZ( false );
+                r.F.setN( false );
+                r.F.setH( tempShort.getHalfFlag() );
+                r.F.setC( tempShort.getCarryFlag() );
+
+                r.PC.add(2);
 
                 break;
 
