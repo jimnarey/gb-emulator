@@ -198,8 +198,11 @@ class SwitchMaker(object):
             flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setC( true ); \n'
         else:
             pass
-        
-        return flag_string + '\n'
+
+        if flag_string != '':
+            flag_string += '\n'
+
+        return flag_string
 
     # Generate call to set the number of cycles used by current instruction
     @staticmethod
@@ -228,20 +231,11 @@ class SwitchMaker(object):
                 cases_text = cases_text +\
                             '\t\t' +\
                             'case ' + '0x' + row['opcode'] + ':' + '\n' +\
-                            '\t\t\t' +\
-                            '//ins ' +\
-                            row['full_instruction'] + '\n' +\
-                            '\t\t\t' +\
-                            '//length ' +\
-                            row['length'] + '\n' +\
-                            '\t\t\t' +\
-                            '//time ' +\
-                            row['cycles'] + '\n' +\
-                            '\t\t\t' +\
-                            '//flags ' +\
-                            row['Z'] + row['N'] + row['H'] + row['C'] + '\n\n'
+                            '\t\t\t' + '//ins: ' +\
+                            row['full_instruction'] + ' -- length: ' + row['length'] + ' -- cycles: ' +\
+                            row['cycles'] + ' -- flags: ' + row['Z'] + row['N'] + row['H'] + row['C'] + '\n\n'
 
-                cases_text = cases_text + SwitchMaker.set_opcode_time(row['cycles']) + '\n\n\n' + '\t\t\t'
+                cases_text = cases_text + SwitchMaker.set_opcode_time(row['cycles']) + '\n\n' + '\t\t\t'
 
                 if row['instruction'] == 'LD':
                     cases_text += self.ld_gen(row)
@@ -288,7 +282,7 @@ class SwitchMaker(object):
                     cases_text += self.ret_gen(row, row['instruction'].lower())
 
                 else:
-                    cases_text += self.add_missing(row) + '\n'
+                    cases_text += self.add_missing(row) + '\n\n'
 
                 # cases_text += '\n\n\n'
 
@@ -350,7 +344,7 @@ class SwitchMaker(object):
 
         source = self.get_operand(row['operand_1'])
 
-        command_text = 'pushShort( ' + source + ' );' + '\n\n\n'
+        command_text = 'pushShort( ' + source + ' );' + '\n\n'
 
         return command_text
 
@@ -358,7 +352,7 @@ class SwitchMaker(object):
 
         source = self.get_operand(row['operand_1'])
 
-        command_text = source + '.write( popShort().read() );' + '\n\n\n'
+        command_text = source + '.write( popShort().read() );' + '\n\n'
 
         return command_text
 
@@ -367,7 +361,7 @@ class SwitchMaker(object):
         source = row['operand_1'].replace('H', '')
         source = int(source, 16)
 
-        command_text = 'rst( ' + str(source) + ' );' + '\n\n\n'
+        command_text = 'rst( ' + str(source) + ' );' + '\n\n'
 
         return command_text
 
@@ -379,7 +373,7 @@ class SwitchMaker(object):
         dest = self.get_operand(row['operand_1'])
         source = self.get_operand(row['operand_2'])
         # Call read because both bits of operand text refer to objects, not values
-        command_text = dest + '.write( ' + source + '.read() );' + '\n\n\n' + SwitchMaker.get_flag_methods(row, dest, 3)
+        command_text = dest + '.write( ' + source + '.read() );' + '\n\n' + SwitchMaker.get_flag_methods(row, dest, 3)
         return command_text
 
     def single_bit_gen(self, row):
@@ -402,7 +396,7 @@ class SwitchMaker(object):
         else:
             method_string = self.add_error(row)
 
-        return byte + '.' + method_string + ';' + '\n\n\n' + SwitchMaker.get_flag_methods(row, byte, 3)
+        return byte + '.' + method_string + ';' + '\n\n' + SwitchMaker.get_flag_methods(row, byte, 3)
 
     def adc_gen(self, row):
 
@@ -415,7 +409,7 @@ class SwitchMaker(object):
         dest = self.get_operand(row['operand_1'])
         source = self.get_operand(row['operand_2'])
 
-        return dest + '.add( ' + source + '.read() + (r.F.checkBit(4) ? 1 : 0) );' + '\n\n\n' + SwitchMaker.get_flag_methods(row, dest, 3)
+        return dest + '.add( ' + source + '.read() + (r.F.checkBit(4) ? 1 : 0) );' + '\n\n' + SwitchMaker.get_flag_methods(row, dest, 3)
 
     def sbc_gen(self, row):
 
@@ -428,14 +422,14 @@ class SwitchMaker(object):
         dest = self.get_operand(row['operand_1'])
         source = self.get_operand(row['operand_2'])
 
-        return dest + '.sub( ' + source + '.read() + (r.F.checkBit(4) ? 1 : 0) );' + '\n\n\n' + SwitchMaker.get_flag_methods(row, dest, 3)
+        return dest + '.sub( ' + source + '.read() + (r.F.checkBit(4) ? 1 : 0) );' + '\n\n' + SwitchMaker.get_flag_methods(row, dest, 3)
 
     def sra_sla_srl_gen(self, row, method, param):
 
         if row['operand_2'] == '' and not SwitchMaker.skip_chars(row['operand_1']):
             dest = self.get_operand(row['operand_1'])
 
-            return dest + '.' + method + '(' + param + ');' + '\n\n\n' + SwitchMaker.get_flag_methods(row, dest, 3)
+            return dest + '.' + method + '(' + param + ');' + '\n\n' + SwitchMaker.get_flag_methods(row, dest, 3)
 
         return self.add_skip(row)
 
@@ -444,7 +438,7 @@ class SwitchMaker(object):
         if row['operand_2'] == '' and not SwitchMaker.skip_chars(row['operand_1']):
             source = self.get_operand(row['operand_1'])
 
-            return 'r.A.' + method + '( ' + source + '.read() );' + '\n\n\n' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
+            return 'r.A.' + method + '( ' + source + '.read() );' + '\n\n' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
 
         return self.add_skip(row)
 
@@ -453,7 +447,7 @@ class SwitchMaker(object):
         if row['operand_2'] == '' and not SwitchMaker.skip_chars(row['operand_1']):
             dest = self.get_operand(row['operand_1'])
 
-            return dest + '.' + method + '\n\n\n' + SwitchMaker.get_flag_methods(row, dest, 3)
+            return dest + '.' + method + '\n\n' + SwitchMaker.get_flag_methods(row, dest, 3)
 
         return self.add_skip(row)
 
@@ -468,7 +462,7 @@ class SwitchMaker(object):
         dest = self.get_operand(row['operand_1'])
         source = self.get_operand(row['operand_2'])
 
-        return dest + '.' + method + '( ' + source + '.read() );' + '\n\n\n' + SwitchMaker.get_flag_methods(row, dest, 3)
+        return dest + '.' + method + '( ' + source + '.read() );' + '\n\n' + SwitchMaker.get_flag_methods(row, dest, 3)
 
     def jp_gen(self, row, method):
 
@@ -477,13 +471,13 @@ class SwitchMaker(object):
 
         if row['operand_2'] == '':
             source = self.get_operand(row['operand_1'])
-            command_text = method + '( true, ' + source + ' );' + '\n\n\n'
+            command_text = method + '( true, ' + source + ' );' + '\n\n'
             return command_text
 
         else:
             cond = self.get_operand(row['operand_1'], True)
             source = self.get_operand(row['operand_2'])
-            command_text = method + '( ' + cond + ', ' + source + ' );' + '\n\n\n'
+            command_text = method + '( ' + cond + ', ' + source + ' );' + '\n\n'
             return command_text
 
     def call_gen(self, row, method):
@@ -492,36 +486,36 @@ class SwitchMaker(object):
             return self.add_skip(row)
 
         if row['operand_2'] == '':
-            command_text = method + '( true );' + '\n\n\n'
+            command_text = method + '( true );' + '\n\n'
             return command_text
 
         else:
             cond = self.get_operand(row['operand_1'], True)
-            command_text = method + '( ' + cond + ' );' + '\n\n\n'
+            command_text = method + '( ' + cond + ' );' + '\n\n'
             return command_text
 
     def jr_gen(self, row, method):
 
         if row['operand_2'] == '':
             source = self.get_operand(row['operand_1'])
-            command_text = method + '( true, ' + source + ' );' + '\n\n\n'
+            command_text = method + '( true, ' + source + ' );' + '\n\n'
             return command_text
 
         else:
             cond = self.get_operand(row['operand_1'], True)
             source = self.get_operand(row['operand_2'])
-            command_text = method + '( ' + cond + ', ' + source + ' );' + '\n\n\n'
+            command_text = method + '( ' + cond + ', ' + source + ' );' + '\n\n'
             return command_text
 
     def ret_gen(self, row, method):
 
         if row['operand_1'] == '':
-            command_text = method + '( true );' + '\n\n\n'
+            command_text = method + '( true );' + '\n\n'
             return command_text
 
         else:
             cond = self.get_operand(row['operand_1'])
-            command_text = method + '( ' + cond + ', );' + '\n\n\n'
+            command_text = method + '( ' + cond + ' );' + '\n\n'
             return command_text
 
 if __name__ == "__main__":
