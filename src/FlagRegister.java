@@ -71,4 +71,12 @@ public class FlagRegister extends GBByte {
 
     }
 
+    public boolean getNotC () {
+        return !getC();
+    }
+
+    public boolean getNotZ () {
+        return !getZ();
+    }
+
 }

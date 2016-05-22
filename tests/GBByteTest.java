@@ -31,9 +31,17 @@ public class GBByteTest {
         assertEquals(30, r.read());
 
         // Test half-carry behaviour
+        // Must check that this is the right behaviour, i.e. that the two nibbles are treated entirely separately
+        // e.g. 16 - 18 does not cause a half carry
         d.write(144);
         d.halfFlag = false;
         d.sub(160);
+        assertEquals(240, d.read());
+        assertEquals(true, d.getHalfFlag());
+
+        d.write(16);
+        d.halfFlag = false;
+        d.sub(32);
         assertEquals(240, d.read());
         assertEquals(true, d.getHalfFlag());
 
@@ -41,6 +49,12 @@ public class GBByteTest {
         d.halfFlag = true;
         d.sub(20);
         assertEquals(108, d.read());
+        assertEquals(false, d.getHalfFlag());
+
+        d.write(170);
+        d.halfFlag = true;
+        d.sub(34);
+        assertEquals(136, d.read());
         assertEquals(false, d.getHalfFlag());
 
         // Test carry flag behaviour
@@ -73,7 +87,44 @@ public class GBByteTest {
         r.add(20);
         assertEquals(70, r.read());
 
-        //To test carry flag behaviour
+        // Test half-carry behaviour
+        // Must check that this is the right behaviour, i.e. that the two nibbles are treated entirely separately
+        d.write(12);
+        d.halfFlag = false;
+        d.add(12);
+        assertEquals(24, d.read());
+        assertEquals(true, d.getHalfFlag());
+
+        d.write(28);
+        d.halfFlag = false;
+        d.add(12);
+        assertEquals(40, d.read());
+        assertEquals(true, d.getHalfFlag());
+
+        d.write(4);
+        d.halfFlag = true;
+        d.add(2);
+        assertEquals(6, d.read());
+        assertEquals(false, d.getHalfFlag());
+
+        d.write(36);
+        d.halfFlag = true;
+        d.add(2);
+        assertEquals(38, d.read());
+        assertEquals(false, d.getHalfFlag());
+
+        // Test carry flag behaviour
+        d.write(200);
+        d.carryFlag = false;
+        d.add(100);
+        assertEquals(44, d.read());
+        assertEquals(true, d.getCarryFlag());
+
+        d.write(128);
+        d.carryFlag = true;
+        d.add(20);
+        assertEquals(148, d.read());
+        assertEquals(false, d.getCarryFlag());
 
     }
 

@@ -89,6 +89,11 @@ public class GBByte implements GByteInterface {
 
     }
 
+    public void cp(int value) {
+        setSubCarryFlag(value);
+        setSubHalfFlag(value);
+    }
+
     public void sub(int value) {
 
         setSubCarryFlag(value);

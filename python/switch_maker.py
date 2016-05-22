@@ -70,8 +70,28 @@ class SwitchMaker(object):
 
     @staticmethod
     def d16():
-        d16_string = 'new BShort( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) )'
+        d16_string = 'new GBShort( m.address( r.PC.read() + 1 ), m.address( r.PC.read() + 2 ) )'
         return d16_string
+
+    @staticmethod
+    def C():
+        C_string = 'r.F.getC()'
+        return C_string
+
+    @staticmethod
+    def NC():
+        NC_string = 'r.F.getNotC()'
+        return NC_string
+
+    @staticmethod
+    def Z():
+        Z_string = 'r.F.getZ()'
+        return Z_string
+
+    @staticmethod
+    def NZ():
+        NZ_string = 'r.F.getNotZ()'
+        return NZ_string
 
     @staticmethod
     def r8():
@@ -88,7 +108,6 @@ class SwitchMaker(object):
     # Not sure about this! --
     @staticmethod
     def a16():
-        #a16_string = SwitchMaker.d16() + '.read()'
         a16_string = SwitchMaker.d16()
         return a16_string
 
@@ -98,9 +117,9 @@ class SwitchMaker(object):
         return result_string
 
     # Methods for interpreting operands into the correct java code
-    def get_register_or_memloc(self, operand):
+    def get_register_or_memloc(self, operand, is_jr):
 
-        if operand in self.registers:
+        if operand in self.registers and is_jr is False:
             op_text = 'r.' + operand
         elif operand in ['0', '1', '2', '3', '4', '5', '6', '7']:
             op_text = operand
@@ -115,17 +134,17 @@ class SwitchMaker(object):
         result = result.replace(')', '')
         return result
 
-    def get_operand(self, input_operand):
+    def get_operand(self, input_operand, is_jr=False):
 
         # Is the operand bracketed?
         if input_operand[0] == '(':
 
             operand = SwitchMaker.strip_brackets(input_operand)
-            operand = self.get_register_or_memloc(operand)
+            operand = self.get_register_or_memloc(operand, False)
             operand = SwitchMaker.resolve_brackets(operand)
             
         else:
-            operand = self.get_register_or_memloc(input_operand)
+            operand = self.get_register_or_memloc(input_operand, is_jr)
 
         return operand
 
@@ -142,27 +161,41 @@ class SwitchMaker(object):
 
     # Generate flag setting function calls
     @staticmethod
-    def get_flag_methods(row, num_tabs):
+    def get_flag_methods(row, dest, num_tabs):
         
         flag_string = ''
-        
-        if row['Z'] != '-':
-            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setZ(' + row['Z'] + '); \n'
-        else:
-            pass
-        
-        if row['N'] != '-':
-            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setN(' + row['N'] + '); \n'
+
+        if row['Z'] == 'Z':
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setZ(' + dest + '.isZero() ); \n'
+        elif row['Z'] == '0':
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setZ( false ); \n'
+        elif row['Z'] == '1':
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setZ( true ); \n'
         else:
             pass
 
-        if row['H'] != '-':
-            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setH(' + row['H'] + '); \n'
+        if row['N'] == '0':
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setN( false ); \n'
+        elif row['N'] == '1':
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setN( true ); \n'
         else:
             pass
 
-        if row['C'] != '-':
-            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setC(' + row['C'] + '); \n'
+        if row['H'] == 'H':
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setH(' + dest + '.getHalfFlag() ); \n'
+        elif row['H'] == '0':
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setH( false ); \n'
+        elif row['H'] == '1':
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setH( true ); \n'
+        else:
+            pass
+
+        if row['C'] == 'C':
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setH(' + dest + '.getCarryFlag() ); \n'
+        elif row['C'] == '0':
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setC( false ); \n'
+        elif row['C'] == '1':
+            flag_string = flag_string + SwitchMaker.ins_tabs(num_tabs) + 'r.F.setC( true ); \n'
         else:
             pass
         
@@ -213,11 +246,11 @@ class SwitchMaker(object):
                 if row['instruction'] == 'LD':
                     cases_text += self.ld_gen(row)
                 elif row['instruction'] in ['INC', 'DEC', 'SWAP']:
-                    # Note that this next line adds brackets/line end to the method's output
-                    cases_text += self.simple_single_operand_gen(row, row['instruction'].lower()) + '();'
+                    # Note that this next line adds brackets/line end
+                    cases_text += self.simple_single_operand_gen(row, row['instruction'].lower() + '();')
                 elif row['instruction'] == 'ADD':
                     cases_text += self.simple_double_operand_gen(row, 'add')
-                elif row['instruction'] in ['SUB', 'AND', 'OR', 'XOR']:
+                elif row['instruction'] in ['SUB', 'AND', 'OR', 'XOR', 'CP']:
                     cases_text += self.a_reg_op_gen(row, row['instruction'].lower())
                 elif row['instruction'] in ['RES', 'BIT', 'SET']:
                     cases_text += self.single_bit_gen(row)
@@ -225,8 +258,6 @@ class SwitchMaker(object):
                     cases_text += self.adc_gen(row)
                 elif row['instruction'] == 'SBC':
                     cases_text += self.sbc_gen(row)
-
-                # Need to double check implementation of the carry flag with these instructions
                 elif row['instruction'] == 'RRC':
                     cases_text += self.simple_single_operand_gen(row, 'rotateRight();')
                 elif row['instruction'] == 'RR':
@@ -236,18 +267,32 @@ class SwitchMaker(object):
                 elif row['instruction'] == 'RL':
                     cases_text += self.simple_single_operand_gen(row, 'rotateLeftThroughFlag( r.F.getC() );')
                 elif row['instruction'] == 'SRA':
-                    # Next line is a bit messy, get_operand is also called in the sra_sla_srl method
                     cases_text += self.sra_sla_srl_gen(row, 'rotateRightThroughFlag', self.get_operand(row['operand_1']) + '.checkBit(7)')
                 elif row['instruction'] == 'SLA':
                     cases_text += self.sra_sla_srl_gen(row, 'rotateLeftThroughFlag', 'false')
                 elif row['instruction'] == 'SRL':
                     cases_text += self.sra_sla_srl_gen(row, 'rotateRightThroughFlag', 'false')
+                elif row['instruction'] == 'RST':
+                    cases_text += self.rst_gen(row)
+                elif row['instruction'] == 'PUSH':
+                    cases_text += self.push_gen(row)
+                elif row['instruction'] == 'POP':
+                    cases_text += self.pop_gen(row)
+                elif row['instruction'] in ['JP']:
+                    cases_text += self.jp_gen(row, row['instruction'].lower())
+                elif row['instruction'] in ['CALL']:
+                    cases_text += self.call_gen(row, row['instruction'].lower())
+                elif row['instruction'] in ['JR']:
+                    cases_text += self.jr_gen(row, row['instruction'].lower())
+                elif row['instruction'] in ['RET']:
+                    cases_text += self.ret_gen(row, row['instruction'].lower())
+
                 else:
-                    cases_text += self.add_missing(row)
+                    cases_text += self.add_missing(row) + '\n'
 
-                cases_text += '\n\n\n'
+                # cases_text += '\n\n\n'
 
-                cases_text += SwitchMaker.get_flag_methods(row, 3)
+                # cases_text += SwitchMaker.get_flag_methods(row, 3)
 
                 cases_text = cases_text + SwitchMaker.get_PC_command(row['length']) + '\n'
 
@@ -279,12 +324,12 @@ class SwitchMaker(object):
     @staticmethod
     def skip_chars(*args):
 
-        skip_list = ['+', '-', 'a', 'r']
+        skip_list = ['+', '-', 'a8', '+r8']
 
         for arg in args:
 
-            for char in arg:
-                if char in skip_list:
+            for item in skip_list:
+                if item in arg:
                     return True
 
         return False
@@ -301,6 +346,31 @@ class SwitchMaker(object):
         self.error.append(row['full_instruction'])
         return '//**error'
 
+    def push_gen(self, row):
+
+        source = self.get_operand(row['operand_1'])
+
+        command_text = 'pushShort( ' + source + ' );' + '\n\n\n'
+
+        return command_text
+
+    def pop_gen(self, row):
+
+        source = self.get_operand(row['operand_1'])
+
+        command_text = source + '.write( popShort().read() );' + '\n\n\n'
+
+        return command_text
+
+    def rst_gen(self, row):
+
+        source = row['operand_1'].replace('H', '')
+        source = int(source, 16)
+
+        command_text = 'rst( ' + str(source) + ' );' + '\n\n\n'
+
+        return command_text
+
     def ld_gen(self, row):
 
         if SwitchMaker.skip_chars(row['operand_1'], row['operand_2']):
@@ -309,7 +379,7 @@ class SwitchMaker(object):
         dest = self.get_operand(row['operand_1'])
         source = self.get_operand(row['operand_2'])
         # Call read because both bits of operand text refer to objects, not values
-        command_text = dest + '.write( ' + source + '.read() );'
+        command_text = dest + '.write( ' + source + '.read() );' + '\n\n\n' + SwitchMaker.get_flag_methods(row, dest, 3)
         return command_text
 
     def single_bit_gen(self, row):
@@ -326,13 +396,13 @@ class SwitchMaker(object):
         if row['instruction'] == 'BIT':
             method_string = 'checkBit(' + bit + ')'
         elif row['instruction'] == 'RES':
-            method_string = 'setBit(' + bit + ', 0' + ')'
+            method_string = 'setBit(' + bit + ', false' + ')'
         elif row['instruction'] == 'SET':
-            method_string = 'setBit(' + bit + ', 1' + ')'
+            method_string = 'setBit(' + bit + ', true' + ')'
         else:
             method_string = self.add_error(row)
 
-        return byte + '.' + method_string + ';'
+        return byte + '.' + method_string + ';' + '\n\n\n' + SwitchMaker.get_flag_methods(row, byte, 3)
 
     def adc_gen(self, row):
 
@@ -345,7 +415,7 @@ class SwitchMaker(object):
         dest = self.get_operand(row['operand_1'])
         source = self.get_operand(row['operand_2'])
 
-        return dest + '.add( ' + source + '.read() + r.F.checkBit(4) );'
+        return dest + '.add( ' + source + '.read() + (r.F.checkBit(4) ? 1 : 0) );' + '\n\n\n' + SwitchMaker.get_flag_methods(row, dest, 3)
 
     def sbc_gen(self, row):
 
@@ -358,14 +428,14 @@ class SwitchMaker(object):
         dest = self.get_operand(row['operand_1'])
         source = self.get_operand(row['operand_2'])
 
-        return dest + '.sub( ' + source + '.read() + r.F.checkBit(4) );'
+        return dest + '.sub( ' + source + '.read() + (r.F.checkBit(4) ? 1 : 0) );' + '\n\n\n' + SwitchMaker.get_flag_methods(row, dest, 3)
 
     def sra_sla_srl_gen(self, row, method, param):
 
         if row['operand_2'] == '' and not SwitchMaker.skip_chars(row['operand_1']):
             dest = self.get_operand(row['operand_1'])
 
-            return dest + '.' + method + '(' + param + ');'
+            return dest + '.' + method + '(' + param + ');' + '\n\n\n' + SwitchMaker.get_flag_methods(row, dest, 3)
 
         return self.add_skip(row)
 
@@ -374,7 +444,7 @@ class SwitchMaker(object):
         if row['operand_2'] == '' and not SwitchMaker.skip_chars(row['operand_1']):
             source = self.get_operand(row['operand_1'])
 
-            return 'r.A.' + method + '( ' + source + '.read() );'
+            return 'r.A.' + method + '( ' + source + '.read() );' + '\n\n\n' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
 
         return self.add_skip(row)
 
@@ -383,7 +453,7 @@ class SwitchMaker(object):
         if row['operand_2'] == '' and not SwitchMaker.skip_chars(row['operand_1']):
             dest = self.get_operand(row['operand_1'])
 
-            return dest + '.' + method
+            return dest + '.' + method + '\n\n\n' + SwitchMaker.get_flag_methods(row, dest, 3)
 
         return self.add_skip(row)
 
@@ -398,7 +468,61 @@ class SwitchMaker(object):
         dest = self.get_operand(row['operand_1'])
         source = self.get_operand(row['operand_2'])
 
-        return dest + '.' + method + '( ' + source + '.read() );'
+        return dest + '.' + method + '( ' + source + '.read() );' + '\n\n\n' + SwitchMaker.get_flag_methods(row, dest, 3)
+
+    def jp_gen(self, row, method):
+
+        if SwitchMaker.skip_chars(row['operand_1'], row['operand_2']):
+            return self.add_skip(row)
+
+        if row['operand_2'] == '':
+            source = self.get_operand(row['operand_1'])
+            command_text = method + '( true, ' + source + ' );' + '\n\n\n'
+            return command_text
+
+        else:
+            cond = self.get_operand(row['operand_1'], True)
+            source = self.get_operand(row['operand_2'])
+            command_text = method + '( ' + cond + ', ' + source + ' );' + '\n\n\n'
+            return command_text
+
+    def call_gen(self, row, method):
+
+        if SwitchMaker.skip_chars(row['operand_1'], row['operand_2']):
+            return self.add_skip(row)
+
+        if row['operand_2'] == '':
+            command_text = method + '( true );' + '\n\n\n'
+            return command_text
+
+        else:
+            cond = self.get_operand(row['operand_1'], True)
+            command_text = method + '( ' + cond + ' );' + '\n\n\n'
+            return command_text
+
+    def jr_gen(self, row, method):
+
+        if row['operand_2'] == '':
+            source = self.get_operand(row['operand_1'])
+            command_text = method + '( true, ' + source + ' );' + '\n\n\n'
+            return command_text
+
+        else:
+            cond = self.get_operand(row['operand_1'], True)
+            source = self.get_operand(row['operand_2'])
+            command_text = method + '( ' + cond + ', ' + source + ' );' + '\n\n\n'
+            return command_text
+
+    def ret_gen(self, row, method):
+
+        if row['operand_1'] == '':
+            command_text = method + '( true );' + '\n\n\n'
+            return command_text
+
+        else:
+            cond = self.get_operand(row['operand_1'])
+            command_text = method + '( ' + cond + ', );' + '\n\n\n'
+            return command_text
 
 if __name__ == "__main__":
 
