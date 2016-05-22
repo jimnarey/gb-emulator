@@ -208,7 +208,14 @@ public class Processor {
 
                 currentOpcodeCycles = 4;
 
-                //**missing
+                //**manual
+
+                r.A.rotateLeft();
+
+                r.F.setZ( false ); // check this with another source
+                r.F.setN( false );
+                r.F.setH( false );
+                r.F.setH(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -308,7 +315,14 @@ public class Processor {
 
                 currentOpcodeCycles = 4;
 
-                //**missing
+                //**manual
+
+                r.A.rotateRight();
+
+                r.F.setZ( false ); // check this with another source
+                r.F.setN( false );
+                r.F.setH( false );
+                r.F.setH(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -404,7 +418,14 @@ public class Processor {
 
                 currentOpcodeCycles = 4;
 
-                //**missing
+                //**manual
+
+                r.A.rotateLeftThroughFlag( r.F.getC() );
+
+                r.F.setZ( false ); // check this with another source
+                r.F.setN( false );
+                r.F.setH( false );
+                r.F.setH(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
@@ -504,7 +525,14 @@ public class Processor {
 
                 currentOpcodeCycles = 4;
 
-                //**missing
+                //**manual
+
+                r.A.rotateRightThroughFlag( r.F.getC() );
+
+                r.F.setZ( false ); // check this with another source
+                r.F.setN( false );
+                r.F.setH( false );
+                r.F.setH(r.A.getCarryFlag() );
 
                 r.PC.add(1);
 
