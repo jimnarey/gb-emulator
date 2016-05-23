@@ -13,6 +13,7 @@ public class Cartridge extends GBByteArray {
 
     public Cartridge() throws IOException {
         super(32768);
+        populate();
         fileName = "/Users/jamesnarey/Development/Projects/gb_emulator/roms/Tetris (World).gb";
         readFile(fileName);
 
@@ -23,7 +24,7 @@ public class Cartridge extends GBByteArray {
 
         Path path = Paths.get(fileName);
         cartBytes = Files.readAllBytes(path);
-        
+
         for (int i = 0; i < numBytes; i++ ) {
             bytes[i].write( cartBytes[i] & 0xFF );
         }

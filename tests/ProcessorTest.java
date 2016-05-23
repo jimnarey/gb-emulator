@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+
 /**
  * Created by jamesnarey on 23/05/2016.
  */
@@ -10,7 +12,7 @@ public class ProcessorTest {
     Processor p;
 
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
 
         m = new Memory();
         p = new Processor(m);
