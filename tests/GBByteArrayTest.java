@@ -11,7 +11,7 @@ public class GBByteArrayTest {
     public void testGetNumUnits() throws Exception {
         GBByteArray dA = new GBByteArray(8);
         dA.populate();
-        assertEquals(8, dA.getNumUnits());
+        assertEquals(8, dA.getNumBytes());
     }
 
     @Test

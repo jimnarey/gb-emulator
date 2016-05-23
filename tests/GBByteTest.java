@@ -350,4 +350,8 @@ public class GBByteTest {
     }
 
 
+    @Test
+    public void testCp() throws Exception {
+
+    }
 }

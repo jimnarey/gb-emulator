@@ -1,7 +1,7 @@
 /**
  * Created by jamesnarey on 17/03/2016.
  */
-public class GBByte implements GByteInterface {
+public class GBByte implements GBDataInterface {
 
     protected int data = 0;
     protected boolean carryFlag = false;

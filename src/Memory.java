@@ -8,7 +8,7 @@ public class Memory {
 
     public static void main(String args[]) {
         Memory testMemory = new Memory();
-        System.out.println(testMemory.memoryBanks[0].getNumUnits());
+        System.out.println(testMemory.memoryBanks[0].getNumBytes());
 
     }
 
@@ -66,6 +66,37 @@ public class Memory {
 
     }
 
+    public GBByte LCDCStatusIS () {
+        return address(0x0048);
+    }
+
+    public GBByte timerOverflowIS () {
+        return address(0x0050);
+    }
+
+    public GBByte serialCompletionIS () {
+        return address(0x0058);
+    }
+
+    public GBByte highToLowIS () {
+        return address(0x0060);
+    }
+
+    public GBByte cartTypeAddress () {
+        return address(0x0147);
+    }
+
+    public GBByte romSizeAddress () {
+        return address(0x0148);
+    }
+
+    public GBByte ramSizeAddress () {
+        return address(0x0149);
+    }
+
+    public GBByte compCheckAddress () {
+        return address(0x014D);
+    }
 
     public void simpleLoadCartridge(Cartridge cartridge) {
         int cartridgeSize = cartridge.romData.length;
@@ -90,7 +121,7 @@ public class Memory {
 
         //Loop through declared memory MemoryBanks to calculate total number of bytes
         for (MemoryBank b : this.memoryBanks) {
-            byteCount = byteCount + b.getNumUnits();
+            byteCount = byteCount + b.getNumBytes();
         }
 
         //Print total number of bytes

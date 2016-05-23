@@ -73,7 +73,7 @@ public class Processor {
 
     }
 
-    public void jp (boolean condition, GByteInterface address) {
+    public void jp (boolean condition, GBDataInterface address) {
 
         if (condition) {
             r.PC.write( address.read() );

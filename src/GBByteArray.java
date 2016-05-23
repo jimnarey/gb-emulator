@@ -3,24 +3,24 @@
  */
 public class GBByteArray {
 
-    protected int numUnits;
+    protected int numBytes;
     protected GBByte[] bytes;
 
-    public GBByteArray(int numUnits) {
+    public GBByteArray(int numBytes) {
 
         //Set a maximum number of bytes
-        this.numUnits = numUnits;
-        this.bytes = new GBByte[numUnits];
+        this.numBytes = numBytes;
+        this.bytes = new GBByte[numBytes];
 
     }
 
-    public int getNumUnits() {
+    public int getNumBytes() {
 
-        return numUnits;
+        return numBytes;
     }
 
     public void populate() {
-        for (int i = 0; i < this.getNumUnits(); i++) {
+        for (int i = 0; i < this.getNumBytes(); i++) {
             this.bytes[i] = new GBByte();
         }
     }

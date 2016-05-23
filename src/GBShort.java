@@ -1,7 +1,7 @@
 /**
  * Created by jamesnarey on 08/05/2016.
  */
-public class GBShort extends GBByteArray implements GByteInterface {
+public class GBShort extends GBByteArray implements GBDataInterface {
 
 
     public GBShort() {
