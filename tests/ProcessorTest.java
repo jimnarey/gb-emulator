@@ -17,23 +17,23 @@ public class ProcessorTest {
         p = new Processor(m);
     }
 
-    @Test
-    public void testSub() throws Exception {
-        BByte d = new BByte();
-        d.write(10);
-        BByte c = new BByte();
-        c.write(20);
-        p.sub(d, c);
-        assertEquals(246, d.read());
-
-        BByte r = new BByte();
-        r.write(50);
-        BByte q = new BByte();
-        q.write(20);
-        p.sub(r, q);
-        assertEquals(30, r.read());
-
-    }
+//    @Test
+//    public void testSub() throws Exception {
+//        BByte d = new BByte();
+//        d.write(10);
+//        BByte c = new BByte();
+//        c.write(20);
+//        p.sub(d, c);
+//        assertEquals(246, d.read());
+//
+//        BByte r = new BByte();
+//        r.write(50);
+//        BByte q = new BByte();
+//        q.write(20);
+//        p.sub(r, q);
+//        assertEquals(30, r.read());
+//
+//    }
 
 
     @Test
@@ -132,43 +132,43 @@ public class ProcessorTest {
 
     }
 
-    @Test
-    public void testAND() throws Exception {
-
-        BByte d = new BByte();
-        d.write(80);
-        BByte c = new BByte();
-        c.write(54);
-        p.and(d, c);
-        assertEquals(16, d.read());
-
-
-    }
-
-    @Test
-    public void testOR() throws Exception {
-
-        BByte d = new BByte();
-        d.write(48);
-        BByte c = new BByte();
-        c.write(12);
-        p.or(d, c);
-        assertEquals(60, d.read());
-
-
-    }
-
-    @Test
-    public void testXOR() throws Exception {
-
-        BByte d = new BByte();
-        d.write(240);
-        BByte c = new BByte();
-        c.write(60);
-        p.xor(d, c);
-        assertEquals(204, d.read());
-
-    }
+//    @Test
+//    public void testAND() throws Exception {
+//
+//        BByte d = new BByte();
+//        d.write(80);
+//        BByte c = new BByte();
+//        c.write(54);
+//        p.and(d, c);
+//        assertEquals(16, d.read());
+//
+//
+//    }
+//
+//    @Test
+//    public void testOR() throws Exception {
+//
+//        BByte d = new BByte();
+//        d.write(48);
+//        BByte c = new BByte();
+//        c.write(12);
+//        p.or(d, c);
+//        assertEquals(60, d.read());
+//
+//
+//    }
+//
+//    @Test
+//    public void testXOR() throws Exception {
+//
+//        BByte d = new BByte();
+//        d.write(240);
+//        BByte c = new BByte();
+//        c.write(60);
+//        p.xor(d, c);
+//        assertEquals(204, d.read());
+//
+//    }
 
     @Test
     public void testComplement() throws Exception {
