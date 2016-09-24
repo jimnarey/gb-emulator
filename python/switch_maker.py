@@ -356,17 +356,17 @@ class SwitchMaker(object):
     def RETI(self):
         pass
 
-    def RLA(self):
-        pass
+    def RLA(self, row):
+        return 'r.A.rotateLeft();\n\n' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
 
-    def RLCA(self):
-        pass
+    def RLCA(self, row):
+        return 'r.A.rotateLeftThroughFlag( r.F.getC() );\n\n' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
 
-    def RRA(self):
-        pass
+    def RRA(self, row):
+        return 'r.A.rotateRight();\n\n' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
 
-    def RRCA(self):
-        pass
+    def RRCA(self, row):
+        return 'r.A.rotateRightThroughFlag( r.F.getC() );\n\n' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
 
     def SCF(self):
         pass
