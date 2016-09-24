@@ -237,7 +237,40 @@ class SwitchMaker(object):
 
                 cases_text = cases_text + SwitchMaker.set_opcode_time(row['cycles']) + '\n\n' + '\t\t\t'
 
-                if row['instruction'] == 'LD':
+                # Single commands
+                if row['full_instruction'] == 'CCF':
+                    pass
+                elif row['full_instruction'] == 'CPL':
+                    pass
+                elif row['full_instruction'] == 'DAA':
+                    pass
+                elif row['full_instruction'] == 'DI':
+                    pass
+                elif row['full_instruction'] == 'EI':
+                    pass
+                elif row['full_instruction'] == 'HALT':
+                    pass
+                elif row['full_instruction'] == 'NOP':
+                    pass
+                elif row['full_instruction'] == 'PREFIX_CB':
+                    pass
+                elif row['full_instruction'] == 'RETI':
+                    pass
+                elif row['full_instruction'] == 'RLA':
+                    pass
+                elif row['full_instruction'] == 'RLCA':
+                    pass
+                elif row['full_instruction'] == 'RRA':
+                    pass
+                elif row['full_instruction'] == 'RRCA':
+                    pass
+                elif row['full_instruction'] == 'SCF':
+                    pass
+                elif row['full_instruction'] == 'STOP':
+                    pass
+                # Automatically generated commands, generally those of which there are
+                # several instances
+                elif row['instruction'] == 'LD':
                     cases_text += self.ld_gen(row)
                 elif row['instruction'] in ['INC', 'DEC', 'SWAP']:
                     # Note that this next line adds brackets/line end
@@ -293,6 +326,53 @@ class SwitchMaker(object):
                 cases_text = cases_text + SwitchMaker.ins_tabs(3) + 'break;' + '\n\n'
 
         return cases_text
+
+    # Generate single commands
+
+    def CCF(self):
+        pass
+
+    def CPL(self):
+        pass
+
+    def DAA(self):
+        pass
+
+    def DI(self):
+        pass
+
+    def EI(self):
+        pass
+
+    def HALT(self):
+        pass
+
+    def NOP(self):
+        pass
+
+    def PREFIX_CB(self):
+        pass
+
+    def RETI(self):
+        pass
+
+    def RLA(self):
+        pass
+
+    def RLCA(self):
+        pass
+
+    def RRA(self):
+        pass
+
+    def RRCA(self):
+        pass
+
+    def SCF(self):
+        pass
+
+    def STOP(self):
+        pass
 
     # Generate function declaration, line containing switch statement itself and
     # necessary curly braces to wrap around output from main_cases
