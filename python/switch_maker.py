@@ -335,8 +335,8 @@ class SwitchMaker(object):
     def CPL(self):
         pass
 
-    def DAA(self):
-        pass
+    def DAA(self, row):
+        return 'daa();' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
 
     def DI(self):
         pass
@@ -350,8 +350,8 @@ class SwitchMaker(object):
     def NOP(self):
         pass
 
-    def PREFIX_CB(self):
-        pass
+    def PREFIX_CB(self, row):
+        return 'CBFlag = true;' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
 
     def RETI(self):
         pass

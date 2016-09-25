@@ -6,6 +6,9 @@ public class Processor {
     protected Registers r;
     protected Memory m;
     protected int currentOpcodeCycles = 0;
+    protected boolean CBFlag = false;
+    protected boolean EIFlag = false;
+    protected boolean DIFlag = false;
 
     public Processor(Memory memory) {
 
@@ -13,18 +16,6 @@ public class Processor {
         this.m = memory;
 
     }
-
-//    public void runInstruction() {
-//
-//        if (m.address(r.PC.read()).read() == 0xCB) {
-//            r.PC.inc();
-//            cBTable();
-//        }
-//        else {
-//            mainTable();
-//        }
-//
-//    }
 
 
     public void call (boolean condition) {
@@ -140,6 +131,27 @@ public class Processor {
     public GBByte popByte () {
         r.SP.inc();
         return m.address( r.SP.read() - 1 );
+    }
+
+
+
+    public void runInstruction() {
+        // This needs a lot of work...
+        mainTable(m.address(r.PC.read()).read());
+
+        if (CBFlag) {
+            cBTable(m.address(r.PC.read()).read());
+            CBFlag = false;
+        }
+        else if (EIFlag) {
+            //Run the next instruction then turn off interrupts
+            EIFlag = false;
+        }
+        else if (DIFlag) {
+            //Run the next instruction then turn off interrupts
+            DIFlag = false;
+        }
+
     }
 
     public void mainTable (int opcode) {
