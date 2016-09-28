@@ -173,7 +173,7 @@ public class Processor {
 
                 currentOpcodeCycles = 4;
 
-                //**missing
+                // Do nothing
 
                 r.PC.add(1);
 
@@ -382,6 +382,8 @@ public class Processor {
                 //ins: STOP 0 -- length: 2 -- cycles: 4 -- flags: ----
 
                 currentOpcodeCycles = 4;
+
+                // Halt CPU and LCD until a button is pressed
 
                 //**missing
 
@@ -1613,6 +1615,9 @@ public class Processor {
                 //ins: HALT -- length: 1 -- cycles: 4 -- flags: ----
 
                 currentOpcodeCycles = 4;
+
+                // Power down the CPU until an interrupt occurs
+                // Use this whenever possible to reduce energy consumption
 
                 //**missing
 
@@ -2874,7 +2879,7 @@ public class Processor {
 
                 currentOpcodeCycles = 4;
 
-                //**missing
+                CBFlag = true;
 
                 r.PC.add(1);
 
@@ -3026,6 +3031,10 @@ public class Processor {
                 //ins: RETI -- length: 1 -- cycles: 16 -- flags: ----
 
                 currentOpcodeCycles = 16;
+
+                // Pop two bytes from stack & jump to that address
+                // then enable interrupts.
+
 
                 //**missing
 
@@ -3260,7 +3269,7 @@ public class Processor {
 
                 currentOpcodeCycles = 4;
 
-                //**missing
+                DIFlag = true;
 
                 r.PC.add(1);
 
@@ -3353,7 +3362,7 @@ public class Processor {
 
                 currentOpcodeCycles = 4;
 
-                //**missing
+                EIFlag = true;
 
                 r.PC.add(1);
 
