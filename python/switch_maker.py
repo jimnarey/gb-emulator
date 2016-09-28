@@ -238,8 +238,14 @@ class SwitchMaker(object):
                 cases_text = cases_text + SwitchMaker.set_opcode_time(row['cycles']) + '\n\n' + '\t\t\t'
 
                 # Single commands
-                if row['full_instruction'] == 'CCF':
-                    pass
+
+
+                if row['full_instruction'] == 'LDH (a8),A':
+                    cases_text += 'm.address( r.PC.read() + 0xFF00 + 1 ).write( r.A.read() ); // check this is correct'
+                elif row['full_instruction'] == 'LDH A,(a8)':
+                    cases_text += 'r.A.write( m.address( r.PC.read() + 0xFF00 + 1 ).read() ); // check this is correct'
+                elif row['full_instruction'] == 'CCF':
+                    cases_text += self.DAA(row)
                 elif row['full_instruction'] == 'CPL':
                     pass
                 elif row['full_instruction'] == 'DAA':
@@ -329,50 +335,63 @@ class SwitchMaker(object):
 
     # Generate single commands
 
-    def CCF(self):
-        pass
+    def CCF(self, row):
+        comment = '// This setting of carry flag is whole instruction: r.F.setC( !r.F.getC() );'
+        return comment
 
-    def CPL(self):
-        pass
+    def CPL(self, row):
+        return self.add_missing(row) + '\n\n'
 
     def DAA(self, row):
-        return 'daa();' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
+        comment = '// Note carry flag is set in daa method'
+        comment = comment + '\n\n// !!!check!!! half carry is set as part of the add/sub method called in daa'
+        comment = comment + '\n\n// Check carry flags in world of spectrum, different from above\n\n'
+        command = 'daa();' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
+        return comment + command
 
-    def DI(self):
-        pass
+    def DI(self, row):
+        return 'DIFlag = true;' + SwitchMaker.get_flag_methods(row, '//**No dest', 3)
 
-    def EI(self):
-        pass
+    def EI(self, row):
+        return 'EIFlag = true;' + SwitchMaker.get_flag_methods(row, '//**No dest', 3)
 
-    def HALT(self):
-        pass
+    def HALT(self, row):
+        return self.add_missing(row) + '\n\n'
 
-    def NOP(self):
-        pass
+    def NOP(self, row):
+        return '//***Do Nothing' + '\n\n'
 
     def PREFIX_CB(self, row):
-        return 'CBFlag = true;' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
+        return 'CBFlag = true;' + SwitchMaker.get_flag_methods(row, '//**No dest', 3)
 
-    def RETI(self):
-        pass
+    def RETI(self, row):
+        return self.add_missing(row) + '\n\n'
 
     def RLA(self, row):
-        return 'r.A.rotateLeft();\n\n' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
+        comment = '//Check Z flag setting with another source\n\n'
+        command = 'r.A.rotateLeft();\n\n' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
+        return comment + command
 
     def RLCA(self, row):
-        return 'r.A.rotateLeftThroughFlag( r.F.getC() );\n\n' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
+        comment = '//Check Z flag setting with another source\n\n'
+        command = 'r.A.rotateLeftThroughFlag( r.F.getC() );\n\n' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
+        return comment + command
 
     def RRA(self, row):
-        return 'r.A.rotateRight();\n\n' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
+        comment = '//Check Z flag setting with another source\n\n'
+        command = 'r.A.rotateRight();\n\n' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
+        return comment + command
 
     def RRCA(self, row):
-        return 'r.A.rotateRightThroughFlag( r.F.getC() );\n\n' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
+        comment = '//Check Z flag setting with another source\n\n'
+        command =  'r.A.rotateRightThroughFlag( r.F.getC() );\n\n' + SwitchMaker.get_flag_methods(row, 'r.A', 3)
+        return comment + command
 
-    def SCF(self):
-        pass
+    def SCF(self, row):
+        return self.add_missing(row) + '\n\n'
 
-    def STOP(self):
-        pass
+    def STOP(self, row):
+        return self.add_missing(row) + '\n\n'
 
     # Generate function declaration, line containing switch statement itself and
     # necessary curly braces to wrap around output from main_cases

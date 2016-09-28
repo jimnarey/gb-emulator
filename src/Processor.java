@@ -5,6 +5,7 @@ public class Processor {
 
     protected Registers r;
     protected Memory m;
+    protected int clockHz;
     protected int currentOpcodeCycles = 0;
     protected boolean CBFlag = false;
     protected boolean EIFlag = false;
@@ -14,6 +15,10 @@ public class Processor {
 
         this.r = new Registers();
         this.m = memory;
+        this.clockHz = 4194304;
+        // Therefore, in seconds:
+        // .000,000,238,418579102 duration of each clock cycle
+        // .000,000,953,674316408 duration of 4 clock cycles (smallest practical time unit?)
 
     }
 
@@ -140,16 +145,21 @@ public class Processor {
         mainTable(m.address(r.PC.read()).read());
 
         if (CBFlag) {
-            cBTable(m.address(r.PC.read()).read());
             CBFlag = false;
+            cBTable(m.address(r.PC.read()).read());
         }
         else if (EIFlag) {
-            //Run the next instruction then turn off interrupts
             EIFlag = false;
+            //Run the next instruction then turn off interrupts
+            // runInstruction(m.address(r.PC.read()).read());
+            //...interrupts on
+
         }
         else if (DIFlag) {
-            //Run the next instruction then turn off interrupts
             DIFlag = false;
+            //Run the next instruction then turn off interrupts
+            // runInstruction(m.address(r.PC.read()).read());
+            //...interrupts off
         }
 
     }
@@ -673,14 +683,15 @@ public class Processor {
 
                 // Some dispute as to flags. Above not the same as
                 // http://www.worldofspectrum.org/faq/reference/z80reference.htm#DAA
+                // Note carry flag is set in daa method
+                // !!!check!!! half carry is set as part of the add/sub method called in daa
 
                 //**manual
 
                 daa();
 
                 r.F.setZ( r.A.isZero() );
-                // Note carry flag is set in daa method
-                // !!!check!!! half carry is set as part of the add/sub method called in daa
+
 
                 r.PC.add(1);
 

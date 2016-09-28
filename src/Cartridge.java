@@ -14,7 +14,7 @@ public class Cartridge extends GBByteArray {
     public Cartridge() throws IOException {
         super(32768);
         populate();
-        fileName = "/Users/jamesnarey/Development/Projects/gb_emulator/roms/Tetris (World).gb";
+        fileName = "/home/jimnarey/Development/Projects/gb_emulator/roms/Tetris (World).gb";
         readFile(fileName);
 
     }
